@@ -19,18 +19,18 @@
 # Change the file extension to match the format (.xml for XML, etc...)
 #
 ###
-title: "TODO - Your title"
-abbrev: "TODO - Abbreviation"
+title: "draft-davis-ivy-generalized-capability-principles"
+abbrev: "capability"
 category: info
 
-docname: draft-todo-yourname-protocol-latest
-submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
+docname: draft-davis-ivy-generalized-capability-principles-latest
+submissiontype: IETF 
 number:
 date:
 consensus: true
 v: 3
-area: AREA
-workgroup: WG Working Group
+area: OPS
+workgroup: GREEN Working Group
 keyword:
  - next generation
  - unicorn
