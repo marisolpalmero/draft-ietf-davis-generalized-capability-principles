@@ -4,24 +4,24 @@ abbrev: "capability"
 category: info
 
 docname: draft-davis-ivy-generalized-capability-principles-latest-latest
-submissiontype: IETF 
+submissiontype: IETF
 number:
 date:
 consensus: true
 v: 3
-area: OPS
-workgroup: GREEN Working Group
+area: "Operations and Management"
+workgroup: "Network Inventory YANG"
 keyword:
  - next generation
  - unicorn
  - sparkling distributed ledger
 venue:
-  group: WG
-  type: Working Group
-  mail: WG@example.com
-  arch: https://example.com/WG
-  github: USER/REPO
-  latest: https://example.com/LATEST
+  group: "Network Inventory YANG"
+  type: "Working Group"
+  mail: "ivy@ietf.org"
+  arch: "https://mailarchive.ietf.org/arch/browse/ivy"
+  github: "marisolpalmero/draft-ietf-davis-generalized-capability-principles"
+  latest: "https://marisolpalmero.github.io/draft-ietf-davis-generalized-capability-principles/draft-davis-ivy-generalized-capability-principles-latest.html"
 
 author:
  -
