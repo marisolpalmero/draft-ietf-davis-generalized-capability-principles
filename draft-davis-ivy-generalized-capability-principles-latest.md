@@ -122,7 +122,7 @@ informative:
 
 --- abstract
 
-This document introduces a framework for capability modeling based on the specification and refinement principles established in ITU-T G.7711 Annex G (ONF TR‑512.7) and the modeling boundaries work documented in `draft-davis-netmod-modelling-boundaries`. The framework defines how component–system capabilities can be explicitly described and refined via a process of pruning, refactoring, and occurrence formation.
+This document introduces a framework for capability modeling based on the specification and refinement principles established in ITU-T G.7711 Annex G (also published as ONF TR‑512.7 see latest release) and the modeling boundaries work documented in `draft-davis-netmod-modelling-boundaries`. The framework defines how component–system capabilities can be explicitly described and refined via a process of pruning, refactoring, and occurrence formation.
 
 These capability definitions can target detailed operational considerations, system interactions, licensing, abstract product declarations, or sales and marketing. The framework supports modular, layered, and fractal declarations of networked behavior, and provides a foundation for a suite of future IETF drafts aligned with ongoing work on photonic plug manifests, entitlement/licensing, IVY equipment modeling, and related domains.
 
@@ -146,19 +146,22 @@ The following terms abbreviations are used in this document:
 #Introduction
 
 Currently, capabilities are mainly described loosely in human readable text, where that text is often incomplete, ambiguous or inconsistent. While people make these systems work in practice, the looseness result in errors, inefficiencies and limited reuse.
-As automation increases, there is a growing need to enable machine reasoning about the capabilities of network systems and components. While Large Language Models (LLMs) can interpret traditional documentation, there remains a strong need for greater formal rigor and structured representation to improve efficiency and precision.
-Existing IETF models predominantly focus on configuration, operational state, or telemetry. What is missing is a cohesive framework for expressing what a system *can* do—its capabilities—in a declarative, structures, and reusable form.
+As automation increases, there is a growing need to enable machine reasoning about the capabilities of network systems and components. While Large Language Models (LLMs) can interpret traditional documentation, there remains a strong need for greater formal rigor and structured representation to improve efficiency and precision. When asked, LLMs indicate that a rigorous model is preferable to loose ambiguous text.
+Existing IETF models predominantly focus on configuration, operational state, and telemetry. What is missing is a cohesive framework for expressing what a system *can* do, i.e., its capabilities, in a declarative, structured, and reusable form.
 This document introduces the principles for a capability modeling framework grounded in the specification concept established in [ITU-T G.7711] ([ONF TR‑512]). It applies these principles through the lens of the **component–system pattern** from [ONF TR-512.A.2], using the concept of **emergence through recursive narrowing and occurrence formation**. These ideas are extended further by the modeling boundary principles described in [mobo].
 The result is a standardized and extensible approach for expressing features, operational constraints, internal dependencies, etc. - separately from instance realizations.
 This approach supports capability modeling for any aspect of the controlled networking solution, and is designed to enable capability assembly, dynamic composition, licensing control, and integration with other IETF frameworks such as IVY equipment, photonic plug manifests, and entitlement interfaces. It also supports green initiatives where specific detailed capabilities and their power/thermal implications become critical considerations.
 
 #Problem Statement
 
-Network technologies and management-control frameworks increasingly rely on declarative data models to represent both configuration and operational state. However, these models often lack a principled way to describe the *capabilities* of components and systems—what they are able to support or provide, independent of any particular operational instance. This omission makes it difficult to reason about compatibility, constraint satisfaction, composition, or even basic intent feasibility.
+Network technologies and management-control frameworks increasingly rely on declarative data models to represent both configuration and operational state. However, these models often lack a principled way to describe the *capabilities* of components and systems—what they are able to support or provide, independent of any particular operational instance. This omission makes it difficult to reason about compatibility, constraint satisfaction, composition, or even basic intent feasibility. Clearly, many of these activities take place prior to the installation of the equipment and indeed determine which equipments are to be planned to be installed. In these cases it is not possible to interogate the actual equipment. 
+Whilst knowing the YANG model for the equipment is beneficial, it is not sufficient as the YANG model essentially provides a space within which actual state etc. can be expresses, but it supports all possible combinations. The equipment will be very limited in comparison.
 Often it is desirable from a systems operation perspective to reduce the available capability through policy or other mechanisms due to the restrictions of a specific role. This becomes challenging if the base capability of a component is unclear and expressed in a chaotic form.
-In practice, three distinct concerns are often conflated, and also not fully expressed, within data models:
-- The **generic definition** of a model element or concept (e.g., a termination point)
-- The **capability definition** of a system or component—what it can support or expose (e.g., by a specific type or role of termination point) – this is especially sparce in representation
+In practice, five distinct concerns are often conflated, and also not fully expressed, within data models:
+- The **generic definition** of a model element or concept (e.g., a termination point) - this is expressed in YANG. It is a very broad definition encompassing all possible opportunities and ofthen many illegal state combinations etc.
+- The **capability definition** of a system or component, i.e., what it can support or expose (e.g., by a specific type or role of termination point). This is not expressed fully in YANG. There are both challenges with the expression of base capability and expression of the capability of combinations. This is especially sparce in representation
+- The users **policy definition** for system operation - the user may eliminate particular capabilities due to complexity, lack of trust, regulation etc. and will not want them offered or may not want them offered under certain circumstances. The equipment will be expected to behave as if it does not have the capabilities as approproiate.
+- The **system combination** where an entity type may play several different roles and in each role may have specific distinct intentional limitations/restrictions.
 - The **operational instance**—what is configured or active at a given time.
 Without a clear structural separation and with the sparseness of information on specific capabilities, it becomes challenging to formally describe feature constraints, support boundaries, or internal limitations. Implementers resort to informal documentation, code comments, yellow stickies, or out-of-band agreements to capture the intent behind model behavior. This reduces interoperability, increases integration effort, and undermines automation as a result of
 - **Ambiguity** between what a model element *is* versus what a system *can support*.
@@ -167,14 +170,14 @@ Without a clear structural separation and with the sparseness of information on 
 - **Incompatibility** between modular subsystems or plug-ins that must declare and verify their supported features.
 Furthermore, current models tend to assume a fixed taxonomy of types and features, rather than supporting a process of recursive refinement. This limits their ability to express how complex capabilities *emerge* through constraint, composition, and modular pruning of more general-purpose constructs.
 What is needed is a modeling framework that:
-- Allows systems and components to be described in terms of their **capability boundaries**, separate from operational state,
+- Allows systems and components to be described in terms of their **capability boundaries**, including **capability interactions** separate from operational state,
 - Supports **refinement via pruning and refactoring to yield flexible structural transformation** rather than rigid inheritance or classification,
 - Enables **recursive occurrence formation**, where each stage of narrowing produces a usable semantic structure,
 - Accommodates **multiple valid refinement paths**, supporting different levels of granularity and domain specificity,
 - Provides a **coherent trace** from abstract capability declarations down to deployable or licensable configurations.
-This draft introduces such a framework by building on the refinement logic of [ITU-T G.7711]  ([ONF TR-512]) in general and especially the *specification pattern* structures of ITU-T G.7711 Annex G (ONF TR‑512.7) which provides a means of expressing bounded capability envelopes through a formal refinement of generic model elements. This also provides grounding in the recursive occurrence model informed by the component–system pattern [ITU-T G.7711]  ([ONF TR-512.A.2] and modeling boundaries approach [mobo]. This document leverages the the mature foundations laid by TR-512.7 and G.7711.
+This draft introduces such a framework by building on the refinement logic of [ITU-T G.7711]  ([ONF TR-512]) in general and especially the **specification pattern** structures of ITU-T G.7711 Annex G (ONF TR‑512.7) which provides a means of expressing bounded capability envelopes through a formal refinement of generic model elements. This also provides grounding in the recursive occurrence model informed by the component–system pattern [ITU-T G.7711]  ([ONF TR-512.A.2] and modeling boundaries approach [mobo]. This document leverages the foundations laid by [ITU-T G.7711]  ([ONF TR-512]).
 
-Also intent everywhere.
+Also intent everywhere.... TBC
 
 #Generalized Modeling via Component–System–Specification Refinement
 
