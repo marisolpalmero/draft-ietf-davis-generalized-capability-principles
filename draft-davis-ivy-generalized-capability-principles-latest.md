@@ -209,29 +209,92 @@ In an ideal environment, there is an ecosystem of specificactions each providing
 Today's solution at best have a coded form of the semantic mantic interpretation that may not reflect the formal definition due to inaccuracies of interpretation. Many semantics are reduced to inconsistent labels that a user has to interpret. Whilst an LLM can do a reasonable job at interpretation of chaotic data, it will benefit a rigorous model traceable through formal definitions to fundamentals.
 
 #Some specification examples
+This section should describe process illustrated via example sketches and detail.
 
-A physical equipment in a physical context.
+Note that the use of the physical and functional considerations are recursively intertwined... a bit of physical, emergent function, function assembly, physical assembly thermals etc.
+
+Start with a generalized equipment and a generalized function and sketch the narrowing.
+
+A physical equipment in a physical context considering how it fits and what fits in it...
+-type
+-size
+-thermals
+-power/thermal
+-physical compatibility
+-electrical compatibility
+-diagram or compatibilities from ONF work
+-physical assemblies and thermals
+
 Function emergent from a physical equipment
-A system arrangements.
+-raw functions (use ProcessingConstruct recursion as per ONF)
+-emergent capabilities and needs
+-functional compatibility
+-power and thermals per functions
+A system of equipments in an assembly
+-functional assemblies
+-power and thermals per assembly
+A system arrangements for a protection scheme.
+A specification for a system arrangement for a service and associated realization pattern specifications.
+
 
 #Recursive narrowing
-
-Component to Function to TP to specific TP to application of TP to instance of TP
+This builds on the example sketches and formalizes the process of recursive narrowing.
+Ahow the essential process. 
+Use examples to illustrate the process
+-Thing to Component to Function to TP to specific TP to application of TP to instance of TP.
+-Thing to Component to physical thing to equipment to specific equipment type to use of that equipment to instance of equipment
+-A plug example
+Circle back and relate this more rigorous section to the specification examples.
 
 #Specification of an assembly
+Build on the examples and the recursive narrowing to explain the subtle narrowings in a system/scheme spec. Describe the essential process.
+Use examples to illustrate the progression:
+- Same examples as recursive narrowing but focus on role and subtle specializations in role
+List other examples.
 
 #Generalization of the specification
+Build a specification structure from the examples and show the references and reuses.
+Explain how the specification relates to the things in the problem space.
+Lay out the specification structure.
 
-#Properties of a lsngusge of specification
+#Characteristics of a language of specification
+The language needs inherent capabilities (as opposed to after the fact bolt-on warts)
+Extract key characteristics from above and from mobo
+- narrowing requires specific redefine (relate to pruning)
+- occurrence is an assembly of constrained type and specific values
+- need to reference other specs
+- refactoring, minor specialization and assembly
+- interrelationship and influence
+- uncertainty and preferences
+(Need to review mobo and TR-547 spec, component-system etc.)
 
 #Specification language options
+Landscape of languages... does anything do this?
+Take YANG and enhance (as discussed in mobo)
 
 #Building a specification structure
+Tooling and support to build and interrelate.
+Catalogue/library of specs
+Deep application... machine interpretable structure in all standards
+Use of AI to reverse engineer specs with guidance... peer review and testing cycle
 
 #A specification evolution example
+Discuss how a spec may change as understanding emerges and how it may be refactored.
 
 #A system specification example
+Take the language considerations and set out system specs in a more formal way
 
+#Application of the Language
+Negotiation
+Refinement of planning
+Development of standards
+Expression of uncertainty and pattern
+
+#Conclusion
+Mindset Change
+Langue challenges
+Use of AI
+Target is an ecosystem of specs driving agentic components...
 
 #Security Considerations
 
