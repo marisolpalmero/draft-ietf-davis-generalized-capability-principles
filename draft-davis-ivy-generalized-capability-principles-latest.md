@@ -135,13 +135,17 @@ document are to be interpreted as described in RFC2119}}.
 
 The following terms abbreviations are used in this document:
 
-* capability: Placeholder
-* manifest: Placeholder
-* specification: Placeholder
-* representation: Placeholder
+* capability: What can be achieved by an individual item both alone and in assembly (using the component-system pattern)
+* needs: Related to capability, this is what the item, either alone or in assembly, needs to achieve its capabilities
+* manifest: A list of essential contents
+* specification: A detailed description including arrangement
+* representation: An expression of properties from a perspective
 * occurrence: Placeholder
-* component-system: Placeholder
-* pruning & refactoring: Placeholder
+* component-system: A pattern that expresses each item as a component where components can be assembled into systems and where a system can be represented as a component where that assembly may be of real things or may be abstractions of the effect of real things.
+* pruning:Placeholder
+* refactoring:Placeholder
+* pruning & refactoring: The process that supports progression from one view to the next view 
+* capability/needs specification: A detailed description of what can be achived by an individual item both alone and in assembly with respect to specific needs
 
 #Introduction
 
@@ -178,6 +182,23 @@ What is needed is a modeling framework that:
 This draft introduces such a framework by building on the refinement logic of [ITU-T G.7711]  ([ONF TR-512]) in general and especially the **specification pattern** structures of ITU-T G.7711 Annex G (ONF TR‑512.7) which provides a means of expressing bounded capability envelopes through a formal refinement of generic model elements. This also provides grounding in the recursive occurrence model informed by the component–system pattern [ITU-T G.7711]  ([ONF TR-512.A.2] and modeling boundaries approach [mobo]. This document leverages the foundations laid by [ITU-T G.7711]  ([ONF TR-512]).
 
 The same expression challenges appear in statements of intent. The process of formulating intent through negotiation and resultant gradual refinement has a similar feel to the degrees of narrowing of the specification.
+
+#Specification in terms of the Model
+The specification of capability should be presented in terms of the terminology of the problem space and hence in terms of the appropriate model. The challenge is determining which model is the "appropriate" model. 
+
+An area of the problem space can be described in different ways depending upon what the intention of the model is. There are many ways of representing a semantic space/
+
+Prior to embarking on evaluation of specification of capability, it is important to consider the specific model and how it is structured.
+
+- Focus: Semantic area covered at centre and periphery
+- Specialization: Specific detailed focus on an area with rich structure, e.g., PCE, problem analysis, etc.
+- Granularity: the “size” of the semantic units (including the depth of recursion of fractal representations)
+- Phase: The positioning of the semantic boundaries
+- Richness: The detailed coverage within a semantic unit
+- Fidelity: Precision v approximation
+- Abstraction: Closeness to actual detail
+- Maturity: Lifecycle development stage. How stable the model is likely to be. This is primarily about semantics, but also covers syntax.
+- Omission: Gaps and missing parts
 
 #Generalized Modeling via Component–System–Specification Refinement
 
