@@ -1,24 +1,4 @@
 ---
-###
-# Internet-Draft Markdown Template
-#
-# Rename this file from draft-todo-yourname-protocol.md to get started.
-# Draft name format is "draft-<yourname>-<workgroup>-<name>.md".
-#
-# For initial setup, you only need to edit the first block of fields.
-# Only "title" needs to be changed; delete "abbrev" if your title is short.
-# Any other content can be edited, but be careful not to introduce errors.
-# Some fields will be set automatically during setup if they are unchanged.
-#
-# Don't include "-00" or "-latest" in the filename.
-# Labels in the form draft-<yourname>-<workgroup>-<name>-latest are used by
-# the tools to refer to the current version; see "docname" for example.
-#
-# This template uses kramdown-rfc: https://github.com/cabo/kramdown-rfc
-# You can replace the entire file if you prefer a different format.
-# Change the file extension to match the format (.xml for XML, etc...)
-#
-###
 title: "Generalized Capability Principles"
 abbrev: "GenCapPrinc"
 category: info
@@ -40,12 +20,12 @@ keyword:
  - component-system
  - pruning&refactoring
 venue:
-  group: WG
+  group: "Network Inventory YANG WG"
   type: Working Group
-  mail: WG@example.com
-  arch: https://example.com/WG
-  github: USER/REPO
-  latest: https://example.com/LATEST
+  mail: "inventory-yang@ietf.org"
+  arch: "https://mailarchive.ietf.org/arch/browse/inventory-yang/"
+  github: "marisolpalmero/draft-ietf-davis-generalized-capability-principles"
+  latest: "https://github.com/marisolpalmero/draft-ietf-davis-generalized-capability-principles/blob/main/draft-davis-ivy-generalized-capability-principles-latest.md"
 
 author:
   -
@@ -54,11 +34,24 @@ author:
     org: Ciena
     email: ndavis@ciena.com
 
+  - 
+    ins: C. Cardona
+    name: Camilo Cardona
+    organization: NTT
+    email: "camilo@gin.ntt.net"
+
+  - 
+    ins: D. Lopez
+    name: Diego Lopez
+    organization: Telefonica
+    email: "diego.r.lopez@telefonica.com"
+
   -
     ins: M. Palmero
     name: Marisol Palmero
-    org: Individual
+    org: Independent
     email: marisolpalmero7@gmail.com
+
 
 contributor:
 
@@ -71,12 +64,13 @@ contributor:
 
 normative:
 
-   whatever:
-              title: "whatever"
-              date: 2022-04-27
-              target: https://.pdf
+  RFC2119:
+  RFC8174:
+
 
 informative:
+
+   BaseInventory: I-D.ietf-ivy-network-inventory-yang
 
    ITU-T G.7711:
               title: "Generic…."
