@@ -50,7 +50,7 @@ author:
     ins: M. Palmero
     name: Marisol Palmero
     org: Independent
-    email: marisolpalmero7@gmail.com
+    email: marisol.ietf@gmail.com
 
 
 contributor:
