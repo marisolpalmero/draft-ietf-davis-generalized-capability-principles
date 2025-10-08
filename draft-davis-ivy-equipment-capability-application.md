@@ -1,16 +1,17 @@
 ---
 title: "Equipment Capability Application"
 abbrev: "EquCapAppl"
-category: info
-
 docname: draft-davis-nmop-equipment-capability-application-latest
+category: info
+stand_alone: true
+
 submissiontype: IETF  # also: "independent", "IAB", or "IRTF"
 number:
 date:
 consensus: true
 v: 3
-area: AREA
-workgroup: WG Working Group
+area: "Operations and Management"
+wg: "IVY WG"
 keyword:
  - capability
  - manifest
