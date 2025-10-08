@@ -1,17 +1,18 @@
 ---
 title: "Generalized Capability Principles"
 abbrev: "GenCapPrinc"
-category: info
-
 docname: draft-davis-ivy-generalized-capability-principles-latest
+category: info
+stand_alone: true
+
 submissiontype: IETF  # also: "independent", "IAB", or "IRTF"
 number:
 date:
 consensus: true
 v: 3
-area: AREA
-workgroup: WG Working Group
-keyword:
+area: "Operations and Management"
+wg: "IVY WG"
+kw:
  - capability
  - manifest
  - specification
@@ -21,13 +22,14 @@ keyword:
  - pruning&refactoring
 venue:
   group: "Network Inventory YANG WG"
-  type: Working Group
+  type: ""
   mail: "inventory-yang@ietf.org"
   arch: "https://mailarchive.ietf.org/arch/browse/inventory-yang/"
   github: "marisolpalmero/draft-ietf-davis-generalized-capability-principles"
   latest: "https://github.com/marisolpalmero/draft-ietf-davis-generalized-capability-principles/blob/main/draft-davis-ivy-generalized-capability-principles-latest.md"
 
 author:
+
   -
     ins: N. R. Davis
     name: Nigel Robert Davis
