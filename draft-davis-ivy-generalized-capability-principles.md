@@ -36,13 +36,13 @@ author:
     org: Ciena
     email: ndavis@ciena.com
 
-  - 
+  -
     ins: C. Cardona
     name: Camilo Cardona
     organization: NTT
     email: "camilo@gin.ntt.net"
 
-  - 
+  -
     ins: D. Lopez
     name: Diego Lopez
     organization: Telefonica
@@ -101,7 +101,7 @@ informative:
    ONF TR-512.A.2:
               title:  "TR-512.A.2 Appendix: Model Structure, Patterns and Architecture"
               target: https://opennetworking.org/wp-content/uploads/2021/11/TR-512_v1.5_OnfCoreIm-info.zip
- 
+
    ONF TR-512.8:
               title:  "TR-512.8 Control"
               target: https://opennetworking.org/wp-content/uploads/2021/11/TR-512_v1.5_OnfCoreIm-info.zip
@@ -140,7 +140,7 @@ The following terms abbreviations are used in this document:
 * component-system: A pattern that expresses each item as a component where components can be assembled into systems and where a system can be represented as a component where that assembly may be of real things or may be abstractions of the effect of real things.
 * pruning:Placeholder
 * refactoring:Placeholder
-* pruning & refactoring: The process that supports progression from one view to the next view 
+* pruning & refactoring: The process that supports progression from one view to the next view
 * capability/needs specification: A detailed description of what can be achived by an individual item both alone and in assembly with respect to specific needs
 
 #Introduction
@@ -154,7 +154,7 @@ This approach supports capability modeling for any aspect of the controlled netw
 
 #Problem Statement
 
-Network technologies and management-control frameworks increasingly rely on declarative data models to represent both configuration and operational state. However, these models often lack a principled way to describe the *capabilities* of components and systems—what they are able to support or provide, independent of any particular operational instance. This omission makes it difficult to reason about compatibility, constraint satisfaction, composition, or even basic intent feasibility. Clearly, many of these activities take place prior to the installation of the equipment and indeed determine which equipments are to be planned to be installed. In these cases it is not possible to interogate the actual equipment. 
+Network technologies and management-control frameworks increasingly rely on declarative data models to represent both configuration and operational state. However, these models often lack a principled way to describe the *capabilities* of components and systems—what they are able to support or provide, independent of any particular operational instance. This omission makes it difficult to reason about compatibility, constraint satisfaction, composition, or even basic intent feasibility. Clearly, many of these activities take place prior to the installation of the equipment and indeed determine which equipments are to be planned to be installed. In these cases it is not possible to interogate the actual equipment.
 Whilst knowing the YANG model for the equipment is beneficial, it is not sufficient as the YANG model essentially provides a space within which actual state etc. can be expresses, but it supports all possible combinations. The equipment will be very limited in comparison.
 Often it is desirable from a systems operation perspective to reduce the available capability through policy or other mechanisms due to the restrictions of a specific role. This becomes challenging if the base capability of a component is unclear and expressed in a chaotic form.
 In practice, five distinct concerns are often conflated, and also not fully expressed, within data models:
@@ -180,7 +180,7 @@ This draft introduces such a framework by building on the refinement logic of [I
 The same expression challenges appear in statements of intent. The process of formulating intent through negotiation and resultant gradual refinement has a similar feel to the degrees of narrowing of the specification.
 
 #Specification in terms of the Model
-The specification of capability should be presented in terms of the terminology of the problem space and hence in terms of the appropriate model. The challenge is determining which model is the "appropriate" model. 
+The specification of capability should be presented in terms of the terminology of the problem space and hence in terms of the appropriate model. The challenge is determining which model is the "appropriate" model.
 
 An area of the problem space can be described in different ways depending upon what the intention of the model is. There are many ways of representing a semantic space/
 
@@ -256,7 +256,7 @@ A specification for a system arrangement for a service and associated realizatio
 
 #Recursive narrowing
 This builds on the example sketches and formalizes the process of recursive narrowing.
-Ahow the essential process. 
+Ahow the essential process.
 Use examples to illustrate the process
 -Thing to Component to Function to TP to specific TP to application of TP to instance of TP.
 -Thing to Component to physical thing to equipment to specific equipment type to use of that equipment to instance of equipment
