@@ -3,7 +3,7 @@ title: "Generalized Capability Principles"
 abbrev: "GenCapPrinc"
 category: info
 
-docname: draft-davis-nmop-generalized-capability-principles-latest
+docname: draft-davis-ivy-generalized-capability-principles-latest
 submissiontype: IETF  # also: "independent", "IAB", or "IRTF"
 number:
 date:
