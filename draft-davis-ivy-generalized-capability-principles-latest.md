@@ -118,7 +118,7 @@ informative:
 
 This document introduces a framework for capability modeling based on the specification and refinement principles established in ITU-T G.7711 Annex G (also published as ONF TR‑512.7 see latest release) and the modeling boundaries work documented in `draft-davis-netmod-modelling-boundaries`. The framework defines how component–system capabilities can be explicitly described and refined via a process of pruning, refactoring, and occurrence formation.
 
-These capability definitions can target detailed operational considerations, system interactions, licensing, abstract product declarations, or sales and marketing. The framework supports modular, layered, and fractal declarations of networked behavior, and provides a foundation for a suite of future IETF drafts aligned with ongoing work on photonic plug manifests, entitlement/licensing, IVY equipment modeling, and related domains.
+These capability definitions can target detailed operational considerations, system interactions, licensing, abstract product declarations, or sales and marketing. The framework supports modular, layered, and fractal declarations of networked behavior, and provides a foundation for a suite of future IETF drafts aligned with ongoing work on photonic plug manifests, entitlement/licensing, IVY equipment modeling, energy/thermal considerations and related domains.
 
 --- middle
 
@@ -148,7 +148,7 @@ As automation increases, there is a growing need to enable machine reasoning abo
 Existing IETF models predominantly focus on configuration, operational state, and telemetry. What is missing is a cohesive framework for expressing what a system *can* do, i.e., its capabilities, in a declarative, structured, and reusable form.
 This document introduces the principles for a capability modeling framework grounded in the specification concept established in [ITU-T G.7711] ([ONF TR‑512]). It applies these principles through the lens of the **component–system pattern** from [ONF TR-512.A.2], using the concept of **emergence through recursive narrowing and occurrence formation**. These ideas are extended further by the modeling boundary principles described in [mobo].
 The result is a standardized and extensible approach for expressing features, operational constraints, internal dependencies, etc. - separately from instance realizations.
-This approach supports capability modeling for any aspect of the controlled networking solution, and is designed to enable capability assembly, dynamic composition, licensing control, and integration with other IETF frameworks such as IVY equipment, photonic plug manifests, and entitlement interfaces. It also supports green initiatives where specific detailed capabilities and their power/thermal implications become critical considerations.
+This approach supports capability modeling for any aspect of the controlled networking solution, and is designed to enable capability assembly, dynamic composition, licensing control, and integration with other IETF frameworks such as IVY equipment, photonic plug manifests, and entitlement interfaces. It also supports initiatives focussing on energy/thermal considerations where specific detailed capabilities and their power/thermal implications become critical considerations.
 
 #Problem Statement
 
@@ -233,8 +233,8 @@ Start with a generalized equipment and a generalized function and sketch the nar
 A physical equipment in a physical context considering how it fits and what fits in it...
 -type
 -size
--thermals
--power/thermal
+-thermal
+-power
 -physical compatibility
 -electrical compatibility
 -diagram or compatibilities from ONF work
