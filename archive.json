@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-10-07T01:08:13.939735+00:00",
+  "timestamp": "2025-10-09T01:08:36.527991+00:00",
   "repo": "marisolpalmero/draft-ietf-davis-generalized-capability-principles",
   "labels": [
     {
@@ -113,13 +113,13 @@
       "labels": [],
       "body": "Just includes abstract and introduction.",
       "createdAt": "2025-10-06T22:28:34Z",
-      "updatedAt": "2025-10-06T22:28:34Z",
+      "updatedAt": "2025-10-08T13:34:13Z",
       "baseRepository": "marisolpalmero/draft-ietf-davis-generalized-capability-principles",
       "baseRefName": "main",
-      "baseRefOid": "3d4dc5eff6ae550b1a26ddaaf21686ee302c0221",
+      "baseRefOid": "ea329568d40d2f9540e1a748fb1588c4e01ba39d",
       "headRepository": "nigel-r-davis/draft-ietf-davis-generalized-capability-principles",
       "headRefName": "main",
-      "headRefOid": "086ea2855357b18d16771a339c3b212a8dba0d9e",
+      "headRefOid": "aba950cdf80d4389b90acfc7218a92fc33338ddb",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
