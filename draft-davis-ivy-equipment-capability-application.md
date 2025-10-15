@@ -114,8 +114,9 @@ informative:
               title:  "ONF Transport API SDK 2.4.0"
               target: https://github.com/OpenNetworkingFoundation/TAPI/releases/tag/v2.4.0
 
-   GenCapPrin
-
+   GenCapPrin:
+              title:  "Generalized Capability Principles"
+              target: https://github.com/OpenNetworkingFoundation/TAPI/releases/tag/v2.4.0
 
 --- abstract
 
