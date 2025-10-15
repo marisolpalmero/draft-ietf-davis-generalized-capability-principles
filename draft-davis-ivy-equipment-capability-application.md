@@ -73,50 +73,6 @@ informative:
 
    BaseInventory: I-D.ietf-ivy-network-inventory-yang
 
-   ITU-T_G.7711:
-              title: "Generic…."
-              date: 2022-08-31
-              target: https://www.itu.int/rec/T-REC-G.7711/recommendation.asp?lang=en&parent=T-REC-G.7711-202202-I)
-
-   ivy:
-              title: "ivy"
-              date: 2022-08-31
-              target: https:// 3.pdf
-
-   plug:
-              title: "plug"
-              date: 2022-08-31
-              target: https:// 3.pdf
-
-   mobo:
-              title: "draft-davis-netmod-modelling-boundaries"
-              date: 2022-08-31
-              target: https:// 3.pdf
-
-   ONF_TR-512:
-              title:  "TR-512 Core Information Model (CoreModel) v1.5"
-              target: https://opennetworking.org/wp-content/uploads/2021/11/TR-512_v1.5_OnfCoreIm-info.zip
-
-   ONF_TR-512.A.2:
-              title:  "TR-512.A.2 Appendix: Model Structure, Patterns and Architecture"
-              target: https://opennetworking.org/wp-content/uploads/2021/11/TR-512_v1.5_OnfCoreIm-info.zip
- 
-   ONF_TR-512.8:
-              title:  "TR-512.8 Control"
-              target: https://opennetworking.org/wp-content/uploads/2021/11/TR-512_v1.5_OnfCoreIm-info.zip
-
-   ONF_TR-512.7:
-              title:  "TR-512.7 Specification"
-              target: https://opennetworking.org/wp-content/uploads/2021/11/TR-512_v1.5_OnfCoreIm-info.zip
-
-
-   LF_TAPI:
-              title:  "Transport API"
-              target: https://github.com/Open-Network-Models-and-Interfaces-ONMI/TAPI-Home
-
-   GenCapPrin:
-              title:  "Generalized Capability Principles"
-              target: https://github.com/OpenNetworkingFoundation/TAPI/releases/tag/v2.4.0
 
 --- abstract
 
