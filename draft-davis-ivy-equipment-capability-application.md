@@ -264,7 +264,6 @@ A system of equipments in an assembly
 A system arrangements for a protection scheme.
 A specification for a system arrangement for a service and associated realization pattern specifications.
 
-
 #Recursive narrowing
 This builds on the example sketches and formalizes the process of recursive narrowing.
 About the essential process.
