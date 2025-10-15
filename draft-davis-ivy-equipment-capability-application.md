@@ -1,7 +1,7 @@
 ---
 title: "Equipment Capability Application"
 abbrev: "EquCapAppl"
-docname: draft-davis-nmop-equipment-capability-application
+docname: draft-davis-ivy-equipment-capability-application
 category: info
 stand_alone: true
 
