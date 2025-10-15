@@ -74,6 +74,47 @@ informative:
 
    BaseInventory: I-D.ietf-ivy-network-inventory-yang
 
+   ITU-T_G.7711:
+              title: "Generic…."
+              date: 2022-08-31
+              target: https://www.itu.int/rec/T-REC-G.7711/recommendation.asp?lang=en&parent=T-REC-G.7711-202202-I)
+
+   ivy:
+              title: "ivy"
+              date: 2022-08-31
+              target: https:// 3.pdf
+
+   plug:
+              title: "plug"
+              date: 2022-08-31
+              target: https:// 3.pdf
+
+   mobo:
+              title: "draft-davis-netmod-modelling-boundaries"
+              date: 2022-08-31
+              target: https:// 3.pdf
+
+   ONF_TR-512:
+              title:  "TR-512 Core Information Model (CoreModel) v1.5"
+              target: https://opennetworking.org/wp-content/uploads/2021/11/TR-512_v1.5_OnfCoreIm-info.zip
+
+   ONF_TR-512.A.2:
+              title:  "TR-512.A.2 Appendix: Model Structure, Patterns and Architecture"
+              target: https://opennetworking.org/wp-content/uploads/2021/11/TR-512_v1.5_OnfCoreIm-info.zip
+
+   ONF_TR-512.8:
+              title:  "TR-512.8 Control"
+              target: https://opennetworking.org/wp-content/uploads/2021/11/TR-512_v1.5_OnfCoreIm-info.zip
+
+   ONF_TR-512.7:
+              title:  "TR-512.7 Specification"
+              target: https://opennetworking.org/wp-content/uploads/2021/11/TR-512_v1.5_OnfCoreIm-info.zip
+
+
+   LF_TAPI:
+              title:  "Transport API"
+              target: https://github.com/Open-Network-Models-and-Interfaces-ONMI/TAPI-Home
+
 
 --- abstract
 
@@ -107,7 +148,7 @@ The following terms abbreviations are used in this document:
 Currently, capabilities are mainly described loosely in human readable text, where that text is often incomplete, ambiguous or inconsistent. While people make these systems work in practice, the looseness result in errors, inefficiencies and limited reuse.
 As automation increases, there is a growing need to enable machine reasoning about the capabilities of network systems and components. While Large Language Models (LLMs) can interpret traditional documentation, there remains a strong need for greater formal rigor and structured representation to improve efficiency and precision. When asked, LLMs indicate that a rigorous model is preferable to loose ambiguous text.
 Existing IETF models predominantly focus on configuration, operational state, and telemetry. What is missing is a cohesive framework for expressing what a system *can* do, i.e., its capabilities, in a declarative, structured, and reusable form.
-This document introduces the principles for a capability modeling framework grounded in the specification concept established in [ITU-T G.7711] ([ONF TR‑512]). It applies these principles through the lens of the **component–system pattern** from [ONF TR-512.A.2], using the concept of **emergence through recursive narrowing and occurrence formation**. These ideas are extended further by the modeling boundary principles described in [mobo].
+This document introduces the principles for a capability modeling framework grounded in the specification concept established in [ITU-T_G.7711] ([ONF_TR‑512]). It applies these principles through the lens of the **component–system pattern** from [ONF_TR-512.A.2], using the concept of **emergence through recursive narrowing and occurrence formation**. These ideas are extended further by the modeling boundary principles described in [mobo].
 The result is a standardized and extensible approach for expressing features, operational constraints, internal dependencies, etc. - separately from instance realizations.
 This approach supports capability modeling for any aspect of the controlled networking solution, and is designed to enable capability assembly, dynamic composition, licensing control, and integration with other IETF frameworks such as IVY equipment, photonic plug manifests, and entitlement interfaces. It also supports initiatives focussing on energy/thermal considerations where specific detailed capabilities and their power/thermal implications become critical considerations.
 
@@ -134,7 +175,7 @@ What is needed is a modeling framework that:
 - Enables **recursive occurrence formation**, where each stage of narrowing produces a usable semantic structure,
 - Accommodates **multiple valid refinement paths**, supporting different levels of granularity and domain specificity,
 - Provides a **coherent trace** from abstract capability declarations down to deployable or licensable configurations.
-This draft introduces such a framework by building on the refinement logic of [ITU-T G.7711]  ([ONF TR-512]) in general and especially the **specification pattern** structures of ITU-T G.7711 Annex G (ONF TR‑512.7) which provides a means of expressing bounded capability envelopes through a formal refinement of generic model elements. This also provides grounding in the recursive occurrence model informed by the component–system pattern [ITU-T G.7711]  ([ONF TR-512.A.2] and modeling boundaries approach [mobo]. This document leverages the foundations laid by [ITU-T G.7711]  ([ONF TR-512]).
+This draft introduces such a framework by building on the refinement logic of [ITU-T_G.7711]  ([ONF_TR-512]) in general and especially the **specification pattern** structures of ITU-T G.7711 Annex G (ONF TR‑512.7) which provides a means of expressing bounded capability envelopes through a formal refinement of generic model elements. This also provides grounding in the recursive occurrence model informed by the component–system pattern [ITU-T_G.7711]  ([ONF_TR-512.A.2] and modeling boundaries approach [mobo]. This document leverages the foundations laid by [ITU-T_G.7711]  ([ONF_TR-512]).
 
 The same expression challenges appear in statements of intent. The process of formulating intent through negotiation and resultant gradual refinement has a similar feel to the degrees of narrowing of the specification.
 
@@ -163,7 +204,7 @@ We begin instead with the concept of a **universal component**—a general-purpo
 
 Each such emergent form is treated as an **occurrence**. Occurrences appear at every stage of meaningful refinement including at the level of final implementation instances. At all stages of use the application of properties is via the idea of intent where even the tightest constraint of a single value is essentially a statement of intent (as it is impossible to guarantee that a property will be set). This intent consideration will be dealt with further later in this document.
 
-An LTP (Logical Termination Point) in [ITU-T G.7711] ([ONF TR-512]), for example, is not a primitive class but a pattern that arises from pruning and constraining the universal component until only the semantic envelope of an LTP remains. A TerminationPoint from RFC8345
+An LTP (Logical Termination Point) in [ITU-T_G.7711] ([ONF_TR-512]), for example, is not a primitive class but a pattern that arises from pruning and constraining the universal component until only the semantic envelope of an LTP remains. A TerminationPoint from RFC8345
 
 To support variation, reusability, and convergence across implementations, each component or system is described not by a single fixed class, but by a **specification**: a constrained and possibly pruned refinement of a more general and broader model element. This allows the model to express bounded capabilities without requiring full instantiation, enabling tools and orchestrators to reason about compatibility, substitution, and support constraints before deployment.
 The specification describes the capabilities of an occurrence in terms of occurrences achieved via similar pruning.
