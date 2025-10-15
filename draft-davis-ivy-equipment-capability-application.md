@@ -36,13 +36,13 @@ author:
     org: Ciena
     email: ndavis@ciena.com
 
- - 
+ -
     ins: C. Cardona
     name: Camilo Cardona
     organization: NTT
     email: "camilo@gin.ntt.net"
 
- - 
+ -
     ins: D. Lopez
     name: Diego Lopez
     organization: Telefonica
@@ -191,7 +191,7 @@ The same expression challenges appear in statements of intent. The process of fo
 
 
 #Specification in terms of the Model
-The specification of capability should be presented in terms of the terminology of the problem space and hence in terms of the appropriate model. The challenge is determining which model is the "appropriate" model. 
+The specification of capability should be presented in terms of the terminology of the problem space and hence in terms of the appropriate model. The challenge is determining which model is the "appropriate" model.
 
 An area of the problem space can be described in different ways depending upon what the intention of the model is. There are many ways of representing a semantic space/
 
@@ -267,7 +267,7 @@ A specification for a system arrangement for a service and associated realizatio
 
 #Recursive narrowing
 This builds on the example sketches and formalizes the process of recursive narrowing.
-Ahow the essential process. 
+A how the essential process. 
 Use examples to illustrate the process
 -Thing to Component to Function to TP to specific TP to application of TP to instance of TP.
 -Thing to Component to physical thing to equipment to specific equipment type to use of that equipment to instance of equipment
