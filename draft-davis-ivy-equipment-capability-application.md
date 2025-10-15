@@ -1,7 +1,7 @@
 ---
 title: "Equipment Capability Application"
 abbrev: "EquCapAppl"
-docname: draft-davis-nmop-equipment-capability-application-latest
+docname: draft-davis-nmop-equipment-capability-application
 category: info
 stand_alone: true
 
@@ -29,25 +29,26 @@ venue:
   latest: "https://github.com/marisolpalmero/draft-ietf-davis-generalized-capability-principles/blob/main/draft-davis-ivy-generalized-capability-principles-latest.md"
 
 author:
-  -
+
+ -
     ins: N. R. Davis
     name: Nigel Robert Davis
     org: Ciena
     email: ndavis@ciena.com
 
-  - 
+ - 
     ins: C. Cardona
     name: Camilo Cardona
     organization: NTT
     email: "camilo@gin.ntt.net"
 
-  - 
+ - 
     ins: D. Lopez
     name: Diego Lopez
     organization: Telefonica
     email: "diego.r.lopez@telefonica.com"
 
-  -
+ -
     ins: M. Palmero
     name: Marisol Palmero
     org: Independent

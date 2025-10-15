@@ -1,7 +1,7 @@
 ---
 title: "Generalized Capability Principles"
 abbrev: "GenCapPrinc"
-docname: draft-davis-ivy-generalized-capability-principles-latest
+docname: draft-davis-ivy-generalized-capability-principles
 category: info
 stand_alone: true
 
@@ -30,25 +30,25 @@ venue:
 
 author:
 
-  -
+ -
     ins: N. R. Davis
     name: Nigel Robert Davis
     org: Ciena
     email: ndavis@ciena.com
 
-  -
+ -
     ins: C. Cardona
     name: Camilo Cardona
     organization: NTT
     email: "camilo@gin.ntt.net"
 
-  -
+ -
     ins: D. Lopez
     name: Diego Lopez
     organization: Telefonica
     email: "diego.r.lopez@telefonica.com"
 
-  -
+ -
     ins: M. Palmero
     name: Marisol Palmero
     org: Independent
