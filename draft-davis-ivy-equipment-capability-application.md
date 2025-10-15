@@ -101,7 +101,7 @@ informative:
    ONF_TR-512.A.2:
               title:  "TR-512.A.2 Appendix: Model Structure, Patterns and Architecture"
               target: https://opennetworking.org/wp-content/uploads/2021/11/TR-512_v1.5_OnfCoreIm-info.zip
- 
+
    ONF_TR-512.8:
               title:  "TR-512.8 Control"
               target: https://opennetworking.org/wp-content/uploads/2021/11/TR-512_v1.5_OnfCoreIm-info.zip
@@ -267,7 +267,7 @@ A specification for a system arrangement for a service and associated realizatio
 
 #Recursive narrowing
 This builds on the example sketches and formalizes the process of recursive narrowing.
-A how the essential process. 
+About the essential process.
 Use examples to illustrate the process
 -Thing to Component to Function to TP to specific TP to application of TP to instance of TP.
 -Thing to Component to physical thing to equipment to specific equipment type to use of that equipment to instance of equipment
