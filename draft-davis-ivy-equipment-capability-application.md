@@ -26,7 +26,7 @@ venue:
   mail: "inventory-yang@ietf.org"
   arch: "https://mailarchive.ietf.org/arch/browse/inventory-yang/"
   github: "marisolpalmero/draft-ietf-davis-generalized-capability-principles"
-  latest: "https://github.com/marisolpalmero/draft-ietf-davis-generalized-capability-principles/blob/main/draft-davis-ivy-generalized-capability-principles.md"
+  latest: "https://github.com/marisolpalmero/draft-ietf-davis-generalized-capability-principles/blob/main/draft-davis-ivy-equipment-capability-principles.md"
 
 author:
 
