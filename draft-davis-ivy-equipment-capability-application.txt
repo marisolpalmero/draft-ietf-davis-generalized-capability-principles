@@ -13,27 +13,16 @@ Expires: 19 April 2026                                               NTT
                                                          16 October 2025
 
 
-                   Generalized Capability Principles
-           draft-davis-ivy-generalized-capability-principles
+                    Equipment Capability Application
+            draft-davis-ivy-equipment-capability-application
 
 Abstract
 
-   This document introduces a framework for capability modeling based on
-   the specification and refinement principles established in ITU-T
-   G.7711 Annex G (also published as ONF TR-512.7 see latest release)
-   and the modeling boundaries work documented in draft-davis-netmod-
-   modelling-boundaries.  The framework defines how component–system
-   capabilities can be explicitly described and refined via a process of
-   pruning, refactoring, and occurrence formation.
+   This document takes the work on a framework for capability modeling
+   and develops that for specific applications related to equipment.
 
-   These capability definitions can target detailed operational
-   considerations, system interactions, licensing, abstract product
-   declarations, or sales and marketing.  The framework supports
-   modular, layered, and fractal declarations of networked behavior, and
-   provides a foundation for a suite of future IETF drafts aligned with
-   ongoing work on photonic plug manifests, entitlement/licensing, IVY
-   equipment modeling, energy/thermal considerations and related
-   domains.
+   The approcah is expmained by example.  The explanation covers
+   physical capabilities and representation of emergent functionality.
 
 About This Document
 
@@ -41,15 +30,16 @@ About This Document
 
    The latest revision of this draft can be found at
    https://github.com/marisolpalmero/draft-ietf-davis-generalized-
-   capability-principles/blob/main/draft-davis-ivy-generalized-
-   capability-principles-latest.md.  Status information for this
-   document may be found at https://datatracker.ietf.org/doc/draft-
-   davis-ivy-generalized-capability/.
+   capability-principles/blob/main/draft-davis-ivy-equipment-capability-
+   application-latest.md.  Status information for this document may be
+   found at https://datatracker.ietf.org/doc/draft-davis-ivy-equipment-
+   capability/.
 
    Discussion of this document takes place on the Network Inventory YANG
-   WG mailing list (mailto:inventory-yang@ietf.org), which is archived
-   at https://mailarchive.ietf.org/arch/browse/inventory-yang/.
-   Subscribe at https://www.ietf.org/mailman/listinfo/inventory-yang/.
+   WG Working Group mailing list (mailto:inventory-yang@ietf.org), which
+   is archived at https://mailarchive.ietf.org/arch/browse/inventory-
+   yang/.  Subscribe at https://www.ietf.org/mailman/listinfo/inventory-
+   yang/.
 
    Source for this draft and an issue tracker can be found at
    https://github.com/marisolpalmero/draft-ietf-davis-generalized-
@@ -129,130 +119,107 @@ Table of Contents
 
    The following terms abbreviations are used in this document:
 
-   *  capability: What can be achieved by an individual item both alone
-      and in assembly (using the component-system pattern)
-
-   *  needs: Related to capability, this is what the item, either alone
-      or in assembly, needs to achieve its capabilities
-
-   *  manifest: A list of essential contents
-
-   *  specification: A detailed description including arrangement
-
-   *  representation: An expression of properties from a perspective
-
-   *  occurrence: Placeholder
-
-   *  component-system: A pattern that expresses each item as a
-      component where components can be assembled into systems and where
-      a system can be represented as a component where that assembly may
-      be of real things or may be abstractions of the effect of real
-      things.
-
-   *  pruning:Placeholder
-
-   *  refactoring:Placeholder
-
-   *  pruning & refactoring: The process that supports progression from
-      one view to the next view
-
-   *  capability/needs specification: A detailed description of what can
-      be achived by an individual item both alone and in assembly with
-      respect to specific needs
+   There are no terms that are unique to this document.
 
 2.  Introduction
 
-   Currently, capabilities are mainly described loosely in human
-   readable text, where that text is often incomplete, ambiguous or
-   inconsistent.  While people make these systems work in practice, the
-   looseness result in errors, inefficiencies and limited reuse.  As
-   automation increases, there is a growing need to enable machine
-   reasoning about the capabilities of network systems and components.
-   While Large Language Models (LLMs) can interpret traditional
-   documentation, there remains a strong need for greater formal rigor
-   and structured representation to improve efficiency and precision.
-   When asked, LLMs indicate that a rigorous model is preferable to
-   loose ambiguous text.  Existing IETF models predominantly focus on
-   configuration, operational state, and telemetry.  What is missing is
-   a cohesive framework for expressing what a system _can_ do, i.e., its
-   capabilities, in a declarative, structured, and reusable form.  This
-   document introduces the principles for a capability modeling
-   framework grounded in the specification concept established in
-   [ITU-T_G.7711] ([ONF_TR-512]).  It applies these principles through
-   the lens of the *component–system pattern* from [ONF_TR-512.A.2],
-   using the concept of *emergence through recursive narrowing and
-   occurrence formation*. These ideas are extended further by the
-   modeling boundary principles described in [mobo].  The result is a
-   standardized and extensible approach for expressing features,
-   operational constraints, internal dependencies, etc. - separately
-   from instance realizations.  This approach supports capability
-   modeling for any aspect of the controlled networking solution, and is
-   designed to enable capability assembly, dynamic composition,
-   licensing control, and integration with other IETF frameworks such as
-   IVY equipment, photonic plug manifests, and entitlement interfaces.
-   It also supports initiatives focussing on energy/thermal
-   considerations where specific detailed capabilities and their power/
-   thermal implications become critical considerations.
+   Physical items have various fundamental properties such as length,
+   temperature, weight.  In an assembly of phsyical things each thing
+   plays some part in the structure and has to be compatible with the
+   other things in that structure.
+
+   In a telecoms environment, there are many physical things that
+   support the provision of service.  For simplicity, in this document a
+   physical thing that is useful for the provision of telecommunication
+   service will be refered to as an equipment.  The focus of this
+   document is limited to telecommunications networks, but there is no
+   specific limitation to the method that prevent it from being applied
+   more broadly.  This restriction is simply to reduce the volume and
+   complexity of the descriptions.
+
+   The equipments to be represented include circuit packs (boards) and
+   shelves (subracks).  In this description an SFP will be considered as
+   a board.  The essential structural model is that a shelf can be
+   placed in a rack, a board in a slot in a shelf and a board (SFP) in a
+   slot in a board.
+
+   Whilst this general model says a board can be placed in a slot,
+   clearly not all boards can be placed in all slots.  This document
+   describes the opportunities in terms of physical capabilities of
+   types of physical things.
+
+   An inserted board supports functionality.  Some functions emerge from
+   a combination of boards.  The specification method described here
+   allows the functions that emerge from assemblies of equipment to be
+   described in detail.
+
+   The specification of emergemt functions allows a purchasing
+   application to determine which particular types of hardware can be
+   acquired and a planning tool to determine how to arrange occurrences
+   of types of hardware in systems to support particular functions pior
+   to the purchase of any equipment.
 
 3.  Problem Statement
 
-   Network technologies and management-control frameworks increasingly
-   rely on declarative data models to represent both configuration and
-   operational state.  However, these models often lack a principled way
-   to describe the _capabilities_ of components and systems—what they
-   are able to support or provide, independent of any particular
-   operational instance.  This omission makes it difficult to reason
-   about compatibility, constraint satisfaction, composition, or even
-   basic intent feasibility.  Clearly, many of these activities take
-   place prior to the installation of the equipment and indeed determine
-   which equipments are to be planned to be installed.  In these cases
-   it is not possible to interogate the actual equipment.  Whilst
-   knowing the YANG model for the equipment is beneficial, it is not
-   sufficient as the YANG model essentially provides a space within
+   A telecoms network is realized through an assembly of equipments
+   (such as curcuit packs, boards, racks, cables etc.), some passive
+   (not directly powered) and some active (directly powered).  Each
+   equipment etc. provides some capability that supports the provision
+   of service.  Understanding these capabilities in detail and precisely
+   is vital throughout the life of the network.
+
+   Whilst an active equipment may provide an interface that exposes what
+   is available currently, it rarely indicates what is potentially
+   avaliable and when it does this is usually through an ad-hoc
+   mechanism.  Clearly, when the active equipment is not powered, it is
+   not possible to interrogate it even for this sparse and basic
+   information.  Passive equipments cannot be interrogated.
+
+   Manufactures of equipments produce types of equipment where each
+   instance of that type is essentially identical with respect to
+   capabilities within an acceptable and understood tolerance.  Any
+   instance of a type of equipment is interchangeable with an instance
+   of the same type.  There may also be other compatibilities where
+   different types have the same or a superset capability and hence can
+   be used as alternatives.
+
+   It is necessary to understand some aspects of capability of a type of
+   equipment at all stages of the lifecycle: - whilst speculation about
+   services to be provided prior to network design and researching
+   potential network capabilities - when planning network structure -
+   prior to purchasing, when choosing particular equipment types for a
+   specific purpose where there are alternatives - when planning future
+   deployment of equipments - when the equipment is installed and
+   services are being designed - even when the equipment is fully
+   configured and operational with no errors etc., there may be
+   heartbeat and status capabilities
+
+   Considering the above, it is necessary to have a complete description
+   of capability that is available independent of the presence of
+   equipment.  This description needs to be rigorous and readily
+   interpretable allowing for comparisons with other equipment types
+   etc.  On that basis the capabilities should be described in a
+   normalized language where advantage is taken of recurring patterns
+   etc.
+
+   As automation progresses, machine interpretability of the capability
+   information becomes increasingly important.  Whilst AI, expecially
+   LLMs, can deal with the variety of human interaction, a more
+   efficient and compact language usage is preferable for efficiency and
+   removal of potential ambiguity.
+
+   This document sets out an approach for expression of capabilities of
+   equipment both in terms of physical structure and emergent
+   functionality.
+
+   STOP HERE...
+
+   Whilst knowing the YANG model for the equipment is beneficial, it is
+   not sufficient as the YANG model essentially provides a space within
    which actual state etc. can be expresses, but it supports all
    possible combinations.  The equipment will be very limited in
-   comparison.  Often it is desirable from a systems operation
-   perspective to reduce the available capability through policy or
-   other mechanisms due to the restrictions of a specific role.  This
-   becomes challenging if the base capability of a component is unclear
-   and expressed in a chaotic form.  In practice, five distinct concerns
-   are often conflated, and also not fully expressed, within data
-   models: - The *generic definition* of a model element or concept
-   (e.g., a termination point) - this is expressed in YANG.  It is a
-   very broad definition encompassing all possible opportunities and
-   ofthen many illegal state combinations etc. - The *capability
-   definition* of a system or component, i.e., what it can support or
-   expose (e.g., by a specific type or role of termination point).  This
-   is not expressed fully in YANG.  There are both challenges with the
-   expression of base capability and expression of the capability of
-   combinations.  This is especially sparce in representation - The
-   users *policy definition* for system operation - the user may
-   eliminate particular capabilities due to complexity, lack of trust,
-   regulation etc. and will not want them offered or may not want them
-   offered under certain circumstances.  The equipment will be expected
-   to behave as if it does not have the capabilities as approproiate. -
-   The *system combination* where an entity type may play several
-   different roles and in each role may have specific distinct
-   intentional limitations/restrictions. - The *operational
-   instance*—what is configured or active at a given time.  Without a
-   clear structural separation and with the sparseness of information on
-   specific capabilities, it becomes challenging to formally describe
-   feature constraints, support boundaries, or internal limitations.
-   Implementers resort to informal documentation, code comments, yellow
-   stickies, or out-of-band agreements to capture the intent behind
-   model behavior.  This reduces interoperability, increases integration
-   effort, and undermines automation as a result of - *Ambiguity*
-   between what a model element _is_ versus what a system _can support_.
-   - *Redundancy* and inconsistency in the representation of common
-   constraints (e.g., port types, layering, resource limits). - *Tooling
-   difficulty* when extracting interoperable subsets of large models or
-   generating technology-specific profiles. - *Incompatibility* between
-   modular subsystems or plug-ins that must declare and verify their
-   supported features.  Furthermore, current models tend to assume a
-   fixed taxonomy of types and features, rather than supporting a
-   process of recursive refinement.  This limits their ability to
-   express how complex capabilities _emerge_ through constraint,
-   composition, and modular pruning of more general-purpose constructs.
+   comparison.
+
    What is needed is a modeling framework that: - Allows systems and
    components to be described in terms of their *capability boundaries*,
    including *capability interactions* separate from operational state,
@@ -266,7 +233,7 @@ Table of Contents
    licensable configurations.  This draft introduces such a framework by
    building on the refinement logic of [ITU-T_G.7711] ([ONF_TR-512]) in
    general and especially the *specification pattern* structures of
-   ITU-T G.7711 Annex G (ONF TR-512.7) which provides a means of
+   ITU-T G.7711 Annex G (ONF_TR-512.7) which provides a means of
    expressing bounded capability envelopes through a formal refinement
    of generic model elements.  This also provides grounding in the
    recursive occurrence model informed by the component–system pattern
@@ -419,7 +386,7 @@ Table of Contents
    sketch the narrowing.
 
    A physical equipment in a physical context considering how it fits
-   and what fits in it... -type -size -thermal -power -physical
+   and what fits in it... -type -size -thermals -power/thermal -physical
    compatibility -electrical compatibility -diagram or compatibilities
    from ONF work -physical assemblies and thermals
 
@@ -434,7 +401,7 @@ Table of Contents
 7.  Recursive narrowing
 
    This builds on the example sketches and formalizes the process of
-   recursive narrowing.  Ahow the essential process.  Use examples to
+   recursive narrowing.  About the essential process.  Use examples to
    illustrate the process -Thing to Component to Function to TP to
    specific TP to application of TP to instance of TP. -Thing to
    Component to physical thing to equipment to specific equipment type
@@ -531,6 +498,11 @@ Table of Contents
               inventory-yang-11, 14 October 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-ivy-
               network-inventory-yang-11>.
+
+   [GenCapPrin]
+              "Generalized Capability Principles", n.d.,
+              <https://github.com/OpenNetworkingFoundation/TAPI/
+              releases/tag/v2.4.0>.
 
    [ITU-T_G.7711]
               "Generic….", 31 August 2022, <https://www.itu.int/rec/T-
