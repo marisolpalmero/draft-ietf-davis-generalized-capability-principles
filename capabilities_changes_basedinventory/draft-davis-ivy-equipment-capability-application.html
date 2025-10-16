@@ -1300,22 +1300,82 @@ document are to be interpreted as described in RFC2119}}.<a href="#section-1-1" 
       </ul>
 <p id="section-2-6">Together, these drafts describe a continuous trace:<a href="#section-2-6" class="pilcrow">¶</a></p>
 <p id="section-2-7">Capability → Entitlement → Inventory → Realization<a href="#section-2-7" class="pilcrow">¶</a></p>
-<p id="section-2-8">where:<a href="#section-2-8" class="pilcrow">¶</a></p>
+<span id="name-relationship-between-capabi"></span><div id="fig-capabilities">
+<figure id="figure-1">
+        <div id="section-2-8.1">
+          <div class="alignLeft art-svg artwork" id="section-2-8.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="288" width="480" viewBox="0 0 480 288" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+              <g class="text">
+                <text x="236" y="36">┌────────────────────────────┐</text>
+                <text x="120" y="52">│</text>
+                <text x="164" y="52">Base</text>
+                <text x="216" y="52">Network</text>
+                <text x="288" y="52">Inventory</text>
+                <text x="352" y="52">│</text>
+                <text x="236" y="68">└────────────┬───────────────┘</text>
+                <text x="224" y="84">│</text>
+                <text x="232" y="100">┌───────────────────┼─────────────────────┐</text>
+                <text x="64" y="116">│</text>
+                <text x="224" y="116">│</text>
+                <text x="400" y="116">│</text>
+                <text x="64" y="132">│</text>
+                <text x="224" y="132">│</text>
+                <text x="400" y="132">│</text>
+                <text x="60" y="148">┌──────┴─────┐</text>
+                <text x="224" y="148">┌───────┴───────┐</text>
+                <text x="396" y="148">┌──────┴─────┐</text>
+                <text x="8" y="164">│</text>
+                <text x="60" y="164">Hardware</text>
+                <text x="112" y="164">│</text>
+                <text x="160" y="164">│</text>
+                <text x="228" y="164">Entitlements</text>
+                <text x="288" y="164">│</text>
+                <text x="344" y="164">│</text>
+                <text x="404" y="164">Software</text>
+                <text x="448" y="164">│</text>
+                <text x="60" y="180">└──────┬─────┘</text>
+                <text x="224" y="180">└───────┬───────┘</text>
+                <text x="396" y="180">└──────┬─────┘</text>
+                <text x="64" y="196">│</text>
+                <text x="224" y="196">│</text>
+                <text x="400" y="196">│</text>
+                <text x="64" y="212">│</text>
+                <text x="224" y="212">│</text>
+                <text x="400" y="212">│</text>
+                <text x="64" y="228">│</text>
+                <text x="252" y="228">│enables</text>
+                <text x="400" y="228">│</text>
+                <text x="96" y="244">│supports</text>
+                <text x="236" y="244">┌──────V─────────┐</text>
+                <text x="368" y="244">supports│</text>
+                <text x="116" y="260">└───────────&gt;│</text>
+                <text x="236" y="260">Capabilities</text>
+                <text x="352" y="260">│&lt;──────────┘</text>
+                <text x="236" y="276">└────────────────┘</text>
+              </g>
+            </svg><a href="#section-2-8.1.1" class="pilcrow">¶</a>
+</div>
+</div>
+<figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
+<a href="#name-relationship-between-capabi" class="selfRef">Relationship between Capability, Entitlement, and Inventory</a>
+        </figcaption></figure>
+</div>
+<p id="section-2-9">where:<a href="#section-2-9" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-2-9.1">
-          <p id="section-2-9.1.1"><strong>Capability</strong> defines what an equipment <em>can</em> do (its potential);<a href="#section-2-9.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-2-10.1">
+          <p id="section-2-10.1.1"><strong>Capability</strong> defines what an equipment <em>can</em> do (its potential);<a href="#section-2-10.1.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-2-9.2">
-          <p id="section-2-9.2.1"><strong>Entitlement</strong> defines what an operator <em>is allowed</em> or <em>enabled</em> to use; and<a href="#section-2-9.2.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="section-2-10.2">
+          <p id="section-2-10.2.1"><strong>Entitlement</strong> defines what an operator <em>is allowed</em> or <em>enabled</em> to use; and<a href="#section-2-10.2.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-2-9.3">
-          <p id="section-2-9.3.1"><strong>Inventory</strong> records what <em>actually exists</em> and is deployed.<a href="#section-2-9.3.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="section-2-10.3">
+          <p id="section-2-10.3.1"><strong>Inventory</strong> records what <em>actually exists</em> and is deployed.<a href="#section-2-10.3.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="section-2-10">The goal of this draft is to show, by concrete examples, how the generalized capability framework is specialized for equipment and how that structure integrates with inventory and entitlement data.<a href="#section-2-10" class="pilcrow">¶</a></p>
-<p id="section-2-11">Whilst this general model says a board can be placed in a slot, clearly not all boards can be placed in all slots. This document describes the opportunities in terms of physical capabilities of types of physical things.<a href="#section-2-11" class="pilcrow">¶</a></p>
-<p id="section-2-12">An inserted board supports functionality. Some functions emerge from a combination of boards. The specification method described here allows the functions that emerge from assemblies of equipment to be described in detail.<a href="#section-2-12" class="pilcrow">¶</a></p>
-<p id="section-2-13">The specification of emergemt functions allows a purchasing application to determine which particular types of hardware can be acquired and a planning tool to determine how to arrange occurrences of types of hardware in systems to support particular functions pior to the purchase of any equipment.<a href="#section-2-13" class="pilcrow">¶</a></p>
+<p id="section-2-11">The goal of this draft is to show, by concrete examples, how the generalized capability framework is specialized for equipment and how that structure integrates with inventory and entitlement data.<a href="#section-2-11" class="pilcrow">¶</a></p>
+<p id="section-2-12">Whilst this general model says a board can be placed in a slot, clearly not all boards can be placed in all slots. This document describes the opportunities in terms of physical capabilities of types of physical things.<a href="#section-2-12" class="pilcrow">¶</a></p>
+<p id="section-2-13">An inserted board supports functionality. Some functions emerge from a combination of boards. The specification method described here allows the functions that emerge from assemblies of equipment to be described in detail.<a href="#section-2-13" class="pilcrow">¶</a></p>
+<p id="section-2-14">The specification of emergemt functions allows a purchasing application to determine which particular types of hardware can be acquired and a planning tool to determine how to arrange occurrences of types of hardware in systems to support particular functions pior to the purchase of any equipment.<a href="#section-2-14" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="problem-statement">
