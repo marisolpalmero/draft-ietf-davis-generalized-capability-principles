@@ -155,6 +155,13 @@ Together, these drafts describe a continuous trace:
 
 Capability → Entitlement → Inventory → Realization
 
+
+~~~ aasvg
+{::include art/capabilities.txt}
+~~~
+{: #fig-capabilities title="Relationship between Capability, Entitlement, and Inventory" }
+
+
 where:
 
 *  **Capability** defines what an equipment *can* do (its potential);
