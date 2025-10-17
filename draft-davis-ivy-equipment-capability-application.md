@@ -121,9 +121,9 @@ informative:
 
 --- abstract
 
-This document takes the work on a framework for capability modeling and develops that for specific applications related to equipment.
+This document applies the generalized capability principles to the description of physical equipment and shows how such capability specifications integrate with base inventory and entitlement models as defined in [BaseInventory] and [EntitlementInventory].
 
-The approcah is expmained by example. The explanation covers physical capabilities and representation of emergent functionality.
+The approcah is expmained by example, focusing on how the potential capabilities of equipment types are described, how these map to entitlements (licensed or policy-controlled subsets of capabilities), and how they are instantiated as inventory items.  The explanation covers both physical capabilities and emergent functionality.
 
 --- middle
 
@@ -178,6 +178,21 @@ This document sets out an approach for expression of capabilities of equipment i
 Whilst knowing the YANG model for the equipment is beneficial, it is not sufficient. The YANG model essentially provides a space within which actual state and configuration can be expresses. The YANG model tends to not express equipment type based constraints. Whilst specifying the commbinatorial effects of interacting equipments and software in YANG is potentially possible, the mechanisms availble are not designed for this purpose and the results would probably be a large set of special models with extremely cumbersome/complex definitions that would be distinct from the interface model that is necessarily open and broad.
 
 General modeling framework use
+
+#Specification in terms of the Model
+
+The specification of equipment capability should be presented in terms of the *generalized capability model* from [GenCapPrin] and explicitly mapped to the inventory and entitlement contexts.
+
+The relationships between these elements can be summarized as:
+
+| Concept        | Defined In               | Represents |
+|----------------|--------------------------|-------------|
+| Capability Spec| [GenCapPrin], this draft | The potential functions and limits of an equipment type |
+| Entitlement    | [EntitlementInventory]   | The subset of capabilities permitted or licensed |
+| Inventory Item | [BaseInventory]          | The actual occurrence of an entitled capability in the network |
+
+This linkage ensures that refinement and occurrence formation have a tangible operational anchor in network management systems.
+
 
 
 #Some specification examples
