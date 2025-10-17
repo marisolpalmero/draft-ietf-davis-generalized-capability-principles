@@ -152,7 +152,7 @@ An inserted board supports functionality. Some functions emerge from a combinati
 
 A majority of powered physical things can be configured and can have their behaviour define in code and data. The capability, in these cases, is emergent from the combination of the physical structure activated by power and shaped by data and code. Hence the overall capability specification may be defined by a complex combination of capability specifications.
 
-The specification of potential emergemt functions can be used at various stagest of the network lifecycle. 
+The specification of potential emergemt functions can be used at various stagest of the network lifecycle.
 
 #Problem Statement
 A telecoms network is realized through an assembly of equipments (such as curcuit packs, boards, racks, cables etc.), some passive (not directly powered), some active (directly powered) and some running complex software etc. Each assembly provides some capability that supports the provision of service. Understanding these capabilities in detail and precisely is vital throughout the life of the network.
