@@ -134,30 +134,34 @@ document are to be interpreted as described in RFC2119}}.
 
 The following terms abbreviations are used in this document:
 
-There are no terms that are unique to this document.
+* equipment: A physical item necessary for a particular purpose.
+* physical: Has physical spatial dimensions (i.e., can be measured with a "ruler") and in some cases has mass (i.e., can be weighed with scales)
+* SFP: Small Form-factor Pluggable
 
 
 #Introduction
 
-Physical items have various fundamental properties such as length, temperature, weight. In an assembly of phsyical things each thing plays some part in the structure and has to be compatible with the other things in that structure.
+Physical items have various fundamental properties such as length, temperature, weight. In an assembly of phsyical things each thing plays various roles in the structure and has to be compatible with the other things in that structure so that it can participate in those roles.
 
-In a telecoms environment, there are many physical things that support the provision of service. For simplicity, in this document a physical thing that is useful for the provision of telecommunication service will be refered to as an equipment. The focus of this document is limited to telecommunications networks, but there is no specific limitation to the method that prevent it from being applied more broadly. This restriction is simply to reduce the volume and complexity of the descriptions.
+In a telecoms environment, there are many physical things that support the provision of service. For simplicity, in this document a physical thing that is useful for the provision of telecommunication service will be refered to as an equipment. The focus of this document is limited to telecommunications networks and hence equipments for related purposes, but there is no specific limitation to the method that prevent it from being applied more broadly. This restriction is simply to reduce the volume and complexity of the descriptions.
 
-The equipments to be represented include circuit packs (boards) and shelves (subracks). In this description an SFP will be considered as a board. The essential structural model is that a shelf can be placed in a rack, a board in a slot in a shelf and a board (SFP) in a slot in a board.
+The equipments to be represented include boards (circuit packs) and shelves (subracks). In this description an SFP will be considered as a board. The essential structural model is that a shelf can be placed in a rack, a board in a slot in a shelf and a board (SFP) in a slot in a board.
 
-Whilst this general model says a board can be placed in a slot, clearly not all boards can be placed in all slots. This document describes the opportunities in terms of physical capabilities of types of physical things.
+Whilst this general model says a board can be placed in a slot, clearly not all boards can be placed in all slots. This document describes the opportunities in terms of physical capabilities of types of physical things where a type of thing is a set of tings having common characteristics such that all relevant characteristics are the same such that the things can be interchangeable.
 
-An inserted board supports functionality. Some functions emerge from a combination of boards. The specification method described here allows the functions that emerge from assemblies of equipment to be described in detail.
+An inserted board supports functionality. Some functions emerge from a combination of boards. The specification method described here allows the functions that emerge from assemblies of equipment to be described in detail. In some cases the emergent capability requires power to be applied (the capability to amplify a signal, the capability to decode a bit stream), in other cases the capability is inherent in the thing itself (the capability to physically support something else, the capability to convey light in a channel).
 
-The specification of emergemt functions allows a purchasing application to determine which particular types of hardware can be acquired and a planning tool to determine how to arrange occurrences of types of hardware in systems to support particular functions pior to the purchase of any equipment.
+A majority of powered physical things can be configured and can have their behaviour define in code and data. The capability, in these cases, is emergent from the combination of the physical structure activated by power and shaped by data and code. Hence the overall capability specification may be defined by a complex combination of capability specifications.
+
+The specification of potential emergemt functions can be used at various stagest of the network lifecycle. 
 
 #Problem Statement
 
-A telecoms network is realized through an assembly of equipments (such as curcuit packs, boards, racks, cables etc.), some passive (not directly powered) and some active (directly powered). Each equipment etc. provides some capability that supports the provision of service. Understanding these capabilities in detail and precisely is vital throughout the life of the network.
+A telecoms network is realized through an assembly of equipments (such as curcuit packs, boards, racks, cables etc.), some passive (not directly powered), some active (directly powered) and some running complex software etc. Each assembly provides some capability that supports the provision of service. Understanding these capabilities in detail and precisely is vital throughout the life of the network.
 
-Whilst an active equipment may provide an interface that exposes what is available currently, it rarely indicates what is potentially avaliable and when it does this is usually through an ad-hoc mechanism. Clearly, when the active equipment is not powered, it is not possible to interrogate it even for this sparse and basic information. Passive equipments cannot be interrogated.
+Whilst an active equipment may provide an interface that exposes what is available currently, it rarely indicates what is potentially avaliable and when it does this is usually through an ad-hoc mechanism which only conveys a limited view of capability. Clearly, when the equipment is not powered, it is not possible to interrogate it even for this sparse and basic information. Passive equipments cannot be interrogated.
 
-Manufactures of equipments produce types of equipment where each instance of that type is essentially identical with respect to capabilities within an acceptable and understood tolerance. Any instance of a type of equipment is interchangeable with an instance of the same type. There may also be other compatibilities where different types have the same or a superset capability and hence can be used as alternatives.
+Manufactures of equipments produce types of equipment where each instance of that type is essentially identical with respect to capabilities within an acceptable and understood tolerance. Any instance of a type of equipment is interchangeable with another instance of the same type. There may also be other compatibilities where different types have the same or a superset capability and hence can be used as alternatives.
 
 It is necessary to understand some aspects of capability of a type of equipment at all stages of the lifecycle:
 - whilst speculation about services to be provided prior to network design and researching potential network capabilities
@@ -169,72 +173,14 @@ It is necessary to understand some aspects of capability of a type of equipment 
 
 Considering the above, it is necessary to have a complete description of capability that is available independent of the presence of equipment. This description needs to be rigorous and readily interpretable allowing for comparisons with other equipment types etc. On that basis the capabilities should be described in a normalized language where advantage is taken of recurring patterns etc.
 
-As automation progresses, machine interpretability of the capability information becomes increasingly important. Whilst AI, expecially LLMs, can deal with the variety of human interaction, a more efficient and compact language usage is preferable for efficiency and removal of potential ambiguity.
+As automation progresses, machine interpretability of the capability information becomes increasingly important. Whilst AI, especially LLMs, can deal with the variety of human interaction, a more efficient and compact language usage is preferable for efficiency and removal of potential ambiguity.
 
-This document sets out an approach for expression of capabilities of equipment both in terms of physical structure and emergent functionality.
+This document sets out an approach for expression of capabilities of equipment in terms of physical structure, software/data structure and emergent functionality.
 
-STOP HERE...
+Whilst knowing the YANG model for the equipment is beneficial, it is not sufficient. The YANG model essentially provides a space within which actual state and configuration can be expresses. The YANG model tends to not express equipment type based constraints. Whilst specifying the commbinatorial effects of interacting equipments and software in YANG is potentially possible, the mechanisms availble are not designed for this purpose and the results would probably be a large set of special models with extremely cumbersome/complex definitions that would be distinct from the interface model that is necessarily open and broad.
 
-Whilst knowing the YANG model for the equipment is beneficial, it is not sufficient as the YANG model essentially provides a space within which actual state etc. can be expresses, but it supports all possible combinations. The equipment will be very limited in comparison.
+General modeling framework use
 
-
-What is needed is a modeling framework that:
-- Allows systems and components to be described in terms of their **capability boundaries**, including **capability interactions** separate from operational state,
-- Supports **refinement via pruning and refactoring to yield flexible structural transformation** rather than rigid inheritance or classification,
-- Enables **recursive occurrence formation**, where each stage of narrowing produces a usable semantic structure,
-- Accommodates **multiple valid refinement paths**, supporting different levels of granularity and domain specificity,
-- Provides a **coherent trace** from abstract capability declarations down to deployable or licensable configurations.
-This draft introduces such a framework by building on the refinement logic of [ITU-T_G.7711]  ([ONF_TR-512]) in general and especially the **specification pattern** structures of ITU-T G.7711 Annex G (ONF_TR‑512.7) which provides a means of expressing bounded capability envelopes through a formal refinement of generic model elements. This also provides grounding in the recursive occurrence model informed by the component–system pattern [ITU-T_G.7711]  ([ONF_TR-512.A.2] and modeling boundaries approach [mobo]. This document leverages the foundations laid by [ITU-T_G.7711]  ([ONF_TR-512]).
-
-The same expression challenges appear in statements of intent. The process of formulating intent through negotiation and resultant gradual refinement has a similar feel to the degrees of narrowing of the specification.
-
-
-
-#Specification in terms of the Model
-The specification of capability should be presented in terms of the terminology of the problem space and hence in terms of the appropriate model. The challenge is determining which model is the "appropriate" model.
-
-An area of the problem space can be described in different ways depending upon what the intention of the model is. There are many ways of representing a semantic space/
-
-Prior to embarking on evaluation of specification of capability, it is important to consider the specific model and how it is structured.
-
-- Focus: Semantic area covered at centre and periphery
-- Specialization: Specific detailed focus on an area with rich structure, e.g., PCE, problem analysis, etc.
-- Granularity: the “size” of the semantic units (including the depth of recursion of fractal representations)
-- Phase: The positioning of the semantic boundaries
-- Richness: The detailed coverage within a semantic unit
-- Fidelity: Precision v approximation
-- Abstraction: Closeness to actual detail
-- Maturity: Lifecycle development stage. How stable the model is likely to be. This is primarily about semantics, but also covers syntax.
-- Omission: Gaps and missing parts
-
-#Generalized Modeling via Component–System–Specification Refinement
-
-This framework moves away from rigid classification schemes and instead adopts a dynamic, refinement-based approach to modeling. Traditional classification attempts to impose fixed categories onto a system, but this often obscures nuance, variation, and the emergence of intermediate structures that carry operational or architectural significance.
-
-We begin instead with the concept of a **universal component**—a general-purpose structure with maximal capability potential. Through the process of **pruning & refactoring** (constraint-driven refinement), this semantic volume is gradually narrowed, yielding intermediate structures with more sharply defined roles and properties. These refined artifacts are not pre-classified entities, but **emergent forms** that arise naturally at specific “sweat spots” in the refinement trajectory, where the remaining capabilities align with a recognizably useful or interoperable function.
-
-Each such emergent form is treated as an **occurrence**. Occurrences appear at every stage of meaningful refinement including at the level of final implementation instances. At all stages of use the application of properties is via the idea of intent where even the tightest constraint of a single value is essentially a statement of intent (as it is impossible to guarantee that a property will be set). This intent consideration will be dealt with further later in this document.
-
-An LTP (Logical Termination Point) in [ITU-T_G.7711] ([ONF_TR-512]), for example, is not a primitive class but a pattern that arises from pruning and constraining the universal component until only the semantic envelope of an LTP remains. A TerminationPoint from RFC8345
-
-To support variation, reusability, and convergence across implementations, each component or system is described not by a single fixed class, but by a **specification**: a constrained and possibly pruned refinement of a more general and broader model element. This allows the model to express bounded capabilities without requiring full instantiation, enabling tools and orchestrators to reason about compatibility, substitution, and support constraints before deployment.
-The specification describes the capabilities of an occurrence in terms of occurrences achieved via similar pruning.
-A system spec is a pattern assembly of subtly specialized occurrences at a particular level of specialization arranged in a meaningful structure that yields a relevant behaviour.
-The specification of an occurrence is itself a system spec.
-
-The combination of the **component–system pattern** with the **specification refinement pattern** enables a modeling architecture where:
-
-- Systems are recursively composed of components,
-- Specifications constrain and refine capabilities at each level,
-- Occurrences are layered realizations of specs applied to specific contexts or configurations.
-
-This approach supports **gradual realization**, where capability declarations can progressively transition from abstract to concrete, through intermediate spec refinements and pruning. Each layer of model realization adds specificity—structurally (via system composition), behaviorally (via constraints), and operationally (via mapping to configuration/state models).
-
-A specification may provide explicit definifinition of a property as discussed above but it may also refer to one or more other specification(s). For example a specification may include a set of properties specified elsewhere. It may also define a property that is an enumeration of literals or identifies where those literal values or identify values are actually references to other specifications that provide deeper detail.
-
-In an ideal environment, there is an ecosystem of specificactions each providing interrelated detail to fully define the semantics. The ecosystem would include specifications from standards bodies providing the definition of a network protocol that can be interpreted by an AI component such that the abstracted effect on the solution can be fully understood and simulated/emulated. Any detected conditions would be understood in terms of the protocol and hence the implications of the condition detected in terms of the carried signal can be fully understood.
-
-Today's solution at best have a coded form of the semantic mantic interpretation that may not reflect the formal definition due to inaccuracies of interpretation. Many semantics are reduced to inconsistent labels that a user has to interpret. Whilst an LLM can do a reasonable job at interpretation of chaotic data, it will benefit a rigorous model traceable through formal definitions to fundamentals.
 
 #Some specification examples
 This section should describe process illustrated via example sketches and detail.
@@ -265,67 +211,25 @@ A system arrangements for a protection scheme.
 A specification for a system arrangement for a service and associated realization pattern specifications.
 
 #Recursive narrowing
-This builds on the example sketches and formalizes the process of recursive narrowing.
-About the essential process.
-Use examples to illustrate the process
--Thing to Component to Function to TP to specific TP to application of TP to instance of TP.
--Thing to Component to physical thing to equipment to specific equipment type to use of that equipment to instance of equipment
--A plug example
-Circle back and relate this more rigorous section to the specification examples.
+This general principle is considered in the context of equipment specification.
 
 #Specification of an assembly
-Build on the examples and the recursive narrowing to explain the subtle narrowings in a system/scheme spec. Describe the essential process.
-Use examples to illustrate the progression:
-- Same examples as recursive narrowing but focus on role and subtle specializations in role
-List other examples.
+Highlighting this general principle in terms of assemblies of physical things and the emergent behaviour that results.
 
 #Generalization of the specification
-Build a specification structure from the examples and show the references and reuses.
-Explain how the specification relates to the things in the problem space.
-Lay out the specification structure.
+Showing the reuse of specicifation fragments.
 
-#Characteristics of a language of specification
-The language needs inherent capabilities (as opposed to after the fact bolt-on warts)
-Extract key characteristics from above and from mobo
-- narrowing requires specific redefine (relate to pruning)
-- occurrence is an assembly of constrained type and specific values
-- need to reference other specs
-- refactoring, minor specialization and assembly
-- interrelationship and influence
-- uncertainty and preferences
-(Need to review mobo and TR-547 spec, component-system etc.)
+#Using the language of specification
+This requires work in the generalized capabilities draft.
 
-#Specification language options
-Landscape of languages... does anything do this?
-Take YANG and enhance (as discussed in mobo)
+#Building the equipment specification structure
+Take the language  and general structure and build specific equipment.
 
-#Building a specification structure
-Tooling and support to build and interrelate.
-Catalogue/library of specs
-Deep application... machine interpretable structure in all standards
-Use of AI to reverse engineer specs with guidance... peer review and testing cycle
-
-#A specification evolution example
-Discuss how a spec may change as understanding emerges and how it may be refactored.
-
-#A system specification example
+#An equipement system specification example
 Take the language considerations and set out system specs in a more formal way
 
-#Application of the Language
-Negotiation
-Refinement of planning
-Development of standards
-Expression of uncertainty and pattern
-
 #Conclusion
-Mindset Change
-Langue challenges
-Use of AI
-Target is an ecosystem of specs driving agentic components...
-
-#Security Considerations
-
-
+Highlight the stage of the eork.
 
 #Security Considerations
 
