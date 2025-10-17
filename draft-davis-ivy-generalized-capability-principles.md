@@ -197,7 +197,6 @@ Prior to embarking on evaluation of specification of capability, it is important
 - Omission: Gaps and missing parts
 
 #Generalized Modeling via Component–System–Specification Refinement
-
 This framework moves away from rigid classification schemes and instead adopts a dynamic, refinement-based approach to modeling. Traditional classification attempts to impose fixed categories onto a system, but this often obscures nuance, variation, and the emergence of intermediate structures that carry operational or architectural significance.
 
 We begin instead with the concept of a **universal component**—a general-purpose structure with maximal capability potential. Through the process of **pruning & refactoring** (constraint-driven refinement), this semantic volume is gradually narrowed, yielding intermediate structures with more sharply defined roles and properties. These refined artifacts are not pre-classified entities, but **emergent forms** that arise naturally at specific “sweat spots” in the refinement trajectory, where the remaining capabilities align with a recognizably useful or interoperable function.
@@ -253,7 +252,7 @@ The language needs inherent capabilities (as opposed to after the fact bolt-on w
 Extract key characteristics from above and from mobo
 - narrowing requires specific redefine (relate to pruning)
 - occurrence is an assembly of constrained type and specific values
-- need to reference other specs
+- need to reference other specs as reusable parts
 - refactoring, minor specialization and assembly
 - interrelationship and influence
 - uncertainty and preferences
@@ -275,7 +274,7 @@ Discuss how a spec may change as understanding emerges and how it may be refacto
 #A system specification example
 Take the language considerations and set out system specs in a more formal way
 
-#Application of the Language
+#Broader Application of the Language
 Negotiation
 Refinement of planning
 Development of standards

@@ -135,12 +135,11 @@ document are to be interpreted as described in RFC2119}}.
 The following terms abbreviations are used in this document:
 
 * equipment: A physical item necessary for a particular purpose.
-* physical: Has physical spatial dimensions (i.e., can be measured with a "ruler") and in some cases has mass (i.e., can be weighed with scales)
+* physical: Has spatial dimensions (i.e., can be measured with a "ruler") and in some cases has mass (i.e., can be weighed with scales)
 * SFP: Small Form-factor Pluggable
 
 
 #Introduction
-
 Physical items have various fundamental properties such as length, temperature, weight. In an assembly of phsyical things each thing plays various roles in the structure and has to be compatible with the other things in that structure so that it can participate in those roles.
 
 In a telecoms environment, there are many physical things that support the provision of service. For simplicity, in this document a physical thing that is useful for the provision of telecommunication service will be refered to as an equipment. The focus of this document is limited to telecommunications networks and hence equipments for related purposes, but there is no specific limitation to the method that prevent it from being applied more broadly. This restriction is simply to reduce the volume and complexity of the descriptions.
@@ -156,7 +155,6 @@ A majority of powered physical things can be configured and can have their behav
 The specification of potential emergemt functions can be used at various stagest of the network lifecycle. 
 
 #Problem Statement
-
 A telecoms network is realized through an assembly of equipments (such as curcuit packs, boards, racks, cables etc.), some passive (not directly powered), some active (directly powered) and some running complex software etc. Each assembly provides some capability that supports the provision of service. Understanding these capabilities in detail and precisely is vital throughout the life of the network.
 
 Whilst an active equipment may provide an interface that exposes what is available currently, it rarely indicates what is potentially avaliable and when it does this is usually through an ad-hoc mechanism which only conveys a limited view of capability. Clearly, when the equipment is not powered, it is not possible to interrogate it even for this sparse and basic information. Passive equipments cannot be interrogated.
@@ -204,10 +202,13 @@ Function emergent from a physical equipment
 -emergent capabilities and needs
 -functional compatibility
 -power and thermals per functions
+
 A system of equipments in an assembly
 -functional assemblies
 -power and thermals per assembly
+
 A system arrangements for a protection scheme.
+
 A specification for a system arrangement for a service and associated realization pattern specifications.
 
 #Recursive narrowing
