@@ -148,7 +148,32 @@ The equipments to be represented include boards (circuit packs) and shelves (sub
 
 Whilst this general model says a board can be placed in a slot, clearly not all boards can be placed in all slots. This document describes the opportunities in terms of physical capabilities of types of physical things where a type of thing is a set of tings having common characteristics such that all relevant characteristics are the same such that the things can be interchangeable.
 
-An inserted board supports functionality. Some functions emerge from a combination of boards. The specification method described here allows the functions that emerge from assemblies of equipment to be described in detail. In some cases the emergent capability requires power to be applied (the capability to amplify a signal, the capability to decode a bit stream), in other cases the capability is inherent in the thing itself (the capability to physically support something else, the capability to convey light in a channel).
+This document is part of a suite that includes:
+
+*  [GenCapPrin] — defines the generalized capability and refinement principles.
+*  [BaseInventory] — defines how equipment occurrences are represented in a network inventory.
+*  [EntitlementInventory] — defines how capability entitlements and licensed functionality are tracked.
+
+Together, these drafts describe a continuous trace:
+
+Capability → Entitlement → Inventory → Realization
+
+
+~~~ aasvg
+{::include art/capabilities.txt}
+~~~
+{: #fig-capabilities title="Relationship between Capability, Entitlement, and Inventory" }
+
+
+where:
+
+*  **Capability** defines what an equipment *can* do (its potential);
+*  **Entitlement** defines what an operator *is allowed* or *enabled* to use; and
+*  **Inventory** records what *actually exists* and is deployed.
+
+The goal of this draft is to show, by concrete examples, how the generalized capability framework is specialized for equipment and how that structure integrates with inventory and entitlement data.
+
+Whilst this general model says a board can be placed in a slot, clearly not all boards can be placed in all slots. This document describes the opportunities in terms of physical capabilities of types of physical things.
 
 A majority of powered physical things can be configured and can have their behaviour define in code and data. The capability, in these cases, is emergent from the combination of the physical structure activated by power and shaped by data and code. Hence the overall capability specification may be defined by a complex combination of capability specifications.
 
@@ -160,6 +185,18 @@ A telecoms network is realized through an assembly of equipments (such as curcui
 Whilst an active equipment may provide an interface that exposes what is available currently, it rarely indicates what is potentially avaliable and when it does this is usually through an ad-hoc mechanism which only conveys a limited view of capability. Clearly, when the equipment is not powered, it is not possible to interrogate it even for this sparse and basic information. Passive equipments cannot be interrogated.
 
 Manufactures of equipments produce types of equipment where each instance of that type is essentially identical with respect to capabilities within an acceptable and understood tolerance. Any instance of a type of equipment is interchangeable with another instance of the same type. There may also be other compatibilities where different types have the same or a superset capability and hence can be used as alternatives.
+In practice, managing equipment capabilities in isolation is insufficient.  Each capability must be tied to:
+
+*  an *entitlement* indicating whether it is licensed or permitted for use, and
+*  an *inventory record* that anchors the capability to a deployed occurrence.
+
+This tri-layer relationship enables operators to reason about what equipment types exist, what functions they can theoretically perform, what has been purchased or activated, and what is currently deployed or configured.
+
+Without such linkage, automation frameworks cannot determine whether a planned configuration is feasible, legally licensed, or available in the installed base.
+
+Whilst an active equipment may provide an interface that exposes what is available currently, it rarely indicates what is potentially avaliable and when it does this is usually through an ad-hoc mechanism. Clearly, when the active equipment is not powered, it is not possible to interrogate it even for this sparse and basic information. Passive equipments cannot be interrogated.
+
+Manufactures of equipments produce types of equipment where each instance of that type is essentially identical with respect to capabilities within an acceptable and understood tolerance. Any instance of a type of equipment is interchangeable with an instance of the same type. There may also be other compatibilities where different types have the same or a superset capability and hence can be used as alternatives.
 
 It is necessary to understand some aspects of capability of a type of equipment at all stages of the lifecycle:
 - whilst speculation about services to be provided prior to network design and researching potential network capabilities
@@ -196,7 +233,16 @@ This linkage ensures that refinement and occurrence formation have a tangible op
 
 
 #Some specification examples
-This section should describe process illustrated via example sketches and detail.
+This section illustrates how equipment capability specifications connect to entitlement and inventory concepts.
+
+Example — Optical Transponder:
+
+1.  **Generic capability**: an abstract optical transponder supporting multiple modulation formats up to 800 G.
+2.  **Equipment capability specification**: a vendor-specific model constrained to 400 G operation, defining port, thermal, and power envelopes.
+3.  **Entitlement**: a software license enabling the 400 G feature set; represented via the entitlement model.
+4.  **Inventory occurrence**: a deployed device instance that has the entitlement applied and exposes its active capabilities through inventory records.
+
+This recursive narrowing from generic capability to entitled occurrence demonstrates how specification refinement is operationally realized.
 
 Note that the use of the physical and functional considerations are recursively intertwined... a bit of physical, emergent function, function assembly, physical assembly thermals etc.
 
@@ -237,6 +283,11 @@ Showing the reuse of specicifation fragments.
 
 #Using the language of specification
 This requires work in the generalized capabilities draft.
+#Conclusion
+This document applies the generalized capability principles to the specific case of equipment.  By linking equipment capability descriptions to entitlements and inventory items, it creates a complete semantic chain from potential → permitted → realized.
+
+This alignment ensures that planning, procurement, licensing, and operational systems can reason coherently about equipment functions and their lifecycle.  The approach enables automation, energy- and sustainability-aware network management, and AI-assisted reasoning grounded in formally defined capability structures.
+
 
 #Building the equipment specification structure
 Take the language  and general structure and build specific equipment.

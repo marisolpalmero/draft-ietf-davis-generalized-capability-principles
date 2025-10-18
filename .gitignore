@@ -2,9 +2,10 @@
 *.pdf
 *.redxml
 *.swp
-*.txt
 *.upload
 *~
+draft*.txt
+draft*.md
 .tags
 /*-[0-9][0-9].xml
 /.*.mk
