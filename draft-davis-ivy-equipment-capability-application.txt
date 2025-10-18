@@ -148,6 +148,18 @@ Table of Contents
    placed in a rack, a board in a slot in a shelf and a board (SFP) in a
    slot in a board.
 
+   An inserted board supports functionality.  Some functions emerge from
+   a combination of boards.  The specification method described here
+   allows the functions that emerge from assemblies of equipment to be
+   described in detail.  In some cases the emergent capability requires
+   power to be applied (the capability to amplify a signal, the
+   capability to decode a bit stream), in other cases the capability is
+   inherent in the thing itself (the capability to physically support
+   something else, the capability to convey light in a channel).
+
+   // <<<IDEA is to include another example, that could cover software/
+   virtual.  Need more discussions. >>>
+
    This document is part of a suite that includes:
 
    *  [GenCapPrin] — defines the generalized capability and refinement
