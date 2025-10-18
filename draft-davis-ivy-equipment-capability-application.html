@@ -10,10 +10,10 @@
 <meta content="Diego Lopez" name="author">
 <meta content="Marisol Palmero" name="author">
 <meta content="
-       This document takes the work on a framework for capability modeling and develops that for specific applications related to equipment. 
-       The approcah is expmained by example. The explanation covers physical capabilities and representation of emergent functionality. 
+       This document applies the generalized capability principles to the description of physical equipment and shows how such capability specifications integrate with base inventory and entitlement models as defined in   and [EntitlementInventory]. 
+       The approcah is expmained by example, focusing on how the potential capabilities of equipment types are described, how these map to entitlements (licensed or policy-controlled subsets of capabilities), and how they are instantiated as inventory items.  The explanation covers both physical capabilities and emergent functionality. 
     " name="description">
-<meta content="xml2rfc 3.30.2" name="generator">
+<meta content="xml2rfc 3.31.0" name="generator">
 <meta content="capability" name="keyword">
 <meta content="manifest" name="keyword">
 <meta content="specification" name="keyword">
@@ -23,18 +23,17 @@
 <meta content="pruning&amp;refactoring" name="keyword">
 <meta content="draft-davis-ivy-equipment-capability-application" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.30.2
-    Python 3.12.11
+  xml2rfc 3.31.0
+    Python 3.12.12
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
     intervaltree 3.1.0
     Jinja2 3.1.6
     lxml 5.3.1
-    platformdirs 4.4.0
+    platformdirs 4.5.0
     pycountry 24.6.1
     PyYAML 6.0.2
     requests 2.32.5
-    setuptools 80.9.0
     wcwidth 0.2.14
 -->
 <link href="draft-davis-ivy-equipment-capability-application.xml" rel="alternate" type="application/rfc+xml">
@@ -1058,7 +1057,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Davis, et al.</td>
-<td class="center">Expires 19 April 2026</td>
+<td class="center">Expires 21 April 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1071,12 +1070,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-davis-ivy-equipment-capability-application</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-10-16" class="published">16 October 2025</time>
+<time datetime="2025-10-18" class="published">18 October 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-04-19">19 April 2026</time></dd>
+<dd class="expires"><time datetime="2026-04-21">21 April 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1101,8 +1100,8 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <h1 id="title">Equipment Capability Application</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">This document takes the work on a framework for capability modeling and develops that for specific applications related to equipment.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
-<p id="section-abstract-2">The approcah is expmained by example. The explanation covers physical capabilities and representation of emergent functionality.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
+<p id="section-abstract-1">This document applies the generalized capability principles to the description of physical equipment and shows how such capability specifications integrate with base inventory and entitlement models as defined in <span>[<a href="#BaseInventory" class="cite xref">BaseInventory</a>]</span> and [EntitlementInventory].<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<p id="section-abstract-2">The approcah is expmained by example, focusing on how the potential capabilities of equipment types are described, how these map to entitlements (licensed or policy-controlled subsets of capabilities), and how they are instantiated as inventory items.  The explanation covers both physical capabilities and emergent functionality.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
       <h2 id="name-about-this-document">
@@ -1139,7 +1138,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 19 April 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 21 April 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1286,9 +1285,96 @@ document are to be interpreted as described in RFC2119}}.<a href="#section-1-1" 
 <p id="section-2-1">Physical items have various fundamental properties such as length, temperature, weight. In an assembly of phsyical things each thing plays some part in the structure and has to be compatible with the other things in that structure.<a href="#section-2-1" class="pilcrow">¶</a></p>
 <p id="section-2-2">In a telecoms environment, there are many physical things that support the provision of service. For simplicity, in this document a physical thing that is useful for the provision of telecommunication service will be refered to as an equipment. The focus of this document is limited to telecommunications networks, but there is no specific limitation to the method that prevent it from being applied more broadly. This restriction is simply to reduce the volume and complexity of the descriptions.<a href="#section-2-2" class="pilcrow">¶</a></p>
 <p id="section-2-3">The equipments to be represented include circuit packs (boards) and shelves (subracks). In this description an SFP will be considered as a board. The essential structural model is that a shelf can be placed in a rack, a board in a slot in a shelf and a board (SFP) in a slot in a board.<a href="#section-2-3" class="pilcrow">¶</a></p>
-<p id="section-2-4">Whilst this general model says a board can be placed in a slot, clearly not all boards can be placed in all slots. This document describes the opportunities in terms of physical capabilities of types of physical things.<a href="#section-2-4" class="pilcrow">¶</a></p>
-<p id="section-2-5">An inserted board supports functionality. Some functions emerge from a combination of boards. The specification method described here allows the functions that emerge from assemblies of equipment to be described in detail.<a href="#section-2-5" class="pilcrow">¶</a></p>
-<p id="section-2-6">The specification of emergemt functions allows a purchasing application to determine which particular types of hardware can be acquired and a planning tool to determine how to arrange occurrences of types of hardware in systems to support particular functions pior to the purchase of any equipment.<a href="#section-2-6" class="pilcrow">¶</a></p>
+<p id="section-2-4">This document is part of a suite that includes:<a href="#section-2-4" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-2-5.1">
+          <p id="section-2-5.1.1"><span>[<a href="#GenCapPrin" class="cite xref">GenCapPrin</a>]</span> — defines the generalized capability and refinement principles.<a href="#section-2-5.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-2-5.2">
+          <p id="section-2-5.2.1"><span>[<a href="#BaseInventory" class="cite xref">BaseInventory</a>]</span> — defines how equipment occurrences are represented in a network inventory.<a href="#section-2-5.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-2-5.3">
+          <p id="section-2-5.3.1">[EntitlementInventory] — defines how capability entitlements and licensed functionality are tracked.<a href="#section-2-5.3.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="section-2-6">Together, these drafts describe a continuous trace:<a href="#section-2-6" class="pilcrow">¶</a></p>
+<p id="section-2-7">Capability → Entitlement → Inventory → Realization<a href="#section-2-7" class="pilcrow">¶</a></p>
+<span id="name-relationship-between-capabi"></span><div id="fig-capabilities">
+<figure id="figure-1">
+        <div id="section-2-8.1">
+          <div class="alignLeft art-svg artwork" id="section-2-8.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="288" width="480" viewBox="0 0 480 288" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+              <g class="text">
+                <text x="236" y="36">┌────────────────────────────┐</text>
+                <text x="120" y="52">│</text>
+                <text x="164" y="52">Base</text>
+                <text x="216" y="52">Network</text>
+                <text x="288" y="52">Inventory</text>
+                <text x="352" y="52">│</text>
+                <text x="236" y="68">└────────────┬───────────────┘</text>
+                <text x="224" y="84">│</text>
+                <text x="232" y="100">┌───────────────────┼─────────────────────┐</text>
+                <text x="64" y="116">│</text>
+                <text x="224" y="116">│</text>
+                <text x="400" y="116">│</text>
+                <text x="64" y="132">│</text>
+                <text x="224" y="132">│</text>
+                <text x="400" y="132">│</text>
+                <text x="60" y="148">┌──────┴─────┐</text>
+                <text x="224" y="148">┌───────┴───────┐</text>
+                <text x="396" y="148">┌──────┴─────┐</text>
+                <text x="8" y="164">│</text>
+                <text x="60" y="164">Hardware</text>
+                <text x="112" y="164">│</text>
+                <text x="160" y="164">│</text>
+                <text x="228" y="164">Entitlements</text>
+                <text x="288" y="164">│</text>
+                <text x="344" y="164">│</text>
+                <text x="404" y="164">Software</text>
+                <text x="448" y="164">│</text>
+                <text x="60" y="180">└──────┬─────┘</text>
+                <text x="224" y="180">└───────┬───────┘</text>
+                <text x="396" y="180">└──────┬─────┘</text>
+                <text x="64" y="196">│</text>
+                <text x="224" y="196">│</text>
+                <text x="400" y="196">│</text>
+                <text x="64" y="212">│</text>
+                <text x="224" y="212">│</text>
+                <text x="400" y="212">│</text>
+                <text x="64" y="228">│</text>
+                <text x="252" y="228">│enables</text>
+                <text x="400" y="228">│</text>
+                <text x="96" y="244">│supports</text>
+                <text x="236" y="244">┌──────V─────────┐</text>
+                <text x="368" y="244">supports│</text>
+                <text x="116" y="260">└───────────&gt;│</text>
+                <text x="236" y="260">Capabilities</text>
+                <text x="352" y="260">│&lt;──────────┘</text>
+                <text x="236" y="276">└────────────────┘</text>
+              </g>
+            </svg><a href="#section-2-8.1.1" class="pilcrow">¶</a>
+</div>
+</div>
+<figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
+<a href="#name-relationship-between-capabi" class="selfRef">Relationship between Capability, Entitlement, and Inventory</a>
+        </figcaption></figure>
+</div>
+<p id="section-2-9">where:<a href="#section-2-9" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-2-10.1">
+          <p id="section-2-10.1.1"><strong>Capability</strong> defines what an equipment <em>can</em> do (its potential);<a href="#section-2-10.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-2-10.2">
+          <p id="section-2-10.2.1"><strong>Entitlement</strong> defines what an operator <em>is allowed</em> or <em>enabled</em> to use; and<a href="#section-2-10.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-2-10.3">
+          <p id="section-2-10.3.1"><strong>Inventory</strong> records what <em>actually exists</em> and is deployed.<a href="#section-2-10.3.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="section-2-11">The goal of this draft is to show, by concrete examples, how the generalized capability framework is specialized for equipment and how that structure integrates with inventory and entitlement data.<a href="#section-2-11" class="pilcrow">¶</a></p>
+<p id="section-2-12">Whilst this general model says a board can be placed in a slot, clearly not all boards can be placed in all slots. This document describes the opportunities in terms of physical capabilities of types of physical things.<a href="#section-2-12" class="pilcrow">¶</a></p>
+<p id="section-2-13">An inserted board supports functionality. Some functions emerge from a combination of boards. The specification method described here allows the functions that emerge from assemblies of equipment to be described in detail.<a href="#section-2-13" class="pilcrow">¶</a></p>
+<p id="section-2-14">The specification of emergemt functions allows a purchasing application to determine which particular types of hardware can be acquired and a planning tool to determine how to arrange occurrences of types of hardware in systems to support particular functions pior to the purchase of any equipment.<a href="#section-2-14" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="problem-statement">
@@ -1297,28 +1383,39 @@ document are to be interpreted as described in RFC2119}}.<a href="#section-1-1" 
 <a href="#section-3" class="section-number selfRef">3. </a><a href="#name-problem-statement" class="section-name selfRef">Problem Statement</a>
       </h2>
 <p id="section-3-1">A telecoms network is realized through an assembly of equipments (such as curcuit packs, boards, racks, cables etc.), some passive (not directly powered) and some active (directly powered). Each equipment etc. provides some capability that supports the provision of service. Understanding these capabilities in detail and precisely is vital throughout the life of the network.<a href="#section-3-1" class="pilcrow">¶</a></p>
-<p id="section-3-2">Whilst an active equipment may provide an interface that exposes what is available currently, it rarely indicates what is potentially avaliable and when it does this is usually through an ad-hoc mechanism. Clearly, when the active equipment is not powered, it is not possible to interrogate it even for this sparse and basic information. Passive equipments cannot be interrogated.<a href="#section-3-2" class="pilcrow">¶</a></p>
-<p id="section-3-3">Manufactures of equipments produce types of equipment where each instance of that type is essentially identical with respect to capabilities within an acceptable and understood tolerance. Any instance of a type of equipment is interchangeable with an instance of the same type. There may also be other compatibilities where different types have the same or a superset capability and hence can be used as alternatives.<a href="#section-3-3" class="pilcrow">¶</a></p>
-<p id="section-3-4">It is necessary to understand some aspects of capability of a type of equipment at all stages of the lifecycle:
+<p id="section-3-2">In practice, managing equipment capabilities in isolation is insufficient.  Each capability must be tied to:<a href="#section-3-2" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3-3.1">
+          <p id="section-3-3.1.1">an <em>entitlement</em> indicating whether it is licensed or permitted for use, and<a href="#section-3-3.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-3-3.2">
+          <p id="section-3-3.2.1">an <em>inventory record</em> that anchors the capability to a deployed occurrence.<a href="#section-3-3.2.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="section-3-4">This tri-layer relationship enables operators to reason about what equipment types exist, what functions they can theoretically perform, what has been purchased or activated, and what is currently deployed or configured.<a href="#section-3-4" class="pilcrow">¶</a></p>
+<p id="section-3-5">Without such linkage, automation frameworks cannot determine whether a planned configuration is feasible, legally licensed, or available in the installed base.<a href="#section-3-5" class="pilcrow">¶</a></p>
+<p id="section-3-6">Whilst an active equipment may provide an interface that exposes what is available currently, it rarely indicates what is potentially avaliable and when it does this is usually through an ad-hoc mechanism. Clearly, when the active equipment is not powered, it is not possible to interrogate it even for this sparse and basic information. Passive equipments cannot be interrogated.<a href="#section-3-6" class="pilcrow">¶</a></p>
+<p id="section-3-7">Manufactures of equipments produce types of equipment where each instance of that type is essentially identical with respect to capabilities within an acceptable and understood tolerance. Any instance of a type of equipment is interchangeable with an instance of the same type. There may also be other compatibilities where different types have the same or a superset capability and hence can be used as alternatives.<a href="#section-3-7" class="pilcrow">¶</a></p>
+<p id="section-3-8">It is necessary to understand some aspects of capability of a type of equipment at all stages of the lifecycle:
 - whilst speculation about services to be provided prior to network design and researching potential network capabilities
 - when planning network structure
 - prior to purchasing, when choosing particular equipment types for a specific purpose where there are alternatives
 - when planning future deployment of equipments
 - when the equipment is installed and services are being designed
-- even when the equipment is fully configured and operational with no errors etc., there may be heartbeat and status capabilities<a href="#section-3-4" class="pilcrow">¶</a></p>
-<p id="section-3-5">Considering the above, it is necessary to have a complete description of capability that is available independent of the presence of equipment. This description needs to be rigorous and readily interpretable allowing for comparisons with other equipment types etc. On that basis the capabilities should be described in a normalized language where advantage is taken of recurring patterns etc.<a href="#section-3-5" class="pilcrow">¶</a></p>
-<p id="section-3-6">As automation progresses, machine interpretability of the capability information becomes increasingly important. Whilst AI, expecially LLMs, can deal with the variety of human interaction, a more efficient and compact language usage is preferable for efficiency and removal of potential ambiguity.<a href="#section-3-6" class="pilcrow">¶</a></p>
-<p id="section-3-7">This document sets out an approach for expression of capabilities of equipment both in terms of physical structure and emergent functionality.<a href="#section-3-7" class="pilcrow">¶</a></p>
-<p id="section-3-8">STOP HERE...<a href="#section-3-8" class="pilcrow">¶</a></p>
-<p id="section-3-9">Whilst knowing the YANG model for the equipment is beneficial, it is not sufficient as the YANG model essentially provides a space within which actual state etc. can be expresses, but it supports all possible combinations. The equipment will be very limited in comparison.<a href="#section-3-9" class="pilcrow">¶</a></p>
-<p id="section-3-10">What is needed is a modeling framework that:
+- even when the equipment is fully configured and operational with no errors etc., there may be heartbeat and status capabilities<a href="#section-3-8" class="pilcrow">¶</a></p>
+<p id="section-3-9">Considering the above, it is necessary to have a complete description of capability that is available independent of the presence of equipment. This description needs to be rigorous and readily interpretable allowing for comparisons with other equipment types etc. On that basis the capabilities should be described in a normalized language where advantage is taken of recurring patterns etc.<a href="#section-3-9" class="pilcrow">¶</a></p>
+<p id="section-3-10">As automation progresses, machine interpretability of the capability information becomes increasingly important. Whilst AI, expecially LLMs, can deal with the variety of human interaction, a more efficient and compact language usage is preferable for efficiency and removal of potential ambiguity.<a href="#section-3-10" class="pilcrow">¶</a></p>
+<p id="section-3-11">This document sets out an approach for expression of capabilities of equipment both in terms of physical structure and emergent functionality.<a href="#section-3-11" class="pilcrow">¶</a></p>
+<p id="section-3-12">STOP HERE...<a href="#section-3-12" class="pilcrow">¶</a></p>
+<p id="section-3-13">Whilst knowing the YANG model for the equipment is beneficial, it is not sufficient as the YANG model essentially provides a space within which actual state etc. can be expresses, but it supports all possible combinations. The equipment will be very limited in comparison.<a href="#section-3-13" class="pilcrow">¶</a></p>
+<p id="section-3-14">What is needed is a modeling framework that:
 - Allows systems and components to be described in terms of their <strong>capability boundaries</strong>, including <strong>capability interactions</strong> separate from operational state,
 - Supports <strong>refinement via pruning and refactoring to yield flexible structural transformation</strong> rather than rigid inheritance or classification,
 - Enables <strong>recursive occurrence formation</strong>, where each stage of narrowing produces a usable semantic structure,
 - Accommodates <strong>multiple valid refinement paths</strong>, supporting different levels of granularity and domain specificity,
 - Provides a <strong>coherent trace</strong> from abstract capability declarations down to deployable or licensable configurations.
-This draft introduces such a framework by building on the refinement logic of <span>[<a href="#ITU-T_G.7711" class="cite xref">ITU-T_G.7711</a>]</span>  (<span>[<a href="#ONF_TR-512" class="cite xref">ONF_TR-512</a>]</span>) in general and especially the <strong>specification pattern</strong> structures of ITU-T G.7711 Annex G (ONF_TR‑512.7) which provides a means of expressing bounded capability envelopes through a formal refinement of generic model elements. This also provides grounding in the recursive occurrence model informed by the component–system pattern <span>[<a href="#ITU-T_G.7711" class="cite xref">ITU-T_G.7711</a>]</span>  (<span>[<a href="#ONF_TR-512.A.2" class="cite xref">ONF_TR-512.A.2</a>]</span> and modeling boundaries approach <span>[<a href="#mobo" class="cite xref">mobo</a>]</span>. This document leverages the foundations laid by <span>[<a href="#ITU-T_G.7711" class="cite xref">ITU-T_G.7711</a>]</span>  (<span>[<a href="#ONF_TR-512" class="cite xref">ONF_TR-512</a>]</span>).<a href="#section-3-10" class="pilcrow">¶</a></p>
-<p id="section-3-11">The same expression challenges appear in statements of intent. The process of formulating intent through negotiation and resultant gradual refinement has a similar feel to the degrees of narrowing of the specification.<a href="#section-3-11" class="pilcrow">¶</a></p>
+This draft introduces such a framework by building on the refinement logic of <span>[<a href="#ITU-T_G.7711" class="cite xref">ITU-T_G.7711</a>]</span>  (<span>[<a href="#ONF_TR-512" class="cite xref">ONF_TR-512</a>]</span>) in general and especially the <strong>specification pattern</strong> structures of ITU-T G.7711 Annex G (ONF_TR‑512.7) which provides a means of expressing bounded capability envelopes through a formal refinement of generic model elements. This also provides grounding in the recursive occurrence model informed by the component–system pattern <span>[<a href="#ITU-T_G.7711" class="cite xref">ITU-T_G.7711</a>]</span>  (<span>[<a href="#ONF_TR-512.A.2" class="cite xref">ONF_TR-512.A.2</a>]</span> and modeling boundaries approach <span>[<a href="#mobo" class="cite xref">mobo</a>]</span>. This document leverages the foundations laid by <span>[<a href="#ITU-T_G.7711" class="cite xref">ITU-T_G.7711</a>]</span>  (<span>[<a href="#ONF_TR-512" class="cite xref">ONF_TR-512</a>]</span>).<a href="#section-3-14" class="pilcrow">¶</a></p>
+<p id="section-3-15">The same expression challenges appear in statements of intent. The process of formulating intent through negotiation and resultant gradual refinement has a similar feel to the degrees of narrowing of the specification.<a href="#section-3-15" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="specification-in-terms-of-the-model">
@@ -1326,36 +1423,68 @@ This draft introduces such a framework by building on the refinement logic of <s
       <h2 id="name-specification-in-terms-of-t">
 <a href="#section-4" class="section-number selfRef">4. </a><a href="#name-specification-in-terms-of-t" class="section-name selfRef">Specification in terms of the Model</a>
       </h2>
-<p id="section-4-1">The specification of capability should be presented in terms of the terminology of the problem space and hence in terms of the appropriate model. The challenge is determining which model is the "appropriate" model.<a href="#section-4-1" class="pilcrow">¶</a></p>
-<p id="section-4-2">An area of the problem space can be described in different ways depending upon what the intention of the model is. There are many ways of representing a semantic space/<a href="#section-4-2" class="pilcrow">¶</a></p>
-<p id="section-4-3">Prior to embarking on evaluation of specification of capability, it is important to consider the specific model and how it is structured.<a href="#section-4-3" class="pilcrow">¶</a></p>
+<p id="section-4-1">The specification of equipment capability should be presented in terms of the <em>generalized capability model</em> from <span>[<a href="#GenCapPrin" class="cite xref">GenCapPrin</a>]</span> and explicitly mapped to the inventory and entitlement contexts.<a href="#section-4-1" class="pilcrow">¶</a></p>
+<p id="section-4-2">The relationships between these elements can be summarized as:<a href="#section-4-2" class="pilcrow">¶</a></p>
+<table class="center" id="table-1">
+        <caption><a href="#table-1" class="selfRef">Table 1</a></caption>
+<thead>
+          <tr>
+            <th class="text-left" rowspan="1" colspan="1">Concept</th>
+            <th class="text-left" rowspan="1" colspan="1">Defined In</th>
+            <th class="text-left" rowspan="1" colspan="1">Represents</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">Capability Spec</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <span>[<a href="#GenCapPrin" class="cite xref">GenCapPrin</a>]</span>, this draft</td>
+            <td class="text-left" rowspan="1" colspan="1">The potential functions and limits of an equipment type</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">Entitlement</td>
+            <td class="text-left" rowspan="1" colspan="1">[EntitlementInventory]</td>
+            <td class="text-left" rowspan="1" colspan="1">The subset of capabilities permitted or licensed</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">Inventory Item</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <span>[<a href="#BaseInventory" class="cite xref">BaseInventory</a>]</span>
+</td>
+            <td class="text-left" rowspan="1" colspan="1">The actual occurrence of an entitled capability in the network</td>
+          </tr>
+        </tbody>
+      </table>
+<p id="section-4-4">This linkage ensures that refinement and occurrence formation have a tangible operational anchor in network management systems.<a href="#section-4-4" class="pilcrow">¶</a></p>
+<p id="section-4-5">An area of the problem space can be described in different ways depending upon what the intention of the model is. There are many ways of representing a semantic space/<a href="#section-4-5" class="pilcrow">¶</a></p>
+<p id="section-4-6">Prior to embarking on evaluation of specification of capability, it is important to consider the specific model and how it is structured.<a href="#section-4-6" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-4-4.1">
-          <p id="section-4-4.1.1">Focus: Semantic area covered at centre and periphery<a href="#section-4-4.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-4-7.1">
+          <p id="section-4-7.1.1">Focus: Semantic area covered at centre and periphery<a href="#section-4-7.1.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-4-4.2">
-          <p id="section-4-4.2.1">Specialization: Specific detailed focus on an area with rich structure, e.g., PCE, problem analysis, etc.<a href="#section-4-4.2.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="section-4-7.2">
+          <p id="section-4-7.2.1">Specialization: Specific detailed focus on an area with rich structure, e.g., PCE, problem analysis, etc.<a href="#section-4-7.2.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-4-4.3">
-          <p id="section-4-4.3.1">Granularity: the “size” of the semantic units (including the depth of recursion of fractal representations)<a href="#section-4-4.3.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="section-4-7.3">
+          <p id="section-4-7.3.1">Granularity: the “size” of the semantic units (including the depth of recursion of fractal representations)<a href="#section-4-7.3.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-4-4.4">
-          <p id="section-4-4.4.1">Phase: The positioning of the semantic boundaries<a href="#section-4-4.4.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="section-4-7.4">
+          <p id="section-4-7.4.1">Phase: The positioning of the semantic boundaries<a href="#section-4-7.4.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-4-4.5">
-          <p id="section-4-4.5.1">Richness: The detailed coverage within a semantic unit<a href="#section-4-4.5.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="section-4-7.5">
+          <p id="section-4-7.5.1">Richness: The detailed coverage within a semantic unit<a href="#section-4-7.5.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-4-4.6">
-          <p id="section-4-4.6.1">Fidelity: Precision v approximation<a href="#section-4-4.6.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="section-4-7.6">
+          <p id="section-4-7.6.1">Fidelity: Precision v approximation<a href="#section-4-7.6.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-4-4.7">
-          <p id="section-4-4.7.1">Abstraction: Closeness to actual detail<a href="#section-4-4.7.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="section-4-7.7">
+          <p id="section-4-7.7.1">Abstraction: Closeness to actual detail<a href="#section-4-7.7.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-4-4.8">
-          <p id="section-4-4.8.1">Maturity: Lifecycle development stage. How stable the model is likely to be. This is primarily about semantics, but also covers syntax.<a href="#section-4-4.8.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="section-4-7.8">
+          <p id="section-4-7.8.1">Maturity: Lifecycle development stage. How stable the model is likely to be. This is primarily about semantics, but also covers syntax.<a href="#section-4-7.8.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-4-4.9">
-          <p id="section-4-4.9.1">Omission: Gaps and missing parts<a href="#section-4-4.9.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="section-4-7.9">
+          <p id="section-4-7.9.1">Omission: Gaps and missing parts<a href="#section-4-7.9.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 </section>
@@ -1396,10 +1525,26 @@ The specification of an occurrence is itself a system spec.<a href="#section-5-5
       <h2 id="name-some-specification-examples">
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-some-specification-examples" class="section-name selfRef">Some specification examples</a>
       </h2>
-<p id="section-6-1">This section should describe process illustrated via example sketches and detail.<a href="#section-6-1" class="pilcrow">¶</a></p>
-<p id="section-6-2">Note that the use of the physical and functional considerations are recursively intertwined... a bit of physical, emergent function, function assembly, physical assembly thermals etc.<a href="#section-6-2" class="pilcrow">¶</a></p>
-<p id="section-6-3">Start with a generalized equipment and a generalized function and sketch the narrowing.<a href="#section-6-3" class="pilcrow">¶</a></p>
-<p id="section-6-4">A physical equipment in a physical context considering how it fits and what fits in it...
+<p id="section-6-1">This section illustrates how equipment capability specifications connect to entitlement and inventory concepts.<a href="#section-6-1" class="pilcrow">¶</a></p>
+<p id="section-6-2">Example — Optical Transponder:<a href="#section-6-2" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-6-3">
+<li id="section-6-3.1">
+          <p id="section-6-3.1.1"><strong>Generic capability</strong>: an abstract optical transponder supporting multiple modulation formats up to 800 G.<a href="#section-6-3.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li id="section-6-3.2">
+          <p id="section-6-3.2.1"><strong>Equipment capability specification</strong>: a vendor-specific model constrained to 400 G operation, defining port, thermal, and power envelopes.<a href="#section-6-3.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li id="section-6-3.3">
+          <p id="section-6-3.3.1"><strong>Entitlement</strong>: a software license enabling the 400 G feature set; represented via the entitlement model.<a href="#section-6-3.3.1" class="pilcrow">¶</a></p>
+</li>
+        <li id="section-6-3.4">
+          <p id="section-6-3.4.1"><strong>Inventory occurrence</strong>: a deployed device instance that has the entitlement applied and exposes its active capabilities through inventory records.<a href="#section-6-3.4.1" class="pilcrow">¶</a></p>
+</li>
+      </ol>
+<p id="section-6-4">This recursive narrowing from generic capability to entitled occurrence demonstrates how specification refinement is operationally realized.<a href="#section-6-4" class="pilcrow">¶</a></p>
+<p id="section-6-5">Note that the use of the physical and functional considerations are recursively intertwined... a bit of physical, emergent function, function assembly, physical assembly thermals etc.<a href="#section-6-5" class="pilcrow">¶</a></p>
+<p id="section-6-6">Start with a generalized equipment and a generalized function and sketch the narrowing.<a href="#section-6-6" class="pilcrow">¶</a></p>
+<p id="section-6-7">A physical equipment in a physical context considering how it fits and what fits in it...
 -type
 -size
 -thermals
@@ -1407,8 +1552,8 @@ The specification of an occurrence is itself a system spec.<a href="#section-5-5
 -physical compatibility
 -electrical compatibility
 -diagram or compatibilities from ONF work
--physical assemblies and thermals<a href="#section-6-4" class="pilcrow">¶</a></p>
-<p id="section-6-5">Function emergent from a physical equipment
+-physical assemblies and thermals<a href="#section-6-7" class="pilcrow">¶</a></p>
+<p id="section-6-8">Function emergent from a physical equipment
 -raw functions (use ProcessingConstruct recursion as per ONF)
 -emergent capabilities and needs
 -functional compatibility
@@ -1417,7 +1562,7 @@ A system of equipments in an assembly
 -functional assemblies
 -power and thermals per assembly
 A system arrangements for a protection scheme.
-A specification for a system arrangement for a service and associated realization pattern specifications.<a href="#section-6-5" class="pilcrow">¶</a></p>
+A specification for a system arrangement for a service and associated realization pattern specifications.<a href="#section-6-8" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="recursive-narrowing">
@@ -1523,10 +1668,8 @@ Expression of uncertainty and pattern<a href="#section-15-1" class="pilcrow">¶<
       <h2 id="name-conclusion">
 <a href="#section-16" class="section-number selfRef">16. </a><a href="#name-conclusion" class="section-name selfRef">Conclusion</a>
       </h2>
-<p id="section-16-1">Mindset Change
-Langue challenges
-Use of AI
-Target is an ecosystem of specs driving agentic components...<a href="#section-16-1" class="pilcrow">¶</a></p>
+<p id="section-16-1">This document applies the generalized capability principles to the specific case of equipment.  By linking equipment capability descriptions to entitlements and inventory items, it creates a complete semantic chain from potential → permitted → realized.<a href="#section-16-1" class="pilcrow">¶</a></p>
+<p id="section-16-2">This alignment ensures that planning, procurement, licensing, and operational systems can reason coherently about equipment functions and their lifecycle.  The approach enables automation, energy- and sustainability-aware network management, and AI-assisted reasoning grounded in formally defined capability structures.<a href="#section-16-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="security-considerations">
