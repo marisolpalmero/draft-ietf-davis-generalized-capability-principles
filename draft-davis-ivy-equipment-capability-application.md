@@ -121,9 +121,9 @@ informative:
 
 --- abstract
 
-This document takes the work on a framework for capability modeling and develops that for specific applications related to equipment.
+This document applies the generalized capability principles to the description of physical equipment and shows how such capability specifications integrate with base inventory and entitlement models as defined in [BaseInventory] and [EntitlementInventory].
 
-The approcah is expmained by example. The explanation covers physical capabilities and representation of emergent functionality.
+The approcah is expmained by example, focusing on how the potential capabilities of equipment types are described, how these map to entitlements (licensed or policy-controlled subsets of capabilities), and how they are instantiated as inventory items.  The explanation covers both physical capabilities and emergent functionality.
 
 --- middle
 
@@ -145,6 +145,31 @@ In a telecoms environment, there are many physical things that support the provi
 
 The equipments to be represented include circuit packs (boards) and shelves (subracks). In this description an SFP will be considered as a board. The essential structural model is that a shelf can be placed in a rack, a board in a slot in a shelf and a board (SFP) in a slot in a board.
 
+This document is part of a suite that includes:
+
+*  [GenCapPrin] — defines the generalized capability and refinement principles.
+*  [BaseInventory] — defines how equipment occurrences are represented in a network inventory.
+*  [EntitlementInventory] — defines how capability entitlements and licensed functionality are tracked.
+
+Together, these drafts describe a continuous trace:
+
+Capability → Entitlement → Inventory → Realization
+
+
+~~~ aasvg
+{::include art/capabilities.txt}
+~~~
+{: #fig-capabilities title="Relationship between Capability, Entitlement, and Inventory" }
+
+
+where:
+
+*  **Capability** defines what an equipment *can* do (its potential);
+*  **Entitlement** defines what an operator *is allowed* or *enabled* to use; and
+*  **Inventory** records what *actually exists* and is deployed.
+
+The goal of this draft is to show, by concrete examples, how the generalized capability framework is specialized for equipment and how that structure integrates with inventory and entitlement data.
+
 Whilst this general model says a board can be placed in a slot, clearly not all boards can be placed in all slots. This document describes the opportunities in terms of physical capabilities of types of physical things.
 
 An inserted board supports functionality. Some functions emerge from a combination of boards. The specification method described here allows the functions that emerge from assemblies of equipment to be described in detail.
@@ -154,6 +179,15 @@ The specification of emergemt functions allows a purchasing application to deter
 #Problem Statement
 
 A telecoms network is realized through an assembly of equipments (such as curcuit packs, boards, racks, cables etc.), some passive (not directly powered) and some active (directly powered). Each equipment etc. provides some capability that supports the provision of service. Understanding these capabilities in detail and precisely is vital throughout the life of the network.
+
+In practice, managing equipment capabilities in isolation is insufficient.  Each capability must be tied to:
+
+*  an *entitlement* indicating whether it is licensed or permitted for use, and
+*  an *inventory record* that anchors the capability to a deployed occurrence.
+
+This tri-layer relationship enables operators to reason about what equipment types exist, what functions they can theoretically perform, what has been purchased or activated, and what is currently deployed or configured.
+
+Without such linkage, automation frameworks cannot determine whether a planned configuration is feasible, legally licensed, or available in the installed base.
 
 Whilst an active equipment may provide an interface that exposes what is available currently, it rarely indicates what is potentially avaliable and when it does this is usually through an ad-hoc mechanism. Clearly, when the active equipment is not powered, it is not possible to interrogate it even for this sparse and basic information. Passive equipments cannot be interrogated.
 
@@ -188,10 +222,19 @@ This draft introduces such a framework by building on the refinement logic of [I
 
 The same expression challenges appear in statements of intent. The process of formulating intent through negotiation and resultant gradual refinement has a similar feel to the degrees of narrowing of the specification.
 
-
-
 #Specification in terms of the Model
-The specification of capability should be presented in terms of the terminology of the problem space and hence in terms of the appropriate model. The challenge is determining which model is the "appropriate" model.
+
+The specification of equipment capability should be presented in terms of the *generalized capability model* from [GenCapPrin] and explicitly mapped to the inventory and entitlement contexts.
+
+The relationships between these elements can be summarized as:
+
+| Concept        | Defined In               | Represents |
+|----------------|--------------------------|-------------|
+| Capability Spec| [GenCapPrin], this draft | The potential functions and limits of an equipment type |
+| Entitlement    | [EntitlementInventory]   | The subset of capabilities permitted or licensed |
+| Inventory Item | [BaseInventory]          | The actual occurrence of an entitled capability in the network |
+
+This linkage ensures that refinement and occurrence formation have a tangible operational anchor in network management systems.
 
 An area of the problem space can be described in different ways depending upon what the intention of the model is. There are many ways of representing a semantic space/
 
@@ -237,7 +280,16 @@ In an ideal environment, there is an ecosystem of specificactions each providing
 Today's solution at best have a coded form of the semantic mantic interpretation that may not reflect the formal definition due to inaccuracies of interpretation. Many semantics are reduced to inconsistent labels that a user has to interpret. Whilst an LLM can do a reasonable job at interpretation of chaotic data, it will benefit a rigorous model traceable through formal definitions to fundamentals.
 
 #Some specification examples
-This section should describe process illustrated via example sketches and detail.
+This section illustrates how equipment capability specifications connect to entitlement and inventory concepts.
+
+Example — Optical Transponder:
+
+1.  **Generic capability**: an abstract optical transponder supporting multiple modulation formats up to 800 G.
+2.  **Equipment capability specification**: a vendor-specific model constrained to 400 G operation, defining port, thermal, and power envelopes.
+3.  **Entitlement**: a software license enabling the 400 G feature set; represented via the entitlement model.
+4.  **Inventory occurrence**: a deployed device instance that has the entitlement applied and exposes its active capabilities through inventory records.
+
+This recursive narrowing from generic capability to entitled occurrence demonstrates how specification refinement is operationally realized.
 
 Note that the use of the physical and functional considerations are recursively intertwined... a bit of physical, emergent function, function assembly, physical assembly thermals etc.
 
@@ -318,10 +370,10 @@ Development of standards
 Expression of uncertainty and pattern
 
 #Conclusion
-Mindset Change
-Langue challenges
-Use of AI
-Target is an ecosystem of specs driving agentic components...
+This document applies the generalized capability principles to the specific case of equipment.  By linking equipment capability descriptions to entitlements and inventory items, it creates a complete semantic chain from potential → permitted → realized.
+
+This alignment ensures that planning, procurement, licensing, and operational systems can reason coherently about equipment functions and their lifecycle.  The approach enables automation, energy- and sustainability-aware network management, and AI-assisted reasoning grounded in formally defined capability structures.
+
 
 #Security Considerations
 
