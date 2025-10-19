@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-10-16T01:10:09.544797+00:00",
+  "timestamp": "2025-10-19T01:17:48.536222+00:00",
   "repo": "marisolpalmero/draft-ietf-davis-generalized-capability-principles",
   "labels": [
     {
@@ -106,24 +106,26 @@
       "id": "PR_kwDOPrz4g86sYfjj",
       "title": "Early first draft...",
       "url": "https://github.com/marisolpalmero/draft-ietf-davis-generalized-capability-principles/pull/2",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "nigel-r-davis",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Just includes abstract and introduction.",
       "createdAt": "2025-10-06T22:28:34Z",
-      "updatedAt": "2025-10-15T13:57:36Z",
+      "updatedAt": "2025-10-16T09:55:28Z",
       "baseRepository": "marisolpalmero/draft-ietf-davis-generalized-capability-principles",
       "baseRefName": "main",
       "baseRefOid": "ea329568d40d2f9540e1a748fb1588c4e01ba39d",
       "headRepository": "nigel-r-davis/draft-ietf-davis-generalized-capability-principles",
       "headRefName": "main",
       "headRefOid": "35d6f69b3fe26b736e547492ef803fd894118e36",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2025-10-16T09:54:54Z",
+      "mergedAt": "2025-10-16T09:54:54Z",
+      "mergedBy": "marisolpalmero",
+      "mergeCommit": {
+        "oid": "8d44b2713040ca69370fcf73de4ec2484f17fc73"
+      },
       "comments": [
         {
           "author": "marisolpalmero",
@@ -131,8 +133,125 @@
           "body": "Many thanks Nigel. Great!\r\n",
           "createdAt": "2025-10-15T13:57:36Z",
           "updatedAt": "2025-10-15T13:57:36Z"
+        },
+        {
+          "author": "marisolpalmero",
+          "authorAssociation": "OWNER",
+          "body": "thanks Nigel",
+          "createdAt": "2025-10-16T09:55:28Z",
+          "updatedAt": "2025-10-16T09:55:28Z"
         }
       ],
+      "reviews": []
+    },
+    {
+      "number": 3,
+      "id": "PR_kwDOPrz4g86uDoGC",
+      "title": "Capabilities changes based on inventory draft",
+      "url": "https://github.com/marisolpalmero/draft-ietf-davis-generalized-capability-principles/pull/3",
+      "state": "MERGED",
+      "author": "marisolpalmero",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "Many thanks Nigel, I have added a bit more context, under my view to link to the entitlement and base inventory.\r\n\r\n\r\nI think it will be good to publish before 20th, to have the option to present. I would publish both documents, because the one linked to base inventory goes with the principals, but at least the one link to base inventory should be there. I would add a diagram to complete the picture",
+      "createdAt": "2025-10-16T10:47:12Z",
+      "updatedAt": "2025-10-18T08:30:19Z",
+      "baseRepository": "marisolpalmero/draft-ietf-davis-generalized-capability-principles",
+      "baseRefName": "main",
+      "baseRefOid": "8d44b2713040ca69370fcf73de4ec2484f17fc73",
+      "headRepository": "marisolpalmero/draft-ietf-davis-generalized-capability-principles",
+      "headRefName": "capabilities_changes_basedinventory",
+      "headRefOid": "4270d6f631d30b75ea7321519beab35de55b288f",
+      "closedAt": "2025-10-18T08:30:19Z",
+      "mergedAt": "2025-10-18T08:30:19Z",
+      "mergedBy": "marisolpalmero",
+      "mergeCommit": {
+        "oid": "4743441ceeaac8d829dae0410576ce6cb727b7c5"
+      },
+      "comments": [
+        {
+          "author": "marisolpalmero",
+          "authorAssociation": "OWNER",
+          "body": "merging PR, and we will check manually the Nigel's PR in case of conflicts",
+          "createdAt": "2025-10-18T08:30:14Z",
+          "updatedAt": "2025-10-18T08:30:14Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOPrz4g87H0P1L",
+          "commit": {
+            "abbreviatedOid": "4270d6f"
+          },
+          "author": "nigel-r-davis",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-10-17T23:19:26Z",
+          "updatedAt": "2025-10-17T23:19:26Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "id": "PR_kwDOPrz4g86uZnD_",
+      "title": "Modifications ready for review",
+      "url": "https://github.com/marisolpalmero/draft-ietf-davis-generalized-capability-principles/pull/4",
+      "state": "CLOSED",
+      "author": "nigel-r-davis",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-10-17T23:35:37Z",
+      "updatedAt": "2025-10-18T08:49:05Z",
+      "baseRepository": "marisolpalmero/draft-ietf-davis-generalized-capability-principles",
+      "baseRefName": "main",
+      "baseRefOid": "4743441ceeaac8d829dae0410576ce6cb727b7c5",
+      "headRepository": "nigel-r-davis/draft-ietf-davis-generalized-capability-principles",
+      "headRefName": "main",
+      "headRefOid": "70fba911a45f821e39f1471f0b37e395411df400",
+      "closedAt": "2025-10-18T08:49:04Z",
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "marisolpalmero",
+          "authorAssociation": "OWNER",
+          "body": "conflicts resolved!",
+          "createdAt": "2025-10-18T08:49:04Z",
+          "updatedAt": "2025-10-18T08:49:04Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 5,
+      "id": "PR_kwDOPrz4g86ueB6j",
+      "title": "Cleaner separation of work between the two drafts",
+      "url": "https://github.com/marisolpalmero/draft-ietf-davis-generalized-capability-principles/pull/5",
+      "state": "OPEN",
+      "author": "nigel-r-davis",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Some enhancements to text.",
+      "createdAt": "2025-10-18T21:23:33Z",
+      "updatedAt": "2025-10-18T21:23:33Z",
+      "baseRepository": "marisolpalmero/draft-ietf-davis-generalized-capability-principles",
+      "baseRefName": "main",
+      "baseRefOid": "715a2dddb6789eea049de7811bb81dbdc2d10510",
+      "headRepository": "nigel-r-davis/draft-ietf-davis-generalized-capability-principles",
+      "headRefName": "main",
+      "headRefOid": "11ecb8d5fd39d13b3e3962295fd5635ea2521a84",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
       "reviews": []
     }
   ]
