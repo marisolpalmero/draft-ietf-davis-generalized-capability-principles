@@ -5,12 +5,12 @@
 IVY WG                                                       N. R. Davis
 Internet-Draft                                                     Ciena
 Intended status: Informational                                C. Cardona
-Expires: 21 April 2026                                               NTT
+Expires: 22 April 2026                                               NTT
                                                                 D. Lopez
                                                               Telefonica
                                                               M. Palmero
                                                              Independent
-                                                         18 October 2025
+                                                         19 October 2025
 
 
                    Generalized Capability Principles
@@ -70,7 +70,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 April 2026.
+   This Internet-Draft will expire on 22 April 2026.
 
 Copyright Notice
 
@@ -103,14 +103,13 @@ Table of Contents
    12. Building a specification structure
    13. A specification evolution example
    14. A system specification example
-   15. Application of the Language
+   15. Broader Application of the Language
    16. Conclusion
    17. Security Considerations
-   18. Security Considerations
-   19. IANA Considerations
-   20. References
-     20.1.  Normative References
-     20.2.  Informative References
+   18. IANA Considerations
+   19. References
+     19.1.  Normative References
+     19.2.  Informative References
    Appendix A.  Appendix A: Interpretive Notes on Refinement and
            Occurrence
      A.1.  A.1 No Single Refinement Path
@@ -408,28 +407,8 @@ Table of Contents
 
 6.  Some specification examples
 
-   This section should describe process illustrated via example sketches
-   and detail.
-
-   Note that the use of the physical and functional considerations are
-   recursively intertwined... a bit of physical, emergent function,
-   function assembly, physical assembly thermals etc.
-
-   Start with a generalized equipment and a generalized function and
-   sketch the narrowing.
-
-   A physical equipment in a physical context considering how it fits
-   and what fits in it... -type -size -thermal -power -physical
-   compatibility -electrical compatibility -diagram or compatibilities
-   from ONF work -physical assemblies and thermals
-
-   Function emergent from a physical equipment -raw functions (use
-   ProcessingConstruct recursion as per ONF) -emergent capabilities and
-   needs -functional compatibility -power and thermals per functions A
-   system of equipments in an assembly -functional assemblies -power and
-   thermals per assembly A system arrangements for a protection scheme.
-   A specification for a system arrangement for a service and associated
-   realization pattern specifications.
+   This section will provide some examples and will reference the
+   equipment capability draft and other future drafts.
 
 7.  Recursive narrowing
 
@@ -462,10 +441,10 @@ Table of Contents
    fact bolt-on warts) Extract key characteristics from above and from
    mobo - narrowing requires specific redefine (relate to pruning) -
    occurrence is an assembly of constrained type and specific values -
-   need to reference other specs - refactoring, minor specialization and
-   assembly - interrelationship and influence - uncertainty and
-   preferences (Need to review mobo and TR-547 spec, component-system
-   etc.)
+   need to reference other specs as reusable parts - refactoring, minor
+   specialization and assembly - interrelationship and influence -
+   uncertainty and preferences (Need to review mobo and TR-547 spec,
+   component-system etc.)
 
 11.  Specification language options
 
@@ -489,29 +468,27 @@ Table of Contents
    Take the language considerations and set out system specs in a more
    formal way
 
-15.  Application of the Language
+15.  Broader Application of the Language
 
    Negotiation Refinement of planning Development of standards
    Expression of uncertainty and pattern
 
 16.  Conclusion
 
-   Mindset Change Langue challenges Use of AI Target is an ecosystem of
-   specs driving agentic components...
+   Mindset Change Language challenges Use of AI Target is an ecosystem
+   of specs driving agentic components...
 
 17.  Security Considerations
 
-18.  Security Considerations
-
    TBD
 
-19.  IANA Considerations
+18.  IANA Considerations
 
    This document has no IANA actions.
 
-20.  References
+19.  References
 
-20.1.  Normative References
+19.1.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -522,7 +499,7 @@ Table of Contents
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
 
-20.2.  Informative References
+19.2.  Informative References
 
    [BaseInventory]
               Yu, C., Belotti, S., Bouquier, J., Peruzzini, F., and P.
