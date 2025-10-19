@@ -1,7 +1,7 @@
 ---
 title: "Generalized Capability Principles"
 abbrev: "GenCapPrinc"
-docname: draft-davis-ivy-generalized-capability-principles
+docname: draft-davis-nmop-generalized-capability-principles
 category: info
 stand_alone: true
 
@@ -11,7 +11,7 @@ date:
 consensus: true
 v: 3
 area: "Operations and Management"
-wg: "IVY WG"
+wg: "NMOP"
 kw:
  - capability
  - manifest
@@ -21,12 +21,12 @@ kw:
  - component-system
  - pruning&refactoring
 venue:
-  group: "Network Inventory YANG WG"
+  group: "Network Management Operations"
   type: ""
-  mail: "inventory-yang@ietf.org"
-  arch: "https://mailarchive.ietf.org/arch/browse/inventory-yang/"
+  mail: "nmop@ietf.org"
+  arch: "https://mailarchive.ietf.org/arch/browse/nmop/"
   github: "marisolpalmero/draft-ietf-davis-generalized-capability-principles"
-  latest: "https://github.com/marisolpalmero/draft-ietf-davis-generalized-capability-principles/blob/main/draft-davis-ivy-generalized-capability-principles-latest.md"
+  latest: "https://github.com/marisolpalmero/draft-ietf-davis-generalized-capability-principles/blob/main/draft-davis-nmop-generalized-capability-principles-latest.md"
 
 author:
 
