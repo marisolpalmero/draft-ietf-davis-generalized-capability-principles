@@ -197,7 +197,6 @@ Prior to embarking on evaluation of specification of capability, it is important
 - Omission: Gaps and missing parts
 
 #Generalized Modeling via Component–System–Specification Refinement
-
 This framework moves away from rigid classification schemes and instead adopts a dynamic, refinement-based approach to modeling. Traditional classification attempts to impose fixed categories onto a system, but this often obscures nuance, variation, and the emergence of intermediate structures that carry operational or architectural significance.
 
 We begin instead with the concept of a **universal component**—a general-purpose structure with maximal capability potential. Through the process of **pruning & refactoring** (constraint-driven refinement), this semantic volume is gradually narrowed, yielding intermediate structures with more sharply defined roles and properties. These refined artifacts are not pre-classified entities, but **emergent forms** that arise naturally at specific “sweat spots” in the refinement trajectory, where the remaining capabilities align with a recognizably useful or interoperable function.
@@ -226,32 +225,7 @@ In an ideal environment, there is an ecosystem of specificactions each providing
 Today's solution at best have a coded form of the semantic mantic interpretation that may not reflect the formal definition due to inaccuracies of interpretation. Many semantics are reduced to inconsistent labels that a user has to interpret. Whilst an LLM can do a reasonable job at interpretation of chaotic data, it will benefit a rigorous model traceable through formal definitions to fundamentals.
 
 #Some specification examples
-This section should describe process illustrated via example sketches and detail.
-
-Note that the use of the physical and functional considerations are recursively intertwined... a bit of physical, emergent function, function assembly, physical assembly thermals etc.
-
-Start with a generalized equipment and a generalized function and sketch the narrowing.
-
-A physical equipment in a physical context considering how it fits and what fits in it...
--type
--size
--thermal
--power
--physical compatibility
--electrical compatibility
--diagram or compatibilities from ONF work
--physical assemblies and thermals
-
-Function emergent from a physical equipment
--raw functions (use ProcessingConstruct recursion as per ONF)
--emergent capabilities and needs
--functional compatibility
--power and thermals per functions
-A system of equipments in an assembly
--functional assemblies
--power and thermals per assembly
-A system arrangements for a protection scheme.
-A specification for a system arrangement for a service and associated realization pattern specifications.
+This section will provide some examples and will reference the equipment capability draft and other future drafts.
 
 
 #Recursive narrowing
@@ -279,7 +253,7 @@ The language needs inherent capabilities (as opposed to after the fact bolt-on w
 Extract key characteristics from above and from mobo
 - narrowing requires specific redefine (relate to pruning)
 - occurrence is an assembly of constrained type and specific values
-- need to reference other specs
+- need to reference other specs as reusable parts
 - refactoring, minor specialization and assembly
 - interrelationship and influence
 - uncertainty and preferences
@@ -301,7 +275,7 @@ Discuss how a spec may change as understanding emerges and how it may be refacto
 #A system specification example
 Take the language considerations and set out system specs in a more formal way
 
-#Application of the Language
+#Broader Application of the Language
 Negotiation
 Refinement of planning
 Development of standards
@@ -309,13 +283,9 @@ Expression of uncertainty and pattern
 
 #Conclusion
 Mindset Change
-Langue challenges
+Language challenges
 Use of AI
 Target is an ecosystem of specs driving agentic components...
-
-#Security Considerations
-
-
 
 #Security Considerations
 
