@@ -2,7 +2,7 @@
 
 
 
-IVY WG                                                       N. R. Davis
+NMOP                                                         N. R. Davis
 Internet-Draft                                                     Ciena
 Intended status: Informational                                C. Cardona
 Expires: 22 April 2026                                               NTT
@@ -14,7 +14,7 @@ Expires: 22 April 2026                                               NTT
 
 
                    Generalized Capability Principles
-           draft-davis-ivy-generalized-capability-principles
+           draft-davis-nmop-generalized-capability-principles
 
 Abstract
 
@@ -41,15 +41,15 @@ About This Document
 
    The latest revision of this draft can be found at
    https://github.com/marisolpalmero/draft-ietf-davis-generalized-
-   capability-principles/blob/main/draft-davis-ivy-generalized-
+   capability-principles/blob/main/draft-davis-nmop-generalized-
    capability-principles-latest.md.  Status information for this
    document may be found at https://datatracker.ietf.org/doc/draft-
-   davis-ivy-generalized-capability/.
+   davis-nmop-generalized-capability/.
 
-   Discussion of this document takes place on the Network Inventory YANG
-   WG mailing list (mailto:inventory-yang@ietf.org), which is archived
-   at https://mailarchive.ietf.org/arch/browse/inventory-yang/.
-   Subscribe at https://www.ietf.org/mailman/listinfo/inventory-yang/.
+   Discussion of this document takes place on the Network Management
+   Operations mailing list (mailto:nmop@ietf.org), which is archived at
+   https://mailarchive.ietf.org/arch/browse/nmop/.  Subscribe at
+   https://www.ietf.org/mailman/listinfo/nmop/.
 
    Source for this draft and an issue tracker can be found at
    https://github.com/marisolpalmero/draft-ietf-davis-generalized-
