@@ -14,7 +14,7 @@ Expires: 23 April 2026                                               NTT
 
 
                    Generalized Capability Principles
-           draft-davis-nmop-generalized-capability-principles
+         draft-davis-nmop-generalized-capability-principles-00
 
 Abstract
 
@@ -44,7 +44,7 @@ About This Document
    capability-principles/blob/main/draft-davis-nmop-generalized-
    capability-principles-latest.md.  Status information for this
    document may be found at https://datatracker.ietf.org/doc/draft-
-   davis-nmop-generalized-capability/.
+   davis-nmop-generalized-capability-principles/.
 
    Discussion of this document takes place on the Network Management
    Operations mailing list (mailto:nmop@ietf.org), which is archived at

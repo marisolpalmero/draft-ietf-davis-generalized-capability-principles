@@ -1380,17 +1380,31 @@ document are to be interpreted as described in RFC2119}}.<a href="#section-1-1" 
       </ul>
 <p id="section-3-6">This tri-layer relationship enables operators to reason about what equipment types exist, what functions they can theoretically perform, what data needs to be applied to cause these functions to be performed, what has been purchased or activated, and what is currently deployed or configured.<a href="#section-3-6" class="pilcrow">¶</a></p>
 <p id="section-3-7">Without such linkage, automation frameworks cannot determine whether a planned configuration is feasible, legally licensed, or available in the installed base.<a href="#section-3-7" class="pilcrow">¶</a></p>
-<p id="section-3-8">It is necessary to understand some aspects of capability of a type of equipment with applied data at all stages of the lifecycle:
-- whilst speculation about services to be provided prior to network design and researching potential network capabilities
-- when planning network structure
-- prior to purchasing, when choosing particular equipment types, software etc. for a specific purpose where there are alternatives
-- when planning future deployment of equipments, software etc.
-- when the equipment is installed and services are being designed
-- even when the equipment is fully configured and operational with no errors etc., there may be heartbeat and status capabilities<a href="#section-3-8" class="pilcrow">¶</a></p>
-<p id="section-3-9">Considering the above, it is necessary to have a complete description of capability that is available independent of the presence of equipment etc. This description needs to be rigorous and readily interpretable allowing for comparisons with other equipment types etc. On that basis the capabilities should be described in a normalized language where advantage is taken of recurring patterns etc.<a href="#section-3-9" class="pilcrow">¶</a></p>
-<p id="section-3-10">As automation progresses, machine interpretability of the capability information becomes increasingly important. Whilst AI, especially LLMs, can deal with the variety of human interaction, a more coherent and compact language usage is preferable for efficiency and removal of potential ambiguity.<a href="#section-3-10" class="pilcrow">¶</a></p>
-<p id="section-3-11">This document sets out an approach for expression of capabilities of equipment in terms of physical structure, data structure (software etc.) and emergent functionality.<a href="#section-3-11" class="pilcrow">¶</a></p>
-<p id="section-3-12">Whilst knowing the YANG model for the equipment is beneficial, it is not sufficient. The YANG model essentially provides a space within which actual state and configuration can be expresses. The YANG model tends to not express equipment type based constraints. Whilst specifying the combinatorial effects of interacting equipments and software in YANG is potentially possible, the mechanisms available are not designed for this purpose and the results would probably be a large set of special models with extremely cumbersome/complex definitions that would be distinct from the interface model that is necessarily open and broad.<a href="#section-3-12" class="pilcrow">¶</a></p>
+<p id="section-3-8">It is necessary to understand some aspects of capability of a type of equipment with applied data at all stages of the lifecycle:<a href="#section-3-8" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3-9.1">
+          <p id="section-3-9.1.1">whilst speculation about services to be provided prior to network design and researching potential network capabilities<a href="#section-3-9.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-3-9.2">
+          <p id="section-3-9.2.1">when planning network structure<a href="#section-3-9.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-3-9.3">
+          <p id="section-3-9.3.1">prior to purchasing, when choosing particular equipment types, software etc. for a specific purpose where there are alternatives<a href="#section-3-9.3.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-3-9.4">
+          <p id="section-3-9.4.1">when planning future deployment of equipments, software etc.<a href="#section-3-9.4.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-3-9.5">
+          <p id="section-3-9.5.1">when the equipment is installed and services are being designed<a href="#section-3-9.5.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-3-9.6">
+          <p id="section-3-9.6.1">even when the equipment is fully configured and operational with no errors etc., there may be heartbeat and status capabilities.<a href="#section-3-9.6.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="section-3-10">Considering the above, it is necessary to have a complete description of capability that is available independent of the presence of equipment etc. This description needs to be rigorous and readily interpretable allowing for comparisons with other equipment types etc. On that basis the capabilities should be described in a normalized language where advantage is taken of recurring patterns etc.<a href="#section-3-10" class="pilcrow">¶</a></p>
+<p id="section-3-11">As automation progresses, machine interpretability of the capability information becomes increasingly important. Whilst AI, especially LLMs, can deal with the variety of human interaction, a more coherent and compact language usage is preferable for efficiency and removal of potential ambiguity.<a href="#section-3-11" class="pilcrow">¶</a></p>
+<p id="section-3-12">This document sets out an approach for expression of capabilities of equipment in terms of physical structure, data structure (software etc.) and emergent functionality.<a href="#section-3-12" class="pilcrow">¶</a></p>
+<p id="section-3-13">Whilst knowing the YANG model for the equipment is beneficial, it is not sufficient. The YANG model essentially provides a space within which actual state and configuration can be expresses. The YANG model tends to not express equipment type based constraints. Whilst specifying the combinatorial effects of interacting equipments and software in YANG is potentially possible, the mechanisms available are not designed for this purpose and the results would probably be a large set of special models with extremely cumbersome/complex definitions that would be distinct from the interface model that is necessarily open and broad.<a href="#section-3-13" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="specification-in-terms-of-the-model">
@@ -1459,25 +1473,59 @@ document are to be interpreted as described in RFC2119}}.<a href="#section-1-1" 
 <p id="section-5-4">This recursive narrowing from generic capability to entitled occurrence demonstrates how specification refinement is operationally realized.<a href="#section-5-4" class="pilcrow">¶</a></p>
 <p id="section-5-5">Note that the use of the physical and functional considerations are recursively intertwined... a bit of physical, emergent function, function assembly, physical assembly thermals etc.<a href="#section-5-5" class="pilcrow">¶</a></p>
 <p id="section-5-6">Note: Start with a generalized equipment and a generalized function and sketch the narrowing.<a href="#section-5-6" class="pilcrow">¶</a></p>
-<p id="section-5-7">An equipment in a physical context considering how it fits and what fits in it...
--type
--size
--thermals
--power/thermal
--physical compatibility
--electrical compatibility
--diagram or compatibilities from ONF work
--physical assemblies and thermals<a href="#section-5-7" class="pilcrow">¶</a></p>
-<p id="section-5-8">Function emergent from a physical equipment with applied data
--raw functions (use ProcessingConstruct recursion as per ONF)
--emergent capabilities and needs
--functional compatibility
--power and thermals per functions<a href="#section-5-8" class="pilcrow">¶</a></p>
-<p id="section-5-9">A system of equipments in an assembly
--functional assemblies
--power and thermals per assembly<a href="#section-5-9" class="pilcrow">¶</a></p>
-<p id="section-5-10">A system arrangements for a protection scheme.<a href="#section-5-10" class="pilcrow">¶</a></p>
-<p id="section-5-11">A specification for a system arrangement for a service and associated realization pattern specifications.<a href="#section-5-11" class="pilcrow">¶</a></p>
+<p id="section-5-7">An equipment in a physical context considering how it fits and what fits in it...<a href="#section-5-7" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-5-8.1">
+          <p id="section-5-8.1.1">type<a href="#section-5-8.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-5-8.2">
+          <p id="section-5-8.2.1">size<a href="#section-5-8.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-5-8.3">
+          <p id="section-5-8.3.1">thermals<a href="#section-5-8.3.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-5-8.4">
+          <p id="section-5-8.4.1">power/thermal<a href="#section-5-8.4.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-5-8.5">
+          <p id="section-5-8.5.1">physical compatibility<a href="#section-5-8.5.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-5-8.6">
+          <p id="section-5-8.6.1">electrical compatibility<a href="#section-5-8.6.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-5-8.7">
+          <p id="section-5-8.7.1">diagram or compatibilities from ONF work<a href="#section-5-8.7.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-5-8.8">
+          <p id="section-5-8.8.1">physical assemblies and thermals<a href="#section-5-8.8.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="section-5-9">Function emergent from a physical equipment with applied data:<a href="#section-5-9" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-5-10.1">
+          <p id="section-5-10.1.1">raw functions (use ProcessingConstruct recursion as per ONF)<a href="#section-5-10.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-5-10.2">
+          <p id="section-5-10.2.1">emergent capabilities and needs<a href="#section-5-10.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-5-10.3">
+          <p id="section-5-10.3.1">functional compatibility<a href="#section-5-10.3.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-5-10.4">
+          <p id="section-5-10.4.1">power and thermals per functions<a href="#section-5-10.4.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="section-5-11">A system of equipments in an assembly:<a href="#section-5-11" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-5-12.1">
+          <p id="section-5-12.1.1">functional assemblies<a href="#section-5-12.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-5-12.2">
+          <p id="section-5-12.2.1">power and thermals per assembly<a href="#section-5-12.2.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="section-5-13">A system arrangements for a protection scheme.<a href="#section-5-13" class="pilcrow">¶</a></p>
+<p id="section-5-14">A specification for a system arrangement for a service and associated realization pattern specifications.<a href="#section-5-14" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="recursive-narrowing">

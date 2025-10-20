@@ -286,16 +286,22 @@ Table of Contents
    in the installed base.
 
    It is necessary to understand some aspects of capability of a type of
-   equipment with applied data at all stages of the lifecycle: - whilst
-   speculation about services to be provided prior to network design and
-   researching potential network capabilities - when planning network
-   structure - prior to purchasing, when choosing particular equipment
-   types, software etc. for a specific purpose where there are
-   alternatives - when planning future deployment of equipments,
-   software etc. - when the equipment is installed and services are
-   being designed - even when the equipment is fully configured and
-   operational with no errors etc., there may be heartbeat and status
-   capabilities
+   equipment with applied data at all stages of the lifecycle:
+
+   *  whilst speculation about services to be provided prior to network
+      design and researching potential network capabilities
+
+   *  when planning network structure
+
+   *  prior to purchasing, when choosing particular equipment types,
+      software etc. for a specific purpose where there are alternatives
+
+   *  when planning future deployment of equipments, software etc.
+
+   *  when the equipment is installed and services are being designed
+
+   *  even when the equipment is fully configured and operational with
+      no errors etc., there may be heartbeat and status capabilities.
 
    Considering the above, it is necessary to have a complete description
    of capability that is available independent of the presence of
@@ -389,17 +395,39 @@ Table of Contents
    and sketch the narrowing.
 
    An equipment in a physical context considering how it fits and what
-   fits in it... -type -size -thermals -power/thermal -physical
-   compatibility -electrical compatibility -diagram or compatibilities
-   from ONF work -physical assemblies and thermals
+   fits in it...
 
-   Function emergent from a physical equipment with applied data -raw
-   functions (use ProcessingConstruct recursion as per ONF) -emergent
-   capabilities and needs -functional compatibility -power and thermals
-   per functions
+   *  type
 
-   A system of equipments in an assembly -functional assemblies -power
-   and thermals per assembly
+   *  size
+
+   *  thermals
+
+   *  power/thermal
+
+   *  physical compatibility
+
+   *  electrical compatibility
+
+   *  diagram or compatibilities from ONF work
+
+   *  physical assemblies and thermals
+
+   Function emergent from a physical equipment with applied data:
+
+   *  raw functions (use ProcessingConstruct recursion as per ONF)
+
+   *  emergent capabilities and needs
+
+   *  functional compatibility
+
+   *  power and thermals per functions
+
+   A system of equipments in an assembly:
+
+   *  functional assemblies
+
+   *  power and thermals per assembly
 
    A system arrangements for a protection scheme.
 
