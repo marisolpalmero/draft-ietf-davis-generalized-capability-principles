@@ -121,7 +121,7 @@ informative:
 
 --- abstract
 
-This document applies the generalized capability principles to the description of equipment (a physical thing) with applied data (configuration state and code (software, firmware etc.)) and shows how such capability specifications integrate with base inventory and entitlement models as defined in [BaseInventory] and [EntitlementInventory].
+This document applies the generalized capability principles to the description of equipment (a physical thing) with applied data (configuration state and code (software, firmware etc.)) and shows how such capability specifications integrate with base inventory and entitlement models as defined in {{BaseInventory}} and {{EntitlementInventory}}.
 
 The approach is examined by example, focusing on how the potential capabilities of each equipment type-version with applied data are described, how these map to entitlements (licensed or policy-controlled subsets of capabilities), and how they are instantiated as inventory items.  The explanation covers both the capabilities of equipment in terms of physical properties and the capabilities of equipment with applied data in terms of resultant emergent functionality.
 
@@ -153,13 +153,13 @@ Many equipments can accommodate applied data. The desired functionality is emerg
 
 This document is part of a suite that includes:
 
-*  [GenCapPrin] — defines the generalized capability and refinement principles.
-*  [BaseInventory] — defines how equipment occurrences are represented in a network inventory.
-*  [EntitlementInventory] — defines how capability entitlements and licensed functionality are tracked.
+* {{GenCapPrin}} defines the generalized capability and refinement principles.
+* {{BaseInventory}} defines how equipment occurrences are represented in a network inventory.
+* {{EntitlementInventory}} defines how capability entitlements and licensed functionality are tracked.
 
 Together, these drafts describe a continuous trace:
 
-Capability → Entitlement → Inventory → Realization
+Capability -> Entitlement -> Inventory -> Realization
 
 
 ~~~ aasvg
@@ -218,15 +218,15 @@ Whilst knowing the YANG model for the equipment is beneficial, it is not suffici
 
 #Specification in terms of the Model
 
-The specification of capability of equipment with applied data should be presented in terms of the *generalized capability model* from [GenCapPrin] and explicitly mapped to the inventory and entitlement contexts.
+The specification of capability of equipment with applied data should be presented in terms of the *generalized capability model* from {{GenCapPrin}} and explicitly mapped to the inventory and entitlement contexts.
 
 The relationships between these elements can be summarized as:
 
 | Concept        | Defined In               | Represents |
 |----------------|--------------------------|-------------|
-| Capability Spec| [GenCapPrin], this draft | The potential functions and limits of an equipment type |
-| Entitlement    | [EntitlementInventory]   | The subset of capabilities permitted or licensed |
-| Inventory Item | [BaseInventory]          | The actual occurrence of an entitled capability in the network |
+| Capability Spec| {{GenCapPrin}}, this draft | The potential functions and limits of an equipment type |
+| Entitlement    | {{EntitlementInventory}} | The subset of capabilities permitted or licensed |
+| Inventory Item | {{BaseInventory}} | The actual occurrence of an entitled capability in the network |
 
 This linkage ensures that refinement and occurrence formation have a tangible operational anchor in network management systems.
 
@@ -234,7 +234,7 @@ This linkage ensures that refinement and occurrence formation have a tangible op
 #Some specification examples
 This section illustrates how equipment capability specifications connect to entitlement and inventory concepts.
 
-Example — Optical Transponder:
+Example covering an Optical Transponder:
 
 1.  **Generic capability**: an abstract optical transponder supporting multiple modulation formats up to 800 G.
 2.  **Equipment capability specification**: a vendor-specific model constrained to 400 G operation, defining port, thermal, and power envelopes.
@@ -287,7 +287,7 @@ This requires work in the generalized capabilities draft.
 Take the language and general structure and build specific equipment.
 
 #Conclusion
-This document applies the generalized capability principles to the specific case of equipment with applied data.  By linking equipment capability descriptions to entitlements and inventory items, it creates a complete semantic chain from potential → permitted → realized.
+This document applies the generalized capability principles to the specific case of equipment with applied data.  By linking equipment capability descriptions to entitlements and inventory items, it creates a complete semantic chain from potential -> permitted -> realized.
 
 This alignment ensures that planning, procurement, licensing, and operational systems can reason coherently about equipment functions and their lifecycle.  The approach enables automation, energy- and sustainability-aware network management, and AI-assisted reasoning grounded in formally defined capability structures.
 
