@@ -1,7 +1,7 @@
 ---
 title: "Equipment Capability Application"
 abbrev: "EquCapAppl"
-docname: draft-davis-ivy-equipment-capability-application
+docname: draft-davis-ivy-equipment-capability-application-00
 category: info
 stand_alone: true
 
