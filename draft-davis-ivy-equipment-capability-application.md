@@ -74,6 +74,8 @@ informative:
 
    BaseInventory: I-D.ietf-ivy-network-inventory-yang
 
+   EntitlementInventory: I-D.ietf-ivy-entitlement-inventory
+
    ITU-T_G.7711:
               title: "Generic…."
               date: 2022-08-31
