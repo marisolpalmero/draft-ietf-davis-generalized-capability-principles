@@ -1,3 +1,4 @@
+.PRECIOUS: draft-davis-ivy-equipment-capability-application.xml
 LIBDIR := lib
 include $(LIBDIR)/main.mk
 
