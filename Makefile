@@ -1,4 +1,4 @@
-.PRECIOUS: draft-davis-ivy-equipment-capability-application.xml
+.PRECIOUS: draft-davis-nmop-generalized-capability-principles.xml
 LIBDIR := lib
 include $(LIBDIR)/main.mk
 
