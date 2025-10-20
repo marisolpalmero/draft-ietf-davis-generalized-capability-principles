@@ -269,7 +269,7 @@ Function emergent from a physical equipment with applied data:
 - power and thermals per functions
 
 A system of equipments in an assembly:
-   
+
 - functional assemblies
 - power and thermals per assembly
 
