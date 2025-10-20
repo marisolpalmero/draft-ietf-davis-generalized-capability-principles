@@ -18,7 +18,6 @@ draft*.txt
 /versioned/
 Gemfile.lock
 archive.json
-draft-davis-ivy-generalized-capability-principles-latest.xml
 package-lock.json
 report.xml
 !requirements.txt
