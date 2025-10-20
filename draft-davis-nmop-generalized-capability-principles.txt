@@ -5,12 +5,12 @@
 NMOP                                                         N. R. Davis
 Internet-Draft                                                     Ciena
 Intended status: Informational                                C. Cardona
-Expires: 22 April 2026                                               NTT
+Expires: 23 April 2026                                               NTT
                                                                 D. Lopez
                                                               Telefonica
                                                               M. Palmero
                                                              Independent
-                                                         19 October 2025
+                                                         20 October 2025
 
 
                    Generalized Capability Principles
@@ -70,7 +70,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 22 April 2026.
+   This Internet-Draft will expire on 23 April 2026.
 
 Copyright Notice
 
