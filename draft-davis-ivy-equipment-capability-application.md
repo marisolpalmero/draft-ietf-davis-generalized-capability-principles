@@ -123,7 +123,7 @@ informative:
 
 --- abstract
 
-This document applies the generalized capability principles to the description of equipment (a physical thing) with applied data (configuration state and code (software, firmware etc.)) and shows how such capability specifications integrate with base inventory and entitlement models as defined in {{BaseInventory}} and {{EntitlementInventory}}.
+This document applies the generalized capability principles to the description of equipment (a physical thing) with applied data (configuration state and code (software, firmware etc.)) and shows how such capability specifications integrate with base inventory and entitlement models as defined in Network Inventory, Software Extension and Entitlement YANG models.
 
 The approach is examined by example, focusing on how the potential capabilities of each equipment type-version with applied data are described, how these map to entitlements (licensed or policy-controlled subsets of capabilities), and how they are instantiated as inventory items.  The explanation covers both the capabilities of equipment in terms of physical properties and the capabilities of equipment with applied data in terms of resultant emergent functionality.
 
