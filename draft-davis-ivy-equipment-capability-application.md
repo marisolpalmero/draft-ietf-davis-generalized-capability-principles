@@ -203,12 +203,13 @@ This tri-layer relationship enables operators to reason about what equipment typ
 Without such linkage, automation frameworks cannot determine whether a planned configuration is feasible, legally licensed, or available in the installed base.
 
 It is necessary to understand some aspects of capability of a type of equipment with applied data at all stages of the lifecycle:
+
 - whilst speculation about services to be provided prior to network design and researching potential network capabilities
 - when planning network structure
 - prior to purchasing, when choosing particular equipment types, software etc. for a specific purpose where there are alternatives
 - when planning future deployment of equipments, software etc.
 - when the equipment is installed and services are being designed
-- even when the equipment is fully configured and operational with no errors etc., there may be heartbeat and status capabilities
+- even when the equipment is fully configured and operational with no errors etc., there may be heartbeat and status capabilities.
 
 Considering the above, it is necessary to have a complete description of capability that is available independent of the presence of equipment etc. This description needs to be rigorous and readily interpretable allowing for comparisons with other equipment types etc. On that basis the capabilities should be described in a normalized language where advantage is taken of recurring patterns etc.
 
@@ -250,24 +251,27 @@ Note that the use of the physical and functional considerations are recursively 
 Note: Start with a generalized equipment and a generalized function and sketch the narrowing.
 
 An equipment in a physical context considering how it fits and what fits in it...
--type
--size
--thermals
--power/thermal
--physical compatibility
--electrical compatibility
--diagram or compatibilities from ONF work
--physical assemblies and thermals
 
-Function emergent from a physical equipment with applied data
--raw functions (use ProcessingConstruct recursion as per ONF)
--emergent capabilities and needs
--functional compatibility
--power and thermals per functions
+- type
+- size
+- thermals
+- power/thermal
+- physical compatibility
+- electrical compatibility
+- diagram or compatibilities from ONF work
+- physical assemblies and thermals
 
-A system of equipments in an assembly
--functional assemblies
--power and thermals per assembly
+Function emergent from a physical equipment with applied data:
+
+- raw functions (use ProcessingConstruct recursion as per ONF)
+- emergent capabilities and needs
+- functional compatibility
+- power and thermals per functions
+
+A system of equipments in an assembly:
+   
+- functional assemblies
+- power and thermals per assembly
 
 A system arrangements for a protection scheme.
 
