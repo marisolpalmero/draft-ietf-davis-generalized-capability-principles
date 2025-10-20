@@ -14,7 +14,7 @@ Expires: 23 April 2026                                               NTT
 
 
                     Equipment Capability Application
-            draft-davis-ivy-equipment-capability-application
+          draft-davis-ivy-equipment-capability-application-00
 
 Abstract
 
@@ -43,7 +43,7 @@ About This Document
    capability-principles/blob/main/draft-davis-ivy-equipment-capability-
    application-latest.md.  Status information for this document may be
    found at https://datatracker.ietf.org/doc/draft-davis-ivy-equipment-
-   capability/.
+   capability-application/.
 
    Discussion of this document takes place on the Network Inventory YANG
    WG Working Group mailing list (mailto:inventory-yang@ietf.org), which
