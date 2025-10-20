@@ -169,18 +169,18 @@ Table of Contents
 
    This document is part of a suite that includes:
 
-   *  [GenCapPrin] — defines the generalized capability and refinement
+   *  [GenCapPrin] defines the generalized capability and refinement
       principles.
 
-   *  [BaseInventory] — defines how equipment occurrences are
-      represented in a network inventory.
+   *  [BaseInventory] defines how equipment occurrences are represented
+      in a network inventory.
 
-   *  [EntitlementInventory] — defines how capability entitlements and
+   *  [EntitlementInventory] defines how capability entitlements and
       licensed functionality are tracked.
 
    Together, these drafts describe a continuous trace:
 
-   Capability → Entitlement → Inventory → Realization
+   Capability -> Entitlement -> Inventory -> Realization
 
                  ┌────────────────────────────┐
                  │   Base Network Inventory   │
@@ -361,7 +361,7 @@ Table of Contents
    This section illustrates how equipment capability specifications
    connect to entitlement and inventory concepts.
 
-   Example — Optical Transponder:
+   Example covering an Optical Transponder:
 
    1.  *Generic capability*: an abstract optical transponder supporting
        multiple modulation formats up to 800 G.
@@ -433,7 +433,7 @@ Table of Contents
    This document applies the generalized capability principles to the
    specific case of equipment with applied data.  By linking equipment
    capability descriptions to entitlements and inventory items, it
-   creates a complete semantic chain from potential → permitted →
+   creates a complete semantic chain from potential -> permitted ->
    realized.
 
    This alignment ensures that planning, procurement, licensing, and
@@ -472,6 +472,13 @@ Table of Contents
               inventory-yang-11, 14 October 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-ivy-
               network-inventory-yang-11>.
+
+   [EntitlementInventory]
+              Palmero, M. P., Cardona, C., and D. Lopez, "A YANG Module
+              for Entitlement Inventory", Work in Progress, Internet-
+              Draft, draft-ietf-ivy-entitlement-inventory-01, 20 October
+              2025, <https://datatracker.ietf.org/doc/html/draft-ietf-
+              ivy-entitlement-inventory-01>.
 
    [GenCapPrin]
               "Generalized Capability Principles", n.d.,

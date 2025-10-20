@@ -10,7 +10,7 @@
 <meta content="Diego Lopez" name="author">
 <meta content="Marisol Palmero" name="author">
 <meta content="
-       This document applies the generalized capability principles to the description of equipment (a physical thing) with applied data (configuration state and code (software, firmware etc.)) and shows how such capability specifications integrate with base inventory and entitlement models as defined in   and [EntitlementInventory]. 
+       This document applies the generalized capability principles to the description of equipment (a physical thing) with applied data (configuration state and code (software, firmware etc.)) and shows how such capability specifications integrate with base inventory and entitlement models as defined in   and  . 
        The approach is examined by example, focusing on how the potential capabilities of each equipment type-version with applied data are described, how these map to entitlements (licensed or policy-controlled subsets of capabilities), and how they are instantiated as inventory items.  The explanation covers both the capabilities of equipment in terms of physical properties and the capabilities of equipment with applied data in terms of resultant emergent functionality. 
     " name="description">
 <meta content="xml2rfc 3.31.0" name="generator">
@@ -1100,7 +1100,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <h1 id="title">Equipment Capability Application</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">This document applies the generalized capability principles to the description of equipment (a physical thing) with applied data (configuration state and code (software, firmware etc.)) and shows how such capability specifications integrate with base inventory and entitlement models as defined in <span>[<a href="#BaseInventory" class="cite xref">BaseInventory</a>]</span> and [EntitlementInventory].<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<p id="section-abstract-1">This document applies the generalized capability principles to the description of equipment (a physical thing) with applied data (configuration state and code (software, firmware etc.)) and shows how such capability specifications integrate with base inventory and entitlement models as defined in <span>[<a href="#BaseInventory" class="cite xref">BaseInventory</a>]</span> and <span>[<a href="#EntitlementInventory" class="cite xref">EntitlementInventory</a>]</span>.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 <p id="section-abstract-2">The approach is examined by example, focusing on how the potential capabilities of each equipment type-version with applied data are described, how these map to entitlements (licensed or policy-controlled subsets of capabilities), and how they are instantiated as inventory items.  The explanation covers both the capabilities of equipment in terms of physical properties and the capabilities of equipment with applied data in terms of resultant emergent functionality.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
@@ -1271,17 +1271,17 @@ document are to be interpreted as described in RFC2119}}.<a href="#section-1-1" 
 <p id="section-2-6">This document is part of a suite that includes:<a href="#section-2-6" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-2-7.1">
-          <p id="section-2-7.1.1"><span>[<a href="#GenCapPrin" class="cite xref">GenCapPrin</a>]</span> — defines the generalized capability and refinement principles.<a href="#section-2-7.1.1" class="pilcrow">¶</a></p>
+          <p id="section-2-7.1.1"><span>[<a href="#GenCapPrin" class="cite xref">GenCapPrin</a>]</span> defines the generalized capability and refinement principles.<a href="#section-2-7.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-7.2">
-          <p id="section-2-7.2.1"><span>[<a href="#BaseInventory" class="cite xref">BaseInventory</a>]</span> — defines how equipment occurrences are represented in a network inventory.<a href="#section-2-7.2.1" class="pilcrow">¶</a></p>
+          <p id="section-2-7.2.1"><span>[<a href="#BaseInventory" class="cite xref">BaseInventory</a>]</span> defines how equipment occurrences are represented in a network inventory.<a href="#section-2-7.2.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-7.3">
-          <p id="section-2-7.3.1">[EntitlementInventory] — defines how capability entitlements and licensed functionality are tracked.<a href="#section-2-7.3.1" class="pilcrow">¶</a></p>
+          <p id="section-2-7.3.1"><span>[<a href="#EntitlementInventory" class="cite xref">EntitlementInventory</a>]</span> defines how capability entitlements and licensed functionality are tracked.<a href="#section-2-7.3.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 <p id="section-2-8">Together, these drafts describe a continuous trace:<a href="#section-2-8" class="pilcrow">¶</a></p>
-<p id="section-2-9">Capability → Entitlement → Inventory → Realization<a href="#section-2-9" class="pilcrow">¶</a></p>
+<p id="section-2-9">Capability -&gt; Entitlement -&gt; Inventory -&gt; Realization<a href="#section-2-9" class="pilcrow">¶</a></p>
 <span id="name-relationship-between-capabi"></span><div id="fig-capabilities">
 <figure id="figure-1">
         <div id="section-2-10.1">
@@ -1418,7 +1418,9 @@ document are to be interpreted as described in RFC2119}}.<a href="#section-1-1" 
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">Entitlement</td>
-            <td class="text-left" rowspan="1" colspan="1">[EntitlementInventory]</td>
+            <td class="text-left" rowspan="1" colspan="1">
+              <span>[<a href="#EntitlementInventory" class="cite xref">EntitlementInventory</a>]</span>
+</td>
             <td class="text-left" rowspan="1" colspan="1">The subset of capabilities permitted or licensed</td>
           </tr>
           <tr>
@@ -1439,7 +1441,7 @@ document are to be interpreted as described in RFC2119}}.<a href="#section-1-1" 
 <a href="#section-5" class="section-number selfRef">5. </a><a href="#name-some-specification-examples" class="section-name selfRef">Some specification examples</a>
       </h2>
 <p id="section-5-1">This section illustrates how equipment capability specifications connect to entitlement and inventory concepts.<a href="#section-5-1" class="pilcrow">¶</a></p>
-<p id="section-5-2">Example — Optical Transponder:<a href="#section-5-2" class="pilcrow">¶</a></p>
+<p id="section-5-2">Example covering an Optical Transponder:<a href="#section-5-2" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-5-3">
 <li id="section-5-3.1">
           <p id="section-5-3.1.1"><strong>Generic capability</strong>: an abstract optical transponder supporting multiple modulation formats up to 800 G.<a href="#section-5-3.1.1" class="pilcrow">¶</a></p>
@@ -1523,7 +1525,7 @@ document are to be interpreted as described in RFC2119}}.<a href="#section-1-1" 
       <h2 id="name-conclusion">
 <a href="#section-11" class="section-number selfRef">11. </a><a href="#name-conclusion" class="section-name selfRef">Conclusion</a>
       </h2>
-<p id="section-11-1">This document applies the generalized capability principles to the specific case of equipment with applied data.  By linking equipment capability descriptions to entitlements and inventory items, it creates a complete semantic chain from potential → permitted → realized.<a href="#section-11-1" class="pilcrow">¶</a></p>
+<p id="section-11-1">This document applies the generalized capability principles to the specific case of equipment with applied data.  By linking equipment capability descriptions to entitlements and inventory items, it creates a complete semantic chain from potential -&gt; permitted -&gt; realized.<a href="#section-11-1" class="pilcrow">¶</a></p>
 <p id="section-11-2">This alignment ensures that planning, procurement, licensing, and operational systems can reason coherently about equipment functions and their lifecycle.  The approach enables automation, energy- and sustainability-aware network management, and AI-assisted reasoning grounded in formally defined capability structures.<a href="#section-11-2" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1574,6 +1576,10 @@ document are to be interpreted as described in RFC2119}}.<a href="#section-1-1" 
 <dt id="BaseInventory">[BaseInventory]</dt>
         <dd>
 <span class="refAuthor">Yu, C.</span>, <span class="refAuthor">Belotti, S.</span>, <span class="refAuthor">Bouquier, J.</span>, <span class="refAuthor">Peruzzini, F.</span>, and <span class="refAuthor">P. Bedard</span>, <span class="refTitle">"A Base YANG Data Model for Network Inventory"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ivy-network-inventory-yang-11</span>, <time datetime="2025-10-14" class="refDate">14 October 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-yang-11">https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-yang-11</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="EntitlementInventory">[EntitlementInventory]</dt>
+        <dd>
+<span class="refAuthor">Palmero, M. P.</span>, <span class="refAuthor">Cardona, C.</span>, and <span class="refAuthor">D. Lopez</span>, <span class="refTitle">"A YANG Module for Entitlement Inventory"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ivy-entitlement-inventory-01</span>, <time datetime="2025-10-20" class="refDate">20 October 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ivy-entitlement-inventory-01">https://datatracker.ietf.org/doc/html/draft-ietf-ivy-entitlement-inventory-01</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="GenCapPrin">[GenCapPrin]</dt>
         <dd>
