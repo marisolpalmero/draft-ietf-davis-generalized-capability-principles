@@ -292,7 +292,7 @@ The same essential approach can be used to move from assembly of things being a 
 A component can be physical or abstract functional. All components have some active influence on their environment (unlike a specification which is an informational thing and is inherently passive). The generalized abstract functional component is a pruned form of the generalized component. It includes all possible behaviours. It is still too general to apply meaningfully and requires further pruning.
 
 ##Component to specific termination point
-A termination point as per [RFC8345] is a specific pruned functional component that offers at its ports a defined subset of all possible functions. It does not offer the capability to forward information over great distances but does offer the ability to provide access to a flow of information at a specific place. In other standards [ITU-T G.7711] the LogicalTerminationPoint has roles including in one direaction processing an incoming flow determining timing and framing and extracting the content "payload".
+A termination point as per [RFC8345] is a specific pruned functional component that offers at its ports a defined subset of all possible functions. It does not offer the capability to forward information over great distances but does offer the ability to provide access to a flow of information at a specific place. In other standards [ITU-T G.7711] the LogicalTerminationPoint has roles including in one direction processing an incoming flow determining timing and framing and extracting the content "payload".
 
 The termination point is still general and requires refinement to represent what is really feasible and useful in a network deployment context.
 
