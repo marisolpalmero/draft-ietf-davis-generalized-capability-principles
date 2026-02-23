@@ -11,7 +11,7 @@ date:
 consensus: true
 v: 3
 area: "Operations and Management"
-wg: "NMOP.WG"
+wg: "NMOP"
 kw:
  - capability
  - manifest
