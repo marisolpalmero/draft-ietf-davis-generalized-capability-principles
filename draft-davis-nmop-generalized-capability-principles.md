@@ -268,7 +268,7 @@ Having an identifier is clearly necessary, but that should lead to an accurate a
 
 For example, the detector may be at the top of a circuit pack that is placed in an assembly with convection cooling where that detector is provided to measure the temperature of the airflow leaving the top of the circuit pack and hence feeding to the next equipment above.
 
-For a full understanding of the implications of a measurement provided by that detector, a detailed understanding of its positioning and purpose is necessary. It is intended that the specification model provide such detail. 
+For a full understanding of the implications of a measurement provided by that detector, a detailed understanding of its positioning and purpose is necessary. It is intended that the specification model provide such detail.
 
 The specification model will be generalized such that the details provided can be used in any relevant application. It will not describe detailed per instance cases. Hence the specification will be used in conjunction with the actual instance arrangement to allow understanding of any reading in context.
 
@@ -292,25 +292,25 @@ The same essential approach can be used to move from assembly of things being a 
 A component can be physical or abstract functional. All components have some active influence on their environment (unlike a specification which is an informational thing and is inherently passive). The generalized abstract functional component is a pruned form of the generalized component. It includes all possible behaviours. It is still too general to apply meaningfully and requires further pruning.
 
 ##Component to specific termination point
-A termination point as per [RFC8345] is a specific pruned functional component that offers at its ports a defined subset of all possible functions. It does not offer the capability to forward information over great distances but does offer the ability to provide access to a flow of information at a specific place. In other standards [ITU-T G.7711] the LogicalTerminationPoint has roles including in one direaction processing an incoming flow determining timing and framing and extracting the content "payload". 
+A termination point as per [RFC8345] is a specific pruned functional component that offers at its ports a defined subset of all possible functions. It does not offer the capability to forward information over great distances but does offer the ability to provide access to a flow of information at a specific place. In other standards [ITU-T G.7711] the LogicalTerminationPoint has roles including in one direaction processing an incoming flow determining timing and framing and extracting the content "payload".
 
 The termination point is still general and requires refinement to represent what is really feasible and useful in a network deployment context.
 
-Up to this point refinement was carried out via pruning and refactoring where each level resulted in an explicit relabelling Thing -> Component -> TerminationPoint. Traditionally, the same orientation of progression was considered as a process of classification where properties were added as opposed to removed and the process continued beyond this point to highly specialised classes. 
+Up to this point refinement was carried out via pruning and refactoring where each level resulted in an explicit relabelling Thing -> Component -> TerminationPoint. Traditionally, the same orientation of progression was considered as a process of classification where properties were added as opposed to removed and the process continued beyond this point to highly specialised classes.
 
 In the approach realized via [RFC8345] and [ITU-T G.7711], further refinement is carried out by augmentation. Here augmentation essentially exposes properties that were already encompassed by the definition of the thing being augmented. It is not an extension, it is an exposure of underlying properties.
 
 So a termination point that processes photons is represented via an augmentation of the generalised termination point. Likewise, the termination point that process Ethernet is represented via an equivalent augmentation. Clearly, an augmentation of a termination point with photonic and Ethernet properties is not rational.
 
-This is where the specification becomes critical. Each specific realization of a termination point type in software or hardware will be distinct. Just because it is an Ethernet termination point type does not mean it is the same as all other Ethernet termination point types. Of course, there will be many many instances of the type and they will have identical functional capability. 
+This is where the specification becomes critical. Each specific realization of a termination point type in software or hardware will be distinct. Just because it is an Ethernet termination point type does not mean it is the same as all other Ethernet termination point types. Of course, there will be many many instances of the type and they will have identical functional capability.
 
 Setting out the distinct capabilities of the type is the role of the specification. The specification will be constructed by assembling pruned and refactored specifications of more complete definitions. So, for example, the Ethernet standard may define MEP and MIP capabilities, but the type of termination point may only support MEPs and there may be 7 levels of MEP in the standard, but this termination point type may only support 1 level where the measurements available to the MEP may be limited and a specific measurement constrained in range. All of this detail is available via the specification.
 
 Armed with the specification a controller can determine precisely how the termination point can be applied in a solution and the range of opportunities available.
 
-Whilst designing a solution, the controller may use a specific type of termination in a restricted form. For example, the Ethernet termination, although capable of supporting a MEP may be required to not provide that capability. The design of the pattern of use of terminations in a system may utilise the same type several times in the pattern where each occurrence in the pattern has a distinct further narrowing of the capability of the type. This is discussed further in Specification of an assembly (add reference to section)
+Whilst designing a solution, the controller may use a specific type of termination in a restricted form. For example, the Ethernet termination, although capable of supporting a MEP may be required to not provide that capability. The design of the pattern of use of terminations in a system may utilise the same type several times in the pattern where each occurrence in the pattern has a distinct further narrowing of the capability of the type. This is discussed further in Specification of an assembly (add reference to section).
 
-Eventually the pattern will be realized in a network. This will first be designed with no real instances in place. This will be represented with further specific narrowed termination point occurrences. Finally, there will be real instances in the network. These can also be considered as occurrences. 
+Eventually the pattern will be realized in a network. This will first be designed with no real instances in place. This will be represented with further specific narrowed termination point occurrences. Finally, there will be real instances in the network. These can also be considered as occurrences.
 
 ##Further examples
 -Thing to Component to physical thing to equipment to specific equipment type to use of that equipment to instance of equipment
