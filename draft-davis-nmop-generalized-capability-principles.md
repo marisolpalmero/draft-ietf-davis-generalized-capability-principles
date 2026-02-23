@@ -139,10 +139,10 @@ The following terms abbreviations are used in this document:
 * component: A thing defined by a boundary where the internal structure within that boundary is not directly visible but is apparently visible through the behaviour exposed at that boundary
 * port: A place on the boundary of a component where interaction with that component is possible
 * component-system: A pattern that expresses each item as a component where components can be assembled into systems and where a system can be represented as a component where that assembly may be of real things or may be abstractions of the effect of real things.
-* occurrence: A thing, the specification of which is a purposeful refinment partially constraining the definition of a broader thing, where a thing is a component, a specification etc.
+* occurrence: A thing, the specification of which is a purposeful refinement partially constraining the definition of a broader thing, where a thing is a component, a specification etc.
 * pruning: A process of narrowing of definition by reduction of capabilities
-* refactoring: A process of rearranging, splitting and combining representation whilst maitaining semantic validity
-* pruning & refactoring: The process that supports progression intentionally of refinement from one level of structure of occurrences (e.g., system of components) to the next more specific level of structure of occurrences
+* refactoring: A process of rearranging, splitting and combining representation whilst maintaining semantic validity
+* pruning & refactoring: The process that supports intentional progression of refinement from one level of structure of occurrences (e.g., system of components) to the next more specific level of structure of occurrences
 
 
 #Introduction
@@ -224,9 +224,9 @@ A specification may provide explicit definifinition of a property as discussed a
 
 In an ideal environment, there is an ecosystem of specificactions each providing interrelated detail to fully define the semantics. The ecosystem would include specifications from standards bodies providing the definition of a network protocol that can be interpreted by an AI component such that the abstracted effect on the solution can be fully understood and simulated/emulated. Any detected conditions would be understood in terms of the protocol and hence the implications of the condition detected in terms of the carried signal can be fully understood.
 
-In this ideal environment, the specification would fully capture all non-failure case behaviours of a component (and potentially some common failure cases) and the component would be designed internally to "guarantee" these behaviours (it would be engineered with appropriate control structures that would bound its behaviour). These specifications, although abstractions would often be highly complex (consider the specification of a CPU for example), but would be less overwhelming in detail and stated in terms of intentional behavioir as opposed to behaviour of the parts. The specification is a statement of the effects of the assembly of detailed parts (see definition of component).
+In this ideal environment, the specification would fully capture all non-failure case behaviours of a component (and potentially some common failure cases) and the component would be designed internally to "guarantee" these behaviours (it would be engineered with appropriate control structures that would bound its behaviour). These specifications, although abstractions would often be highly complex (consider the specification of a CPU for example), but would be less overwhelming in detail and stated in terms of intentional behaviour as opposed to behaviour of the parts. The specification is a statement of the effects of the assembly of detailed parts (see definition of component).
 
-The specification of capability provides a stabilising layer resucing the resaoning required to build a solution as a result of not having to assess the full detail of behaviour of all assemblies to the finest detail. The specification of capability will have a unique identifier that anchors the definition and allows it to be accessed. This reflects the same principle that gives rise to labels in a taxonomy, where the label recalls the abstract definition removing the need to understand the effect of the parts from first principles.
+The specification of capability provides a stabilising layer reducing the reasoning required to build a solution as a result of not having to assess the full detail of behaviour of all assemblies to the finest detail. The specification of capability will have a unique identifier that anchors the definition and allows it to be accessed. This reflects the same principle that gives rise to labels in a taxonomy, where the label recalls the abstract definition removing the need to understand the effect of the parts from first principles.
 
 Today's solution at best have a coded form of the semantic interpretation that may not reflect the formal definition due to inaccuracies of interpretation. Many semantics are reduced to inconsistent labels that a user has to interpret. Whilst an LLM can do a reasonable job at interpretation of chaotic data, it will benefit a rigorous model traceable through formal definitions to fundamentals.
 
@@ -248,31 +248,31 @@ For components not produced by a specific LLM (produced by another LLM or by a h
 This section provides some simple examples and will reference the equipment capability draft and other future drafts.
 
 ##A temperature sensor
-Consider a simple temperature sensor. The physical sensor will have an operational range, a precision, an accuracy, etc. It will provide output in particular units and may be able to indicate out of range. The sensor is itself a small system of components. It will be senstitive to power supply behaviour, humidity and other environmental factors.
+Consider a simple temperature sensor. The physical sensor will have an operational range, a precision, an accuracy, etc. It will provide output in particular units and may be able to indicate out of range. The sensor is itself a small system of components. It will be sensitive to power supply behaviour, humidity and other environmental factors.
 
 All of the above will be included in the hardware specification of that physical component. That component when designed into a system will contribute to the system behavior.
 
 For this example we will assume that the output for that sensor is available via a control solution and is presented at an externally accessible interface. We will assume that the presentation is in JSON and that presentation was defined in YANG.
 
-In a the imagined application for this sensor, lets assume that the temperature is relevant only to whole degrees and is required to be in Celcius so an integer is used to represent the temperature.
+In a the imagined application for this sensor, lets assume that the temperature is relevant only to whole degrees and is required to be in Celsius so an integer is used to represent the temperature.
 
-With this level of coarseness the fine grained precision and accuracy of the actual component can probably be ignored (although the component may be pushed close to its limits and hence there may be an accuracy consideration etc.), but the operational range is potentially still relevant and environmentat effects that cannot be eliminated still need to be understood.
+With this level of coarseness the fine grained precision and accuracy of the actual component can probably be ignored (although the component may be pushed close to its limits and hence there may be an accuracy consideration etc.), but the operational range is potentially still relevant and environment effects that cannot be eliminated still need to be understood.
 
 There may also be known failure modes that cause detectable incorrect readings that need to be accounted for.
 
 So, considering the component alone, simply stating integer in the YANG model is not sufficient.
 
-Going further, the temperature sensor has a particular role in the context of the equipment it is monitoring. There may be several temperature sensors on that single equipment. Traditionally they would have had distinct labels (although these were often potentially misleading). Whilst this may have been sufficient in a basic operations environment, much more can be done and is propably necessary current and future solutions.
+Going further, the temperature sensor has a particular role in the context of the equipment it is monitoring. There may be several temperature sensors on that single equipment. Traditionally they would have had distinct labels (although these were often potentially misleading). Whilst this may have been sufficient in a basic operations environment, much more can be done and is probably necessary current and future solutions.
 
 Having an identifier is clearly necessary, but that should lead to an accurate and fully interpretable representation of the positioning of that component in the equipment in isolation and in the broader solution as a whole.
 
-For example, the detector may be at the top of a circuit pack that is placed in an assembly with convection cooling where that detector is provided to measure the temperature of the airflow leaving the top of the circuitpack and hence feeding to the next equipment above.
+For example, the detector may be at the top of a circuit pack that is placed in an assembly with convection cooling where that detector is provided to measure the temperature of the airflow leaving the top of the circuit pack and hence feeding to the next equipment above.
 
 For a full understanding of the implications of a measurement provided by that detector, a detailed understanding of its positioning and purpose is necessary. It is intended that the specification model provide such detail. 
 
 The specification model will be generalized such that the details provided can be used in any relevant application. It will not describe detailed per instance cases. Hence the specification will be used in conjunction with the actual instance arrangement to allow understanding of any reading in context.
 
-Traditionally, with ad-hoc formating and variable accuracy of definitions etc., only a well experienced SME would have a chance of determining the relevance of a detected value.
+Traditionally, with ad-hoc formatting and variable accuracy of definitions etc., only a well experienced SME would have a chance of determining the relevance of a detected value.
 
 In a modern and future solutions we can do and have to do better. The intention is that the specification approach using the generalised specification definition structure set out in this document will provide a basis for LLM assisted specification generation and interpretation.
 
@@ -312,7 +312,7 @@ Whilst designing a solution, the controller may use a specific type of terminati
 
 Eventually the pattern will be realized in a network. This will first be designed with no real instances in place. This will be represented with further specific narrowed termination point occurrences. Finally, there will be real instances in the network. These can also be considered as occurrences. 
 
-##Further exanples
+##Further examples
 -Thing to Component to physical thing to equipment to specific equipment type to use of that equipment to instance of equipment
 -A plug example
 Circle back and relate this more rigorous section to the specification examples.
