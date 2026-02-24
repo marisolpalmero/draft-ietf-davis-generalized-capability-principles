@@ -258,11 +258,11 @@ Note that in that description the functions emerged from combinations of physica
 
 Any particular function requires a motive force, i.e., a supply power, and produces heat. Power required and heat produced are always characteristics of any function.
 
-All function are emergent from powered physical components and all physical capabilities are within the scope of the bounday of physical component. Any real physical component is a very narrow form of the full definition. The specification for a physical component provides the constraints to enable an understanding of the physical component. 
+All function are emergent from powered physical components and all physical capabilities are within the scope of the bounday of physical component general definition. Any real physical component is a very narrow form of the full definition. The specification for a physical component provides the constraints to enable an understanding of the physical component. 
 
-An equipment further narrowing of physical component. The telecoms equipment is highly constrained and described by a specification that will focus on fit and emergent functionality. The specification for the equipment will include a type-version identifier and related to that properties related to the physical nature of the equipment such as:
+An equipment is a narrowing of physical component. The telecoms equipment is highly constrained and described by a specification that will focus on fit and emergent functionality. The specification for the equipment will include a type-version identifier and related to that properties on the physical nature of the equipment such as:
 
-- physical dimensions including size in terms of fit relative to some installation position scheme as well dimensions in meters
+- physical dimensions including size in terms of fit relative to some installation position scheme as well dimensions in meters, kg etc.
 - temperature/humidity operational range
 - physical compatibility including connector type (either directly or indirectly)
 - electrical compatibility including voltages
@@ -270,7 +270,7 @@ An equipment further narrowing of physical component. The telecoms equipment is 
 The specific equipment will give rise to functionality when powered and to do this will require supporting or related functions from other equipments. The equipment may require some applied data such that a combination of the physical thing an the applied data (config, software). The specification for the equipment will identify:
 
 - raw functions in terms of general processing
-- emergent functional capabilities and needs
+- emergent functional capabilities and needs in terms of more specific functions such as termination point.
 - functional compatibility
 - power and thermal considerations per functions
 
@@ -284,8 +284,31 @@ To provide useful and valuable functions equipments are used in assemblies formi
 #Pruning and refactoring achieving recursive narrowing
 The structure is repeated recursively where at each level, component functions are pruned and refactored then combined into a system with other components that is then viewed as a component yielding a description of emergent functions provided by the component where those are then pruned and refactored then combined etc.
 
+#A basic photonic device specification buid up
+To make this easier, the description assumes a single equipment with a full implementation of an amplifier being used in a unidirectional context. The amplifier is assumed to have an embedded controller that can communicate via a YANG defined interface to a network controller etc. 
+
+The physical equipment has various physical structures present. None are field replaceable so it can be considered as a simple single unit.
+
+The equipment has a type and version. It is equipped with several physical units including several lasers, a length of fiber, a "circulator" and various units of electronics. It also has a microprocessor and assocuates circuitry and physical connectors along with mounting structures. Each of these units give rise to functionality that can be defined in isolation or in small systems.
+
+Some of the physical units have existing specifications. For example each laser will have a specification detailing its power requirements, its spectrum, its thermal requirements etc. It may come equipped with a back diode for monitoring power. It will be installed in a module that has a bias control circuit and monitors. The laser will not be used across its entire range of capability, in fact, being a pump laser it will operate at one very precise point of its operational range.
+
+The pump lasers will be attached to specific points in the fiber. There may be one at either end coupled in via a coupler. The reverse laser will be isolated from the fibre by the circulator. 
+
+The detailed specifications will be pruned and refactored through several layers to give rise to the amplifier characteristics such that a component (in some models such as G.7711, this would be represented by a forwarding construct (a connection)) with gain (as opposed to loss) properties with some spectral characteristic.
+
+It is possible to start at any level in this recursive structure with an abstraction of what lies below without deriving the abstraction fully. So it would be reasonable to simply state the highest abstraction on a specification identifying gain characteristics etc. BUT in a more advanced solution detailed derivation would enable a greater opportunity for reasoning across the detail to understand failure modes and subtle behaviours.
+
+It would be optimum to place the power detectors etc. in the detailed model in their precise position with respect to other physical/optical compoents such that the model can be reasoned across to understand implication of an indication on the functionality of the equipment. However, initially they could be loosely placed at the input or output of the function as a rough projection of their detection position.
+
+In summary, given the right generalized model, it is possible to build specifications. This could start with a simple type-version label and grow over time to a reference to some detail that is in terms of labels that further opens up in later developments. This gradual progression will allow the capability to unfold in value justified steps.
+
+As the process develops and beds in it is expected that specifications will be developed as equipments and developed and LLMs will assist in that development and refinement.
+
+
 #A system arrangements for a protection scheme.
 
+From the above it is relatively clear how terminations functions and connections may emerge from underlying hardware and how that can be presented in terms of a specification.
 A specification for a system arrangement for a service and associated realization pattern specifications.
 
 This general principle is considered in the context of equipment specification.
