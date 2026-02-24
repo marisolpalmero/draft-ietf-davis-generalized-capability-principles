@@ -138,7 +138,7 @@ The following terms abbreviations are used in this document:
 
 * equipment: A physical item necessary for a particular purpose.
 * physical: Has spatial dimensions (i.e., can be measured with a "ruler") and in some cases has mass (i.e., can be weighed with scales)
-* SFP: Small Form-factor Pluggable
+* SFP: Small Form-factor Pluggable which is a category of Equipment
 * equipment with applied data: A physical item with compatible software, firmware, configuration etc.
 * equipment type-version: A reference to a definition of the capabilities of an equipment such that all instances of equipment of that type-version have the same capabilities.
 
@@ -147,9 +147,9 @@ Physical things have various fundamental properties such as length, temperature,
 
 In a telecoms environment, there are many physical things that support the provision of service. For simplicity, in this document a physical thing that is useful for the provision of telecommunication service will be referred to as an equipment. The focus of this document is limited to telecommunications networks and hence equipments for related purposes, but there is no specific limitation to the method that prevent it from being applied more broadly. This restriction is simply to reduce the volume and complexity of the descriptions.
 
-The equipments to be represented include boards (circuit packs) and shelves (subracks). In this description an SFP will be considered as a board. The essential structural model is that a shelf can be placed in a rack, a board in a slot in a shelf and a board (SFP) in a slot in a board.
+The equipments to be represented include boards (circuit packs) and shelves (subracks). In this description an SFP will be considered as a board and hence an equipment. The essential structural model is that a shelf can be placed in a rack, a board in a slot in a shelf and a board (SFP) in a slot in a board.
 
-Whilst this general model says a board can be placed in a slot, clearly not all boards can be placed in all slots. This document describes the opportunities in terms of physical capabilities of an equipment type-version where all relevant characteristics are the same for each instance of that type-version such that the instances can be interchangeable.
+Whilst this general model says a board can be placed in a slot, clearly not all boards can be placed in all slots. This document describes the opportunities in terms of physical capabilities of an equipment type-version where all relevant characteristics are the same for each instance of that type-version such that the instances are interchangeable.
 
 Many equipments can accommodate applied data. The desired functionality is emergent from the combination of that equipment with applied data. The statement of capability covers the equipment with applied data.
 
@@ -213,7 +213,7 @@ It is necessary to understand some aspects of capability of a type of equipment 
 
 Considering the above, it is necessary to have a complete description of capability that is available independent of the presence of equipment etc. This description needs to be rigorous and readily interpretable allowing for comparisons with other equipment types etc. On that basis the capabilities should be described in a normalized language where advantage is taken of recurring patterns etc.
 
-As automation progresses, machine interpretability of the capability information becomes increasingly important. Whilst AI, especially LLMs, can deal with the variety of human interaction, a more coherent and compact language usage is preferable for efficiency and removal of potential ambiguity.
+As automation progresses, machine interpretability of the capability information becomes increasingly important. Whilst AI, especially LLMs, can deal with the variety and ambiguity of human languages, a more coherent and compact language usage is preferable for efficiency and removal of potential ambiguity.
 
 This document sets out an approach for expression of capabilities of equipment in terms of physical structure, data structure (software etc.) and emergent functionality.
 
@@ -244,40 +244,50 @@ Example covering an Optical Transponder:
 3.  **Entitlement**: a software license enabling the 400 G feature set; represented via the entitlement model.
 4.  **Inventory occurrence**: a deployed device instance that has the entitlement applied and exposes its active capabilities through inventory records.
 
-This recursive narrowing from generic capability to entitled occurrence demonstrates how specification refinement is operationally realized.
+This recursive narrowing from generic capability to entitled occurrence is achieved through a process of pruning and refactoring and demonstrates how specification refinement is operationally realized.
 
-Note that the use of the physical and functional considerations are recursively intertwined... a bit of physical, emergent function, function assembly, physical assembly thermals etc.
+A physical component when powered gives rise to functionality and hence that component has the capability to provide that function. The specification of that component describes the functions that it can support. A physical component could support a mechanical function, such as the motor in a fan assembly or a virtual function such as an Ethernet termination point.
 
-Note: Start with a generalized equipment and a generalized function and sketch the narrowing.
+In a telecoms context the relevant field replaceable physical components are called equipments. A board in a shelf is an equipment. Equipment assemblies support complex functions and those functions can be assembled to provide yet more complex functions.
 
-An equipment in a physical context considering how it fits and what fits in it...
+Digging below the level of the board the same consideration applies recursively.
 
-- type
-- size
-- thermals
-- power/thermal
-- physical compatibility
-- electrical compatibility
-- diagram or compatibilities from ONF work
-- physical assemblies and thermals
+A transistor, when in an appropriate circuit supports a switcing function, i.e., the function is supported by a system of interconnected components including the transistor and perhaps resistors etc. The transistor itself is a small system with a doped channel (a component), a metal terminal (a component) etc. And this carries on down. The transistor in circuit does not operate across its entire range. The specification of capabilities exceeds the needs. The transistor in circuit performs a switching function in a larger system where this may, through multiple levels of assembly, be a CPU. The CPU has a large specification of capability. The capabilities of a specific type of CPU differ from those of other types of CPU. In a particular application, not all of the capabilities are used. The appication may be an embedded controller. The embedded controller will have a set of capabilities. Not all of these will be used in a particular system application. Etc.
 
-Function emergent from a physical equipment with applied data:
+Note that in that description the functions emerged from combinations of physical things. The physical and functional considerations are recursively intertwined... a bit of physical, emergent function, function assembly, physical assembly. 
 
-- raw functions (use ProcessingConstruct recursion as per ONF)
-- emergent capabilities and needs
+Any particular function requires a motive force, i.e., a supply power, and produces heat. Power required and heat produced are always characteristics of any function.
+
+All function are emergent from powered physical components and all physical capabilities are within the scope of the bounday of physical component. Any real physical component is a very narrow form of the full definition. The specification for a physical component provides the constraints to enable an understanding of the physical component. 
+
+An equipment further narrowing of physical component. The telecoms equipment is highly constrained and described by a specification that will focus on fit and emergent functionality. The specification for the equipment will include a type-version identifier and related to that properties related to the physical nature of the equipment such as:
+
+- physical dimensions including size in terms of fit relative to some installation position scheme as well dimensions in meters
+- temperature/humidity operational range
+- physical compatibility including connector type (either directly or indirectly)
+- electrical compatibility including voltages
+
+The specific equipment will give rise to functionality when powered and to do this will require supporting or related functions from other equipments. The equipment may require some applied data such that a combination of the physical thing an the applied data (config, software). The specification for the equipment will identify:
+
+- raw functions in terms of general processing
+- emergent functional capabilities and needs
 - functional compatibility
-- power and thermals per functions
+- power and thermal considerations per functions
 
-A system of equipments in an assembly:
+To provide useful and valuable functions equipments are used in assemblies forming systems of equipments. The specifications of the individual equipment units will combine to form system specifications where the system is viewed as a component and is defined in terms of:
 
-- functional assemblies
-- power and thermals per assembly
+- raw functions in terms of general processing 
+- emergent functional capabilities and needs
+- functional compatibilities
+- power and thermal considerations per functions
 
-A system arrangements for a protection scheme.
+#Pruning and refactoring achieving recursive narrowing
+The structure is repeated recursively where at each level, component functions are pruned and refactored then combined into a system with other components that is then viewed as a component yielding a description of emergent functions provided by the component where those are then pruned and refactored then combined etc.
+
+#A system arrangements for a protection scheme.
 
 A specification for a system arrangement for a service and associated realization pattern specifications.
 
-#Recursive narrowing
 This general principle is considered in the context of equipment specification.
 
 #Specification of an assembly
