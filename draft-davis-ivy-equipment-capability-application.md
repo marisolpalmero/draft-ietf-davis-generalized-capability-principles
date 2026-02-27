@@ -285,7 +285,7 @@ To provide useful and valuable functions equipments are used in assemblies formi
 The structure is repeated recursively where at each level, component functions are pruned and refactored then combined into a system with other components that is then viewed as a component yielding a description of emergent functions provided by the component where those are then pruned and refactored then combined etc.
 
 #A basic photonic device specification buid up
-To make this easier, the description assumes a single equipment with a full implementation of an amplifier being used in a unidirectional context. The amplifier is assumed to have an embedded controller that can communicate via a YANG defined interface to a network controller etc. 
+To make this easier, the description assumes a single equipment with a full implementation of an amplifier being used in a unidirectional context. The amplifier is assumed to have an embedded controller that can communicate via a YANG defined interface to a network controller etc.
 
 The physical equipment has various physical structures present. None are field replaceable so it can be considered as a simple single unit.
 
