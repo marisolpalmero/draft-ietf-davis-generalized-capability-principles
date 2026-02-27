@@ -254,11 +254,11 @@ Digging below the level of the board the same consideration applies recursively.
 
 A transistor, when in an appropriate circuit supports a switcing function, i.e., the function is supported by a system of interconnected components including the transistor and perhaps resistors etc. The transistor itself is a small system with a doped channel (a component), a metal terminal (a component) etc. And this carries on down. The transistor in circuit does not operate across its entire range. The specification of capabilities exceeds the needs. The transistor in circuit performs a switching function in a larger system where this may, through multiple levels of assembly, be a CPU. The CPU has a large specification of capability. The capabilities of a specific type of CPU differ from those of other types of CPU. In a particular application, not all of the capabilities are used. The appication may be an embedded controller. The embedded controller will have a set of capabilities. Not all of these will be used in a particular system application. Etc.
 
-Note that in that description the functions emerged from combinations of physical things. The physical and functional considerations are recursively intertwined... a bit of physical, emergent function, function assembly, physical assembly. 
+Note that in that description the functions emerged from combinations of physical things. The physical and functional considerations are recursively intertwined... a bit of physical, emergent function, function assembly, physical assembly.
 
 Any particular function requires a motive force, i.e., a supply power, and produces heat. Power required and heat produced are always characteristics of any function.
 
-All function are emergent from powered physical components and all physical capabilities are within the scope of the bounday of physical component general definition. Any real physical component is a very narrow form of the full definition. The specification for a physical component provides the constraints to enable an understanding of the physical component. 
+All function are emergent from powered physical components and all physical capabilities are within the scope of the bounday of physical component general definition. Any real physical component is a very narrow form of the full definition. The specification for a physical component provides the constraints to enable an understanding of the physical component.
 
 An equipment is a narrowing of physical component. The telecoms equipment is highly constrained and described by a specification that will focus on fit and emergent functionality. The specification for the equipment will include a type-version identifier and related to that properties on the physical nature of the equipment such as:
 
@@ -276,7 +276,7 @@ The specific equipment will give rise to functionality when powered and to do th
 
 To provide useful and valuable functions equipments are used in assemblies forming systems of equipments. The specifications of the individual equipment units will combine to form system specifications where the system is viewed as a component and is defined in terms of:
 
-- raw functions in terms of general processing 
+- raw functions in terms of general processing
 - emergent functional capabilities and needs
 - functional compatibilities
 - power and thermal considerations per functions
@@ -293,7 +293,7 @@ The equipment has a type and version. It is equipped with several physical units
 
 Some of the physical units have existing specifications. For example each laser will have a specification detailing its power requirements, its spectrum, its thermal requirements etc. It may come equipped with a back diode for monitoring power. It will be installed in a module that has a bias control circuit and monitors. The laser will not be used across its entire range of capability, in fact, being a pump laser it will operate at one very precise point of its operational range.
 
-The pump lasers will be attached to specific points in the fiber. There may be one at either end coupled in via a coupler. The reverse laser will be isolated from the fibre by the circulator. 
+The pump lasers will be attached to specific points in the fiber. There may be one at either end coupled in via a coupler. The reverse laser will be isolated from the fibre by the circulator.
 
 The detailed specifications will be pruned and refactored through several layers to give rise to the amplifier characteristics such that a component (in some models such as G.7711, this would be represented by a forwarding construct (a connection)) with gain (as opposed to loss) properties with some spectral characteristic.
 
