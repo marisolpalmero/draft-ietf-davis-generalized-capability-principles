@@ -14,7 +14,7 @@ Expires: 2 September 2026                                            NTT
 
 
                     Equipment Capability Application
-          draft-davis-ivy-equipment-capability-application-00
+          draft-davis-ivy-equipment-capability-application-01
 
 Abstract
 

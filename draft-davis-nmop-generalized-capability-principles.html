@@ -10,7 +10,7 @@
 <meta content="Diego Lopez" name="author">
 <meta content="Marisol Palmero" name="author">
 <meta content="
-       This document introduces a framework for capability modeling based on the specification and refinement principles established in ITU-T G.7711 Annex G (also published as ONF TR‑512.7 see latest release) and the modeling boundaries work documented in  draft-davis-netmod-modelling-boundaries . The framework defines how component–system capabilities can be explicitly described and refined via a process of pruning, refactoring, and occurrence formation. 
+       This document introduces a framework for capability modeling based on the specification and refinement principles established in ITU-T G.7711 Annex G (also previously published as ONF TR‑512.7. See latest G.7711 release) and the modeling boundaries work documented in  draft-davis-netmod-modelling-boundaries . The framework defines how component–system capabilities can be explicitly described and refined via a process of pruning, refactoring, and occurrence formation. 
        These capability definitions can target detailed operational considerations, system interactions, licensing, abstract product declarations, or sales and marketing. The framework supports modular, layered, and fractal declarations of networked behavior, and provides a foundation for a suite of future IETF drafts aligned with ongoing work on photonic plug manifests, entitlement/licensing, IVY equipment modeling, energy/thermal considerations and related domains. 
     " name="description">
 <meta content="xml2rfc 3.31.0" name="generator">
@@ -21,7 +21,7 @@
 <meta content="occurrence" name="keyword">
 <meta content="component-system" name="keyword">
 <meta content="pruning&amp;refactoring" name="keyword">
-<meta content="draft-davis-nmop-generalized-capability-principles-00" name="ietf.draft">
+<meta content="draft-davis-nmop-generalized-capability-principles-01" name="ietf.draft">
 <!-- Generator version information:
   xml2rfc 3.31.0
     Python 3.12.12
@@ -1055,11 +1055,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">GenCapPrinc</td>
-<td class="right">October 2025</td>
+<td class="right">March 2026</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Davis, et al.</td>
-<td class="center">Expires 23 April 2026</td>
+<td class="center">Expires 2 September 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1069,15 +1069,15 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dt class="label-workgroup">Workgroup:</dt>
 <dd class="workgroup">NMOP</dd>
 <dt class="label-internet-draft">Internet-Draft:</dt>
-<dd class="internet-draft">draft-davis-nmop-generalized-capability-principles-00</dd>
+<dd class="internet-draft">draft-davis-nmop-generalized-capability-principles-01</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-10-20" class="published">20 October 2025</time>
+<time datetime="2026-03-01" class="published">1 March 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-04-23">23 April 2026</time></dd>
+<dd class="expires"><time datetime="2026-09-02">2 September 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1102,7 +1102,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <h1 id="title">Generalized Capability Principles</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">This document introduces a framework for capability modeling based on the specification and refinement principles established in ITU-T G.7711 Annex G (also published as ONF TR‑512.7 see latest release) and the modeling boundaries work documented in <code>draft-davis-netmod-modelling-boundaries</code>. The framework defines how component–system capabilities can be explicitly described and refined via a process of pruning, refactoring, and occurrence formation.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<p id="section-abstract-1">This document introduces a framework for capability modeling based on the specification and refinement principles established in ITU-T G.7711 Annex G (also previously published as ONF TR‑512.7. See latest G.7711 release) and the modeling boundaries work documented in <code>draft-davis-netmod-modelling-boundaries</code>. The framework defines how component–system capabilities can be explicitly described and refined via a process of pruning, refactoring, and occurrence formation.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 <p id="section-abstract-2">These capability definitions can target detailed operational considerations, system interactions, licensing, abstract product declarations, or sales and marketing. The framework supports modular, layered, and fractal declarations of networked behavior, and provides a foundation for a suite of future IETF drafts aligned with ongoing work on photonic plug manifests, entitlement/licensing, IVY equipment modeling, energy/thermal considerations and related domains.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
@@ -1140,7 +1140,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 23 April 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 2 September 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1149,7 +1149,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
         </h2>
 <p id="section-boilerplate.2-1">
-            Copyright (c) 2025 IETF Trust and the persons identified as the
+            Copyright (c) 2026 IETF Trust and the persons identified as the
             document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.2-2">
             This document is subject to BCP 78 and the IETF Trust's Legal
@@ -1185,80 +1185,99 @@ svg :is([fill="white"], [fill^="#fff"]) {
             <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-generalized-modeling-via-co" class="internal xref">Generalized Modeling via Component–System–Specification Refinement</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
-            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-some-specification-examples" class="internal xref">Some specification examples</a></p>
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-specifications-and-llms" class="internal xref">Specifications and LLMs</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
-            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-recursive-narrowing" class="internal xref">Recursive narrowing</a></p>
-</li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
-            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-specification-of-an-assembl" class="internal xref">Specification of an assembly</a></p>
-</li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
-            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-generalization-of-the-speci" class="internal xref">Generalization of the specification</a></p>
-</li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
-            <p id="section-toc.1-1.10.1"><a href="#section-10" class="auto internal xref">10</a>. <a href="#name-characteristics-of-a-langua" class="internal xref">Characteristics of a language of specification</a></p>
-</li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
-            <p id="section-toc.1-1.11.1"><a href="#section-11" class="auto internal xref">11</a>. <a href="#name-specification-language-opti" class="internal xref">Specification language options</a></p>
-</li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
-            <p id="section-toc.1-1.12.1"><a href="#section-12" class="auto internal xref">12</a>. <a href="#name-building-a-specification-st" class="internal xref">Building a specification structure</a></p>
-</li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13">
-            <p id="section-toc.1-1.13.1"><a href="#section-13" class="auto internal xref">13</a>. <a href="#name-a-specification-evolution-e" class="internal xref">A specification evolution example</a></p>
-</li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.14">
-            <p id="section-toc.1-1.14.1"><a href="#section-14" class="auto internal xref">14</a>. <a href="#name-a-system-specification-exam" class="internal xref">A system specification example</a></p>
-</li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.15">
-            <p id="section-toc.1-1.15.1"><a href="#section-15" class="auto internal xref">15</a>. <a href="#name-broader-application-of-the-" class="internal xref">Broader Application of the Language</a></p>
-</li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.16">
-            <p id="section-toc.1-1.16.1"><a href="#section-16" class="auto internal xref">16</a>. <a href="#name-conclusion" class="internal xref">Conclusion</a></p>
-</li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.17">
-            <p id="section-toc.1-1.17.1"><a href="#section-17" class="auto internal xref">17</a>. <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
-</li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.18">
-            <p id="section-toc.1-1.18.1"><a href="#section-18" class="auto internal xref">18</a>. <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
-</li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.19">
-            <p id="section-toc.1-1.19.1"><a href="#section-19" class="auto internal xref">19</a>. <a href="#name-references" class="internal xref">References</a></p>
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-some-specification-examples" class="internal xref">Some specification examples</a></p>
 <ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.19.2.1">
-                <p id="section-toc.1-1.19.2.1.1"><a href="#section-19.1" class="auto internal xref">19.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.19.2.2">
-                <p id="section-toc.1-1.19.2.2.1"><a href="#section-19.2" class="auto internal xref">19.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.1">
+                <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="auto internal xref">7.1</a>.  <a href="#name-a-temperature-sensor" class="internal xref">A temperature sensor</a></p>
 </li>
             </ul>
 </li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-recursive-pruning-and-refac" class="internal xref">Recursive pruning and refactoring</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1">
+                <p id="section-toc.1-1.8.2.1.1"><a href="#section-8.1" class="auto internal xref">8.1</a>.  <a href="#name-thing-to-component" class="internal xref">Thing to component</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.2">
+                <p id="section-toc.1-1.8.2.2.1"><a href="#section-8.2" class="auto internal xref">8.2</a>.  <a href="#name-component-to-specific-termi" class="internal xref">Component to specific termination point</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.3">
+                <p id="section-toc.1-1.8.2.3.1"><a href="#section-8.3" class="auto internal xref">8.3</a>.  <a href="#name-further-examples" class="internal xref">Further examples</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
+            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-specification-of-an-assembl" class="internal xref">Specification of an assembly</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
+            <p id="section-toc.1-1.10.1"><a href="#section-10" class="auto internal xref">10</a>. <a href="#name-generalization-of-the-speci" class="internal xref">Generalization of the specification</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
+            <p id="section-toc.1-1.11.1"><a href="#section-11" class="auto internal xref">11</a>. <a href="#name-characteristics-of-a-langua" class="internal xref">Characteristics of a language of specification</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
+            <p id="section-toc.1-1.12.1"><a href="#section-12" class="auto internal xref">12</a>. <a href="#name-specification-language-opti" class="internal xref">Specification language options</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13">
+            <p id="section-toc.1-1.13.1"><a href="#section-13" class="auto internal xref">13</a>. <a href="#name-building-a-specification-st" class="internal xref">Building a specification structure</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.14">
+            <p id="section-toc.1-1.14.1"><a href="#section-14" class="auto internal xref">14</a>. <a href="#name-a-specification-evolution-e" class="internal xref">A specification evolution example</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.15">
+            <p id="section-toc.1-1.15.1"><a href="#section-15" class="auto internal xref">15</a>. <a href="#name-a-system-specification-exam" class="internal xref">A system specification example</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.16">
+            <p id="section-toc.1-1.16.1"><a href="#section-16" class="auto internal xref">16</a>. <a href="#name-broader-application-of-the-" class="internal xref">Broader Application of the Language</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.17">
+            <p id="section-toc.1-1.17.1"><a href="#section-17" class="auto internal xref">17</a>. <a href="#name-conclusion" class="internal xref">Conclusion</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.18">
+            <p id="section-toc.1-1.18.1"><a href="#section-18" class="auto internal xref">18</a>. <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.19">
+            <p id="section-toc.1-1.19.1"><a href="#section-19" class="auto internal xref">19</a>. <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
+</li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.20">
-            <p id="section-toc.1-1.20.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-appendix-a-interpretive-not" class="internal xref">Appendix A: Interpretive Notes on Refinement and Occurrence</a></p>
+            <p id="section-toc.1-1.20.1"><a href="#section-20" class="auto internal xref">20</a>. <a href="#name-references" class="internal xref">References</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.20.2.1">
-                <p id="section-toc.1-1.20.2.1.1"><a href="#appendix-A.1" class="auto internal xref">A.1</a>.  <a href="#name-a1-no-single-refinement-pat" class="internal xref">A.1 No Single Refinement Path</a></p>
+                <p id="section-toc.1-1.20.2.1.1"><a href="#section-20.1" class="auto internal xref">20.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.20.2.2">
-                <p id="section-toc.1-1.20.2.2.1"><a href="#appendix-A.2" class="auto internal xref">A.2</a>.  <a href="#name-a2-occurrence-at-every-laye" class="internal xref">A.2 Occurrence at Every Layer</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.20.2.3">
-                <p id="section-toc.1-1.20.2.3.1"><a href="#appendix-A.3" class="auto internal xref">A.3</a>.  <a href="#name-a3-sweating-out-the-shape" class="internal xref">A.3 Sweating Out the Shape</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.20.2.4">
-                <p id="section-toc.1-1.20.2.4.1"><a href="#appendix-A.4" class="auto internal xref">A.4</a>.  <a href="#name-a4-classification-considere" class="internal xref">A.4 Classification Considered Harmful</a></p>
+                <p id="section-toc.1-1.20.2.2.1"><a href="#section-20.2" class="auto internal xref">20.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
 </li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.21">
-            <p id="section-toc.1-1.21.1"><a href="#appendix-B" class="auto internal xref">Appendix B</a>.  <a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+            <p id="section-toc.1-1.21.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-appendix-a-interpretive-not" class="internal xref">Appendix A: Interpretive Notes on Refinement and Occurrence</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.21.2.1">
+                <p id="section-toc.1-1.21.2.1.1"><a href="#appendix-A.1" class="auto internal xref">A.1</a>.  <a href="#name-a1-no-single-refinement-pat" class="internal xref">A.1 No Single Refinement Path</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.21.2.2">
+                <p id="section-toc.1-1.21.2.2.1"><a href="#appendix-A.2" class="auto internal xref">A.2</a>.  <a href="#name-a2-occurrence-at-every-laye" class="internal xref">A.2 Occurrence at Every Layer</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.21.2.3">
+                <p id="section-toc.1-1.21.2.3.1"><a href="#appendix-A.3" class="auto internal xref">A.3</a>.  <a href="#name-a3-sweating-out-the-shape" class="internal xref">A.3 Sweating Out the Shape</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.21.2.4">
+                <p id="section-toc.1-1.21.2.4.1"><a href="#appendix-A.4" class="auto internal xref">A.4</a>.  <a href="#name-a4-classification-considere" class="internal xref">A.4 Classification Considered Harmful</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.22">
-            <p id="section-toc.1-1.22.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-contributors" class="internal xref">Contributors</a></p>
+            <p id="section-toc.1-1.22.1"><a href="#appendix-B" class="auto internal xref">Appendix B</a>.  <a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.23">
-            <p id="section-toc.1-1.23.1"><a href="#appendix-D" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
+            <p id="section-toc.1-1.23.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-contributors" class="internal xref">Contributors</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.24">
+            <p id="section-toc.1-1.24.1"><a href="#appendix-D" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
 </li>
         </ul>
 </nav>
@@ -1284,28 +1303,31 @@ document are to be interpreted as described in RFC2119}}.<a href="#section-1-1" 
           <p id="section-1-3.3.1">manifest: A list of essential contents<a href="#section-1-3.3.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-1-3.4">
-          <p id="section-1-3.4.1">specification: A detailed description including arrangement<a href="#section-1-3.4.1" class="pilcrow">¶</a></p>
+          <p id="section-1-3.4.1">specification: A detailed definition of capabilities/needs in terms of opportunities/constraints including the arrangement of essential parts and their interconnectivity in assembly<a href="#section-1-3.4.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-1-3.5">
-          <p id="section-1-3.5.1">representation: An expression of properties from a perspective<a href="#section-1-3.5.1" class="pilcrow">¶</a></p>
+          <p id="section-1-3.5.1">representation: An expression of structure and properties from a perspective<a href="#section-1-3.5.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-1-3.6">
-          <p id="section-1-3.6.1">occurrence: Placeholder<a href="#section-1-3.6.1" class="pilcrow">¶</a></p>
+          <p id="section-1-3.6.1">component: A thing defined by a boundary where the internal structure within that boundary is not directly visible but is apparently visible through the behaviour exposed at that boundary<a href="#section-1-3.6.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-1-3.7">
-          <p id="section-1-3.7.1">component-system: A pattern that expresses each item as a component where components can be assembled into systems and where a system can be represented as a component where that assembly may be of real things or may be abstractions of the effect of real things.<a href="#section-1-3.7.1" class="pilcrow">¶</a></p>
+          <p id="section-1-3.7.1">port: A place on the boundary of a component where interaction with that component is possible<a href="#section-1-3.7.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-1-3.8">
-          <p id="section-1-3.8.1">pruning:Placeholder<a href="#section-1-3.8.1" class="pilcrow">¶</a></p>
+          <p id="section-1-3.8.1">component-system: A pattern that expresses each item as a component where components can be assembled into systems and where a system can be represented as a component where that assembly may be of real things or may be abstractions of the effect of real things.<a href="#section-1-3.8.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-1-3.9">
-          <p id="section-1-3.9.1">refactoring:Placeholder<a href="#section-1-3.9.1" class="pilcrow">¶</a></p>
+          <p id="section-1-3.9.1">occurrence: A thing, the specification of which is a purposeful refinement partially constraining the definition of a broader thing, where a thing is a component, a specification etc.<a href="#section-1-3.9.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-1-3.10">
-          <p id="section-1-3.10.1">pruning &amp; refactoring: The process that supports progression from one view to the next view<a href="#section-1-3.10.1" class="pilcrow">¶</a></p>
+          <p id="section-1-3.10.1">pruning: A process of narrowing of definition by reduction of capabilities<a href="#section-1-3.10.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-1-3.11">
-          <p id="section-1-3.11.1">capability/needs specification: A detailed description of what can be achived by an individual item both alone and in assembly with respect to specific needs<a href="#section-1-3.11.1" class="pilcrow">¶</a></p>
+          <p id="section-1-3.11.1">refactoring: A process of rearranging, splitting and combining representation whilst maintaining semantic validity<a href="#section-1-3.11.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-1-3.12">
+          <p id="section-1-3.12.1">pruning &amp; refactoring: The process that supports intentional progression of refinement from one level of structure of occurrences (e.g., system of components) to the next more specific level of structure of occurrences<a href="#section-1-3.12.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 </section>
@@ -1318,7 +1340,7 @@ document are to be interpreted as described in RFC2119}}.<a href="#section-1-1" 
 <p id="section-2-1">Currently, capabilities are mainly described loosely in human readable text, where that text is often incomplete, ambiguous or inconsistent. While people make these systems work in practice, the looseness result in errors, inefficiencies and limited reuse.
 As automation increases, there is a growing need to enable machine reasoning about the capabilities of network systems and components. While Large Language Models (LLMs) can interpret traditional documentation, there remains a strong need for greater formal rigor and structured representation to improve efficiency and precision. When asked, LLMs indicate that a rigorous model is preferable to loose ambiguous text.
 Existing IETF models predominantly focus on configuration, operational state, and telemetry. What is missing is a cohesive framework for expressing what a system <em>can</em> do, i.e., its capabilities, in a declarative, structured, and reusable form.
-This document introduces the principles for a capability modeling framework grounded in the specification concept established in <span>[<a href="#ITU-T_G.7711" class="cite xref">ITU-T_G.7711</a>]</span> ([ONF_TR‑512]). It applies these principles through the lens of the <strong>component–system pattern</strong> from <span>[<a href="#ONF_TR-512.A.2" class="cite xref">ONF_TR-512.A.2</a>]</span>, using the concept of <strong>emergence through recursive narrowing and occurrence formation</strong>. These ideas are extended further by the modeling boundary principles described in <span>[<a href="#mobo" class="cite xref">mobo</a>]</span>.
+This document introduces the principles for a capability modeling framework grounded in the specification concept established in <span>[<a href="#ITU-T_G.7711" class="cite xref">ITU-T_G.7711</a>]</span> ([ONF_TR‑512]). It applies these principles through the lens of the <strong>component–system pattern</strong> from <span>[<a href="#ONF_TR-512.A.2" class="cite xref">ONF_TR-512.A.2</a>]</span>, using the concept of <strong>emergence through recursive narrowing, refactoring and occurrence formation</strong>. These ideas are extended further by the modeling boundary principles described in <span>[<a href="#mobo" class="cite xref">mobo</a>]</span>.
 The result is a standardized and extensible approach for expressing features, operational constraints, internal dependencies, etc. - separately from instance realizations.
 This approach supports capability modeling for any aspect of the controlled networking solution, and is designed to enable capability assembly, dynamic composition, licensing control, and integration with other IETF frameworks such as IVY equipment, photonic plug manifests, and entitlement interfaces. It also supports initiatives focussing on energy/thermal considerations where specific detailed capabilities and their power/thermal implications become critical considerations.<a href="#section-2-1" class="pilcrow">¶</a></p>
 </section>
@@ -1346,11 +1368,11 @@ Furthermore, current models tend to assume a fixed taxonomy of types and feature
 What is needed is a modeling framework that:
 - Allows systems and components to be described in terms of their <strong>capability boundaries</strong>, including <strong>capability interactions</strong> separate from operational state,
 - Supports <strong>refinement via pruning and refactoring to yield flexible structural transformation</strong> rather than rigid inheritance or classification,
-- Enables <strong>recursive occurrence formation</strong>, where each stage of narrowing produces a usable semantic structure,
+- Enables <strong>recursive occurrence formation</strong>, where each level of pruning and refactoring produces a usable semantic structure,
 - Accommodates <strong>multiple valid refinement paths</strong>, supporting different levels of granularity and domain specificity,
 - Provides a <strong>coherent trace</strong> from abstract capability declarations down to deployable or licensable configurations.
 This draft introduces such a framework by building on the refinement logic of <span>[<a href="#ITU-T_G.7711" class="cite xref">ITU-T_G.7711</a>]</span>  (<span>[<a href="#ONF_TR-512" class="cite xref">ONF_TR-512</a>]</span>) in general and especially the <strong>specification pattern</strong> structures of ITU-T G.7711 Annex G (ONF TR‑512.7) which provides a means of expressing bounded capability envelopes through a formal refinement of generic model elements. This also provides grounding in the recursive occurrence model informed by the component–system pattern <span>[<a href="#ITU-T_G.7711" class="cite xref">ITU-T_G.7711</a>]</span>  (<span>[<a href="#ONF_TR-512.A.2" class="cite xref">ONF_TR-512.A.2</a>]</span> and modeling boundaries approach <span>[<a href="#mobo" class="cite xref">mobo</a>]</span>. This document leverages the foundations laid by <span>[<a href="#ITU-T_G.7711" class="cite xref">ITU-T_G.7711</a>]</span>  (<span>[<a href="#ONF_TR-512" class="cite xref">ONF_TR-512</a>]</span>).<a href="#section-3-1" class="pilcrow">¶</a></p>
-<p id="section-3-2">The same expression challenges appear in statements of intent. The process of formulating intent through negotiation and resultant gradual refinement has a similar feel to the degrees of narrowing of the specification.<a href="#section-3-2" class="pilcrow">¶</a></p>
+<p id="section-3-2">The same expression challenges appear in statements of intent. The process of formulating intent through negotiation and resultant gradual refinement has a similar feel to the degrees of pruning and refactoring of the specification.<a href="#section-3-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="specification-in-terms-of-the-model">
@@ -1398,7 +1420,7 @@ This draft introduces such a framework by building on the refinement logic of <s
 <a href="#section-5" class="section-number selfRef">5. </a><a href="#name-generalized-modeling-via-co" class="section-name selfRef">Generalized Modeling via Component–System–Specification Refinement</a>
       </h2>
 <p id="section-5-1">This framework moves away from rigid classification schemes and instead adopts a dynamic, refinement-based approach to modeling. Traditional classification attempts to impose fixed categories onto a system, but this often obscures nuance, variation, and the emergence of intermediate structures that carry operational or architectural significance.<a href="#section-5-1" class="pilcrow">¶</a></p>
-<p id="section-5-2">We begin instead with the concept of a <strong>universal component</strong>—a general-purpose structure with maximal capability potential. Through the process of <strong>pruning &amp; refactoring</strong> (constraint-driven refinement), this semantic volume is gradually narrowed, yielding intermediate structures with more sharply defined roles and properties. These refined artifacts are not pre-classified entities, but <strong>emergent forms</strong> that arise naturally at specific “sweat spots” in the refinement trajectory, where the remaining capabilities align with a recognizably useful or interoperable function.<a href="#section-5-2" class="pilcrow">¶</a></p>
+<p id="section-5-2">We begin instead with the concept of a <strong>universal component</strong>—a general-purpose structure with maximal capability potential. Through the process of <strong>pruning &amp; refactoring</strong> (constraint-driven refinement), this semantic volume is gradually refined, yielding intermediate structures with more sharply defined roles and properties. These refined artifacts are not pre-classified entities, but <strong>emergent forms</strong> that arise naturally at specific “sweat spots” in the refinement trajectory, where the remaining capabilities align with a recognizably useful or interoperable function.<a href="#section-5-2" class="pilcrow">¶</a></p>
 <p id="section-5-3">Each such emergent form is treated as an <strong>occurrence</strong>. Occurrences appear at every stage of meaningful refinement including at the level of final implementation instances. At all stages of use the application of properties is via the idea of intent where even the tightest constraint of a single value is essentially a statement of intent (as it is impossible to guarantee that a property will be set). This intent consideration will be dealt with further later in this document.<a href="#section-5-3" class="pilcrow">¶</a></p>
 <p id="section-5-4">An LTP (Logical Termination Point) in <span>[<a href="#ITU-T_G.7711" class="cite xref">ITU-T_G.7711</a>]</span> (<span>[<a href="#ONF_TR-512" class="cite xref">ONF_TR-512</a>]</span>), for example, is not a primitive class but a pattern that arises from pruning and constraining the universal component until only the semantic envelope of an LTP remains. A TerminationPoint from RFC8345<a href="#section-5-4" class="pilcrow">¶</a></p>
 <p id="section-5-5">To support variation, reusability, and convergence across implementations, each component or system is described not by a single fixed class, but by a <strong>specification</strong>: a constrained and possibly pruned refinement of a more general and broader model element. This allows the model to express bounded capabilities without requiring full instantiation, enabling tools and orchestrators to reason about compatibility, substitution, and support constraints before deployment.
@@ -1420,58 +1442,141 @@ The specification of an occurrence is itself a system spec.<a href="#section-5-5
 <p id="section-5-8">This approach supports <strong>gradual realization</strong>, where capability declarations can progressively transition from abstract to concrete, through intermediate spec refinements and pruning. Each layer of model realization adds specificity—structurally (via system composition), behaviorally (via constraints), and operationally (via mapping to configuration/state models).<a href="#section-5-8" class="pilcrow">¶</a></p>
 <p id="section-5-9">A specification may provide explicit definifinition of a property as discussed above but it may also refer to one or more other specification(s). For example a specification may include a set of properties specified elsewhere. It may also define a property that is an enumeration of literals or identifies where those literal values or identify values are actually references to other specifications that provide deeper detail.<a href="#section-5-9" class="pilcrow">¶</a></p>
 <p id="section-5-10">In an ideal environment, there is an ecosystem of specificactions each providing interrelated detail to fully define the semantics. The ecosystem would include specifications from standards bodies providing the definition of a network protocol that can be interpreted by an AI component such that the abstracted effect on the solution can be fully understood and simulated/emulated. Any detected conditions would be understood in terms of the protocol and hence the implications of the condition detected in terms of the carried signal can be fully understood.<a href="#section-5-10" class="pilcrow">¶</a></p>
-<p id="section-5-11">Today's solution at best have a coded form of the semantic mantic interpretation that may not reflect the formal definition due to inaccuracies of interpretation. Many semantics are reduced to inconsistent labels that a user has to interpret. Whilst an LLM can do a reasonable job at interpretation of chaotic data, it will benefit a rigorous model traceable through formal definitions to fundamentals.<a href="#section-5-11" class="pilcrow">¶</a></p>
+<p id="section-5-11">In this ideal environment, the specification would fully capture all non-failure case behaviours of a component (and potentially some common failure cases) and the component would be designed internally to "guarantee" these behaviours (it would be engineered with appropriate control structures that would bound its behaviour). These specifications, although abstractions would often be highly complex (consider the specification of a CPU for example), but would be less overwhelming in detail and stated in terms of intentional behaviour as opposed to behaviour of the parts. The specification is a statement of the effects of the assembly of detailed parts (see definition of component).<a href="#section-5-11" class="pilcrow">¶</a></p>
+<p id="section-5-12">The specification of capability provides a stabilising layer reducing the reasoning required to build a solution as a result of not having to assess the full detail of behaviour of all assemblies to the finest detail. The specification of capability will have a unique identifier that anchors the definition and allows it to be accessed. This reflects the same principle that gives rise to labels in a taxonomy, where the label recalls the abstract definition removing the need to understand the effect of the parts from first principles.<a href="#section-5-12" class="pilcrow">¶</a></p>
+<p id="section-5-13">Today's solution at best have a coded form of the semantic interpretation that may not reflect the formal definition due to inaccuracies of interpretation. Many semantics are reduced to inconsistent labels that a user has to interpret. Whilst an LLM can do a reasonable job at interpretation of chaotic data, it will benefit a rigorous model traceable through formal definitions to fundamentals.<a href="#section-5-13" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="specifications-and-llms">
+<section id="section-6">
+      <h2 id="name-specifications-and-llms">
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-specifications-and-llms" class="section-name selfRef">Specifications and LLMs</a>
+      </h2>
+<p id="section-6-1">As discussed briefly above, LLMs can take advantage of specifications of capability. The LLM reasoning load can be reduced by working with the guaranteed behavioural abstraction provided in the specification for a component as opposed to working at the finest of details (it does not always need to understand the environment using string theory!).<a href="#section-6-1" class="pilcrow">¶</a></p>
+<p id="section-6-2">The LLM can develop system solutions by assembling components of understood capability (using normal engineering and design processes) knowing that the behaviour of the components are internally controlled to be within the bounds of the specification. The LLM can then describe the behaviour of the system at its boundaries, i.e., of the component(s) that that system can realize. Hence the LLM can develop the specification for the components it produces.<a href="#section-6-2" class="pilcrow">¶</a></p>
+<p id="section-6-3">For components not produced by a specific LLM (produced by another LLM or by a human), the LLM can assess the internal workings of the component (by reviewing the actual code/circuitry) at fine-grained detail. LLM reasoning can:<a href="#section-6-3" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-6-4.1">
+          <p id="section-6-4.1.1">extract the essential behaviour and abstract that to form a specification<a href="#section-6-4.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-6-4.2">
+          <p id="section-6-4.2.1">consider whether that abstracted behaviour defined in the specification appears beneficial in the formation of relevant systems and where not, propose simplifications<a href="#section-6-4.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-6-4.3">
+          <p id="section-6-4.3.1">evaluate the robustness of that essential behaviour and propose enhancements to ensure that the component operates within the desired bounds<a href="#section-6-4.3.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-6-4.4">
+          <p id="section-6-4.4.1">review existing specifications to determine whether other components already do a similar job<a href="#section-6-4.4.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-6-4.5">
+          <p id="section-6-4.5.1">etc.<a href="#section-6-4.5.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
 </section>
 </div>
 <div id="some-specification-examples">
-<section id="section-6">
+<section id="section-7">
       <h2 id="name-some-specification-examples">
-<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-some-specification-examples" class="section-name selfRef">Some specification examples</a>
+<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-some-specification-examples" class="section-name selfRef">Some specification examples</a>
       </h2>
-<p id="section-6-1">This section will provide some examples and will reference the equipment capability draft and other future drafts.<a href="#section-6-1" class="pilcrow">¶</a></p>
+<p id="section-7-1">This section provides some simple examples and will reference the equipment capability draft and other future drafts.<a href="#section-7-1" class="pilcrow">¶</a></p>
+<div id="a-temperature-sensor">
+<section id="section-7.1">
+        <h3 id="name-a-temperature-sensor">
+<a href="#section-7.1" class="section-number selfRef">7.1. </a><a href="#name-a-temperature-sensor" class="section-name selfRef">A temperature sensor</a>
+        </h3>
+<p id="section-7.1-1">Consider a simple temperature sensor. The physical sensor will have an operational range, a precision, an accuracy, etc. It will provide output in particular units and may be able to indicate out of range. The sensor is itself a small system of components. It will be sensitive to power supply behaviour, humidity and other environmental factors.<a href="#section-7.1-1" class="pilcrow">¶</a></p>
+<p id="section-7.1-2">All of the above will be included in the hardware specification of that physical component. That component when designed into a system will contribute to the system behavior.<a href="#section-7.1-2" class="pilcrow">¶</a></p>
+<p id="section-7.1-3">For this example we will assume that the output for that sensor is available via a control solution and is presented at an externally accessible interface. We will assume that the presentation is in JSON and that presentation was defined in YANG.<a href="#section-7.1-3" class="pilcrow">¶</a></p>
+<p id="section-7.1-4">In a the imagined application for this sensor, lets assume that the temperature is relevant only to whole degrees and is required to be in Celsius so an integer is used to represent the temperature.<a href="#section-7.1-4" class="pilcrow">¶</a></p>
+<p id="section-7.1-5">With this level of coarseness the fine grained precision and accuracy of the actual component can probably be ignored (although the component may be pushed close to its limits and hence there may be an accuracy consideration etc.), but the operational range is potentially still relevant and environment effects that cannot be eliminated still need to be understood.<a href="#section-7.1-5" class="pilcrow">¶</a></p>
+<p id="section-7.1-6">There may also be known failure modes that cause detectable incorrect readings that need to be accounted for.<a href="#section-7.1-6" class="pilcrow">¶</a></p>
+<p id="section-7.1-7">So, considering the component alone, simply stating integer in the YANG model is not sufficient.<a href="#section-7.1-7" class="pilcrow">¶</a></p>
+<p id="section-7.1-8">Going further, the temperature sensor has a particular role in the context of the equipment it is monitoring. There may be several temperature sensors on that single equipment. Traditionally they would have had distinct labels (although these were often potentially misleading). Whilst this may have been sufficient in a basic operations environment, much more can be done and is probably necessary current and future solutions.<a href="#section-7.1-8" class="pilcrow">¶</a></p>
+<p id="section-7.1-9">Having an identifier is clearly necessary, but that should lead to an accurate and fully interpretable representation of the positioning of that component in the equipment in isolation and in the broader solution as a whole.<a href="#section-7.1-9" class="pilcrow">¶</a></p>
+<p id="section-7.1-10">For example, the detector may be at the top of a circuit pack that is placed in an assembly with convection cooling where that detector is provided to measure the temperature of the airflow leaving the top of the circuit pack and hence feeding to the next equipment above.<a href="#section-7.1-10" class="pilcrow">¶</a></p>
+<p id="section-7.1-11">For a full understanding of the implications of a measurement provided by that detector, a detailed understanding of its positioning and purpose is necessary. It is intended that the specification model provide such detail.<a href="#section-7.1-11" class="pilcrow">¶</a></p>
+<p id="section-7.1-12">The specification model will be generalized such that the details provided can be used in any relevant application. It will not describe detailed per instance cases. Hence the specification will be used in conjunction with the actual instance arrangement to allow understanding of any reading in context.<a href="#section-7.1-12" class="pilcrow">¶</a></p>
+<p id="section-7.1-13">Traditionally, with ad-hoc formatting and variable accuracy of definitions etc., only a well experienced SME would have a chance of determining the relevance of a detected value.<a href="#section-7.1-13" class="pilcrow">¶</a></p>
+<p id="section-7.1-14">In a modern and future solutions we can do and have to do better. The intention is that the specification approach using the generalised specification definition structure set out in this document will provide a basis for LLM assisted specification generation and interpretation.<a href="#section-7.1-14" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="recursive-narrowing">
-<section id="section-7">
-      <h2 id="name-recursive-narrowing">
-<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-recursive-narrowing" class="section-name selfRef">Recursive narrowing</a>
+</section>
+</div>
+<div id="recursive-pruning-and-refactoring">
+<section id="section-8">
+      <h2 id="name-recursive-pruning-and-refac">
+<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-recursive-pruning-and-refac" class="section-name selfRef">Recursive pruning and refactoring</a>
       </h2>
-<p id="section-7-1">This builds on the example sketches and formalizes the process of recursive narrowing.
-Ahow the essential process.
-Use examples to illustrate the process
--Thing to Component to Function to TP to specific TP to application of TP to instance of TP.
--Thing to Component to physical thing to equipment to specific equipment type to use of that equipment to instance of equipment
+<p id="section-8-1">This builds on the example sketches and formalizes the process of recursive pruning and refactoring.<a href="#section-8-1" class="pilcrow">¶</a></p>
+<p id="section-8-2">The essential process involves defining a general abstracted thing at some intermediate point in the progression of refinement (e.g., a temperature sensor), setting out a reasonable derivation path from the most generalized component and then refining that general abstract thing by recursive pruning and refactoring to arrive at the necessary specialization.<a href="#section-8-2" class="pilcrow">¶</a></p>
+<p id="section-8-3">The following subsections take some generalised cases to illustrate the process.<a href="#section-8-3" class="pilcrow">¶</a></p>
+<div id="thing-to-component">
+<section id="section-8.1">
+        <h3 id="name-thing-to-component">
+<a href="#section-8.1" class="section-number selfRef">8.1. </a><a href="#name-thing-to-component" class="section-name selfRef">Thing to component</a>
+        </h3>
+<p id="section-8.1-1">In this approach a thing has all possible functions and capabilities of anything imaginable. Moving to component via pruning and refactoring involves recognition of the concept of boundary of a thing and then facet of a boundary, i.e., a surface that can "interface" with the surface of another thing. From facet, we can derive port which is a specific place on the surface where an interface can be formed. The idea of port is fundmental in the essence of a component as it is the place where the component capabilities are accessed.<a href="#section-8.1-1" class="pilcrow">¶</a></p>
+<p id="section-8.1-2">The same essential approach can be used to move from assembly of things being a thing to the more formalised component system pattern.<a href="#section-8.1-2" class="pilcrow">¶</a></p>
+<p id="section-8.1-3">A component can be physical or abstract functional. All components have some active influence on their environment (unlike a specification which is an informational thing and is inherently passive). The generalized abstract functional component is a pruned form of the generalized component. It includes all possible behaviours. It is still too general to apply meaningfully and requires further pruning.<a href="#section-8.1-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="component-to-specific-termination-point">
+<section id="section-8.2">
+        <h3 id="name-component-to-specific-termi">
+<a href="#section-8.2" class="section-number selfRef">8.2. </a><a href="#name-component-to-specific-termi" class="section-name selfRef">Component to specific termination point</a>
+        </h3>
+<p id="section-8.2-1">A termination point as per [RFC8345] is a specific pruned functional component that offers at its ports a defined subset of all possible functions. It does not offer the capability to forward information over great distances but does offer the ability to provide access to a flow of information at a specific place. In other standards [ITU-T G.7711] the LogicalTerminationPoint has roles including in one direction processing an incoming flow determining timing and framing and extracting the content "payload".<a href="#section-8.2-1" class="pilcrow">¶</a></p>
+<p id="section-8.2-2">The termination point is still general and requires refinement to represent what is really feasible and useful in a network deployment context.<a href="#section-8.2-2" class="pilcrow">¶</a></p>
+<p id="section-8.2-3">Up to this point refinement was carried out via pruning and refactoring where each level resulted in an explicit relabelling Thing -&gt; Component -&gt; TerminationPoint. Traditionally, the same orientation of progression was considered as a process of classification where properties were added as opposed to removed and the process continued beyond this point to highly specialised classes.<a href="#section-8.2-3" class="pilcrow">¶</a></p>
+<p id="section-8.2-4">In the approach realized via [RFC8345] and [ITU-T G.7711], further refinement is carried out by augmentation. Here augmentation essentially exposes properties that were already encompassed by the definition of the thing being augmented. It is not an extension, it is an exposure of underlying properties.<a href="#section-8.2-4" class="pilcrow">¶</a></p>
+<p id="section-8.2-5">So a termination point that processes photons is represented via an augmentation of the generalised termination point. Likewise, the termination point that process Ethernet is represented via an equivalent augmentation. Clearly, an augmentation of a termination point with photonic and Ethernet properties is not rational.<a href="#section-8.2-5" class="pilcrow">¶</a></p>
+<p id="section-8.2-6">This is where the specification becomes critical. Each specific realization of a termination point type in software or hardware will be distinct. Just because it is an Ethernet termination point type does not mean it is the same as all other Ethernet termination point types. Of course, there will be many many instances of the type and they will have identical functional capability.<a href="#section-8.2-6" class="pilcrow">¶</a></p>
+<p id="section-8.2-7">Setting out the distinct capabilities of the type is the role of the specification. The specification will be constructed by assembling pruned and refactored specifications of more complete definitions. So, for example, the Ethernet standard may define MEP and MIP capabilities, but the type of termination point may only support MEPs and there may be 7 levels of MEP in the standard, but this termination point type may only support 1 level where the measurements available to the MEP may be limited and a specific measurement constrained in range. All of this detail is available via the specification.<a href="#section-8.2-7" class="pilcrow">¶</a></p>
+<p id="section-8.2-8">Armed with the specification a controller can determine precisely how the termination point can be applied in a solution and the range of opportunities available.<a href="#section-8.2-8" class="pilcrow">¶</a></p>
+<p id="section-8.2-9">Whilst designing a solution, the controller may use a specific type of termination in a restricted form. For example, the Ethernet termination, although capable of supporting a MEP may be required to not provide that capability. The design of the pattern of use of terminations in a system may utilise the same type several times in the pattern where each occurrence in the pattern has a distinct further narrowing of the capability of the type. This is discussed further in Specification of an assembly (add reference to section).<a href="#section-8.2-9" class="pilcrow">¶</a></p>
+<p id="section-8.2-10">Eventually the pattern will be realized in a network. This will first be designed with no real instances in place. This will be represented with further specific narrowed termination point occurrences. Finally, there will be real instances in the network. These can also be considered as occurrences.<a href="#section-8.2-10" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="further-examples">
+<section id="section-8.3">
+        <h3 id="name-further-examples">
+<a href="#section-8.3" class="section-number selfRef">8.3. </a><a href="#name-further-examples" class="section-name selfRef">Further examples</a>
+        </h3>
+<p id="section-8.3-1">-Thing to Component to physical thing to equipment to specific equipment type to use of that equipment to instance of equipment
 -A plug example
-Circle back and relate this more rigorous section to the specification examples.<a href="#section-7-1" class="pilcrow">¶</a></p>
+Circle back and relate this more rigorous section to the specification examples.<a href="#section-8.3-1" class="pilcrow">¶</a></p>
+</section>
+</div>
 </section>
 </div>
 <div id="specification-of-an-assembly">
-<section id="section-8">
+<section id="section-9">
       <h2 id="name-specification-of-an-assembl">
-<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-specification-of-an-assembl" class="section-name selfRef">Specification of an assembly</a>
+<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-specification-of-an-assembl" class="section-name selfRef">Specification of an assembly</a>
       </h2>
-<p id="section-8-1">Build on the examples and the recursive narrowing to explain the subtle narrowings in a system/scheme spec. Describe the essential process.
+<p id="section-9-1">Build on the examples and the recursive pruning and refactoring to explain the subtle narrowings in a system/scheme spec. Describe the essential process.
 Use examples to illustrate the progression:
-- Same examples as recursive narrowing but focus on role and subtle specializations in role
-List other examples.<a href="#section-8-1" class="pilcrow">¶</a></p>
+- Same examples as recursive pruning and refactoring but focus on role and subtle specializations in role
+List other examples.<a href="#section-9-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="generalization-of-the-specification">
-<section id="section-9">
+<section id="section-10">
       <h2 id="name-generalization-of-the-speci">
-<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-generalization-of-the-speci" class="section-name selfRef">Generalization of the specification</a>
+<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-generalization-of-the-speci" class="section-name selfRef">Generalization of the specification</a>
       </h2>
-<p id="section-9-1">Build a specification structure from the examples and show the references and reuses.
+<p id="section-10-1">Build a specification structure from the examples and show the references and reuses.
 Explain how the specification relates to the things in the problem space.
-Lay out the specification structure.<a href="#section-9-1" class="pilcrow">¶</a></p>
+Lay out the specification structure.<a href="#section-10-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="characteristics-of-a-language-of-specification">
-<section id="section-10">
+<section id="section-11">
       <h2 id="name-characteristics-of-a-langua">
-<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-characteristics-of-a-langua" class="section-name selfRef">Characteristics of a language of specification</a>
+<a href="#section-11" class="section-number selfRef">11. </a><a href="#name-characteristics-of-a-langua" class="section-name selfRef">Characteristics of a language of specification</a>
       </h2>
-<p id="section-10-1">The language needs inherent capabilities (as opposed to after the fact bolt-on warts)
+<p id="section-11-1">The language needs inherent capabilities (as opposed to after the fact bolt-on warts)
 Extract key characteristics from above and from mobo
 - narrowing requires specific redefine (relate to pruning)
 - occurrence is an assembly of constrained type and specific values
@@ -1479,92 +1584,92 @@ Extract key characteristics from above and from mobo
 - refactoring, minor specialization and assembly
 - interrelationship and influence
 - uncertainty and preferences
-(Need to review mobo and TR-547 spec, component-system etc.)<a href="#section-10-1" class="pilcrow">¶</a></p>
+(Need to review mobo and TR-547 spec, component-system etc.)<a href="#section-11-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="specification-language-options">
-<section id="section-11">
+<section id="section-12">
       <h2 id="name-specification-language-opti">
-<a href="#section-11" class="section-number selfRef">11. </a><a href="#name-specification-language-opti" class="section-name selfRef">Specification language options</a>
+<a href="#section-12" class="section-number selfRef">12. </a><a href="#name-specification-language-opti" class="section-name selfRef">Specification language options</a>
       </h2>
-<p id="section-11-1">Landscape of languages... does anything do this?
-Take YANG and enhance (as discussed in mobo)<a href="#section-11-1" class="pilcrow">¶</a></p>
+<p id="section-12-1">Landscape of languages... does anything do this?
+Take YANG and enhance (as discussed in mobo)<a href="#section-12-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="building-a-specification-structure">
-<section id="section-12">
+<section id="section-13">
       <h2 id="name-building-a-specification-st">
-<a href="#section-12" class="section-number selfRef">12. </a><a href="#name-building-a-specification-st" class="section-name selfRef">Building a specification structure</a>
+<a href="#section-13" class="section-number selfRef">13. </a><a href="#name-building-a-specification-st" class="section-name selfRef">Building a specification structure</a>
       </h2>
-<p id="section-12-1">Tooling and support to build and interrelate.
+<p id="section-13-1">Tooling and support to build and interrelate.
 Catalogue/library of specs
 Deep application... machine interpretable structure in all standards
-Use of AI to reverse engineer specs with guidance... peer review and testing cycle<a href="#section-12-1" class="pilcrow">¶</a></p>
+Use of AI to reverse engineer specs with guidance... peer review and testing cycle<a href="#section-13-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="a-specification-evolution-example">
-<section id="section-13">
+<section id="section-14">
       <h2 id="name-a-specification-evolution-e">
-<a href="#section-13" class="section-number selfRef">13. </a><a href="#name-a-specification-evolution-e" class="section-name selfRef">A specification evolution example</a>
+<a href="#section-14" class="section-number selfRef">14. </a><a href="#name-a-specification-evolution-e" class="section-name selfRef">A specification evolution example</a>
       </h2>
-<p id="section-13-1">Discuss how a spec may change as understanding emerges and how it may be refactored.<a href="#section-13-1" class="pilcrow">¶</a></p>
+<p id="section-14-1">Discuss how a spec may change as understanding emerges and how it may be refactored.<a href="#section-14-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="a-system-specification-example">
-<section id="section-14">
+<section id="section-15">
       <h2 id="name-a-system-specification-exam">
-<a href="#section-14" class="section-number selfRef">14. </a><a href="#name-a-system-specification-exam" class="section-name selfRef">A system specification example</a>
+<a href="#section-15" class="section-number selfRef">15. </a><a href="#name-a-system-specification-exam" class="section-name selfRef">A system specification example</a>
       </h2>
-<p id="section-14-1">Take the language considerations and set out system specs in a more formal way<a href="#section-14-1" class="pilcrow">¶</a></p>
+<p id="section-15-1">Take the language considerations and set out system specs in a more formal way<a href="#section-15-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="broader-application-of-the-language">
-<section id="section-15">
+<section id="section-16">
       <h2 id="name-broader-application-of-the-">
-<a href="#section-15" class="section-number selfRef">15. </a><a href="#name-broader-application-of-the-" class="section-name selfRef">Broader Application of the Language</a>
+<a href="#section-16" class="section-number selfRef">16. </a><a href="#name-broader-application-of-the-" class="section-name selfRef">Broader Application of the Language</a>
       </h2>
-<p id="section-15-1">Negotiation
+<p id="section-16-1">Negotiation
 Refinement of planning
 Development of standards
-Expression of uncertainty and pattern<a href="#section-15-1" class="pilcrow">¶</a></p>
+Expression of uncertainty and pattern<a href="#section-16-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="conclusion">
-<section id="section-16">
+<section id="section-17">
       <h2 id="name-conclusion">
-<a href="#section-16" class="section-number selfRef">16. </a><a href="#name-conclusion" class="section-name selfRef">Conclusion</a>
+<a href="#section-17" class="section-number selfRef">17. </a><a href="#name-conclusion" class="section-name selfRef">Conclusion</a>
       </h2>
-<p id="section-16-1">Mindset Change
+<p id="section-17-1">Mindset Change
 Language challenges
 Use of AI
-Target is an ecosystem of specs driving agentic components...<a href="#section-16-1" class="pilcrow">¶</a></p>
+Target is an ecosystem of specs driving agentic components...<a href="#section-17-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="security-considerations">
-<section id="section-17">
+<section id="section-18">
       <h2 id="name-security-considerations">
-<a href="#section-17" class="section-number selfRef">17. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+<a href="#section-18" class="section-number selfRef">18. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<p id="section-17-1">TBD<a href="#section-17-1" class="pilcrow">¶</a></p>
+<p id="section-18-1">TBD<a href="#section-18-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
-<section id="section-18">
+<section id="section-19">
       <h2 id="name-iana-considerations">
-<a href="#section-18" class="section-number selfRef">18. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+<a href="#section-19" class="section-number selfRef">19. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
-<p id="section-18-1">This document has no IANA actions.<a href="#section-18-1" class="pilcrow">¶</a></p>
+<p id="section-19-1">This document has no IANA actions.<a href="#section-19-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-combined-references">
-<section id="section-19">
+<section id="section-20">
       <h2 id="name-references">
-<a href="#section-19" class="section-number selfRef">19. </a><a href="#name-references" class="section-name selfRef">References</a>
+<a href="#section-20" class="section-number selfRef">20. </a><a href="#name-references" class="section-name selfRef">References</a>
       </h2>
 <div id="sec-normative-references">
-<section id="section-19.1">
+<section id="section-20.1">
         <h3 id="name-normative-references">
-<a href="#section-19.1" class="section-number selfRef">19.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+<a href="#section-20.1" class="section-number selfRef">20.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
         </h3>
 <dl class="references">
 <dt id="RFC2119">[RFC2119]</dt>
@@ -1579,14 +1684,14 @@ Target is an ecosystem of specs driving agentic components...<a href="#section-1
 </section>
 </div>
 <div id="sec-informative-references">
-<section id="section-19.2">
+<section id="section-20.2">
         <h3 id="name-informative-references">
-<a href="#section-19.2" class="section-number selfRef">19.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+<a href="#section-20.2" class="section-number selfRef">20.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
         </h3>
 <dl class="references">
 <dt id="BaseInventory">[BaseInventory]</dt>
         <dd>
-<span class="refAuthor">Yu, C.</span>, <span class="refAuthor">Belotti, S.</span>, <span class="refAuthor">Bouquier, J.</span>, <span class="refAuthor">Peruzzini, F.</span>, and <span class="refAuthor">P. Bedard</span>, <span class="refTitle">"A Base YANG Data Model for Network Inventory"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ivy-network-inventory-yang-11</span>, <time datetime="2025-10-14" class="refDate">14 October 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-yang-11">https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-yang-11</a>&gt;</span>. </dd>
+<span class="refAuthor">Yu, C.</span>, <span class="refAuthor">Belotti, S.</span>, <span class="refAuthor">Bouquier, J.</span>, <span class="refAuthor">Peruzzini, F.</span>, and <span class="refAuthor">P. Bedard</span>, <span class="refTitle">"A Base YANG Data Model for Network Inventory"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ivy-network-inventory-yang-14</span>, <time datetime="2026-02-05" class="refDate">5 February 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-yang-14">https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-yang-14</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="ITU-T_G.7711">[ITU-T_G.7711]</dt>
         <dd>
