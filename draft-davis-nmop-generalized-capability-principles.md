@@ -1,7 +1,7 @@
 ---
 title: "Generalized Capability Principles"
 abbrev: "GenCapPrinc"
-docname: draft-davis-nmop-generalized-capability-principles-00
+docname: draft-davis-nmop-generalized-capability-principles-01
 category: info
 stand_alone: true
 
