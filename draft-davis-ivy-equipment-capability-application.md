@@ -145,7 +145,7 @@ The following terms abbreviations are used in this document:
 #Introduction
 Physical things have various fundamental properties such as length, temperature, weight. In an assembly of physical things each thing plays various roles in the structure and has to be compatible with the other things in that structure so that it can participate in those roles.
 
-In a telecoms environment, there are many physical things that support the provision of service. For simplicity, in this document a physical thing that is useful for the provision of telecommunication service will be referred to as an equipment. The focus of this document is limited to telecommunications networks and hence equipments for related purposes, but there is no specific limitation to the method that prevent it from being applied more broadly. This restriction is simply to reduce the volume and complexity of the descriptions.
+In a network operations environment, there are many physical things that support the provision of service. For simplicity, in this document a physical thing that is useful for the provision of network service will be referred to as an equipment. The focus of this document is limited to telecommunications networks and hence equipments for related purposes, but there is no specific limitation to the method that prevent it from being applied more broadly. This restriction is simply to reduce the volume and complexity of the descriptions.
 
 The equipments to be represented include boards (circuit packs) and shelves (subracks). In this description an SFP will be considered as a board and hence an equipment. The essential structural model is that a shelf can be placed in a rack, a board in a slot in a shelf and a board (SFP) in a slot in a board.
 
@@ -187,7 +187,7 @@ An equipment supports some specific functionality. Some functions emerge from a 
 The specification of potential emergent functions can be used at various stages of the network lifecycle. The specification of emergent functions allows a purchasing application to determine which particular types of equipment can be acquired and a planning tool to determine how to arrange occurrences of types of equipment in systems and what data to apply to support particular functions prior to the purchase of any equipment.
 
 #Problem Statement
-A telecoms network is realized through an assembly of equipments (such as circuit packs, boards, racks, cables etc.), some passive (not directly powered), some active (directly powered) and some running complex software etc. Each assembly provides some capability that supports the provision of service. Understanding these capabilities in detail and precisely is vital throughout the life of the network.
+A network is realized through an assembly of equipments (such as circuit packs, boards, racks, cables etc.), some passive (not directly powered), some active (directly powered) and some running complex software. Each assembly provides some capability that supports the provision of service. Understanding these capabilities in detail and precisely is vital throughout the life of the network.
 
 Whilst an active equipment with applied data may provide an interface that exposes what is available currently, it rarely indicates what is potentially available and when it does this is usually through an ad-hoc mechanism which only conveys a limited view of capability. Clearly, when the equipment is not powered, it is not possible to interrogate it even for this sparse and basic information. Passive equipments cannot be interrogated.
 
@@ -248,7 +248,7 @@ This recursive narrowing from generic capability to entitled occurrence is achie
 
 A physical component when powered gives rise to functionality and hence that component has the capability to provide that function. The specification of that component describes the functions that it can support. A physical component could support a mechanical function, such as the motor in a fan assembly or a virtual function such as an Ethernet termination point.
 
-In a telecoms context the relevant field replaceable physical components are called equipments. A board in a shelf is an equipment. Equipment assemblies support complex functions and those functions can be assembled to provide yet more complex functions.
+In a network operations context the relevant field replaceable physical components are called equipments. A board in a shelf is an equipment. Equipment assemblies support complex functions and those functions can be assembled to provide yet more complex functions.
 
 Digging below the level of the board the same consideration applies recursively.
 
@@ -260,7 +260,7 @@ Any particular function requires a motive force, i.e., a supply power, and produ
 
 All function are emergent from powered physical components and all physical capabilities are within the scope of the bounday of physical component general definition. Any real physical component is a very narrow form of the full definition. The specification for a physical component provides the constraints to enable an understanding of the physical component.
 
-An equipment is a narrowing of physical component. The telecoms equipment is highly constrained and described by a specification that will focus on fit and emergent functionality. The specification for the equipment will include a type-version identifier and related to that properties on the physical nature of the equipment such as:
+An equipment is a narrowing of physical component. The network equipment is highly constrained and described by a specification that will focus on fit and emergent functionality. The specification for the equipment will include a type-version identifier and related to that properties on the physical nature of the equipment such as:
 
 - physical dimensions including size in terms of fit relative to some installation position scheme as well dimensions in meters, kg etc.
 - temperature/humidity operational range
