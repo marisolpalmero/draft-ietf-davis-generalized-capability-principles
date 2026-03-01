@@ -5,12 +5,12 @@
 IVY WG                                                       N. R. Davis
 Internet-Draft                                                     Ciena
 Intended status: Informational                                C. Cardona
-Expires: 23 April 2026                                               NTT
+Expires: 2 September 2026                                            NTT
                                                                 D. Lopez
                                                               Telefonica
                                                               M. Palmero
                                                              Independent
-                                                         20 October 2025
+                                                            1 March 2026
 
 
                     Equipment Capability Application
@@ -70,11 +70,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 23 April 2026.
+   This Internet-Draft will expire on 2 September 2026.
 
 Copyright Notice
 
-   Copyright (c) 2025 IETF Trust and the persons identified as the
+   Copyright (c) 2026 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -93,17 +93,19 @@ Table of Contents
    3.  Problem Statement
    4.  Specification in terms of the Model
    5.  Some specification examples
-   6.  Recursive narrowing
-   7.  Specification of an assembly
-   8.  Generalization of the specification
-   9.  Using the language of specification
-   10. Building the equipment specification structure
-   11. Conclusion
-   12. Security Considerations
-   13. IANA Considerations
-   14. References
-     14.1.  Normative References
-     14.2.  Informative References
+   6.  Pruning and refactoring achieving recursive narrowing
+   7.  A basic photonic device specification buid up
+   8.  A system arrangements for a protection scheme.
+   9.  Specification of an assembly
+   10. Generalization of the specification
+   11. Using the language of specification
+   12. Building the equipment specification structure
+   13. Conclusion
+   14. Security Considerations
+   15. IANA Considerations
+   16. References
+     16.1.  Normative References
+     16.2.  Informative References
    Appendix A.  Acknowledgments
    Contributors
    Authors' Addresses
@@ -122,7 +124,7 @@ Table of Contents
       "ruler") and in some cases has mass (i.e., can be weighed with
       scales)
 
-   *  SFP: Small Form-factor Pluggable
+   *  SFP: Small Form-factor Pluggable which is a category of Equipment
 
    *  equipment with applied data: A physical item with compatible
       software, firmware, configuration etc.
@@ -151,16 +153,16 @@ Table of Contents
 
    The equipments to be represented include boards (circuit packs) and
    shelves (subracks).  In this description an SFP will be considered as
-   a board.  The essential structural model is that a shelf can be
-   placed in a rack, a board in a slot in a shelf and a board (SFP) in a
-   slot in a board.
+   a board and hence an equipment.  The essential structural model is
+   that a shelf can be placed in a rack, a board in a slot in a shelf
+   and a board (SFP) in a slot in a board.
 
    Whilst this general model says a board can be placed in a slot,
    clearly not all boards can be placed in all slots.  This document
    describes the opportunities in terms of physical capabilities of an
    equipment type-version where all relevant characteristics are the
    same for each instance of that type-version such that the instances
-   can be interchangeable.
+   are interchangeable.
 
    Many equipments can accommodate applied data.  The desired
    functionality is emergent from the combination of that equipment with
@@ -313,9 +315,9 @@ Table of Contents
 
    As automation progresses, machine interpretability of the capability
    information becomes increasingly important.  Whilst AI, especially
-   LLMs, can deal with the variety of human interaction, a more coherent
-   and compact language usage is preferable for efficiency and removal
-   of potential ambiguity.
+   LLMs, can deal with the variety and ambiguity of human languages, a
+   more coherent and compact language usage is preferable for efficiency
+   and removal of potential ambiguity.
 
    This document sets out an approach for expression of capabilities of
    equipment in terms of physical structure, data structure (software
@@ -384,79 +386,204 @@ Table of Contents
        inventory records.
 
    This recursive narrowing from generic capability to entitled
-   occurrence demonstrates how specification refinement is operationally
+   occurrence is achieved through a process of pruning and refactoring
+   and demonstrates how specification refinement is operationally
    realized.
 
-   Note that the use of the physical and functional considerations are
+   A physical component when powered gives rise to functionality and
+   hence that component has the capability to provide that function.
+   The specification of that component describes the functions that it
+   can support.  A physical component could support a mechanical
+   function, such as the motor in a fan assembly or a virtual function
+   such as an Ethernet termination point.
+
+   In a telecoms context the relevant field replaceable physical
+   components are called equipments.  A board in a shelf is an
+   equipment.  Equipment assemblies support complex functions and those
+   functions can be assembled to provide yet more complex functions.
+
+   Digging below the level of the board the same consideration applies
+   recursively.
+
+   A transistor, when in an appropriate circuit supports a switcing
+   function, i.e., the function is supported by a system of
+   interconnected components including the transistor and perhaps
+   resistors etc.  The transistor itself is a small system with a doped
+   channel (a component), a metal terminal (a component) etc.  And this
+   carries on down.  The transistor in circuit does not operate across
+   its entire range.  The specification of capabilities exceeds the
+   needs.  The transistor in circuit performs a switching function in a
+   larger system where this may, through multiple levels of assembly, be
+   a CPU.  The CPU has a large specification of capability.  The
+   capabilities of a specific type of CPU differ from those of other
+   types of CPU.  In a particular application, not all of the
+   capabilities are used.  The appication may be an embedded controller.
+   The embedded controller will have a set of capabilities.  Not all of
+   these will be used in a particular system application.  Etc.
+
+   Note that in that description the functions emerged from combinations
+   of physical things.  The physical and functional considerations are
    recursively intertwined... a bit of physical, emergent function,
-   function assembly, physical assembly thermals etc.
+   function assembly, physical assembly.
 
-   Note: Start with a generalized equipment and a generalized function
-   and sketch the narrowing.
+   Any particular function requires a motive force, i.e., a supply
+   power, and produces heat.  Power required and heat produced are
+   always characteristics of any function.
 
-   An equipment in a physical context considering how it fits and what
-   fits in it...
+   All function are emergent from powered physical components and all
+   physical capabilities are within the scope of the bounday of physical
+   component general definition.  Any real physical component is a very
+   narrow form of the full definition.  The specification for a physical
+   component provides the constraints to enable an understanding of the
+   physical component.
 
-   *  type
+   An equipment is a narrowing of physical component.  The telecoms
+   equipment is highly constrained and described by a specification that
+   will focus on fit and emergent functionality.  The specification for
+   the equipment will include a type-version identifier and related to
+   that properties on the physical nature of the equipment such as:
 
-   *  size
+   *  physical dimensions including size in terms of fit relative to
+      some installation position scheme as well dimensions in meters, kg
+      etc.
 
-   *  thermals
+   *  temperature/humidity operational range
 
-   *  power/thermal
+   *  physical compatibility including connector type (either directly
+      or indirectly)
 
-   *  physical compatibility
+   *  electrical compatibility including voltages
 
-   *  electrical compatibility
+   The specific equipment will give rise to functionality when powered
+   and to do this will require supporting or related functions from
+   other equipments.  The equipment may require some applied data such
+   that a combination of the physical thing an the applied data (config,
+   software).  The specification for the equipment will identify:
 
-   *  diagram or compatibilities from ONF work
+   *  raw functions in terms of general processing
 
-   *  physical assemblies and thermals
-
-   Function emergent from a physical equipment with applied data:
-
-   *  raw functions (use ProcessingConstruct recursion as per ONF)
-
-   *  emergent capabilities and needs
+   *  emergent functional capabilities and needs in terms of more
+      specific functions such as termination point.
 
    *  functional compatibility
 
-   *  power and thermals per functions
+   *  power and thermal considerations per functions
 
-   A system of equipments in an assembly:
+   To provide useful and valuable functions equipments are used in
+   assemblies forming systems of equipments.  The specifications of the
+   individual equipment units will combine to form system specifications
+   where the system is viewed as a component and is defined in terms of:
 
-   *  functional assemblies
+   *  raw functions in terms of general processing
 
-   *  power and thermals per assembly
+   *  emergent functional capabilities and needs
 
-   A system arrangements for a protection scheme.
+   *  functional compatibilities
 
-   A specification for a system arrangement for a service and associated
-   realization pattern specifications.
+   *  power and thermal considerations per functions
 
-6.  Recursive narrowing
+6.  Pruning and refactoring achieving recursive narrowing
+
+   The structure is repeated recursively where at each level, component
+   functions are pruned and refactored then combined into a system with
+   other components that is then viewed as a component yielding a
+   description of emergent functions provided by the component where
+   those are then pruned and refactored then combined etc.
+
+7.  A basic photonic device specification buid up
+
+   To make this easier, the description assumes a single equipment with
+   a full implementation of an amplifier being used in a unidirectional
+   context.  The amplifier is assumed to have an embedded controller
+   that can communicate via a YANG defined interface to a network
+   controller etc.
+
+   The physical equipment has various physical structures present.  None
+   are field replaceable so it can be considered as a simple single
+   unit.
+
+   The equipment has a type and version.  It is equipped with several
+   physical units including several lasers, a length of fiber, a
+   "circulator" and various units of electronics.  It also has a
+   microprocessor and assocuates circuitry and physical connectors along
+   with mounting structures.  Each of these units give rise to
+   functionality that can be defined in isolation or in small systems.
+
+   Some of the physical units have existing specifications.  For example
+   each laser will have a specification detailing its power
+   requirements, its spectrum, its thermal requirements etc.  It may
+   come equipped with a back diode for monitoring power.  It will be
+   installed in a module that has a bias control circuit and monitors.
+   The laser will not be used across its entire range of capability, in
+   fact, being a pump laser it will operate at one very precise point of
+   its operational range.
+
+   The pump lasers will be attached to specific points in the fiber.
+   There may be one at either end coupled in via a coupler.  The reverse
+   laser will be isolated from the fibre by the circulator.
+
+   The detailed specifications will be pruned and refactored through
+   several layers to give rise to the amplifier characteristics such
+   that a component (in some models such as G.7711, this would be
+   represented by a forwarding construct (a connection)) with gain (as
+   opposed to loss) properties with some spectral characteristic.
+
+   It is possible to start at any level in this recursive structure with
+   an abstraction of what lies below without deriving the abstraction
+   fully.  So it would be reasonable to simply state the highest
+   abstraction on a specification identifying gain characteristics etc.
+   BUT in a more advanced solution detailed derivation would enable a
+   greater opportunity for reasoning across the detail to understand
+   failure modes and subtle behaviours.
+
+   It would be optimum to place the power detectors etc. in the detailed
+   model in their precise position with respect to other physical/
+   optical compoents such that the model can be reasoned across to
+   understand implication of an indication on the functionality of the
+   equipment.  However, initially they could be loosely placed at the
+   input or output of the function as a rough projection of their
+   detection position.
+
+   In summary, given the right generalized model, it is possible to
+   build specifications.  This could start with a simple type-version
+   label and grow over time to a reference to some detail that is in
+   terms of labels that further opens up in later developments.  This
+   gradual progression will allow the capability to unfold in value
+   justified steps.
+
+   As the process develops and beds in it is expected that
+   specifications will be developed as equipments and developed and LLMs
+   will assist in that development and refinement.
+
+8.  A system arrangements for a protection scheme.
+
+   From the above it is relatively clear how terminations functions and
+   connections may emerge from underlying hardware and how that can be
+   presented in terms of a specification.  A specification for a system
+   arrangement for a service and associated realization pattern
+   specifications.
 
    This general principle is considered in the context of equipment
    specification.
 
-7.  Specification of an assembly
+9.  Specification of an assembly
 
    Highlighting this general principle in terms of assemblies of
    equipment with applied data and the emergent behaviour that results.
 
-8.  Generalization of the specification
+10.  Generalization of the specification
 
    Showing the reuse of specification fragments.
 
-9.  Using the language of specification
+11.  Using the language of specification
 
    This requires work in the generalized capabilities draft.
 
-10.  Building the equipment specification structure
+12.  Building the equipment specification structure
 
    Take the language and general structure and build specific equipment.
 
-11.  Conclusion
+13.  Conclusion
 
    This document applies the generalized capability principles to the
    specific case of equipment with applied data.  By linking equipment
@@ -470,17 +597,17 @@ Table of Contents
    sustainability-aware network management, and AI-assisted reasoning
    grounded in formally defined capability structures.
 
-12.  Security Considerations
+14.  Security Considerations
 
    TBD
 
-13.  IANA Considerations
+15.  IANA Considerations
 
    This document has no IANA actions.
 
-14.  References
+16.  References
 
-14.1.  Normative References
+16.1.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -491,22 +618,22 @@ Table of Contents
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
 
-14.2.  Informative References
+16.2.  Informative References
 
    [BaseInventory]
               Yu, C., Belotti, S., Bouquier, J., Peruzzini, F., and P.
               Bedard, "A Base YANG Data Model for Network Inventory",
               Work in Progress, Internet-Draft, draft-ietf-ivy-network-
-              inventory-yang-11, 14 October 2025,
+              inventory-yang-14, 5 February 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-ivy-
-              network-inventory-yang-11>.
+              network-inventory-yang-14>.
 
    [EntitlementInventory]
-              Palmero, M. P., Cardona, C., and D. Lopez, "A YANG Module
-              for Entitlement Inventory", Work in Progress, Internet-
-              Draft, draft-ietf-ivy-entitlement-inventory-01, 20 October
-              2025, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              ivy-entitlement-inventory-01>.
+              Palmero, M. P., Cardona, C., Lopez, D., and I. Busi, "A
+              YANG Module for Entitlement Inventory", Work in Progress,
+              Internet-Draft, draft-ietf-ivy-entitlement-inventory-02,
+              27 February 2026, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-ivy-entitlement-inventory-02>.
 
    [GenCapPrin]
               "Generalized Capability Principles", n.d.,
