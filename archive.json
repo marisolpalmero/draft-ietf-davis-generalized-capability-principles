@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-02-26T01:45:32.283625+00:00",
+  "timestamp": "2026-03-01T01:55:36.287985+00:00",
   "repo": "marisolpalmero/draft-ietf-davis-generalized-capability-principles",
   "labels": [
     {
@@ -324,18 +324,26 @@
       "labels": [],
       "body": "Some minor changes to introductory text.\r\nUpdates to definitions.\r\nAdditional clarity using examples etc.\r\nEnhancements to section on LLM.\r\nSome typos corrected",
       "createdAt": "2026-02-23T14:58:21Z",
-      "updatedAt": "2026-02-24T21:28:44Z",
+      "updatedAt": "2026-02-27T13:52:09Z",
       "baseRepository": "marisolpalmero/draft-ietf-davis-generalized-capability-principles",
       "baseRefName": "main",
       "baseRefOid": "4f23bdeff8c6215b787536d7464230975c3ca528",
       "headRepository": "nigel-r-davis/draft-ietf-davis-generalized-capability-principles",
       "headRefName": "main",
-      "headRefOid": "534caf1dd99131b777f7d98e55a7692974d4ae00",
+      "headRefOid": "2ca2a2b757483498b7f45b8050c8f5252fc5858a",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "marisolpalmero",
+          "authorAssociation": "OWNER",
+          "body": "Comments from Diego via email:\r\n* need to dedicate some time to the always enjoyable trailing whitespace chase to make the MD processable >> this has been fixed from previous changes!\r\n* I\u2019d recommend to change the use you make of \u201ctelecom\u201d a few times in the IVY draft into the more IETF-palatable \u201cnetwork\u201d or \u201cnetworking\u201d.\r\n",
+          "createdAt": "2026-02-27T13:51:27Z",
+          "updatedAt": "2026-02-27T13:52:09Z"
+        }
+      ],
       "reviews": []
     }
   ]
