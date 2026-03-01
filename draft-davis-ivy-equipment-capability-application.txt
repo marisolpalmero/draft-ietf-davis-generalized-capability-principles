@@ -141,9 +141,9 @@ Table of Contents
    the other things in that structure so that it can participate in
    those roles.
 
-   In a telecoms environment, there are many physical things that
-   support the provision of service.  For simplicity, in this document a
-   physical thing that is useful for the provision of telecommunication
+   In a network operations environment, there are many physical things
+   that support the provision of service.  For simplicity, in this
+   document a physical thing that is useful for the provision of network
    service will be referred to as an equipment.  The focus of this
    document is limited to telecommunications networks and hence
    equipments for related purposes, but there is no specific limitation
@@ -244,13 +244,12 @@ Table of Contents
 
 3.  Problem Statement
 
-   A telecoms network is realized through an assembly of equipments
-   (such as circuit packs, boards, racks, cables etc.), some passive
-   (not directly powered), some active (directly powered) and some
-   running complex software etc.  Each assembly provides some capability
-   that supports the provision of service.  Understanding these
-   capabilities in detail and precisely is vital throughout the life of
-   the network.
+   A network is realized through an assembly of equipments (such as
+   circuit packs, boards, racks, cables etc.), some passive (not
+   directly powered), some active (directly powered) and some running
+   complex software.  Each assembly provides some capability that
+   supports the provision of service.  Understanding these capabilities
+   in detail and precisely is vital throughout the life of the network.
 
    Whilst an active equipment with applied data may provide an interface
    that exposes what is available currently, it rarely indicates what is
@@ -397,8 +396,8 @@ Table of Contents
    function, such as the motor in a fan assembly or a virtual function
    such as an Ethernet termination point.
 
-   In a telecoms context the relevant field replaceable physical
-   components are called equipments.  A board in a shelf is an
+   In a network operations context the relevant field replaceable
+   physical components are called equipments.  A board in a shelf is an
    equipment.  Equipment assemblies support complex functions and those
    functions can be assembled to provide yet more complex functions.
 
@@ -437,7 +436,7 @@ Table of Contents
    component provides the constraints to enable an understanding of the
    physical component.
 
-   An equipment is a narrowing of physical component.  The telecoms
+   An equipment is a narrowing of physical component.  The network
    equipment is highly constrained and described by a specification that
    will focus on fit and emergent functionality.  The specification for
    the equipment will include a type-version identifier and related to
