@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-03-01T01:55:36.287985+00:00",
+  "timestamp": "2026-03-03T01:49:34.872687+00:00",
   "repo": "marisolpalmero/draft-ietf-davis-generalized-capability-principles",
   "labels": [
     {
@@ -317,24 +317,26 @@
       "id": "PR_kwDOPrz4g87Fq7Ny",
       "title": "Updates to generalized capability principles and ivy spec",
       "url": "https://github.com/marisolpalmero/draft-ietf-davis-generalized-capability-principles/pull/7",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "nigel-r-davis",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Some minor changes to introductory text.\r\nUpdates to definitions.\r\nAdditional clarity using examples etc.\r\nEnhancements to section on LLM.\r\nSome typos corrected",
       "createdAt": "2026-02-23T14:58:21Z",
-      "updatedAt": "2026-02-27T13:52:09Z",
+      "updatedAt": "2026-03-01T20:28:43Z",
       "baseRepository": "marisolpalmero/draft-ietf-davis-generalized-capability-principles",
       "baseRefName": "main",
       "baseRefOid": "4f23bdeff8c6215b787536d7464230975c3ca528",
       "headRepository": "nigel-r-davis/draft-ietf-davis-generalized-capability-principles",
       "headRefName": "main",
       "headRefOid": "2ca2a2b757483498b7f45b8050c8f5252fc5858a",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2026-03-01T20:28:43Z",
+      "mergedAt": "2026-03-01T20:28:43Z",
+      "mergedBy": "marisolpalmero",
+      "mergeCommit": {
+        "oid": "4367562b9317a5d9815136104b95ce6c6085d844"
+      },
       "comments": [
         {
           "author": "marisolpalmero",
