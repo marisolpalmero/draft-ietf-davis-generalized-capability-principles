@@ -72,52 +72,54 @@ normative:
 
 informative:
 
-   BaseInventory: I-D.ietf-ivy-network-inventory-yang
+  RFC9195:
 
-   EntitlementInventory: I-D.ietf-ivy-entitlement-inventory
+  BaseInventory: I-D.ietf-ivy-network-inventory-yang
 
-   ITU-T_G.7711:
+  EntitlementInventory: I-D.ietf-ivy-entitlement-inventory
+
+  ITU-T_G.7711:
               title: "Generic…."
               date: 2022-08-31
               target: https://www.itu.int/rec/T-REC-G.7711/recommendation.asp?lang=en&parent=T-REC-G.7711-202202-I)
 
-   ivy:
+  ivy:
               title: "ivy"
               date: 2022-08-31
               target: https:// 3.pdf
 
-   plug:
+  plug:
               title: "plug"
               date: 2022-08-31
               target: https:// 3.pdf
 
-   mobo:
+  mobo:
               title: "draft-davis-netmod-modelling-boundaries"
               date: 2022-08-31
               target: https:// 3.pdf
 
-   ONF_TR-512:
+  ONF_TR-512:
               title:  "TR-512 Core Information Model (CoreModel) v1.5"
               target: https://opennetworking.org/wp-content/uploads/2021/11/TR-512_v1.5_OnfCoreIm-info.zip
 
-   ONF_TR-512.A.2:
+  ONF_TR-512.A.2:
               title:  "TR-512.A.2 Appendix: Model Structure, Patterns and Architecture"
               target: https://opennetworking.org/wp-content/uploads/2021/11/TR-512_v1.5_OnfCoreIm-info.zip
 
-   ONF_TR-512.8:
+  ONF_TR-512.8:
               title:  "TR-512.8 Control"
               target: https://opennetworking.org/wp-content/uploads/2021/11/TR-512_v1.5_OnfCoreIm-info.zip
 
-   ONF_TR-512.7:
+  ONF_TR-512.7:
               title:  "TR-512.7 Specification"
               target: https://opennetworking.org/wp-content/uploads/2021/11/TR-512_v1.5_OnfCoreIm-info.zip
 
 
-   LF_TAPI:
+  LF_TAPI:
               title:  "Transport API"
               target: https://github.com/Open-Network-Models-and-Interfaces-ONMI/TAPI-Home
 
-   GenCapPrin:
+  GenCapPrin:
               title:  "Generalized Capability Principles"
               target: https://github.com/OpenNetworkingFoundation/TAPI/releases/tag/v2.4.0
 
@@ -189,7 +191,7 @@ The specification of potential emergent functions can be used at various stages 
 #Problem Statement
 A network is realized through an assembly of equipments (such as circuit packs, boards, racks, cables etc.), some passive (not directly powered), some active (directly powered) and some running complex software. Each assembly provides some capability that supports the provision of service. Understanding these capabilities in detail and precisely is vital throughout the life of the network.
 
-Whilst an active equipment with applied data may provide an interface that exposes what is available currently, it rarely indicates what is potentially available and when it does this is usually through an ad-hoc mechanism which only conveys a limited view of capability. Clearly, when the equipment is not powered, it is not possible to interrogate it even for this sparse and basic information. Passive equipments cannot be interrogated.
+Whilst an active equipment with applied data may provide an interface that exposes what is available currently, it rarely indicates what is potentially available and when it does this is usually through an ad-hoc mechanism which only conveys a limited view of capability. Clearly, when the equipment is not powered, it is not possible to interrogate it even for this sparse and basic information. Passive equipments cannot be interrogated. The capability specifications defined by this framework are static and platform-specific; they are a property of the equipment type-version rather than of any running instance. As such, they are well-suited to distribution as YANG instance data [RFC9195], a file format that allows a vendor to publish capability descriptions independently of any deployed device. A planning or procurement tool can thereby access the full capability specification at design time, before any equipment is ordered or powered on.
 
 Manufactures of equipment produce instances of types of equipment where each instance of a type is essentially identical with respect to capabilities within an acceptable and understood tolerance. Any instance of a type of equipment is interchangeable with another instance of the same type. There may also be other compatibilities where different types have the same or a superset capability and hence can be used as alternatives.
 
@@ -212,6 +214,8 @@ It is necessary to understand some aspects of capability of a type of equipment 
 - even when the equipment is fully configured and operational with no errors etc., there may be heartbeat and status capabilities.
 
 Considering the above, it is necessary to have a complete description of capability that is available independent of the presence of equipment etc. This description needs to be rigorous and readily interpretable allowing for comparisons with other equipment types etc. On that basis the capabilities should be described in a normalized language where advantage is taken of recurring patterns etc.
+
+For the stages prior to deployment, speculation, planning, and procurement; capability specifications MAY be made available as YANG instance data [RFC9195], enabling automated tools to reason about equipment capabilities without requiring a live device.  When the equipment is operational, the same specifications MAY be obtained by querying the device's management interface directly.
 
 As automation progresses, machine interpretability of the capability information becomes increasingly important. Whilst AI, especially LLMs, can deal with the variety and ambiguity of human languages, a more coherent and compact language usage is preferable for efficiency and removal of potential ambiguity.
 
@@ -328,7 +332,7 @@ Take the language and general structure and build specific equipment.
 #Conclusion
 This document applies the generalized capability principles to the specific case of equipment with applied data.  By linking equipment capability descriptions to entitlements and inventory items, it creates a complete semantic chain from potential -> permitted -> realized.
 
-This alignment ensures that planning, procurement, licensing, and operational systems can reason coherently about equipment functions and their lifecycle.  The approach enables automation, energy- and sustainability-aware network management, and AI-assisted reasoning grounded in formally defined capability structures.
+This alignment ensures that planning, procurement, licensing, and operational systems can reason coherently about equipment functions and their lifecycle.  The approach enables automation, energy-aware network management, and AI-assisted reasoning grounded in formally defined capability structures. The machine interpretability of the capability information is further enhanced when specifications are packaged as YANG instance data [RFC9195], allowing vendor-supplied capability descriptions to be consumed by planning, procurement, and automation frameworks without requiring a live device to be present or powered.
 
 #Security Considerations
 TBD
