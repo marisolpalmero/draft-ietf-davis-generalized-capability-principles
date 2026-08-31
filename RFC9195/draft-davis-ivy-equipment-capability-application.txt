@@ -1,0 +1,776 @@
+
+
+
+
+IVY WG                                                       N. R. Davis
+Internet-Draft                                                     Ciena
+Intended status: Informational                                C. Cardona
+Expires: 4 March 2027                                                NTT
+                                                                D. Lopez
+                                                              Telefonica
+                                                              M. Palmero
+                                                             Independent
+                                                          31 August 2026
+
+
+                    Equipment Capability Application
+          draft-davis-ivy-equipment-capability-application-01
+
+Abstract
+
+   This document applies the generalized capability principles to the
+   description of equipment (a physical thing) with applied data
+   (configuration state and code (software, firmware etc.)) and shows
+   how such capability specifications integrate with base inventory and
+   entitlement models as defined in Network Inventory, Software
+   Extension and Entitlement YANG models.
+
+   The approach is examined by example, focusing on how the potential
+   capabilities of each equipment type-version with applied data are
+   described, how these map to entitlements (licensed or policy-
+   controlled subsets of capabilities), and how they are instantiated as
+   inventory items.  The explanation covers both the capabilities of
+   equipment in terms of physical properties and the capabilities of
+   equipment with applied data in terms of resultant emergent
+   functionality.
+
+About This Document
+
+   This note is to be removed before publishing as an RFC.
+
+   The latest revision of this draft can be found at
+   https://github.com/marisolpalmero/draft-ietf-davis-generalized-
+   capability-principles/blob/main/draft-davis-ivy-equipment-capability-
+   application-latest.md.  Status information for this document may be
+   found at https://datatracker.ietf.org/doc/draft-davis-ivy-equipment-
+   capability-application/.
+
+   Discussion of this document takes place on the Network Inventory YANG
+   WG Working Group mailing list (mailto:inventory-yang@ietf.org), which
+   is archived at https://mailarchive.ietf.org/arch/browse/inventory-
+   yang/.  Subscribe at https://www.ietf.org/mailman/listinfo/inventory-
+   yang/.
+
+   Source for this draft and an issue tracker can be found at
+   https://github.com/marisolpalmero/draft-ietf-davis-generalized-
+   capability-principles.
+
+Status of This Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at https://datatracker.ietf.org/drafts/current/.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on 4 March 2027.
+
+Copyright Notice
+
+   Copyright (c) 2026 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents (https://trustee.ietf.org/
+   license-info) in effect on the date of publication of this document.
+   Please review these documents carefully, as they describe your rights
+   and restrictions with respect to this document.  Code Components
+   extracted from this document must include Revised BSD License text as
+   described in Section 4.e of the Trust Legal Provisions and are
+   provided without warranty as described in the Revised BSD License.
+
+Table of Contents
+
+   1.  Terminology
+   2.  Introduction
+   3.  Problem Statement
+     3.1.  Availability Independent of Deployment
+       3.1.1.  The Lifecycle Requirement
+       3.1.2.  Type-Version versus Instance
+       3.1.3.  Relationship to the RFC 9196 Capability Advertisement
+               Mechanism
+   4.  Specification in terms of the Model
+   5.  Some specification examples
+   6.  Pruning and refactoring achieving recursive narrowing
+   7.  A basic photonic device specification buid up
+   8.  A system arrangements for a protection scheme.
+   9.  Specification of an assembly
+   10. Generalization of the specification
+   11. Using the language of specification
+   12. Building the equipment specification structure
+   13. Conclusion
+   14. Security Considerations
+   15. IANA Considerations
+   16. References
+     16.1.  Normative References
+     16.2.  Informative References
+   Appendix A.  Acknowledgments
+   Contributors
+   Authors' Addresses
+
+1.  Terminology
+
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in the
+   document are to be interpreted as described in RFC2119}}.
+
+   The following terms abbreviations are used in this document: *
+   equipment: A physical item necessary for a particular purpose. *
+   physical: Has spatial dimensions (i.e., can be measured with a
+   "ruler") and in some cases has mass (i.e., can be weighed with
+   scales). * SFP: Small Form-factor Pluggable which is a category of
+   Equipment. * equipment with applied data: A physical item with
+   compatible software, firmware, configuration etc. * equipment type-
+   version: A reference to a definition of the capabilities of an
+   equipment such that all instances of equipment of that type-version
+   have the same capabilities.
+
+2.  Introduction
+
+   Physical things have various fundamental properties such as length,
+   temperature, weight.  In an assembly of physical things each thing
+   plays various roles in the structure and has to be compatible with
+   the other things in that structure so that it can participate in
+   those roles.
+
+   In a network operations environment, there are many physical things
+   that support the provision of service.  For simplicity, in this
+   document a physical thing that is useful for the provision of network
+   service will be referred to as an equipment.  The focus of this
+   document is limited to telecommunications networks and hence
+   equipments for related purposes, but there is no specific limitation
+   to the method that prevent it from being applied more broadly.  This
+   restriction is simply to reduce the volume and complexity of the
+   descriptions.
+
+   The equipments to be represented include boards (circuit packs) and
+   shelves (subracks).  In this description an SFP will be considered as
+   a board and hence an equipment.  The essential structural model is
+   that a shelf can be placed in a rack, a board in a slot in a shelf
+   and a board (SFP) in a slot in a board.
+
+   Whilst this general model says a board can be placed in a slot,
+   clearly not all boards can be placed in all slots.  This document
+   describes the opportunities in terms of physical capabilities of an
+   equipment type-version where all relevant characteristics are the
+   same for each instance of that type-version such that the instances
+   are interchangeable.
+
+   Many equipments can accommodate applied data.  The desired
+   functionality is emergent from the combination of that equipment with
+   applied data.  The statement of capability covers the equipment with
+   applied data.
+
+   This document is part of a suite that includes:
+
+   *  [GenCapPrin] defines the generalized capability and refinement
+      principles.
+
+   *  [BaseInventory] defines how equipment occurrences are represented
+      in a network inventory.
+
+   *  [EntitlementInventory] defines how capability entitlements and
+      licensed functionality are tracked.
+
+   Together, these drafts describe a continuous trace:
+
+   Capability -> Entitlement -> Inventory -> Realization
+
+                 ┌────────────────────────────┐
+                 │   Base Network Inventory   │
+                 └────────────┬───────────────┘
+                              │
+          ┌───────────────────┼─────────────────────┐
+          │                   │                     │
+          │                   │                     │
+   ┌──────┴─────┐     ┌───────┴───────┐      ┌──────┴─────┐
+   │  Hardware  │     │  Entitlements │      │   Software │
+   └──────┬─────┘     └───────┬───────┘      └──────┬─────┘
+          │                   │                     │
+          │                   │                     │
+          │                   │enables              │
+          │supports    ┌──────V─────────┐   supports│
+          └───────────>│  Capabilities  │<──────────┘
+                       └────────────────┘
+
+   Figure 1: Relationship between Capability, Entitlement, and Inventory
+
+   where:
+
+   *  *Capability* defines what an equipment with applied data _can_ do
+      (its potential);
+
+   *  *Entitlement* defines what an operator _is allowed_ or _enabled_
+      to use; and
+
+   *  *Inventory* records what _actually exists_ and is deployed.
+
+   The goal of this draft is to show, by concrete examples, how the
+   generalized capability framework is specialized for equipment with
+   applied data and how that structure integrates with inventory and
+   entitlement data.
+
+   From a purely physical perspective, whilst the general model says a
+   board can be placed in a slot, clearly not all boards can be placed
+   in all slots.  This document describes the opportunities in terms of
+   physical capabilities of types of equipment.
+
+   A majority of equipment can be configured and can have its behaviour
+   define by software etc.  The capability, in these cases, is emergent
+   from the combination of the physical structure activated by power and
+   shaped by data.  Hence the overall capability specification may be
+   defined by a complex combination of capability specifications.
+
+   An equipment supports some specific functionality.  Some functions
+   emerge from a combination of equipment.  The specification method
+   described here allows the functions that emerge from assemblies of
+   equipment to be described in detail.
+
+   The specification of potential emergent functions can be used at
+   various stages of the network lifecycle.  The specification of
+   emergent functions allows a purchasing application to determine which
+   particular types of equipment can be acquired and a planning tool to
+   determine how to arrange occurrences of types of equipment in systems
+   and what data to apply to support particular functions prior to the
+   purchase of any equipment.
+
+3.  Problem Statement
+
+   A network is realized through an assembly of equipments (such as
+   circuit packs, boards, racks, cables etc.), some passive (not
+   directly powered), some active (directly powered) and some running
+   complex software.  Each assembly provides some capability that
+   supports the provision of service.  Understanding these capabilities
+   in detail and precisely is vital throughout the life of the network.
+
+3.1.  Availability Independent of Deployment
+
+   Whilst an active equipment with applied data may provide an interface
+   that exposes what is available currently, it rarely indicates what is
+   potentially available and when it does this is usually through an ad-
+   hoc mechanism which only conveys a limited view of capability.
+   Clearly, when the equipment is not powered, it is not possible to
+   interrogate it even for this sparse and basic information.  Passive
+   equipments cannot be interrogated.  The capability specifications
+   defined by this framework are static and platform-specific; they are
+   a property of the equipment type-version rather than of any running
+   instance.  As such, they are well-suited to distribution as YANG
+   instance data [RFC9195], a file format that allows a vendor to
+   publish capability descriptions independently of any deployed device.
+   A planning or procurement tool can thereby access the full capability
+   specification at design time, before any equipment is ordered or
+   powered on.
+
+   Manufactures of equipment produce instances of types of equipment
+   where each instance of a type is essentially identical with respect
+   to capabilities within an acceptable and understood tolerance.  Any
+   instance of a type of equipment is interchangeable with another
+   instance of the same type.  There may also be other compatibilities
+   where different types have the same or a superset capability and
+   hence can be used as alternatives.
+
+   In practice, managing equipment capabilities in isolation is
+   insufficient.  Each capability must be tied to:
+
+   *  an _entitlement_ indicating whether it is licensed or permitted
+      for use, and
+
+   *  an _inventory record_ that anchors the capability to a deployed
+      occurrence.
+
+   This tri-layer relationship enables operators to reason about what
+   equipment types exist, what functions they can theoretically perform,
+   what data needs to be applied to cause these functions to be
+   performed, what has been purchased or activated, and what is
+   currently deployed or configured.
+
+   Without such linkage, automation frameworks cannot determine whether
+   a planned configuration is feasible, legally licensed, or available
+   in the installed base.
+
+3.1.1.  The Lifecycle Requirement
+
+   It is necessary to understand some aspects of capability of a type of
+   equipment with applied data at all stages of the lifecycle:
+
+   *  whilst speculation about services to be provided prior to network
+      design and researching potential network capabilities
+
+   *  when planning network structure
+
+   *  prior to purchasing, when choosing particular equipment types,
+      software etc. for a specific purpose where there are alternatives
+
+   *  when planning future deployment of equipments, software etc.
+
+   *  when the equipment is installed and services are being designed
+
+   *  even when the equipment is fully configured and operational with
+      no errors etc., there may be heartbeat and status capabilities.
+
+3.1.2.  Type-Version versus Instance
+
+   Considering the above, it is necessary to have a complete description
+   of capability that is available independent of the presence of
+   equipment etc.  This description needs to be rigorous and readily
+   interpretable allowing for comparisons with other equipment types
+   etc.  On that basis the capabilities should be described in a
+   normalized language where advantage is taken of recurring patterns
+   etc.
+
+   As automation progresses, machine interpretability of the capability
+   information becomes increasingly important.  Whilst AI, especially
+   LLMs, can deal with the variety and ambiguity of human languages, a
+   more coherent and compact language usage is preferable for efficiency
+   and removal of potential ambiguity.
+
+   This document sets out an approach for expression of capabilities of
+   equipment in terms of physical structure, data structure (software
+   etc.) and emergent functionality.
+
+   Whilst knowing the YANG model for the equipment is beneficial, it is
+   not sufficient.  The YANG model essentially provides a space within
+   which actual state and configuration can be expresses.  The YANG
+   model tends to not express equipment type based constraints.  Whilst
+   specifying the combinatorial effects of interacting equipments and
+   software in YANG is potentially possible, the mechanisms available
+   are not designed for this purpose and the results would probably be a
+   large set of special models with extremely cumbersome/complex
+   definitions that would be distinct from the interface model that is
+   necessarily open and broad.
+
+3.1.3.  Relationship to the RFC 9196 Capability Advertisement Mechanism
+
+   [RFC9196] defines ietf-system-capabilities, a standard YANG container
+   with an open per-node-capabilities augmentation point and a dual-mode
+   delivery model: the same schema is used whether capability data is
+   queried from a live device at runtime via NETCONF [RFC6241] or
+   RESTCONF [RFC8040], or consumed from a vendor-supplied file before
+   deployment via YANG instance data [RFC9195].
+
+   [RFC9196] defines *how* to advertise capabilities: the container, the
+   query path, and the delivery format.  It is domain-agnostic and
+   carries no definition of what a capability is, how capabilities
+   compose hierarchically, how entitlements constrain their use, or how
+   functional dependencies relate them.
+
+   This framework defines *what* flows through that mechanism: the
+   semantic language, composition rules, entitlement model, and
+   lifecycle scope of equipment capability specifications.  The two are
+   complementary and non-overlapping:
+
+   *  This framework is the semantic language and composition rules: the
+      content.
+
+   *  [RFC9196] is the delivery container and query mechanism: the pipe.
+
+   *  [RFC9195] is the pre-deployment file delivery format: the envelop.
+
+   This framework is intentionally independent of the delivery
+   mechanism.  The same capability specification can be queried from a
+   live device or shipped as a vendor-supplied file without any change
+   to its content or structure.
+
+4.  Specification in terms of the Model
+
+   The specification of capability of equipment with applied data should
+   be presented in terms of the _generalized capability model_ from
+   [GenCapPrin] and explicitly mapped to the inventory and entitlement
+   contexts.
+
+   The relationships between these elements can be summarized as:
+
+    +=============+========================+==========================+
+    | Concept     | Defined In             | Represents               |
+    +=============+========================+==========================+
+    | Capability  | [GenCapPrin], this     | The potential functions  |
+    | Spec        | draft                  | and limits of an         |
+    |             |                        | equipment type           |
+    +-------------+------------------------+--------------------------+
+    | Entitlement | [EntitlementInventory] | The subset of            |
+    |             |                        | capabilities permitted   |
+    |             |                        | or licensed              |
+    +-------------+------------------------+--------------------------+
+    | Inventory   | [BaseInventory]        | The actual occurrence of |
+    | Item        |                        | an entitled capability   |
+    |             |                        | in the network           |
+    +-------------+------------------------+--------------------------+
+
+                                  Table 1
+
+   This linkage ensures that refinement and occurrence formation have a
+   tangible operational anchor in network management systems.
+
+5.  Some specification examples
+
+   This section illustrates how equipment capability specifications
+   connect to entitlement and inventory concepts.
+
+   Example covering an Optical Transponder:
+
+   1.  *Generic capability*: an abstract optical transponder supporting
+       multiple modulation formats up to 800 G.
+
+   2.  *Equipment capability specification*: a vendor-specific model
+       constrained to 400 G operation, defining port, thermal, and power
+       envelopes.
+
+   3.  *Entitlement*: a software license enabling the 400 G feature set;
+       represented via the entitlement model.
+
+   4.  *Inventory occurrence*: a deployed device instance that has the
+       entitlement applied and exposes its active capabilities through
+       inventory records.
+
+   This recursive narrowing from generic capability to entitled
+   occurrence is achieved through a process of pruning and refactoring
+   and demonstrates how specification refinement is operationally
+   realized.
+
+   A physical component when powered gives rise to functionality and
+   hence that component has the capability to provide that function.
+   The specification of that component describes the functions that it
+   can support.  A physical component could support a mechanical
+   function, such as the motor in a fan assembly or a virtual function
+   such as an Ethernet termination point.
+
+   In a network operations context the relevant field replaceable
+   physical components are called equipments.  A board in a shelf is an
+   equipment.  Equipment assemblies support complex functions and those
+   functions can be assembled to provide yet more complex functions.
+
+   Digging below the level of the board the same consideration applies
+   recursively.
+
+   A transistor, when in an appropriate circuit supports a switcing
+   function, i.e., the function is supported by a system of
+   interconnected components including the transistor and perhaps
+   resistors etc.  The transistor itself is a small system with a doped
+   channel (a component), a metal terminal (a component) etc.  And this
+   carries on down.  The transistor in circuit does not operate across
+   its entire range.  The specification of capabilities exceeds the
+   needs.  The transistor in circuit performs a switching function in a
+   larger system where this may, through multiple levels of assembly, be
+   a CPU.  The CPU has a large specification of capability.  The
+   capabilities of a specific type of CPU differ from those of other
+   types of CPU.  In a particular application, not all of the
+   capabilities are used.  The appication may be an embedded controller.
+   The embedded controller will have a set of capabilities.  Not all of
+   these will be used in a particular system application.  Etc.
+
+   Note that in that description the functions emerged from combinations
+   of physical things.  The physical and functional considerations are
+   recursively intertwined... a bit of physical, emergent function,
+   function assembly, physical assembly.
+
+   Any particular function requires a motive force, i.e., a supply
+   power, and produces heat.  Power required and heat produced are
+   always characteristics of any function.
+
+   All function are emergent from powered physical components and all
+   physical capabilities are within the scope of the bounday of physical
+   component general definition.  Any real physical component is a very
+   narrow form of the full definition.  The specification for a physical
+   component provides the constraints to enable an understanding of the
+   physical component.
+
+   An equipment is a narrowing of physical component.  The network
+   equipment is highly constrained and described by a specification that
+   will focus on fit and emergent functionality.  The specification for
+   the equipment will include a type-version identifier and related to
+   that properties on the physical nature of the equipment such as:
+
+   *  physical dimensions including size in terms of fit relative to
+      some installation position scheme as well dimensions in meters, kg
+      etc.
+
+   *  temperature/humidity operational range
+
+   *  physical compatibility including connector type (either directly
+      or indirectly)
+
+   *  electrical compatibility including voltages
+
+   The specific equipment will give rise to functionality when powered
+   and to do this will require supporting or related functions from
+   other equipments.  The equipment may require some applied data such
+   that a combination of the physical thing an the applied data (config,
+   software).  The specification for the equipment will identify:
+
+   *  raw functions in terms of general processing
+
+   *  emergent functional capabilities and needs in terms of more
+      specific functions such as termination point.
+
+   *  functional compatibility
+
+   *  power and thermal considerations per functions
+
+   To provide useful and valuable functions equipments are used in
+   assemblies forming systems of equipments.  The specifications of the
+   individual equipment units will combine to form system specifications
+   where the system is viewed as a component and is defined in terms of:
+
+   *  raw functions in terms of general processing
+
+   *  emergent functional capabilities and needs
+
+   *  functional compatibilities
+
+   *  power and thermal considerations per functions
+
+6.  Pruning and refactoring achieving recursive narrowing
+
+   The structure is repeated recursively where at each level, component
+   functions are pruned and refactored then combined into a system with
+   other components that is then viewed as a component yielding a
+   description of emergent functions provided by the component where
+   those are then pruned and refactored then combined etc.
+
+7.  A basic photonic device specification buid up
+
+   To make this easier, the description assumes a single equipment with
+   a full implementation of an amplifier being used in a unidirectional
+   context.  The amplifier is assumed to have an embedded controller
+   that can communicate via a YANG defined interface to a network
+   controller etc.
+
+   The physical equipment has various physical structures present.  None
+   are field replaceable so it can be considered as a simple single
+   unit.
+
+   The equipment has a type and version.  It is equipped with several
+   physical units including several lasers, a length of fiber, a
+   "circulator" and various units of electronics.  It also has a
+   microprocessor and assocuates circuitry and physical connectors along
+   with mounting structures.  Each of these units give rise to
+   functionality that can be defined in isolation or in small systems.
+
+   Some of the physical units have existing specifications.  For example
+   each laser will have a specification detailing its power
+   requirements, its spectrum, its thermal requirements etc.  It may
+   come equipped with a back diode for monitoring power.  It will be
+   installed in a module that has a bias control circuit and monitors.
+   The laser will not be used across its entire range of capability, in
+   fact, being a pump laser it will operate at one very precise point of
+   its operational range.
+
+   The pump lasers will be attached to specific points in the fiber.
+   There may be one at either end coupled in via a coupler.  The reverse
+   laser will be isolated from the fibre by the circulator.
+
+   The detailed specifications will be pruned and refactored through
+   several layers to give rise to the amplifier characteristics such
+   that a component (in some models such as G.7711, this would be
+   represented by a forwarding construct (a connection)) with gain (as
+   opposed to loss) properties with some spectral characteristic.
+
+   It is possible to start at any level in this recursive structure with
+   an abstraction of what lies below without deriving the abstraction
+   fully.  So it would be reasonable to simply state the highest
+   abstraction on a specification identifying gain characteristics etc.
+   BUT in a more advanced solution detailed derivation would enable a
+   greater opportunity for reasoning across the detail to understand
+   failure modes and subtle behaviours.
+
+   It would be optimum to place the power detectors etc. in the detailed
+   model in their precise position with respect to other physical/
+   optical compoents such that the model can be reasoned across to
+   understand implication of an indication on the functionality of the
+   equipment.  However, initially they could be loosely placed at the
+   input or output of the function as a rough projection of their
+   detection position.
+
+   In summary, given the right generalized model, it is possible to
+   build specifications.  This could start with a simple type-version
+   label and grow over time to a reference to some detail that is in
+   terms of labels that further opens up in later developments.  This
+   gradual progression will allow the capability to unfold in value
+   justified steps.
+
+   As the process develops and beds in it is expected that
+   specifications will be developed as equipments and developed and LLMs
+   will assist in that development and refinement.
+
+8.  A system arrangements for a protection scheme.
+
+   From the above it is relatively clear how terminations functions and
+   connections may emerge from underlying hardware and how that can be
+   presented in terms of a specification.  A specification for a system
+   arrangement for a service and associated realization pattern
+   specifications.
+
+   This general principle is considered in the context of equipment
+   specification.
+
+9.  Specification of an assembly
+
+   Highlighting this general principle in terms of assemblies of
+   equipment with applied data and the emergent behaviour that results.
+
+10.  Generalization of the specification
+
+   Showing the reuse of specification fragments.
+
+11.  Using the language of specification
+
+   This requires work in the generalized capabilities draft.
+
+12.  Building the equipment specification structure
+
+   Take the language and general structure and build specific equipment.
+
+13.  Conclusion
+
+   This document applies the generalized capability principles to the
+   specific case of equipment with applied data.  By linking equipment
+   capability descriptions to entitlements and inventory items, it
+   creates a complete semantic chain from potential -> permitted ->
+   realized.
+
+   This alignment ensures that planning, procurement, licensing, and
+   operational systems can reason coherently about equipment functions
+   and their lifecycle.  The approach enables automation, energy-aware
+   network management, and AI-assisted reasoning grounded in formally
+   defined capability structures.  The machine interpretability of the
+   capability information is further enhanced when specifications are
+   packaged as YANG instance data [RFC9195], allowing vendor-supplied
+   capability descriptions to be consumed by planning, procurement, and
+   automation frameworks without requiring a live device to be present
+   or powered.
+
+14.  Security Considerations
+
+   TBD
+
+15.  IANA Considerations
+
+   This document has no IANA actions.
+
+16.  References
+
+16.1.  Normative References
+
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119,
+              DOI 10.17487/RFC2119, March 1997,
+              <https://www.rfc-editor.org/rfc/rfc2119>.
+
+   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
+              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
+              May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
+
+16.2.  Informative References
+
+   [BaseInventory]
+              Yu, C., Belotti, S., Bouquier, J., Peruzzini, F., and P.
+              Bedard, "A Base YANG Data Model for Network Inventory",
+              Work in Progress, Internet-Draft, draft-ietf-ivy-network-
+              inventory-yang-18, 27 May 2026,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-ivy-
+              network-inventory-yang-18>.
+
+   [EntitlementInventory]
+              Palmero, M. P., Cardona, C., Lopez, D., and I. Busi, "A
+              YANG Module for Entitlement Inventory", Work in Progress,
+              Internet-Draft, draft-ietf-ivy-entitlement-inventory-04,
+              25 June 2026, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-ivy-entitlement-inventory-04>.
+
+   [GenCapPrin]
+              "Generalized Capability Principles", n.d.,
+              <https://github.com/OpenNetworkingFoundation/TAPI/
+              releases/tag/v2.4.0>.
+
+   [ITU-T_G.7711]
+              "Generic….", 31 August 2022, <https://www.itu.int/rec/T-
+              REC-G.7711/recommendation.asp?lang=en&parent=T-REC-
+              G.7711-202202-I)>.
+
+   [ivy]      "ivy", 31 August 2022, <https:// 3.pdf>.
+
+   [LF_TAPI]  "Transport API", n.d., <https://github.com/Open-Network-
+              Models-and-Interfaces-ONMI/TAPI-Home>.
+
+   [mobo]     "draft-davis-netmod-modelling-boundaries", 31 August 2022,
+              <https:// 3.pdf>.
+
+   [ONF_TR-512]
+              "TR-512 Core Information Model (CoreModel) v1.5", n.d.,
+              <https://opennetworking.org/wp-content/uploads/2021/11/TR-
+              512_v1.5_OnfCoreIm-info.zip>.
+
+   [ONF_TR-512.7]
+              "TR-512.7 Specification", n.d.,
+              <https://opennetworking.org/wp-content/uploads/2021/11/TR-
+              512_v1.5_OnfCoreIm-info.zip>.
+
+   [ONF_TR-512.8]
+              "TR-512.8 Control", n.d., <https://opennetworking.org/wp-
+              content/uploads/2021/11/TR-512_v1.5_OnfCoreIm-info.zip>.
+
+   [ONF_TR-512.A.2]
+              "TR-512.A.2 Appendix: Model Structure, Patterns and
+              Architecture", n.d., <https://opennetworking.org/wp-
+              content/uploads/2021/11/TR-512_v1.5_OnfCoreIm-info.zip>.
+
+   [plug]     "plug", 31 August 2022, <https:// 3.pdf>.
+
+   [RFC6241]  Enns, R., Ed., Bjorklund, M., Ed., Schoenwaelder, J., Ed.,
+              and A. Bierman, Ed., "Network Configuration Protocol
+              (NETCONF)", RFC 6241, DOI 10.17487/RFC6241, June 2011,
+              <https://www.rfc-editor.org/rfc/rfc6241>.
+
+   [RFC8040]  Bierman, A., Bjorklund, M., and K. Watsen, "RESTCONF
+              Protocol", RFC 8040, DOI 10.17487/RFC8040, January 2017,
+              <https://www.rfc-editor.org/rfc/rfc8040>.
+
+   [RFC9195]  Lengyel, B. and B. Claise, "A File Format for YANG
+              Instance Data", RFC 9195, DOI 10.17487/RFC9195, February
+              2022, <https://www.rfc-editor.org/rfc/rfc9195>.
+
+   [RFC9196]  Lengyel, B., Clemm, A., and B. Claise, "YANG Modules
+              Describing Capabilities for Systems and Datastore Update
+              Notifications", RFC 9196, DOI 10.17487/RFC9196, February
+              2022, <https://www.rfc-editor.org/rfc/rfc9196>.
+
+Appendix A.  Acknowledgments
+
+   This document has been made with consensus and contributions coming
+   from multiple drafts with different visions.  We would like to thank
+   all the participants in the IETF meeting discussions.
+
+Contributors
+
+   Nigel Davis
+   Ciena
+   Email: ndavis@ciena.com
+
+
+Authors' Addresses
+
+   Nigel Robert Davis
+   Ciena
+   Email: ndavis@ciena.com
+
+
+   Camilo Cardona
+   NTT
+   Email: camilo@gin.ntt.net
+
+
+   Diego Lopez
+   Telefonica
+   Email: diego.r.lopez@telefonica.com
+
+
+   Marisol Palmero
+   Independent
+   Email: marisol.ietf@gmail.com
