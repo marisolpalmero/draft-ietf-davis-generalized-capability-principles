@@ -135,19 +135,18 @@ The approach is examined by example, focusing on how the potential capabilities 
 --- middle
 
 # Terminology
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT"
-"SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in the
-document are to be interpreted as described in RFC2119}}.
+
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in the document are to be interpreted as described in RFC2119}}.
 
 The following terms abbreviations are used in this document:
-
 * equipment: A physical item necessary for a particular purpose.
-* physical: Has spatial dimensions (i.e., can be measured with a "ruler") and in some cases has mass (i.e., can be weighed with scales)
-* SFP: Small Form-factor Pluggable which is a category of Equipment
+* physical: Has spatial dimensions (i.e., can be measured with a "ruler") and in some cases has mass (i.e., can be weighed with scales).
+* SFP: Small Form-factor Pluggable which is a category of Equipment.
 * equipment with applied data: A physical item with compatible software, firmware, configuration etc.
 * equipment type-version: A reference to a definition of the capabilities of an equipment such that all instances of equipment of that type-version have the same capabilities.
 
 # Introduction
+
 Physical things have various fundamental properties such as length, temperature, weight. In an assembly of physical things each thing plays various roles in the structure and has to be compatible with the other things in that structure so that it can participate in those roles.
 
 In a network operations environment, there are many physical things that support the provision of service. For simplicity, in this document a physical thing that is useful for the provision of network service will be referred to as an equipment. The focus of this document is limited to telecommunications networks and hence equipments for related purposes, but there is no specific limitation to the method that prevent it from being applied more broadly. This restriction is simply to reduce the volume and complexity of the descriptions.
