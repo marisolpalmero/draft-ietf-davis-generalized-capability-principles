@@ -74,6 +74,8 @@ informative:
 
   RFC9195:
   RFC9196:
+  RFC6241:
+  RFC8040:
 
   BaseInventory: I-D.ietf-ivy-network-inventory-yang
 
