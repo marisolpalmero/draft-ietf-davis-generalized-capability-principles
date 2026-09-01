@@ -5,12 +5,12 @@
 IVY WG                                                       N. R. Davis
 Internet-Draft                                                     Ciena
 Intended status: Informational                                C. Cardona
-Expires: 4 March 2027                                                NTT
+Expires: 5 March 2027                                                NTT
                                                                 D. Lopez
                                                               Telefonica
                                                               M. Palmero
                                                              Independent
-                                                          31 August 2026
+                                                        1 September 2026
 
 
                     Equipment Capability Application
@@ -70,7 +70,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 March 2027.
+   This Internet-Draft will expire on 5 March 2027.
 
 Copyright Notice
 

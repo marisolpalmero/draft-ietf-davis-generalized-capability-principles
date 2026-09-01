@@ -11,6 +11,7 @@
 <meta content="Marisol Palmero" name="author">
 <meta content="
        This document introduces a framework for capability modeling based on the specification and refinement principles established in ITU-T G.7711 Annex G (also previously published as ONF TR‑512.7. See latest G.7711 release) and the modeling boundaries work documented in  draft-davis-netmod-modelling-boundaries . The framework defines how component–system capabilities can be explicitly described and refined via a process of pruning, refactoring, and occurrence formation. 
+       This draft version additionally incorporates a sketch of an occurrence-semantics kernel. This kernel is presented here as a continuation of the refinement and occurrence-formation principles already introduced in the previous version, not as a retrospective reinterpretation of them. 
        These capability definitions can target detailed operational considerations, system interactions, licensing, abstract product declarations, or sales and marketing. The framework supports modular, layered, and fractal declarations of networked behavior, and provides a foundation for a suite of future IETF drafts aligned with ongoing work on photonic plug manifests, entitlement/licensing, IVY equipment modeling, energy/thermal considerations and related domains. 
     " name="description">
 <meta content="xml2rfc 3.34.0" name="generator">
@@ -1051,11 +1052,11 @@ svg {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">GenCapPrinc</td>
-<td class="right">August 2026</td>
+<td class="right">September 2026</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Davis, et al.</td>
-<td class="center">Expires 4 March 2027</td>
+<td class="center">Expires 5 March 2027</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1068,12 +1069,12 @@ svg {
 <dd class="internet-draft">draft-davis-nmop-generalized-capability-principles-01</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-08-31" class="published">31 August 2026</time>
+<time datetime="2026-09-01" class="published">1 September 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2027-03-04">4 March 2027</time></dd>
+<dd class="expires"><time datetime="2027-03-05">5 March 2027</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1099,7 +1100,8 @@ svg {
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
 <p id="section-abstract-1">This document introduces a framework for capability modeling based on the specification and refinement principles established in ITU-T G.7711 Annex G (also previously published as ONF TR‑512.7. See latest G.7711 release) and the modeling boundaries work documented in <code>draft-davis-netmod-modelling-boundaries</code>. The framework defines how component–system capabilities can be explicitly described and refined via a process of pruning, refactoring, and occurrence formation.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
-<p id="section-abstract-2">These capability definitions can target detailed operational considerations, system interactions, licensing, abstract product declarations, or sales and marketing. The framework supports modular, layered, and fractal declarations of networked behavior, and provides a foundation for a suite of future IETF drafts aligned with ongoing work on photonic plug manifests, entitlement/licensing, IVY equipment modeling, energy/thermal considerations and related domains.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
+<p id="section-abstract-2">This draft version additionally incorporates a sketch of an occurrence-semantics kernel. This kernel is presented here as a continuation of the refinement and occurrence-formation principles already introduced in the previous version, not as a retrospective reinterpretation of them.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
+<p id="section-abstract-3">These capability definitions can target detailed operational considerations, system interactions, licensing, abstract product declarations, or sales and marketing. The framework supports modular, layered, and fractal declarations of networked behavior, and provides a foundation for a suite of future IETF drafts aligned with ongoing work on photonic plug manifests, entitlement/licensing, IVY equipment modeling, energy/thermal considerations and related domains.<a href="#section-abstract-3" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
       <h2 id="name-about-this-document">
@@ -1136,7 +1138,7 @@ svg {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 4 March 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 5 March 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1179,6 +1181,14 @@ svg {
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
             <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-generalized-modeling-via-co" class="internal xref">Generalized Modeling via Component–System–Specification Refinement</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1">
+                <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="auto internal xref">5.1</a>.  <a href="#name-structural-view-occurrences" class="internal xref">Structural View: Occurrences as a Hyperedge Fabric</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2">
+                <p id="section-toc.1-1.5.2.2.1"><a href="#section-5.2" class="auto internal xref">5.2</a>.  <a href="#name-semantic-relationships-as-o" class="internal xref">Semantic Relationships as Occurrences</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
             <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-specifications-and-llms" class="internal xref">Specifications and LLMs</a></p>
@@ -1188,6 +1198,26 @@ svg {
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.1">
                 <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="auto internal xref">7.1</a>.  <a href="#name-a-temperature-sensor" class="internal xref">A temperature sensor</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.2">
+                <p id="section-toc.1-1.7.2.2.1"><a href="#section-7.2" class="auto internal xref">7.2</a>.  <a href="#name-worked-extension-a-where-ru" class="internal xref">Worked extension: a where rule and its projections</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.3">
+                <p id="section-toc.1-1.7.2.3.1"><a href="#section-7.3" class="auto internal xref">7.3</a>.  <a href="#name-occurrence-semantics-opport" class="internal xref">Occurrence Semantics: Opportunity Regions and Merge</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.3.2.1">
+                    <p id="section-toc.1-1.7.2.3.2.1.1"><a href="#section-7.3.1" class="auto internal xref">7.3.1</a>.  <a href="#name-opportunity-regions" class="internal xref">Opportunity regions</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.3.2.2">
+                    <p id="section-toc.1-1.7.2.3.2.2.1"><a href="#section-7.3.2" class="auto internal xref">7.3.2</a>.  <a href="#name-semantic-states-void-valid-" class="internal xref">Semantic states: void, valid, never</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.3.2.3">
+                    <p id="section-toc.1-1.7.2.3.2.3.1"><a href="#section-7.3.3" class="auto internal xref">7.3.3</a>.  <a href="#name-conjunctive-merge" class="internal xref">Conjunctive merge</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.3.2.4">
+                    <p id="section-toc.1-1.7.2.3.2.4.1"><a href="#section-7.3.4" class="auto internal xref">7.3.4</a>.  <a href="#name-alternatives-ranges-negatio" class="internal xref">Alternatives, ranges, negation and exclusions</a></p>
+</li>
+                </ul>
 </li>
             </ul>
 </li>
@@ -1203,16 +1233,85 @@ svg {
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.3">
                 <p id="section-toc.1-1.8.2.3.1"><a href="#section-8.3" class="auto internal xref">8.3</a>.  <a href="#name-further-examples" class="internal xref">Further examples</a></p>
 </li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.4">
+                <p id="section-toc.1-1.8.2.4.1"><a href="#section-8.4" class="auto internal xref">8.4</a>.  <a href="#name-cross-occurrence-rules-pref" class="internal xref">Cross-Occurrence Rules, Preferences and Contradiction</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.4.2.1">
+                    <p id="section-toc.1-1.8.2.4.2.1.1"><a href="#section-8.4.1" class="auto internal xref">8.4.1</a>.  <a href="#name-where-hard-cross-occurrence" class="internal xref">where: hard cross-occurrence constraints</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.4.2.2">
+                    <p id="section-toc.1-1.8.2.4.2.2.1"><a href="#section-8.4.2" class="auto internal xref">8.4.2</a>.  <a href="#name-prefer-ranking-without-elim" class="internal xref">prefer: ranking without elimination</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.4.2.3">
+                    <p id="section-toc.1-1.8.2.4.2.3.1"><a href="#section-8.4.3" class="auto internal xref">8.4.3</a>.  <a href="#name-regional-contradiction-and-" class="internal xref">Regional contradiction and localisation</a></p>
+</li>
+                </ul>
+</li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
             <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-specification-of-an-assembl" class="internal xref">Specification of an assembly</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1">
+                <p id="section-toc.1-1.9.2.1.1"><a href="#section-9.1" class="auto internal xref">9.1</a>.  <a href="#name-an-assembly-as-a-fabric-of-" class="internal xref">An assembly as a fabric of narrowed occurrences</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2">
+                <p id="section-toc.1-1.9.2.2.1"><a href="#section-9.2" class="auto internal xref">9.2</a>.  <a href="#name-role-and-subtle-specializat" class="internal xref">Role and subtle specialization within an assembly</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.3">
+                <p id="section-toc.1-1.9.2.3.1"><a href="#section-9.3" class="auto internal xref">9.3</a>.  <a href="#name-cross-occurrence-constraint" class="internal xref">Cross-occurrence constraints within the assembly</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.4">
+                <p id="section-toc.1-1.9.2.4.1"><a href="#section-9.4" class="auto internal xref">9.4</a>.  <a href="#name-progression-from-designed-p" class="internal xref">Progression from designed pattern to realised network</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.5">
+                <p id="section-toc.1-1.9.2.5.1"><a href="#section-9.5" class="auto internal xref">9.5</a>.  <a href="#name-active-pruning-and-the-refi" class="internal xref">Active Pruning and the Refinement/Pruning/Refactoring/Mapping Distinction</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.5.2.1">
+                    <p id="section-toc.1-1.9.2.5.2.1.1"><a href="#section-9.5.1" class="auto internal xref">9.5.1</a>.  <a href="#name-void-as-an-active-operation" class="internal xref">void as an active operation</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.5.2.2">
+                    <p id="section-toc.1-1.9.2.5.2.2.1"><a href="#section-9.5.2" class="auto internal xref">9.5.2</a>.  <a href="#name-source-pruning-versus-resul" class="internal xref">Source pruning versus result pruning</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.5.2.3">
+                    <p id="section-toc.1-1.9.2.5.2.3.1"><a href="#section-9.5.3" class="auto internal xref">9.5.3</a>.  <a href="#name-refinement-pruning-refactor" class="internal xref">Refinement, pruning, refactoring and mapping as distinct operations</a></p>
+</li>
+                </ul>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
             <p id="section-toc.1-1.10.1"><a href="#section-10" class="auto internal xref">10</a>. <a href="#name-generalization-of-the-speci" class="internal xref">Generalization of the specification</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.1">
+                <p id="section-toc.1-1.10.2.1.1"><a href="#section-10.1" class="auto internal xref">10.1</a>.  <a href="#name-a-specification-as-a-bounde" class="internal xref">A specification as a bounded reference to be reused</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.2">
+                <p id="section-toc.1-1.10.2.2.1"><a href="#section-10.2" class="auto internal xref">10.2</a>.  <a href="#name-reference-and-reuse-relatin" class="internal xref">Reference and reuse: relating specifications to each other</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.3">
+                <p id="section-toc.1-1.10.2.3.1"><a href="#section-10.3" class="auto internal xref">10.3</a>.  <a href="#name-relating-the-specification-" class="internal xref">Relating the specification structure to the five conflated concerns</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.4">
+                <p id="section-toc.1-1.10.2.4.1"><a href="#section-10.4" class="auto internal xref">10.4</a>.  <a href="#name-completeness-exactness-and-" class="internal xref">Completeness, Exactness and Role-Qualified Identity</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.4.2.1">
+                    <p id="section-toc.1-1.10.2.4.2.1.1"><a href="#section-10.4.1" class="auto internal xref">10.4.1</a>.  <a href="#name-complete-and-omission" class="internal xref">complete and omission</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.4.2.2">
+                    <p id="section-toc.1-1.10.2.4.2.2.1"><a href="#section-10.4.2" class="auto internal xref">10.4.2</a>.  <a href="#name-exactness-completeness-and-" class="internal xref">Exactness, completeness and concreteness are independent</a></p>
+</li>
+                </ul>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
             <p id="section-toc.1-1.11.1"><a href="#section-11" class="auto internal xref">11</a>. <a href="#name-characteristics-of-a-langua" class="internal xref">Characteristics of a language of specification</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11.2.1">
+                <p id="section-toc.1-1.11.2.1.1"><a href="#section-11.1" class="auto internal xref">11.1</a>.  <a href="#name-namespace-qualified-identit" class="internal xref">Namespace-Qualified Identity</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
             <p id="section-toc.1-1.12.1"><a href="#section-12" class="auto internal xref">12</a>. <a href="#name-specification-language-opti" class="internal xref">Specification language options</a></p>
@@ -1228,52 +1327,71 @@ svg {
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.16">
             <p id="section-toc.1-1.16.1"><a href="#section-16" class="auto internal xref">16</a>. <a href="#name-broader-application-of-the-" class="internal xref">Broader Application of the Language</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.16.2.1">
+                <p id="section-toc.1-1.16.2.1.1"><a href="#section-16.1" class="auto internal xref">16.1</a>.  <a href="#name-rules-as-occurrences-and-pr" class="internal xref">Rules as Occurrences and Provenance</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.17">
-            <p id="section-toc.1-1.17.1"><a href="#section-17" class="auto internal xref">17</a>. <a href="#name-conclusion" class="internal xref">Conclusion</a></p>
+            <p id="section-toc.1-1.17.1"><a href="#section-17" class="auto internal xref">17</a>. <a href="#name-compact-surface-form" class="internal xref">Compact surface form</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.17.2.1">
+                <p id="section-toc.1-1.17.2.1.1"><a href="#section-17.1" class="auto internal xref">17.1</a>.  <a href="#name-projection-equivalences" class="internal xref">Projection Equivalences</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.18">
-            <p id="section-toc.1-1.18.1"><a href="#section-18" class="auto internal xref">18</a>. <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
+            <p id="section-toc.1-1.18.1"><a href="#section-18" class="auto internal xref">18</a>. <a href="#name-continued-definition-below-" class="internal xref">Continued Definition Below a Precise Occurrence</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.19">
-            <p id="section-toc.1-1.19.1"><a href="#section-19" class="auto internal xref">19</a>. <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
+            <p id="section-toc.1-1.19.1"><a href="#section-19" class="auto internal xref">19</a>. <a href="#name-conclusion" class="internal xref">Conclusion</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.20">
-            <p id="section-toc.1-1.20.1"><a href="#section-20" class="auto internal xref">20</a>. <a href="#name-references" class="internal xref">References</a></p>
-<ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.20.2.1">
-                <p id="section-toc.1-1.20.2.1.1"><a href="#section-20.1" class="auto internal xref">20.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.20.2.2">
-                <p id="section-toc.1-1.20.2.2.1"><a href="#section-20.2" class="auto internal xref">20.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
-</li>
-            </ul>
+            <p id="section-toc.1-1.20.1"><a href="#section-20" class="auto internal xref">20</a>. <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.21">
-            <p id="section-toc.1-1.21.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-appendix-a-interpretive-not" class="internal xref">Appendix A: Interpretive Notes on Refinement and Occurrence</a></p>
+            <p id="section-toc.1-1.21.1"><a href="#section-21" class="auto internal xref">21</a>. <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.22">
+            <p id="section-toc.1-1.22.1"><a href="#section-22" class="auto internal xref">22</a>. <a href="#name-references" class="internal xref">References</a></p>
 <ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.21.2.1">
-                <p id="section-toc.1-1.21.2.1.1"><a href="#appendix-A.1" class="auto internal xref">A.1</a>.  <a href="#name-a1-no-single-refinement-pat" class="internal xref">A.1 No Single Refinement Path</a></p>
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.22.2.1">
+                <p id="section-toc.1-1.22.2.1.1"><a href="#section-22.1" class="auto internal xref">22.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
 </li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.21.2.2">
-                <p id="section-toc.1-1.21.2.2.1"><a href="#appendix-A.2" class="auto internal xref">A.2</a>.  <a href="#name-a2-occurrence-at-every-laye" class="internal xref">A.2 Occurrence at Every Layer</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.21.2.3">
-                <p id="section-toc.1-1.21.2.3.1"><a href="#appendix-A.3" class="auto internal xref">A.3</a>.  <a href="#name-a3-sweating-out-the-shape" class="internal xref">A.3 Sweating Out the Shape</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.21.2.4">
-                <p id="section-toc.1-1.21.2.4.1"><a href="#appendix-A.4" class="auto internal xref">A.4</a>.  <a href="#name-a4-classification-considere" class="internal xref">A.4 Classification Considered Harmful</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.22.2.2">
+                <p id="section-toc.1-1.22.2.2.1"><a href="#section-22.2" class="auto internal xref">22.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
 </li>
             </ul>
 </li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.22">
-            <p id="section-toc.1-1.22.1"><a href="#appendix-B" class="auto internal xref">Appendix B</a>.  <a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
-</li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.23">
-            <p id="section-toc.1-1.23.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-contributors" class="internal xref">Contributors</a></p>
+            <p id="section-toc.1-1.23.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-appendix-a-interpretive-not" class="internal xref">Appendix A: Interpretive Notes on Refinement and Occurrence</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.23.2.1">
+                <p id="section-toc.1-1.23.2.1.1"><a href="#appendix-A.1" class="auto internal xref">A.1</a>.  <a href="#name-a1-no-single-refinement-pat" class="internal xref">A.1 No Single Refinement Path</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.23.2.2">
+                <p id="section-toc.1-1.23.2.2.1"><a href="#appendix-A.2" class="auto internal xref">A.2</a>.  <a href="#name-a2-occurrence-at-every-laye" class="internal xref">A.2 Occurrence at Every Layer</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.23.2.3">
+                <p id="section-toc.1-1.23.2.3.1"><a href="#appendix-A.3" class="auto internal xref">A.3</a>.  <a href="#name-a3-sweating-out-the-shape" class="internal xref">A.3 Sweating Out the Shape</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.23.2.4">
+                <p id="section-toc.1-1.23.2.4.1"><a href="#appendix-A.4" class="auto internal xref">A.4</a>.  <a href="#name-a4-classification-considere" class="internal xref">A.4 Classification Considered Harmful</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.23.2.5">
+                <p id="section-toc.1-1.23.2.5.1"><a href="#appendix-A.5" class="auto internal xref">A.5</a>.  <a href="#name-a5-structure-and-semantics-" class="internal xref">A.5. Structure and Semantics Are Separable</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.24">
-            <p id="section-toc.1-1.24.1"><a href="#appendix-D" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
+            <p id="section-toc.1-1.24.1"><a href="#appendix-B" class="auto internal xref">Appendix B</a>.  <a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.25">
+            <p id="section-toc.1-1.25.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-contributors" class="internal xref">Contributors</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.26">
+            <p id="section-toc.1-1.26.1"><a href="#appendix-D" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
 </li>
         </ul>
 </nav>
@@ -1308,13 +1426,13 @@ document are to be interpreted as described in RFC2119}}.<a href="#section-1-1" 
           <p id="section-1-3.6.1">component: A thing defined by a boundary where the internal structure within that boundary is not directly visible but is apparently visible through the behaviour exposed at that boundary<a href="#section-1-3.6.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-1-3.7">
-          <p id="section-1-3.7.1">port: A place on the boundary of a component where interaction with that component is possible<a href="#section-1-3.7.1" class="pilcrow">¶</a></p>
+          <p id="section-1-3.7.1">port: A place on the boundary of a component where interaction with that component is possible. Any occurrence may expose ports, where a port is a place on the boundary of an occurrence where interaction with that occurrence is possible.<a href="#section-1-3.7.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-1-3.8">
           <p id="section-1-3.8.1">component-system: A pattern that expresses each item as a component where components can be assembled into systems and where a system can be represented as a component where that assembly may be of real things or may be abstractions of the effect of real things.<a href="#section-1-3.8.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-1-3.9">
-          <p id="section-1-3.9.1">occurrence: A thing, the specification of which is a purposeful refinement partially constraining the definition of a broader thing, where a thing is a component, a specification etc.<a href="#section-1-3.9.1" class="pilcrow">¶</a></p>
+          <p id="section-1-3.9.1">occurrence: A thing, the specification of which is a purposeful refinement partially constraining the definition of a broader thing, where a thing is a component, a specification, rules, mappings etc.<a href="#section-1-3.9.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-1-3.10">
           <p id="section-1-3.10.1">pruning: A process of narrowing of definition by reduction of capabilities<a href="#section-1-3.10.1" class="pilcrow">¶</a></p>
@@ -1326,6 +1444,20 @@ document are to be interpreted as described in RFC2119}}.<a href="#section-1-1" 
           <p id="section-1-3.12.1">pruning &amp; refactoring: The process that supports intentional progression of refinement from one level of structure of occurrences (e.g., system of components) to the next more specific level of structure of occurrences<a href="#section-1-3.12.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
+<p id="section-1-4">The following additional terms are used in this version:
+* point: Emergent when two compatible ports join. A point is not itself a separate semantic node or vertex, it is simply the recognition of two ports joined.
+* hyperedge fabric: The interconnected collection of occurrence-hyperedges, viewed structurally with occurrence semantics suppressed, e.g., the structural arrangement of components in a system ignoring their function.
+* system (structural reading): The same hyperedge fabric as above, viewed with the semantics carried by its occurrence-hyperedges exposed. This aligns with, and does not replace, the existing component-system definition above.
+* opportunity region: The set, region or family of opportunities permitted by an occurrence definition, written [[A]] for occurrence A.
+* void: A semantic state denoting neutral absence of a surviving contribution for a property, relationship or rule occurrence at a given stage; void merge X = X.
+* never: A semantic state denoting that the accumulated hard semantic definition is unsatisfiable; absorbing under merge until explicitly reset or pruned to void.
+* merge: Conjunctive combination of two occurrences' opportunity regions: A merge B denotes intersection([[A]], [[B]]).
+* refines: A refines B iff [[A]] is a subset of [[B]].
+* complete: A boundary-scoped operator that changes omission semantics: inherited properties not stated locally at a complete boundary are actively pruned to void. This removes the need to enumerate all possible semantics to be eliminated. It does not prevent semantics from being added back in later.
+* where rule: A hard, conjunctive cross-occurrence constraint; removes opportunities that do not satisfy it and can force a region to never.
+* prefer rule: A ranking over opportunities that remain legal after all hard contributions have been applied; never makes an otherwise legal opportunity illegal.
+* provenance: The recorded source and derivation path of a contribution, rule or pruning decision, preserved through merge without altering the algebraic result.
+* qualified identity: A stable namespace plus local name used to determine when two contributions resolve to the same property, relationship or rule for the purposes of automatic combination.<a href="#section-1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="introduction">
@@ -1336,7 +1468,7 @@ document are to be interpreted as described in RFC2119}}.<a href="#section-1-1" 
 <p id="section-2-1">Currently, capabilities are mainly described loosely in human readable text, where that text is often incomplete, ambiguous or inconsistent. While people make these systems work in practice, the looseness result in errors, inefficiencies and limited reuse.
 As automation increases, there is a growing need to enable machine reasoning about the capabilities of network systems and components. While Large Language Models (LLMs) can interpret traditional documentation, there remains a strong need for greater formal rigor and structured representation to improve efficiency and precision. When asked, LLMs indicate that a rigorous model is preferable to loose ambiguous text.
 Existing IETF models predominantly focus on configuration, operational state, and telemetry. What is missing is a cohesive framework for expressing what a system <em>can</em> do, i.e., its capabilities, in a declarative, structured, and reusable form.
-This document introduces the principles for a capability modeling framework grounded in the specification concept established in <span>[<a href="#ITU-T_G.7711" class="cite xref">ITU-T_G.7711</a>]</span> ([ONF_TR‑512]). It applies these principles through the lens of the <strong>component–system pattern</strong> from <span>[<a href="#ONF_TR-512.A.2" class="cite xref">ONF_TR-512.A.2</a>]</span>, using the concept of <strong>emergence through recursive narrowing, refactoring and occurrence formation</strong>. These ideas are extended further by the modeling boundary principles described in <span>[<a href="#mobo" class="cite xref">mobo</a>]</span>.
+This document introduces the principles for a capability modeling framework grounded in the specification concept established in <span>[<a href="#ITU-T_G.7711" class="cite xref">ITU-T_G.7711</a>]</span> ([ONF_TR‑512]). It applies these principles through the lens of the <strong>component–system pattern</strong> from <span>[<a href="#ONF_TR-512.A.2" class="cite xref">ONF_TR-512.A.2</a>]</span>, using the concept of <strong>emergence through recursive narrowing, refactoring and occurrence formation</strong>. These ideas are extended further by the modeling boundary principles described in <span>[<a href="#mobo" class="cite xref">mobo</a>]</span>. They are extended further still by an explicit occurrence-semantics kernel sketch, which when complete will supply a formal algebra for combining, ranking and detecting contradiction among capability contributions, and a structural model in which occurrences relate through port-joining (emergent points) rather than informal assembly alone.
 The result is a standardized and extensible approach for expressing features, operational constraints, internal dependencies, etc. - separately from instance realizations.
 This approach supports capability modeling for any aspect of the controlled networking solution, and is designed to enable capability assembly, dynamic composition, licensing control, and integration with other IETF frameworks such as IVY equipment, photonic plug manifests, and entitlement interfaces. It also supports initiatives focussing on energy/thermal considerations where specific detailed capabilities and their power/thermal implications become critical considerations.<a href="#section-2-1" class="pilcrow">¶</a></p>
 </section>
@@ -1359,16 +1491,22 @@ Without a clear structural separation and with the sparseness of information on 
 - <strong>Ambiguity</strong> between what a model element <em>is</em> versus what a system <em>can support</em>.
 - <strong>Redundancy</strong> and inconsistency in the representation of common constraints (e.g., port types, layering, resource limits).
 - <strong>Tooling difficulty</strong> when extracting interoperable subsets of large models or generating technology-specific profiles.
-- <strong>Incompatibility</strong> between modular subsystems or plug-ins that must declare and verify their supported features.
+- <strong>Incompatibility</strong> between modular subsystems or plug-ins that must declare and verify their supported features.<a href="#section-3-1" class="pilcrow">¶</a></p>
+<p id="section-3-2">A sixth concern compounds the first five even where they are addressed structurally: even a well-separated capability definition is of limited use to automation without an explicit, composable algebra for combining contributions from multiple sources, ranking competing opportunities, and detecting contradiction. In the absence of such an algebra, tools fall back to ad hoc, source-order-dependent combination — effectively re-introducing the chaos this document otherwise removes, one layer up.
 Furthermore, current models tend to assume a fixed taxonomy of types and features, rather than supporting a process of recursive refinement. This limits their ability to express how complex capabilities <em>emerge</em> through constraint, composition, and modular pruning of more general-purpose constructs.
 What is needed is a modeling framework that:
 - Allows systems and components to be described in terms of their <strong>capability boundaries</strong>, including <strong>capability interactions</strong> separate from operational state,
 - Supports <strong>refinement via pruning and refactoring to yield flexible structural transformation</strong> rather than rigid inheritance or classification,
 - Enables <strong>recursive occurrence formation</strong>, where each level of pruning and refactoring produces a usable semantic structure,
 - Accommodates <strong>multiple valid refinement paths</strong>, supporting different levels of granularity and domain specificity,
-- Provides a <strong>coherent trace</strong> from abstract capability declarations down to deployable or licensable configurations.
-This draft introduces such a framework by building on the refinement logic of <span>[<a href="#ITU-T_G.7711" class="cite xref">ITU-T_G.7711</a>]</span>  (<span>[<a href="#ONF_TR-512" class="cite xref">ONF_TR-512</a>]</span>) in general and especially the <strong>specification pattern</strong> structures of ITU-T G.7711 Annex G (ONF TR‑512.7) which provides a means of expressing bounded capability envelopes through a formal refinement of generic model elements. This also provides grounding in the recursive occurrence model informed by the component–system pattern <span>[<a href="#ITU-T_G.7711" class="cite xref">ITU-T_G.7711</a>]</span>  (<span>[<a href="#ONF_TR-512.A.2" class="cite xref">ONF_TR-512.A.2</a>]</span> and modeling boundaries approach <span>[<a href="#mobo" class="cite xref">mobo</a>]</span>. This document leverages the foundations laid by <span>[<a href="#ITU-T_G.7711" class="cite xref">ITU-T_G.7711</a>]</span>  (<span>[<a href="#ONF_TR-512" class="cite xref">ONF_TR-512</a>]</span>).<a href="#section-3-1" class="pilcrow">¶</a></p>
-<p id="section-3-2">The same expression challenges appear in statements of intent. The process of formulating intent through negotiation and resultant gradual refinement has a similar feel to the degrees of pruning and refactoring of the specification.<a href="#section-3-2" class="pilcrow">¶</a></p>
+- Provides a <strong>coherent trace</strong> from abstract capability declarations down to deployable or licensable configurations.<a href="#section-3-2" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3-3.1">
+          <p id="section-3-3.1.1">Provides a sketch of an explicit, composable algebra for combining, ranking and detecting contradiction among capability contributions drawn from multiple sources, so that the trace above remains sound under merge rather than only under a single author's intent.
+This draft introduces such a framework by building on the refinement logic of <span>[<a href="#ITU-T_G.7711" class="cite xref">ITU-T_G.7711</a>]</span>  (<span>[<a href="#ONF_TR-512" class="cite xref">ONF_TR-512</a>]</span>) in general and especially the <strong>specification pattern</strong> structures of ITU-T G.7711 Annex G (ONF TR‑512.7) which provides a means of expressing bounded capability envelopes through a formal refinement of generic model elements. This also provides grounding in the recursive occurrence model informed by the component–system pattern <span>[<a href="#ITU-T_G.7711" class="cite xref">ITU-T_G.7711</a>]</span>  (<span>[<a href="#ONF_TR-512.A.2" class="cite xref">ONF_TR-512.A.2</a>]</span> and modeling boundaries approach <span>[<a href="#mobo" class="cite xref">mobo</a>]</span>. This document leverages the foundations laid by <span>[<a href="#ITU-T_G.7711" class="cite xref">ITU-T_G.7711</a>]</span>  (<span>[<a href="#ONF_TR-512" class="cite xref">ONF_TR-512</a>]</span>).<a href="#section-3-3.1.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="section-3-4">The same expression challenges appear in statements of intent. The process of formulating intent through negotiation and resultant gradual refinement has a similar feel to the degrees of pruning and refactoring of the specification.<a href="#section-3-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="specification-in-terms-of-the-model">
@@ -1407,6 +1545,9 @@ This draft introduces such a framework by building on the refinement logic of <s
         <li class="normal" id="section-4-4.9">
           <p id="section-4-4.9.1">Omission: Gaps and missing parts<a href="#section-4-4.9.1" class="pilcrow">¶</a></p>
 </li>
+        <li class="normal" id="section-4-4.10">
+          <p id="section-4-4.10.1">Role: Whether a given value in the model is desired, specified, committed, claimed, observed or realised. Exactness of a value is orthogonal to this dimension: a singleton value states no role by itself, and the appropriate model for a given purpose must make clear which role is being characterised.<a href="#section-4-4.10.1" class="pilcrow">¶</a></p>
+</li>
       </ul>
 </section>
 </div>
@@ -1441,6 +1582,27 @@ The specification of an occurrence is itself a system spec.<a href="#section-5-5
 <p id="section-5-11">In this ideal environment, the specification would fully capture all non-failure case behaviours of a component (and potentially some common failure cases) and the component would be designed internally to "guarantee" these behaviours (it would be engineered with appropriate control structures that would bound its behaviour). These specifications, although abstractions would often be highly complex (consider the specification of a CPU for example), but would be less overwhelming in detail and stated in terms of intentional behaviour as opposed to behaviour of the parts. The specification is a statement of the effects of the assembly of detailed parts (see definition of component).<a href="#section-5-11" class="pilcrow">¶</a></p>
 <p id="section-5-12">The specification of capability provides a stabilising layer reducing the reasoning required to build a solution as a result of not having to assess the full detail of behaviour of all assemblies to the finest detail. The specification of capability will have a unique identifier that anchors the definition and allows it to be accessed. This reflects the same principle that gives rise to labels in a taxonomy, where the label recalls the abstract definition removing the need to understand the effect of the parts from first principles.<a href="#section-5-12" class="pilcrow">¶</a></p>
 <p id="section-5-13">Today's solution at best have a coded form of the semantic interpretation that may not reflect the formal definition due to inaccuracies of interpretation. Many semantics are reduced to inconsistent labels that a user has to interpret. Whilst an LLM can do a reasonable job at interpretation of chaotic data, it will benefit a rigorous model traceable through formal definitions to fundamentals.<a href="#section-5-13" class="pilcrow">¶</a></p>
+<div id="structural-view-occurrences-as-a-hyperedge-fabric">
+<section id="section-5.1">
+        <h3 id="name-structural-view-occurrences">
+<a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-structural-view-occurrences" class="section-name selfRef">Structural View: Occurrences as a Hyperedge Fabric</a>
+        </h3>
+<p id="section-5.1-1">The component–system pattern above describes assembly informally: components have ports, and components combine into systems. This subsection gives that pattern a formal structural counterpart, without displacing the informal description above.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
+<p id="section-5.1-2">Every modelled semantic thing in this structural view is an occurrence. Structurally, an occurrence is hyperedge-like in that it can engage with multiple other hyperedges (unlike an edge which only has two places of engagement). The occurrence exposes ports that may join with compatible ports of other occurrences, and each joined pair of ports forms a point. The point is simply a recognition that two ports are joined. It is not itself a separate semantic node or vertex, and no meaning beyond “these two ports are joined” is smuggled into it. A port can only join with one other port. The port may have direction and role with respect to the internals of the occurrence. Where multiple ports are to be associated there is necessarily additional semantics requiring a further hyperedge occurrence where each port to be associated is joined with a single dedicated port on this new additional hyperedge.<a href="#section-5.1-2" class="pilcrow">¶</a></p>
+<p id="section-5.1-3">The interconnected collection of occurrence-hyperedges is a hyperedge fabric: the structural projection, with occurrence semantics suppressed. When the semantics carried by those occurrence-hyperedges are exposed, the same fabric is a system. A system is therefore not a separate object layered on top of the fabric; it is the same fabric viewed with meaning restored. A selected system may itself participate externally as one occurrence at the next boundary — which is the formal counterpart of “a system can be represented as a component” in the component-system definition of Section 1.<a href="#section-5.1-3" class="pilcrow">¶</a></p>
+<p id="section-5.1-4">This model does not require a primitive node or vertex category. A point is the incidence locus conceptually emergent by the joining of two ports, not an independently semantic vertex. Correspondingly, this document does not adopt classification-style typed nodes as a foundation.<a href="#section-5.1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="semantic-relationships-as-occurrences">
+<section id="section-5.2">
+        <h3 id="name-semantic-relationships-as-o">
+<a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-semantic-relationships-as-o" class="section-name selfRef">Semantic Relationships as Occurrences</a>
+        </h3>
+<p id="section-5.2-1">A simple relationship, in the structural view of Section 5.1, is exhausted by port joining: two compatible ports meet (and form a conceptual point). As described in 5.1, anything more is semantic. A dependency, containment relation, adaptation, specification relation, flow relation, precedence relation, or other complex relationship among components, systems or specifications is therefore represented as an occurrence with its own ports. It then joins to the participating occurrences and becomes another hyperedge in the same fabric.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
+<p id="section-5.2-2">This removes the need for a special semantic-edge or relationship ontology separate from occurrence. An apparently binary or n-ary relationship among the components, ports and specifications already defined in Section 1 and Section 5 is simply an occurrence whose semantics state the participant roles and conditions, with one or more ports providing its structural incidence to those participants.<a href="#section-5.2-2" class="pilcrow">¶</a></p>
+<p id="section-5.2-3">Applied to the terminology already introduced: the specification relation between a specification (Section 1) and the component or system it constrains is one such relationship-occurrence. Where that constraining relationship carries semantics of its own — for example, that it is a licensing constraint rather than a physical one — those semantics are stated in the occurrence representing the relationship (relationship-occurrence) itself, not left implicit in an unlabelled point.<a href="#section-5.2-3" class="pilcrow">¶</a></p>
+</section>
+</div>
 </section>
 </div>
 <div id="specifications-and-llms">
@@ -1468,6 +1630,7 @@ The specification of an occurrence is itself a system spec.<a href="#section-5-5
           <p id="section-6-4.5.1">etc.<a href="#section-6-4.5.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
+<p id="section-6-5">The occurrence-semantics kernel introduced from Section 5.1 onward gives this reasoning a decidable substrate rather than a heuristic one. Where an LLM previously had to infer, from prose alone, whether two specification contributions were compatible, redundant or contradictory, it can instead evaluate merge over their opportunity regions directly: a non-empty intersection is a valid combination, an empty intersection is never, and an unconstrained property is void rather than silently absent. Ranking among remaining legal opportunities is likewise separated — as prefer rather than as an implicit tie-break — so that an LLM's proposed simplifications or enhancements can be checked against an explicit rule set instead of re-derived from context each time (Section 8a).<a href="#section-6-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="some-specification-examples">
@@ -1495,6 +1658,80 @@ The specification of an occurrence is itself a system spec.<a href="#section-5-5
 <p id="section-7.1-12">The specification model will be generalized such that the details provided can be used in any relevant application. It will not describe detailed per instance cases. Hence the specification will be used in conjunction with the actual instance arrangement to allow understanding of any reading in context.<a href="#section-7.1-12" class="pilcrow">¶</a></p>
 <p id="section-7.1-13">Traditionally, with ad-hoc formatting and variable accuracy of definitions etc., only a well experienced SME would have a chance of determining the relevance of a detected value.<a href="#section-7.1-13" class="pilcrow">¶</a></p>
 <p id="section-7.1-14">In a modern and future solutions we can do and have to do better. The intention is that the specification approach using the generalised specification definition structure set out in this document will provide a basis for LLM assisted specification generation and interpretation.<a href="#section-7.1-14" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="worked-extension-a-where-rule-and-its-projections">
+<section id="section-7.2">
+        <h3 id="name-worked-extension-a-where-ru">
+<a href="#section-7.2" class="section-number selfRef">7.2. </a><a href="#name-worked-extension-a-where-ru" class="section-name selfRef">Worked extension: a where rule and its projections</a>
+        </h3>
+<p id="section-7.2-1">The operational-range consideration above can be stated as an explicit cross-occurrence rule rather than left as prose.<a href="#section-7.2-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="occurrence-semantics-opportunity-regions-and-merge">
+<section id="section-7.3">
+        <h3 id="name-occurrence-semantics-opport">
+<a href="#section-7.3" class="section-number selfRef">7.3. </a><a href="#name-occurrence-semantics-opport" class="section-name selfRef">Occurrence Semantics: Opportunity Regions and Merge</a>
+        </h3>
+<p id="section-7.3-1">Sections 5 through 8 describe pruning, refactoring and specification informally, in terms of what a component or system can or cannot support. This section gives that description a formal, composable algebra, carried over from the occurrence-semantics kernel.<a href="#section-7.3-1" class="pilcrow">¶</a></p>
+<div id="opportunity-regions">
+<section id="section-7.3.1">
+          <h4 id="name-opportunity-regions">
+<a href="#section-7.3.1" class="section-number selfRef">7.3.1. </a><a href="#name-opportunity-regions" class="section-name selfRef">Opportunity regions</a>
+          </h4>
+<p id="section-7.3.1-1">An occurrence definition denotes the set, region or family of opportunities that satisfy it — its opportunity region, written [[A]] for occurrence A. A scalar exact value denotes a singleton region. A range, pattern, object shape, semantic relationship occurrence, fabric arrangement or explicit alternative denotes a wider region.<a href="#section-7.3.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="semantic-states-void-valid-never">
+<section id="section-7.3.2">
+          <h4 id="name-semantic-states-void-valid-">
+<a href="#section-7.3.2" class="section-number selfRef">7.3.2. </a><a href="#name-semantic-states-void-valid-" class="section-name selfRef">Semantic states: void, valid, never</a>
+          </h4>
+<table class="center" id="table-1">
+            <caption><a href="#table-1" class="selfRef">Table 1</a></caption>
+<thead>
+              <tr>
+                <th class="text-left" rowspan="1" colspan="1">State</th>
+                <th class="text-left" rowspan="1" colspan="1">Meaning</th>
+                <th class="text-left" rowspan="1" colspan="1">Ordinary merge behaviour</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">void</td>
+                <td class="text-left" rowspan="1" colspan="1">No surviving semantic contribution for the property, relationship occurrence or rule occurrence at this stage.</td>
+                <td class="text-left" rowspan="1" colspan="1">Neutral: void merge X = X.</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">valid</td>
+                <td class="text-left" rowspan="1" colspan="1">A non-empty opportunity region or satisfiable semantic contribution/rule set.</td>
+                <td class="text-left" rowspan="1" colspan="1">Combines conjunctively with another valid contribution.</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">never</td>
+                <td class="text-left" rowspan="1" colspan="1">The accumulated hard semantic definition is unsatisfiable.</td>
+                <td class="text-left" rowspan="1" colspan="1">Absorbing until explicitly reset or pruned to void.</td>
+              </tr>
+            </tbody>
+          </table>
+</section>
+</div>
+<div id="conjunctive-merge">
+<section id="section-7.3.3">
+          <h4 id="name-conjunctive-merge">
+<a href="#section-7.3.3" class="section-number selfRef">7.3.3. </a><a href="#name-conjunctive-merge" class="section-name selfRef">Conjunctive merge</a>
+          </h4>
+<p id="section-7.3.3-1">Merge accumulates obligations. All surviving hard contributions must hold. Ordinary merge is intended to be commutative, associative and idempotent after explicitly ordered transformations have been applied.<a href="#section-7.3.3-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="alternatives-ranges-negation-and-exclusions">
+<section id="section-7.3.4">
+          <h4 id="name-alternatives-ranges-negatio">
+<a href="#section-7.3.4" class="section-number selfRef">7.3.4. </a><a href="#name-alternatives-ranges-negatio" class="section-name selfRef">Alternatives, ranges, negation and exclusions</a>
+          </h4>
+<p id="section-7.3.4-1">Alternatives must be explicit. Ranges and patterns define opportunity regions; exclusions preserve the original positive statement while removing illegal islands.<a href="#section-7.3.4-1" class="pilcrow">¶</a></p>
+</section>
+</div>
 </section>
 </div>
 </section>
@@ -1532,6 +1769,7 @@ The specification of an occurrence is itself a system spec.<a href="#section-5-5
 <p id="section-8.2-8">Armed with the specification a controller can determine precisely how the termination point can be applied in a solution and the range of opportunities available.<a href="#section-8.2-8" class="pilcrow">¶</a></p>
 <p id="section-8.2-9">Whilst designing a solution, the controller may use a specific type of termination in a restricted form. For example, the Ethernet termination, although capable of supporting a MEP may be required to not provide that capability. The design of the pattern of use of terminations in a system may utilise the same type several times in the pattern where each occurrence in the pattern has a distinct further narrowing of the capability of the type. This is discussed further in Specification of an assembly (add reference to section).<a href="#section-8.2-9" class="pilcrow">¶</a></p>
 <p id="section-8.2-10">Eventually the pattern will be realized in a network. This will first be designed with no real instances in place. This will be represented with further specific narrowed termination point occurrences. Finally, there will be real instances in the network. These can also be considered as occurrences.<a href="#section-8.2-10" class="pilcrow">¶</a></p>
+<p id="section-8.2-11">The word “pruning” has been used informally throughout this section for two related but distinct operations, which Section 9.5 below separates formally: removing a source contribution before it is combined with others (source pruning), and removing a property from the already-combined result (result pruning). The MEP-level restriction described above is an instance of the latter: the full MEP capability survives assembly from the Ethernet standard's specification, and is only then narrowed to one supported level at this termination point type.<a href="#section-8.2-11" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="further-examples">
@@ -1542,6 +1780,38 @@ The specification of an occurrence is itself a system spec.<a href="#section-5-5
 <p id="section-8.3-1">-Thing to Component to physical thing to equipment to specific equipment type to use of that equipment to instance of equipment
 -A plug example
 Circle back and relate this more rigorous section to the specification examples.<a href="#section-8.3-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="cross-occurrence-rules-preferences-and-contradiction">
+<section id="section-8.4">
+        <h3 id="name-cross-occurrence-rules-pref">
+<a href="#section-8.4" class="section-number selfRef">8.4. </a><a href="#name-cross-occurrence-rules-pref" class="section-name selfRef">Cross-Occurrence Rules, Preferences and Contradiction</a>
+        </h3>
+<p id="section-8.4-1">The account of assembling and narrowing termination points refers informally to constraints that span more than one occurrence.<a href="#section-8.4-1" class="pilcrow">¶</a></p>
+<div id="where-hard-cross-occurrence-constraints">
+<section id="section-8.4.1">
+          <h4 id="name-where-hard-cross-occurrence">
+<a href="#section-8.4.1" class="section-number selfRef">8.4.1. </a><a href="#name-where-hard-cross-occurrence" class="section-name selfRef">where: hard cross-occurrence constraints</a>
+          </h4>
+<p id="section-8.4.1-1">Property-local opportunity spaces are not sufficient for semantics that span several members of a fabric. A where block states hard conditions over a selected semantic region within or across occurrences. Inter-property constraints are the common local case: the relevant property occurrences participate in the same applicable fabric, and the constraining relationship is represented semantically by a rule occurrence.<a href="#section-8.4.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="prefer-ranking-without-elimination">
+<section id="section-8.4.2">
+          <h4 id="name-prefer-ranking-without-elim">
+<a href="#section-8.4.2" class="section-number selfRef">8.4.2. </a><a href="#name-prefer-ranking-without-elim" class="section-name selfRef">prefer: ranking without elimination</a>
+          </h4>
+<p id="section-8.4.2-1">A prefer block orders or optimises legal opportunities. Conflicting preferences produce a trade-off, unresolved ordering or profile-specific optimisation problem rather than never.<a href="#section-8.4.2-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="regional-contradiction-and-localisation">
+<section id="section-8.4.3">
+          <h4 id="name-regional-contradiction-and-">
+<a href="#section-8.4.3" class="section-number selfRef">8.4.3. </a><a href="#name-regional-contradiction-and-" class="section-name selfRef">Regional contradiction and localisation</a>
+          </h4>
+<p id="section-8.4.3-1">A contradiction may arise only when several occurrence-hyperedges and rule occurrences are considered together. In that case the applicable sub-fabric or semantic region, rather than any one member, initially becomes never. Every constituent occurrence may remain locally satisfiable even though no legal semantic combination exists for the fabric as assembled.<a href="#section-8.4.3-1" class="pilcrow">¶</a></p>
+</section>
+</div>
 </section>
 </div>
 </section>
@@ -1555,6 +1825,86 @@ Circle back and relate this more rigorous section to the specification examples.
 Use examples to illustrate the progression:
 - Same examples as recursive pruning and refactoring but focus on role and subtle specializations in role
 List other examples.<a href="#section-9-1" class="pilcrow">¶</a></p>
+<p id="section-9-2">Section 8.2 showed that a single termination point type may be used several times within one system-level pattern, with each occurrence in the pattern carrying a distinct further narrowing of the type's capability — for example, one Ethernet termination point in a pattern supporting a MEP and another, of the identical underlying type, restricted so that it does not. This section further develops towards a formalisation of how a system specification records those per-occurrence narrowings without treating each restricted use as a new type.<a href="#section-9-2" class="pilcrow">¶</a></p>
+<div id="an-assembly-as-a-fabric-of-narrowed-occurrences">
+<section id="section-9.1">
+        <h3 id="name-an-assembly-as-a-fabric-of-">
+<a href="#section-9.1" class="section-number selfRef">9.1. </a><a href="#name-an-assembly-as-a-fabric-of-" class="section-name selfRef">An assembly as a fabric of narrowed occurrences</a>
+        </h3>
+<p id="section-9.1-1">A system spec, as introduced in Section 5, is a pattern assembly of subtly specialized occurrences at a particular level of specialization, arranged in a meaningful structure that yields a relevant behaviour. In the structural terms of Section 5, that assembly is a hyperedge fabric: each participating occurrence — here, each use of the Ethernet termination point type — is a hyperedge exposing ports, and the arrangement of the pattern is expressed through ports that join to their neighbours in the assembly.<a href="#section-9.1-1" class="pilcrow">¶</a></p>
+<p id="section-9.1-2">Two occurrences in the same assembly may derive from the same underlying specification and yet carry different opportunity regions, because each occurrence's local definition merges the shared specification with a source contribution specific to its role in the pattern.<a href="#section-9.1-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="role-and-subtle-specialization-within-an-assembly">
+<section id="section-9.2">
+        <h3 id="name-role-and-subtle-specializat">
+<a href="#section-9.2" class="section-number selfRef">9.2. </a><a href="#name-role-and-subtle-specializat" class="section-name selfRef">Role and subtle specialization within an assembly</a>
+        </h3>
+<p id="section-9.2-1">A narrowing within an assembly is frequently a matter of role rather than of physical capability: two tps may be supported by identical hardware, differing only in the role the pattern assigns to each occurrence. Section 4's Role dimension (desired, specified, committed, claimed, observed, realised) and Section 10a's role-qualified exactness apply directly here — an occurrence's narrowing may be a specified restriction (a design-time decision that this occurrence will not offer MEP support) well before it is a committed or realised one.<a href="#section-9.2-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="cross-occurrence-constraints-within-the-assembly">
+<section id="section-9.3">
+        <h3 id="name-cross-occurrence-constraint">
+<a href="#section-9.3" class="section-number selfRef">9.3. </a><a href="#name-cross-occurrence-constraint" class="section-name selfRef">Cross-occurrence constraints within the assembly</a>
+        </h3>
+<p id="section-9.3-1">Some narrowings cannot be expressed occurrence-by-occurrence at all, because the constraint spans several members of the pattern. Section 8.4.1's where rules apply at the level of the assembly's fabric, not only within one occurrence's local definition.<a href="#section-9.3-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="progression-from-designed-pattern-to-realised-network">
+<section id="section-9.4">
+        <h3 id="name-progression-from-designed-p">
+<a href="#section-9.4" class="section-number selfRef">9.4. </a><a href="#name-progression-from-designed-p" class="section-name selfRef">Progression from designed pattern to realised network</a>
+        </h3>
+<p id="section-9.4-1">Section 8.2 traced a pattern from design-time (no real instances in place) through further narrowing to real network instances, noting that instances are themselves occurrences rather than a terminal category. A fully precise, deployed occurrence of AssemblyPattern may acquire further definition within a subordinate control system etc.<a href="#section-9.4-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="active-pruning-and-the-refinementpruningrefactoringmapping-distinction">
+<section id="section-9.5">
+        <h3 id="name-active-pruning-and-the-refi">
+<a href="#section-9.5" class="section-number selfRef">9.5. </a><a href="#name-active-pruning-and-the-refi" class="section-name selfRef">Active Pruning and the Refinement/Pruning/Refactoring/Mapping Distinction</a>
+        </h3>
+<p id="section-9.5-1">Section 8.2 noted informally that “pruning” has covered more than one operation in this document. This section separates those operations formally and relates each to the terminology already defined in Section 1.<a href="#section-9.5-1" class="pilcrow">¶</a></p>
+<div id="void-as-an-active-operation">
+<section id="section-9.5.1">
+          <h4 id="name-void-as-an-active-operation">
+<a href="#section-9.5.1" class="section-number selfRef">9.5.1. </a><a href="#name-void-as-an-active-operation" class="section-name selfRef">void as an active operation</a>
+          </h4>
+<p id="section-9.5.1-1">void (Section 7a.2) has an active transformational use as well as denoting neutral absence. Applying void at a definition stage removes a selected source contribution or resets an accumulated property occurrence, rule occurrence or semantic relationship occurrence to void.<a href="#section-9.5.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="source-pruning-versus-result-pruning">
+<section id="section-9.5.2">
+          <h4 id="name-source-pruning-versus-resul">
+<a href="#section-9.5.2" class="section-number selfRef">9.5.2. </a><a href="#name-source-pruning-versus-resul" class="section-name selfRef">Source pruning versus result pruning</a>
+          </h4>
+<p id="section-9.5.2-1">The distinction anticipated in Section 8.2 is between removing a contribution before it is combined with others, and removing a property from the already-combined result:<a href="#section-9.5.2-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="refinement-pruning-refactoring-and-mapping-as-distinct-operations">
+<section id="section-9.5.3">
+          <h4 id="name-refinement-pruning-refactor">
+<a href="#section-9.5.3" class="section-number selfRef">9.5.3. </a><a href="#name-refinement-pruning-refactor" class="section-name selfRef">Refinement, pruning, refactoring and mapping as distinct operations</a>
+          </h4>
+<p id="section-9.5.3-1">Refinement is the broad progression by which an occurrence definition is developed. It may involve conjunctive merge, additional constraints, explicit alternatives, pruning, mapping or structural transformation.<a href="#section-9.5.3-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-9.5.3-2.1">
+              <p id="section-9.5.3-2.1.1">Refinement: the umbrella progression by which an occurrence becomes differently or more fully defined.<a href="#section-9.5.3-2.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-9.5.3-2.2">
+              <p id="section-9.5.3-2.2.1">Pruning: an explicitly scoped removal or reset of a property occurrence, semantic relationship occurrence, rule occurrence or source contribution.<a href="#section-9.5.3-2.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-9.5.3-2.3">
+              <p id="section-9.5.3-2.3.1">Refactoring: a transformation from one semantic hyperedge fabric to another that preserves declared correspondence rather than silently changing meaning; it often compresses a detailed component-system fabric at one level into a more compact exposed fabric at another.<a href="#section-9.5.3-2.3.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-9.5.3-2.4">
+              <p id="section-9.5.3-2.4.1">Mapping: a semantic hyperedge fabric, and hence a system, whose mapping occurrences record correspondence between source and target fabrics, including identity, derivation, value or structural transformation, direction, fidelity, reversibility and any information loss.<a href="#section-9.5.3-2.4.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+</section>
+</div>
+</section>
+</div>
 </section>
 </div>
 <div id="generalization-of-the-specification">
@@ -1565,6 +1915,108 @@ List other examples.<a href="#section-9-1" class="pilcrow">¶</a></p>
 <p id="section-10-1">Build a specification structure from the examples and show the references and reuses.
 Explain how the specification relates to the things in the problem space.
 Lay out the specification structure.<a href="#section-10-1" class="pilcrow">¶</a></p>
+<p id="section-10-2">The temperature-sensor and termination-point examples of Sections 7 and 8 illustrate individual specifications. This section generalises from those examples to the structure of a specification as such, and relates that structure back to the five conflated concerns identified in Section 3: generic definition, capability definition, policy definition, system combination, and operational instance.<a href="#section-10-2" class="pilcrow">¶</a></p>
+<div id="a-specification-as-a-bounded-reference-to-be-reused">
+<section id="section-10.1">
+        <h3 id="name-a-specification-as-a-bounde">
+<a href="#section-10.1" class="section-number selfRef">10.1. </a><a href="#name-a-specification-as-a-bounde" class="section-name selfRef">A specification as a bounded reference to be reused</a>
+        </h3>
+<p id="section-10.1-1">A specification, as defined in Section 1 and elaborated in Section 5, describes an occurrence's capabilities in terms of occurrences achieved via similar pruning: it is not a flat, self-contained description but a reference structure that other specifications, and other occurrences, can merge, refine or address by identifier. The unique identifier requirement already stated in Section 5 is what makes this reuse practical rather than merely conceptual.<a href="#section-10.1-1" class="pilcrow">¶</a></p>
+<p id="section-10.1-2">The EthernetTP specification used in Section 9 is a direct illustration: it is defined once, referenced by qualified identity (Section 11a) from every occurrence that uses it, and each occurrence narrows it independently. This is the general pattern the temperature-sensor example anticipates informally in Section 7 (“the specification will be used in conjunction with the actual instance arrangement”) and which Section 9 formalises for assemblies.<a href="#section-10.1-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="reference-and-reuse-relating-specifications-to-each-other">
+<section id="section-10.2">
+        <h3 id="name-reference-and-reuse-relatin">
+<a href="#section-10.2" class="section-number selfRef">10.2. </a><a href="#name-reference-and-reuse-relatin" class="section-name selfRef">Reference and reuse: relating specifications to each other</a>
+        </h3>
+<p id="section-10.2-1">A specification may refer to one or more other specifications, as already stated in Section 5. Two distinct forms of reference recur across the examples in this document:<a href="#section-10.2-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-10.2-2.1">
+            <p id="section-10.2-2.1.1">Compositional reference, where a specification's structure includes properties specified elsewhere.<a href="#section-10.2-2.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-10.2-2.2">
+            <p id="section-10.2-2.2.1">Constraining reference, where a specification narrows another by merge rather than by including it structurally.<a href="#section-10.2-2.2.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-10.2-3">Both forms use the same underlying merge algebra (Section 7a); they differ only in whether the referring specification's own properties are new (compositional) or a narrowing of the referenced specification's existing opportunity region (constraining).<a href="#section-10.2-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="relating-the-specification-structure-to-the-five-conflated-concerns">
+<section id="section-10.3">
+        <h3 id="name-relating-the-specification-">
+<a href="#section-10.3" class="section-number selfRef">10.3. </a><a href="#name-relating-the-specification-" class="section-name selfRef">Relating the specification structure to the five conflated concerns</a>
+        </h3>
+<p id="section-10.3-1">Laid out this way, the specification structure maps directly onto the five concerns of Section 3:<a href="#section-10.3-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-10.3-2.1">
+            <p id="section-10.3-2.1.1">Generic definition: The most general, least-pruned specification in a reference chain — e.g., the universal component.<a href="#section-10.3-2.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-10.3-2.2">
+            <p id="section-10.3-2.2.1">Capability definition: A named, identifiable specification (such as EthernetTP) capturing what a type of component or system can support, independent of any particular deployment.<a href="#section-10.3-2.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-10.3-2.3">
+            <p id="section-10.3-2.3.1">Policy definition: A constraining reference (Section 10.2) applied at a particular occurrence to remove capabilities the operator does not want offered, expressed as a merge with a policy-sourced contribution rather than as a separate, informal restriction.<a href="#section-10.3-2.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-10.3-2.4">
+            <p id="section-10.3-2.4.1">System combination: An assembly specification (Section 9) in which the same underlying specification is referenced by multiple occurrences, each independently narrowed for its role in the pattern.<a href="#section-10.3-2.4.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-10.3-2.5">
+            <p id="section-10.3-2.5.1">Operational instance: A fully or highly precise occurrence (Section 10.4) reached by continued definition (Section 17b) from the specification structure above it, remaining subject to the same merge and where semantics rather than becoming a terminal, unrelated object.<a href="#section-10.3-2.5.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-10.3-3">Read this way, the specification structure is not a sixth, separate artifact alongside the five concerns of Section 3 — it is the single structure within which all five are positioned as different points along one reference-and-refinement chain, addressed by qualified identity and combined by the same merge algebra throughout.<a href="#section-10.3-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="completeness-exactness-and-role-qualified-identity">
+<section id="section-10.4">
+        <h3 id="name-completeness-exactness-and-">
+<a href="#section-10.4" class="section-number selfRef">10.4. </a><a href="#name-completeness-exactness-and-" class="section-name selfRef">Completeness, Exactness and Role-Qualified Identity</a>
+        </h3>
+<p id="section-10.4-1">Section 10 generalised the specification structure and related it to the five conflated concerns of Section 3, including operational instance as a fully or highly precise occurrence. This section makes precise what “fully or highly precise” means, and why exactness alone does not resolve the ambiguity between what a model element is and what it can support that Section 3 identifies as a core problem.<a href="#section-10.4-1" class="pilcrow">¶</a></p>
+<div id="complete-and-omission">
+<section id="section-10.4.1">
+          <h4 id="name-complete-and-omission">
+<a href="#section-10.4.1" class="section-number selfRef">10.4.1. </a><a href="#name-complete-and-omission" class="section-name selfRef">complete and omission</a>
+          </h4>
+<p id="section-10.4.1-1">By default, omission makes no local contribution: whatever survives from the sources remains defined. complete changes omission semantics at the stated structural boundary — properties not stated locally are actively pruned to void.<a href="#section-10.4.1-1" class="pilcrow">¶</a></p>
+<p id="section-10.4.1-2">Complete is local, not terminal. It closes the visible property set at one boundary; it does not prohibit later composition, new relevant properties at another viewpoint, subordinate structure, or finer explanation — consistent with Section 17b's continued-definition principle below.<a href="#section-10.4.1-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="exactness-completeness-and-concreteness-are-independent">
+<section id="section-10.4.2">
+          <h4 id="name-exactness-completeness-and-">
+<a href="#section-10.4.2" class="section-number selfRef">10.4.2. </a><a href="#name-exactness-completeness-and-" class="section-name selfRef">Exactness, completeness and concreteness are independent</a>
+          </h4>
+<table class="center" id="table-2">
+            <caption><a href="#table-2" class="selfRef">Table 2</a></caption>
+<thead>
+              <tr>
+                <th class="text-left" rowspan="1" colspan="1">Concept</th>
+                <th class="text-left" rowspan="1" colspan="1">Meaning</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">Exact property</td>
+                <td class="text-left" rowspan="1" colspan="1">Only one visible opportunity remains for that property. Exactness alone does not state its role or guarantee real-world satisfaction.</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">Complete boundary</td>
+                <td class="text-left" rowspan="1" colspan="1">Unstated inherited properties are pruned at this boundary.</td>
+              </tr>
+              <tr>
+                <td class="text-left" rowspan="1" colspan="1">Concrete occurrence</td>
+                <td class="text-left" rowspan="1" colspan="1">Sufficiently constrained for the current purpose or interaction.</td>
+              </tr>
+            </tbody>
+          </table>
+<p id="section-10.4.2-2">None implies either of the others. A provisioned connection may have exact endpoints and still leave route, equipment tuning and observed state open for later definition — the same pattern the network-instance discussion in Section 8.2 and the assembly-progression discussion in Section 9.4 both rely on without previously naming it.<a href="#section-10.4.2-2" class="pilcrow">¶</a></p>
+<p id="section-10.4.2-3">This is the formal counterpart of Section 5's existing intent discussion where even the tightest constraint of a single value is essentially a statement of intent as it is impossible to guarantee that a property will be set, and of the Role dimension added to Section 4. Role-qualified exactness resolves the apparent tension between the two: an occurrence can be exact and still be only desired, or only specified, without contradiction, because exactness and role are independent axes.<a href="#section-10.4.2-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
 </section>
 </div>
 <div id="characteristics-of-a-language-of-specification">
@@ -1581,6 +2033,17 @@ Extract key characteristics from above and from mobo
 - interrelationship and influence
 - uncertainty and preferences
 (Need to review mobo and TR-547 spec, component-system etc.)<a href="#section-11-1" class="pilcrow">¶</a></p>
+<p id="section-11-2">The occurrence-semantics kernel introduced from Section 7 onward satisfies each of these six characteristics directly, rather than requiring a further after-the-fact addition.<a href="#section-11-2" class="pilcrow">¶</a></p>
+<div id="namespace-qualified-identity">
+<section id="section-11.1">
+        <h3 id="name-namespace-qualified-identit">
+<a href="#section-11.1" class="section-number selfRef">11.1. </a><a href="#name-namespace-qualified-identit" class="section-name selfRef">Namespace-Qualified Identity</a>
+        </h3>
+<p id="section-11.1-1">The reference-and-reuse discussion in Section 10.2 depends on being able to say when two contributions — arriving through different refinement or composition routes — are contributions to the same property, relationship or rule. This section makes that identity criterion explicit.<a href="#section-11.1-1" class="pilcrow">¶</a></p>
+<p id="section-11.1-2">Automatic semantic combination occurs only when contributions resolve to the same qualified identity. Property occurrences, semantic relationship occurrences and rule occurrences should use a stable namespace plus local name; a prefix is only a local alias.<a href="#section-11.1-2" class="pilcrow">¶</a></p>
+<p id="section-11.1-3">Contributions may arrive through different and arbitrarily deep occurrence routes and still combine when their qualified identity is the same — consistent with this document's existing position (Section 5, Appendix A.1) that there is no single canonical refinement path. There need not be one canonical derivation path or one privileged parent. Revision participates in source resolution and compatibility; whether it forms part of permanent identity remains a separate versioning decision.<a href="#section-11.1-3" class="pilcrow">¶</a></p>
+</section>
+</div>
 </section>
 </div>
 <div id="specification-language-options">
@@ -1590,6 +2053,20 @@ Extract key characteristics from above and from mobo
       </h2>
 <p id="section-12-1">Landscape of languages... does anything do this?
 Take YANG and enhance (as discussed in mobo)<a href="#section-12-1" class="pilcrow">¶</a></p>
+<p id="section-12-2">The characteristics enumerated in Section 11 rule out a bare extension of YANG or JSON Schema on their own: neither has a native notion of void versus never (Section 7), neither separates hard constraints from ranked preferences (Section 8), and neither has an explicit merge algebra usable across independently sourced contributions (Section 7).<a href="#section-12-2" class="pilcrow">¶</a></p>
+<p id="section-12-3">Positioned against existing language families:<a href="#section-12-3" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-12-4.1">
+          <p id="section-12-4.1.1">YANG / JSON Schema — close to this document's surface notation and directly reachable as a projection (Section 17), but without void/never, merge, where/prefer or qualified cross-source identity as native constructs.<a href="#section-12-4.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-12-4.2">
+          <p id="section-12-4.2.1">UML (class and metamodel diagrams) — reachable as a projection of source merge and recursive constraining occurrences (Section 17), useful for presentation but not as an evaluation semantics.<a href="#section-12-4.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-12-4.3">
+          <p id="section-12-4.3.1">Constraint/configuration languages in the general family of CUE, Nickel and Alloy — each already provides one part of this document's algebra (conjunctive unification, explicit priority/overlay, or relational bounded search respectively) but not the combination of merge, void/never, where/prefer and qualified identity as a single kernel.<a href="#section-12-4.3.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="section-12-5">No existing language landscape covers this combination as a single kernel.<a href="#section-12-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="building-a-specification-structure">
@@ -1601,6 +2078,40 @@ Take YANG and enhance (as discussed in mobo)<a href="#section-12-1" class="pilcr
 Catalogue/library of specs
 Deep application... machine interpretable structure in all standards
 Use of AI to reverse engineer specs with guidance... peer review and testing cycle<a href="#section-13-1" class="pilcrow">¶</a></p>
+<p id="section-13-2">Building and maintaining a catalogue of specifications under this framework requires processing to happen in a defined order, so that tooling built independently by different implementers produces the same result from the same sources. The following sequence is normative for that purpose:<a href="#section-13-2" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-13-3">
+<li id="section-13-3.1">
+          <p id="section-13-3.1.1">Resolve module, namespace, revision and qualified-name identity (Section 11).<a href="#section-13-3.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li id="section-13-3.2">
+          <p id="section-13-3.2.1">Evaluate each source occurrence and its exposed semantic hyperedge fabric recursively without discarding contribution provenance (Section 16).<a href="#section-13-3.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li id="section-13-3.3">
+          <p id="section-13-3.3.1">Apply source-scoped transformations such as prune and active void (Section 9).<a href="#section-13-3.3.1" class="pilcrow">¶</a></p>
+</li>
+        <li id="section-13-3.4">
+          <p id="section-13-3.4.1">Reconcile the applicable port/point incidence, then merge surviving occurrence, property, semantic relationship and rule contributions conjunctively within the applicable semantic fabric (Section 7).<a href="#section-13-3.4.1" class="pilcrow">¶</a></p>
+</li>
+        <li id="section-13-3.5">
+          <p id="section-13-3.5.1">Apply the local body: constraints, explicit alternatives, exclusions and local void (Section 7).<a href="#section-13-3.5.1" class="pilcrow">¶</a></p>
+</li>
+        <li id="section-13-3.6">
+          <p id="section-13-3.6.1">If complete, prune inherited properties and associated contributions not stated at that structural boundary (Section 10).<a href="#section-13-3.6.1" class="pilcrow">¶</a></p>
+</li>
+        <li id="section-13-3.7">
+          <p id="section-13-3.7.1">Bind and evaluate surviving hard where rule occurrences over their selected semantic hyperedge fabrics and resulting opportunity regions (Section 8).<a href="#section-13-3.7.1" class="pilcrow">¶</a></p>
+</li>
+        <li id="section-13-3.8">
+          <p id="section-13-3.8.1">Normalise property and regional opportunity constraints; record property-level or regional never (Section 8).<a href="#section-13-3.8.1" class="pilcrow">¶</a></p>
+</li>
+        <li id="section-13-3.9">
+          <p id="section-13-3.9.1">Combine surviving prefer rules to rank legal opportunities using the selected preference profile (Section 8).<a href="#section-13-3.9.1" class="pilcrow">¶</a></p>
+</li>
+        <li id="section-13-3.10">
+          <p id="section-13-3.10.1">Retain explanation records for surviving, pruned, contradictory and preference contributions (Section 16).<a href="#section-13-3.10.1" class="pilcrow">¶</a></p>
+</li>
+      </ol>
+<p id="section-13-4">A rule that survives while referencing a void or unavailable property needs an explicit policy. The basic profile should require existence guards for optional paths; an unguarded required reference that cannot bind should normally make the applicable rule unsatisfied rather than disappear silently.<a href="#section-13-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="a-specification-evolution-example">
@@ -1609,6 +2120,8 @@ Use of AI to reverse engineer specs with guidance... peer review and testing cyc
 <a href="#section-14" class="section-number selfRef">14. </a><a href="#name-a-specification-evolution-e" class="section-name selfRef">A specification evolution example</a>
       </h2>
 <p id="section-14-1">Discuss how a spec may change as understanding emerges and how it may be refactored.<a href="#section-14-1" class="pilcrow">¶</a></p>
+<p id="section-14-2">Continuing the EthernetTP example from Section 9: suppose the Ethernet standard referenced by EthernetTP is revised to add a new MEP-adjacent capability, and separately, operational experience shows that the existing mepLevel range was too permissive for the service constraint. Both changes can be expressed as ordinary evolution of the specification's opportunity region, without discarding or silently overriding the occurrences already merged from it.<a href="#section-14-2" class="pilcrow">¶</a></p>
+<p id="section-14-3">Where the evolution is better understood as a refactoring — for example, splitting EthernetTP into a base termination-point specification and a separate MEP-capability specification referenced from it this is refactoring rather than pruning, and the correspondence between the old, single specification and the new, split pair should be recorded as an explicit mapping rather than left to be inferred from the fact that both specifications happen to share a name.<a href="#section-14-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="a-system-specification-example">
@@ -1617,6 +2130,7 @@ Use of AI to reverse engineer specs with guidance... peer review and testing cyc
 <a href="#section-15" class="section-number selfRef">15. </a><a href="#name-a-system-specification-exam" class="section-name selfRef">A system specification example</a>
       </h2>
 <p id="section-15-1">Take the language considerations and set out system specs in a more formal way<a href="#section-15-1" class="pilcrow">¶</a></p>
+<p id="section-15-2">This section will set out in a compact surface notation that is to be developed in a later draft.<a href="#section-15-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="broader-application-of-the-language">
@@ -1628,44 +2142,142 @@ Use of AI to reverse engineer specs with guidance... peer review and testing cyc
 Refinement of planning
 Development of standards
 Expression of uncertainty and pattern<a href="#section-16-1" class="pilcrow">¶</a></p>
+<p id="section-16-2">The four applications named in the original outline map onto constructs already introduced in this document, rather than requiring separate treatment:<a href="#section-16-2" class="pilcrow">¶</a></p>
+<p id="section-16-3">Negotiation: The process of formulating intent through negotiation and resultant gradual refinement has a similar feel to the degrees of pruning and refactoring of the specification. Formally, a negotiation position is an occurrence; a counter-position narrows or merges it; and where two positions' opportunity regions have empty intersection, the negotiation is at an explicit, detectable impasse (never) rather than an ambiguous stalemate. Prefer expresses a party's ranked preferences among positions that remain jointly legal.<a href="#section-16-3" class="pilcrow">¶</a></p>
+<p id="section-16-4">Refinement of planning: The assembly-progression — design-time pattern through commitment to realised network instance — is itself a planning refinement expressed entirely through merge, role and continued definition, without a separate planning-specific mechanism.<a href="#section-16-4" class="pilcrow">¶</a></p>
+<p id="section-16-5">Development of standards: Evolution, discussed earlier, is the process a standards body uses to revies a specification. Existing conformant occurrences remain valid by construction under refines. Refactoring/mapping distinction covers the harder case of a standard being restructured rather than merely narrowed.<a href="#section-16-5" class="pilcrow">¶</a></p>
+<p id="section-16-6">Expression of uncertainty and pattern: Ranges, alternatives and exclusions express uncertainty in the value itself; role-qualified exactness expresses uncertainty in the status of an otherwise-exact value (desired versus committed versus observed, for instance); and prefer expresses uncertainty in which of several legal opportunities is wanted, as distinct from which is permitted.<a href="#section-16-6" class="pilcrow">¶</a></p>
+<div id="rules-as-occurrences-and-provenance">
+<section id="section-16.1">
+        <h3 id="name-rules-as-occurrences-and-pr">
+<a href="#section-16.1" class="section-number selfRef">16.1. </a><a href="#name-rules-as-occurrences-and-pr" class="section-name selfRef">Rules as Occurrences and Provenance</a>
+        </h3>
+<p id="section-16.1-1">This section will provide an expanded form and states the provenance requirement referenced earlier in the draft.<a href="#section-16.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="compact-surface-form">
+<section id="section-17">
+      <h2 id="name-compact-surface-form">
+<a href="#section-17" class="section-number selfRef">17. </a><a href="#name-compact-surface-form" class="section-name selfRef">Compact surface form</a>
+      </h2>
+<p id="section-17-1">The examples in this document will be written in a compact form. This section will discuss that form and will project possible language equivalents.<a href="#section-17-1" class="pilcrow">¶</a></p>
+<div id="projection-equivalences">
+<section id="section-17.1">
+        <h3 id="name-projection-equivalences">
+<a href="#section-17.1" class="section-number selfRef">17.1. </a><a href="#name-projection-equivalences" class="section-name selfRef">Projection Equivalences</a>
+        </h3>
+<table class="center" id="table-3">
+          <caption><a href="#table-3" class="selfRef">Table 3</a></caption>
+<thead>
+            <tr>
+              <th class="text-left" rowspan="1" colspan="1">Projection</th>
+              <th class="text-left" rowspan="1" colspan="1">Occurrence interpretation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">Concrete JSON</td>
+              <td class="text-left" rowspan="1" colspan="1">A chosen complete view whose visible values are precise.</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">JSON Schema / YANG</td>
+              <td class="text-left" rowspan="1" colspan="1">A chosen complete view whose values are constraints and whose structure states permitted properties.</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">UML inheritance</td>
+              <td class="text-left" rowspan="1" colspan="1">A diagrammatic projection of source merge and cumulative refinement.</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">UML metamodel</td>
+              <td class="text-left" rowspan="1" colspan="1">Recursive constraining occurrences shown through conventional metalevel notation.</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">CUE-like</td>
+              <td class="text-left" rowspan="1" colspan="1">Conjunctive unification, explicit disjunction and contradiction.</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">Nickel-like</td>
+              <td class="text-left" rowspan="1" colspan="1">Programmable generation and explicit priority/overlay profiles.</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">Alloy-like</td>
+              <td class="text-left" rowspan="1" colspan="1">Relational constraints and bounded search over a chosen occurrence context.</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">Component–system</td>
+              <td class="text-left" rowspan="1" colspan="1">The basic structural/semantic view: component-role occurrence-hyperedges expose ports; compatible port pairs join to form points; with occurrence semantics exposed the resulting fabric is a system, which may itself participate as one component across its boundary.</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">Structural refactoring</td>
+              <td class="text-left" rowspan="1" colspan="1">A transformation from one semantic hyperedge fabric/system to another, often presenting a detailed lower-level fabric as a more compact target fabric through an explicit mapping fabric.</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">Hyperedge fabric</td>
+              <td class="text-left" rowspan="1" colspan="1">Structural view: occurrence-hyperedges joined through port-joining points, without a primitive node/vertex ontology.</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">System</td>
+              <td class="text-left" rowspan="1" colspan="1">Semantic view of that same fabric, with meaning exposed in each occurrence-hyperedge.</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">Mapping system</td>
+              <td class="text-left" rowspan="1" colspan="1">A semantic hyperedge fabric whose mapping occurrences connect source and target fabrics and carry correspondence, transformation and fidelity semantics.</td>
+            </tr>
+          </tbody>
+        </table>
+<p id="section-17.1-2">The target is loose semantic and structural equivalence. These projections do not import terminal instances, permanent metalevels or source-language evaluator identity into the kernel.<a href="#section-17.1-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="continued-definition-below-a-precise-occurrence">
+<section id="section-18">
+      <h2 id="name-continued-definition-below-">
+<a href="#section-18" class="section-number selfRef">18. </a><a href="#name-continued-definition-below-" class="section-name selfRef">Continued Definition Below a Precise Occurrence</a>
+      </h2>
+<p id="section-18-1">A fully precise, deployed occurrence remains open to further definition rather than becoming a terminal instance. This section will state that principle formally.<a href="#section-18-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="conclusion">
-<section id="section-17">
+<section id="section-19">
       <h2 id="name-conclusion">
-<a href="#section-17" class="section-number selfRef">17. </a><a href="#name-conclusion" class="section-name selfRef">Conclusion</a>
+<a href="#section-19" class="section-number selfRef">19. </a><a href="#name-conclusion" class="section-name selfRef">Conclusion</a>
       </h2>
-<p id="section-17-1">Mindset Change
+<p id="section-19-1">Mindset Change
 Language challenges
 Use of AI
-Target is an ecosystem of specs driving agentic components...<a href="#section-17-1" class="pilcrow">¶</a></p>
+Target is an ecosystem of specs driving agentic components...<a href="#section-19-1" class="pilcrow">¶</a></p>
+<p id="section-19-2">The occurrence-semantics kernel discussed in this revision will give that ecosystem a common, composable substrate: every specification, component, relationship, rule and mapping in it is expressible as an occurrence with a well-defined opportunity region, combined by one merge algebra, and checkable by one normative processing sequence. This does not negate the mindset change already noted above — rigorous modelling still requires giving up ad hoc, source-order-dependent combination in favour of explicit, provenance-preserving definition — but it gives that change a formal target to converge on, consistent with the historical-lineage position that this kernel formalises, but does not retrospectively attribute to, the standards and drafts it builds on <span><a href="#ONF_TR-512" class="internal xref">ITU-T_G.7711</a> [<a href="#ONF_TR-512" class="cite xref">ONF_TR-512</a>]</span> <span>[<a href="#mobo" class="cite xref">mobo</a>]</span>.<a href="#section-19-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="security-considerations">
-<section id="section-18">
+<section id="section-20">
       <h2 id="name-security-considerations">
-<a href="#section-18" class="section-number selfRef">18. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+<a href="#section-20" class="section-number selfRef">20. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<p id="section-18-1">TBD<a href="#section-18-1" class="pilcrow">¶</a></p>
+<p id="section-20-1">TBD<a href="#section-20-1" class="pilcrow">¶</a></p>
+<p id="section-20-2">An implementation that silently localises a regional never rather than propagating it can present a capability, policy or licensing structure as valid when it is not. This has security as well as correctness implications.<a href="#section-20-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
-<section id="section-19">
+<section id="section-21">
       <h2 id="name-iana-considerations">
-<a href="#section-19" class="section-number selfRef">19. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+<a href="#section-21" class="section-number selfRef">21. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
-<p id="section-19-1">This document has no IANA actions.<a href="#section-19-1" class="pilcrow">¶</a></p>
+<p id="section-21-1">This document has no IANA actions.<a href="#section-21-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-combined-references">
-<section id="section-20">
+<section id="section-22">
       <h2 id="name-references">
-<a href="#section-20" class="section-number selfRef">20. </a><a href="#name-references" class="section-name selfRef">References</a>
+<a href="#section-22" class="section-number selfRef">22. </a><a href="#name-references" class="section-name selfRef">References</a>
       </h2>
 <div id="sec-normative-references">
-<section id="section-20.1">
+<section id="section-22.1">
         <h3 id="name-normative-references">
-<a href="#section-20.1" class="section-number selfRef">20.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+<a href="#section-22.1" class="section-number selfRef">22.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
         </h3>
 <dl class="references">
 <dt id="RFC2119">[RFC2119]</dt>
@@ -1680,9 +2292,9 @@ Target is an ecosystem of specs driving agentic components...<a href="#section-1
 </section>
 </div>
 <div id="sec-informative-references">
-<section id="section-20.2">
+<section id="section-22.2">
         <h3 id="name-informative-references">
-<a href="#section-20.2" class="section-number selfRef">20.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+<a href="#section-22.2" class="section-number selfRef">22.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
         </h3>
 <dl class="references">
 <dt id="BaseInventory">[BaseInventory]</dt>
@@ -1769,6 +2381,14 @@ Target is an ecosystem of specs driving agentic components...<a href="#section-1
 <a href="#appendix-A.4" class="section-number selfRef">A.4. </a><a href="#name-a4-classification-considere" class="section-name selfRef">A.4 Classification Considered Harmful</a>
         </h3>
 <p id="appendix-A.4-1">Rigid classification schemes tend to obscure natural emergence and lead to artificial separations. This model rejects top-down typing in favor of bottom-up capability surfacing, grounded in refinement logic. Semantic rigor replaces taxonomic rigidity.<a href="#appendix-A.4-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="a5-structure-and-semantics-are-separable">
+<section id="appendix-A.5">
+        <h3 id="name-a5-structure-and-semantics-">
+<a href="#appendix-A.5" class="section-number selfRef">A.5. </a><a href="#name-a5-structure-and-semantics-" class="section-name selfRef">A.5. Structure and Semantics Are Separable</a>
+        </h3>
+<p id="appendix-A.5-1">A.1 through A.4 above describe emergence and refinement without needing to separate structure from semantics explicitly. Section 5 makes that separation formal: the same occurrence fabric has a structural projection (occurrence-hyperedges joined at ports, with semantics suppressed) and a semantic projection (the system, with occurrence semantics exposed).<a href="#appendix-A.5-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
