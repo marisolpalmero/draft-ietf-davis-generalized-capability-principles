@@ -36,7 +36,7 @@
         <email>marisol.ietf@gmail.com</email>
       </address>
     </author>
-    <date year="2026" month="March" day="01"/>
+    <date year="2026" month="September" day="01"/>
     <area>Operations and Management</area>
     <workgroup>NMOP</workgroup>
     <keyword>capability</keyword>
@@ -50,6 +50,7 @@
       <?line 119?>
 
 <t>This document introduces a framework for capability modeling based on the specification and refinement principles established in ITU-T G.7711 Annex G (also previously published as ONF TR‑512.7. See latest G.7711 release) and the modeling boundaries work documented in <tt>draft-davis-netmod-modelling-boundaries</tt>. The framework defines how component–system capabilities can be explicitly described and refined via a process of pruning, refactoring, and occurrence formation.</t>
+      <t>This draft version additionally incorporates a sketch of an occurrence-semantics kernel. This kernel is presented here as a continuation of the refinement and occurrence-formation principles already introduced in the previous version, not as a retrospective reinterpretation of them.</t>
       <t>These capability definitions can target detailed operational considerations, system interactions, licensing, abstract product declarations, or sales and marketing. The framework supports modular, layered, and fractal declarations of networked behavior, and provides a foundation for a suite of future IETF drafts aligned with ongoing work on photonic plug manifests, entitlement/licensing, IVY equipment modeling, energy/thermal considerations and related domains.</t>
     </abstract>
     <note removeInRFC="true">
@@ -69,7 +70,7 @@
     </note>
   </front>
   <middle>
-    <?line 125?>
+    <?line 127?>
 
 <section anchor="terminology">
       <name>Terminology</name>
@@ -97,13 +98,13 @@ document are to be interpreted as described in RFC2119}}.</t>
           <t>component: A thing defined by a boundary where the internal structure within that boundary is not directly visible but is apparently visible through the behaviour exposed at that boundary</t>
         </li>
         <li>
-          <t>port: A place on the boundary of a component where interaction with that component is possible</t>
+          <t>port: A place on the boundary of a component where interaction with that component is possible. Any occurrence may expose ports, where a port is a place on the boundary of an occurrence where interaction with that occurrence is possible.</t>
         </li>
         <li>
           <t>component-system: A pattern that expresses each item as a component where components can be assembled into systems and where a system can be represented as a component where that assembly may be of real things or may be abstractions of the effect of real things.</t>
         </li>
         <li>
-          <t>occurrence: A thing, the specification of which is a purposeful refinement partially constraining the definition of a broader thing, where a thing is a component, a specification etc.</t>
+          <t>occurrence: A thing, the specification of which is a purposeful refinement partially constraining the definition of a broader thing, where a thing is a component, a specification, rules, mappings etc.</t>
         </li>
         <li>
           <t>pruning: A process of narrowing of definition by reduction of capabilities</t>
@@ -115,13 +116,27 @@ document are to be interpreted as described in RFC2119}}.</t>
           <t>pruning &amp; refactoring: The process that supports intentional progression of refinement from one level of structure of occurrences (e.g., system of components) to the next more specific level of structure of occurrences</t>
         </li>
       </ul>
+      <t>The following additional terms are used in this version:
+* point: Emergent when two compatible ports join. A point is not itself a separate semantic node or vertex, it is simply the recognition of two ports joined.
+* hyperedge fabric: The interconnected collection of occurrence-hyperedges, viewed structurally with occurrence semantics suppressed, e.g., the structural arrangement of components in a system ignoring their function.
+* system (structural reading): The same hyperedge fabric as above, viewed with the semantics carried by its occurrence-hyperedges exposed. This aligns with, and does not replace, the existing component-system definition above.
+* opportunity region: The set, region or family of opportunities permitted by an occurrence definition, written [[A]] for occurrence A.
+* void: A semantic state denoting neutral absence of a surviving contribution for a property, relationship or rule occurrence at a given stage; void merge X = X.
+* never: A semantic state denoting that the accumulated hard semantic definition is unsatisfiable; absorbing under merge until explicitly reset or pruned to void.
+* merge: Conjunctive combination of two occurrences' opportunity regions: A merge B denotes intersection([[A]], [[B]]).
+* refines: A refines B iff [[A]] is a subset of [[B]].
+* complete: A boundary-scoped operator that changes omission semantics: inherited properties not stated locally at a complete boundary are actively pruned to void. This removes the need to enumerate all possible semantics to be eliminated. It does not prevent semantics from being added back in later.
+* where rule: A hard, conjunctive cross-occurrence constraint; removes opportunities that do not satisfy it and can force a region to never.
+* prefer rule: A ranking over opportunities that remain legal after all hard contributions have been applied; never makes an otherwise legal opportunity illegal.
+* provenance: The recorded source and derivation path of a contribution, rule or pruning decision, preserved through merge without altering the algebraic result.
+* qualified identity: A stable namespace plus local name used to determine when two contributions resolve to the same property, relationship or rule for the purposes of automatic combination.</t>
     </section>
     <section anchor="introduction">
       <name>Introduction</name>
       <t>Currently, capabilities are mainly described loosely in human readable text, where that text is often incomplete, ambiguous or inconsistent. While people make these systems work in practice, the looseness result in errors, inefficiencies and limited reuse.
 As automation increases, there is a growing need to enable machine reasoning about the capabilities of network systems and components. While Large Language Models (LLMs) can interpret traditional documentation, there remains a strong need for greater formal rigor and structured representation to improve efficiency and precision. When asked, LLMs indicate that a rigorous model is preferable to loose ambiguous text.
 Existing IETF models predominantly focus on configuration, operational state, and telemetry. What is missing is a cohesive framework for expressing what a system <em>can</em> do, i.e., its capabilities, in a declarative, structured, and reusable form.
-This document introduces the principles for a capability modeling framework grounded in the specification concept established in <xref target="ITU-T_G.7711"/> ([ONF_TR‑512]). It applies these principles through the lens of the <strong>component–system pattern</strong> from <xref target="ONF_TR-512.A.2"/>, using the concept of <strong>emergence through recursive narrowing, refactoring and occurrence formation</strong>. These ideas are extended further by the modeling boundary principles described in <xref target="mobo"/>.
+This document introduces the principles for a capability modeling framework grounded in the specification concept established in <xref target="ITU-T_G.7711"/> ([ONF_TR‑512]). It applies these principles through the lens of the <strong>component–system pattern</strong> from <xref target="ONF_TR-512.A.2"/>, using the concept of <strong>emergence through recursive narrowing, refactoring and occurrence formation</strong>. These ideas are extended further by the modeling boundary principles described in <xref target="mobo"/>. They are extended further still by an explicit occurrence-semantics kernel sketch, which when complete will supply a formal algebra for combining, ranking and detecting contradiction among capability contributions, and a structural model in which occurrences relate through port-joining (emergent points) rather than informal assembly alone.
 The result is a standardized and extensible approach for expressing features, operational constraints, internal dependencies, etc. - separately from instance realizations.
 This approach supports capability modeling for any aspect of the controlled networking solution, and is designed to enable capability assembly, dynamic composition, licensing control, and integration with other IETF frameworks such as IVY equipment, photonic plug manifests, and entitlement interfaces. It also supports initiatives focussing on energy/thermal considerations where specific detailed capabilities and their power/thermal implications become critical considerations.</t>
     </section>
@@ -140,15 +155,21 @@ Without a clear structural separation and with the sparseness of information on 
 - <strong>Ambiguity</strong> between what a model element <em>is</em> versus what a system <em>can support</em>.
 - <strong>Redundancy</strong> and inconsistency in the representation of common constraints (e.g., port types, layering, resource limits).
 - <strong>Tooling difficulty</strong> when extracting interoperable subsets of large models or generating technology-specific profiles.
-- <strong>Incompatibility</strong> between modular subsystems or plug-ins that must declare and verify their supported features.
+- <strong>Incompatibility</strong> between modular subsystems or plug-ins that must declare and verify their supported features.</t>
+      <t>A sixth concern compounds the first five even where they are addressed structurally: even a well-separated capability definition is of limited use to automation without an explicit, composable algebra for combining contributions from multiple sources, ranking competing opportunities, and detecting contradiction. In the absence of such an algebra, tools fall back to ad hoc, source-order-dependent combination — effectively re-introducing the chaos this document otherwise removes, one layer up.
 Furthermore, current models tend to assume a fixed taxonomy of types and features, rather than supporting a process of recursive refinement. This limits their ability to express how complex capabilities <em>emerge</em> through constraint, composition, and modular pruning of more general-purpose constructs.
 What is needed is a modeling framework that:
 - Allows systems and components to be described in terms of their <strong>capability boundaries</strong>, including <strong>capability interactions</strong> separate from operational state,
 - Supports <strong>refinement via pruning and refactoring to yield flexible structural transformation</strong> rather than rigid inheritance or classification,
 - Enables <strong>recursive occurrence formation</strong>, where each level of pruning and refactoring produces a usable semantic structure,
 - Accommodates <strong>multiple valid refinement paths</strong>, supporting different levels of granularity and domain specificity,
-- Provides a <strong>coherent trace</strong> from abstract capability declarations down to deployable or licensable configurations.
+- Provides a <strong>coherent trace</strong> from abstract capability declarations down to deployable or licensable configurations.</t>
+      <ul spacing="normal">
+        <li>
+          <t>Provides a sketch of an explicit, composable algebra for combining, ranking and detecting contradiction among capability contributions drawn from multiple sources, so that the trace above remains sound under merge rather than only under a single author's intent.
 This draft introduces such a framework by building on the refinement logic of <xref target="ITU-T_G.7711"/>  (<xref target="ONF_TR-512"/>) in general and especially the <strong>specification pattern</strong> structures of ITU-T G.7711 Annex G (ONF TR‑512.7) which provides a means of expressing bounded capability envelopes through a formal refinement of generic model elements. This also provides grounding in the recursive occurrence model informed by the component–system pattern <xref target="ITU-T_G.7711"/>  (<xref target="ONF_TR-512.A.2"/> and modeling boundaries approach <xref target="mobo"/>. This document leverages the foundations laid by <xref target="ITU-T_G.7711"/>  (<xref target="ONF_TR-512"/>).</t>
+        </li>
+      </ul>
       <t>The same expression challenges appear in statements of intent. The process of formulating intent through negotiation and resultant gradual refinement has a similar feel to the degrees of pruning and refactoring of the specification.</t>
     </section>
     <section anchor="specification-in-terms-of-the-model">
@@ -184,6 +205,9 @@ This draft introduces such a framework by building on the refinement logic of <x
         <li>
           <t>Omission: Gaps and missing parts</t>
         </li>
+        <li>
+          <t>Role: Whether a given value in the model is desired, specified, committed, claimed, observed or realised. Exactness of a value is orthogonal to this dimension: a singleton value states no role by itself, and the appropriate model for a given purpose must make clear which role is being characterised.</t>
+        </li>
       </ul>
     </section>
     <section anchor="generalized-modeling-via-componentsystemspecification-refinement">
@@ -214,6 +238,19 @@ The specification of an occurrence is itself a system spec.</t>
       <t>In this ideal environment, the specification would fully capture all non-failure case behaviours of a component (and potentially some common failure cases) and the component would be designed internally to "guarantee" these behaviours (it would be engineered with appropriate control structures that would bound its behaviour). These specifications, although abstractions would often be highly complex (consider the specification of a CPU for example), but would be less overwhelming in detail and stated in terms of intentional behaviour as opposed to behaviour of the parts. The specification is a statement of the effects of the assembly of detailed parts (see definition of component).</t>
       <t>The specification of capability provides a stabilising layer reducing the reasoning required to build a solution as a result of not having to assess the full detail of behaviour of all assemblies to the finest detail. The specification of capability will have a unique identifier that anchors the definition and allows it to be accessed. This reflects the same principle that gives rise to labels in a taxonomy, where the label recalls the abstract definition removing the need to understand the effect of the parts from first principles.</t>
       <t>Today's solution at best have a coded form of the semantic interpretation that may not reflect the formal definition due to inaccuracies of interpretation. Many semantics are reduced to inconsistent labels that a user has to interpret. Whilst an LLM can do a reasonable job at interpretation of chaotic data, it will benefit a rigorous model traceable through formal definitions to fundamentals.</t>
+      <section anchor="structural-view-occurrences-as-a-hyperedge-fabric">
+        <name>Structural View: Occurrences as a Hyperedge Fabric</name>
+        <t>The component–system pattern above describes assembly informally: components have ports, and components combine into systems. This subsection gives that pattern a formal structural counterpart, without displacing the informal description above.</t>
+        <t>Every modelled semantic thing in this structural view is an occurrence. Structurally, an occurrence is hyperedge-like in that it can engage with multiple other hyperedges (unlike an edge which only has two places of engagement). The occurrence exposes ports that may join with compatible ports of other occurrences, and each joined pair of ports forms a point. The point is simply a recognition that two ports are joined. It is not itself a separate semantic node or vertex, and no meaning beyond “these two ports are joined” is smuggled into it. A port can only join with one other port. The port may have direction and role with respect to the internals of the occurrence. Where multiple ports are to be associated there is necessarily additional semantics requiring a further hyperedge occurrence where each port to be associated is joined with a single dedicated port on this new additional hyperedge.</t>
+        <t>The interconnected collection of occurrence-hyperedges is a hyperedge fabric: the structural projection, with occurrence semantics suppressed. When the semantics carried by those occurrence-hyperedges are exposed, the same fabric is a system. A system is therefore not a separate object layered on top of the fabric; it is the same fabric viewed with meaning restored. A selected system may itself participate externally as one occurrence at the next boundary — which is the formal counterpart of “a system can be represented as a component” in the component-system definition of Section 1.</t>
+        <t>This model does not require a primitive node or vertex category. A point is the incidence locus conceptually emergent by the joining of two ports, not an independently semantic vertex. Correspondingly, this document does not adopt classification-style typed nodes as a foundation.</t>
+      </section>
+      <section anchor="semantic-relationships-as-occurrences">
+        <name>Semantic Relationships as Occurrences</name>
+        <t>A simple relationship, in the structural view of Section 5.1, is exhausted by port joining: two compatible ports meet (and form a conceptual point). As described in 5.1, anything more is semantic. A dependency, containment relation, adaptation, specification relation, flow relation, precedence relation, or other complex relationship among components, systems or specifications is therefore represented as an occurrence with its own ports. It then joins to the participating occurrences and becomes another hyperedge in the same fabric.</t>
+        <t>This removes the need for a special semantic-edge or relationship ontology separate from occurrence. An apparently binary or n-ary relationship among the components, ports and specifications already defined in Section 1 and Section 5 is simply an occurrence whose semantics state the participant roles and conditions, with one or more ports providing its structural incidence to those participants.</t>
+        <t>Applied to the terminology already introduced: the specification relation between a specification (Section 1) and the component or system it constrains is one such relationship-occurrence. Where that constraining relationship carries semantics of its own — for example, that it is a licensing constraint rather than a physical one — those semantics are stated in the occurrence representing the relationship (relationship-occurrence) itself, not left implicit in an unlabelled point.</t>
+      </section>
     </section>
     <section anchor="specifications-and-llms">
       <name>Specifications and LLMs</name>
@@ -237,6 +274,7 @@ The specification of an occurrence is itself a system spec.</t>
           <t>etc.</t>
         </li>
       </ul>
+      <t>The occurrence-semantics kernel introduced from Section 5.1 onward gives this reasoning a decidable substrate rather than a heuristic one. Where an LLM previously had to infer, from prose alone, whether two specification contributions were compatible, redundant or contradictory, it can instead evaluate merge over their opportunity regions directly: a non-empty intersection is a valid combination, an empty intersection is never, and an unconstrained property is void rather than silently absent. Ranking among remaining legal opportunities is likewise separated — as prefer rather than as an implicit tie-break — so that an LLM's proposed simplifications or enhancements can be checked against an explicit rule set instead of re-derived from context each time (Section 8a).</t>
     </section>
     <section anchor="some-specification-examples">
       <name>Some specification examples</name>
@@ -257,6 +295,55 @@ The specification of an occurrence is itself a system spec.</t>
         <t>The specification model will be generalized such that the details provided can be used in any relevant application. It will not describe detailed per instance cases. Hence the specification will be used in conjunction with the actual instance arrangement to allow understanding of any reading in context.</t>
         <t>Traditionally, with ad-hoc formatting and variable accuracy of definitions etc., only a well experienced SME would have a chance of determining the relevance of a detected value.</t>
         <t>In a modern and future solutions we can do and have to do better. The intention is that the specification approach using the generalised specification definition structure set out in this document will provide a basis for LLM assisted specification generation and interpretation.</t>
+      </section>
+      <section anchor="worked-extension-a-where-rule-and-its-projections">
+        <name>Worked extension: a where rule and its projections</name>
+        <t>The operational-range consideration above can be stated as an explicit cross-occurrence rule rather than left as prose.</t>
+      </section>
+      <section anchor="occurrence-semantics-opportunity-regions-and-merge">
+        <name>Occurrence Semantics: Opportunity Regions and Merge</name>
+        <t>Sections 5 through 8 describe pruning, refactoring and specification informally, in terms of what a component or system can or cannot support. This section gives that description a formal, composable algebra, carried over from the occurrence-semantics kernel.</t>
+        <section anchor="opportunity-regions">
+          <name>Opportunity regions</name>
+          <t>An occurrence definition denotes the set, region or family of opportunities that satisfy it — its opportunity region, written [[A]] for occurrence A. A scalar exact value denotes a singleton region. A range, pattern, object shape, semantic relationship occurrence, fabric arrangement or explicit alternative denotes a wider region.</t>
+        </section>
+        <section anchor="semantic-states-void-valid-never">
+          <name>Semantic states: void, valid, never</name>
+          <table>
+            <thead>
+              <tr>
+                <th align="left">State</th>
+                <th align="left">Meaning</th>
+                <th align="left">Ordinary merge behaviour</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td align="left">void</td>
+                <td align="left">No surviving semantic contribution for the property, relationship occurrence or rule occurrence at this stage.</td>
+                <td align="left">Neutral: void merge X = X.</td>
+              </tr>
+              <tr>
+                <td align="left">valid</td>
+                <td align="left">A non-empty opportunity region or satisfiable semantic contribution/rule set.</td>
+                <td align="left">Combines conjunctively with another valid contribution.</td>
+              </tr>
+              <tr>
+                <td align="left">never</td>
+                <td align="left">The accumulated hard semantic definition is unsatisfiable.</td>
+                <td align="left">Absorbing until explicitly reset or pruned to void.</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        <section anchor="conjunctive-merge">
+          <name>Conjunctive merge</name>
+          <t>Merge accumulates obligations. All surviving hard contributions must hold. Ordinary merge is intended to be commutative, associative and idempotent after explicitly ordered transformations have been applied.</t>
+        </section>
+        <section anchor="alternatives-ranges-negation-and-exclusions">
+          <name>Alternatives, ranges, negation and exclusions</name>
+          <t>Alternatives must be explicit. Ranges and patterns define opportunity regions; exclusions preserve the original positive statement while removing illegal islands.</t>
+        </section>
       </section>
     </section>
     <section anchor="recursive-pruning-and-refactoring">
@@ -282,12 +369,29 @@ The specification of an occurrence is itself a system spec.</t>
         <t>Armed with the specification a controller can determine precisely how the termination point can be applied in a solution and the range of opportunities available.</t>
         <t>Whilst designing a solution, the controller may use a specific type of termination in a restricted form. For example, the Ethernet termination, although capable of supporting a MEP may be required to not provide that capability. The design of the pattern of use of terminations in a system may utilise the same type several times in the pattern where each occurrence in the pattern has a distinct further narrowing of the capability of the type. This is discussed further in Specification of an assembly (add reference to section).</t>
         <t>Eventually the pattern will be realized in a network. This will first be designed with no real instances in place. This will be represented with further specific narrowed termination point occurrences. Finally, there will be real instances in the network. These can also be considered as occurrences.</t>
+        <t>The word “pruning” has been used informally throughout this section for two related but distinct operations, which Section 9.5 below separates formally: removing a source contribution before it is combined with others (source pruning), and removing a property from the already-combined result (result pruning). The MEP-level restriction described above is an instance of the latter: the full MEP capability survives assembly from the Ethernet standard's specification, and is only then narrowed to one supported level at this termination point type.</t>
       </section>
       <section anchor="further-examples">
         <name>Further examples</name>
         <t>-Thing to Component to physical thing to equipment to specific equipment type to use of that equipment to instance of equipment
 -A plug example
 Circle back and relate this more rigorous section to the specification examples.</t>
+      </section>
+      <section anchor="cross-occurrence-rules-preferences-and-contradiction">
+        <name>Cross-Occurrence Rules, Preferences and Contradiction</name>
+        <t>The account of assembling and narrowing termination points refers informally to constraints that span more than one occurrence.</t>
+        <section anchor="where-hard-cross-occurrence-constraints">
+          <name>where: hard cross-occurrence constraints</name>
+          <t>Property-local opportunity spaces are not sufficient for semantics that span several members of a fabric. A where block states hard conditions over a selected semantic region within or across occurrences. Inter-property constraints are the common local case: the relevant property occurrences participate in the same applicable fabric, and the constraining relationship is represented semantically by a rule occurrence.</t>
+        </section>
+        <section anchor="prefer-ranking-without-elimination">
+          <name>prefer: ranking without elimination</name>
+          <t>A prefer block orders or optimises legal opportunities. Conflicting preferences produce a trade-off, unresolved ordering or profile-specific optimisation problem rather than never.</t>
+        </section>
+        <section anchor="regional-contradiction-and-localisation">
+          <name>Regional contradiction and localisation</name>
+          <t>A contradiction may arise only when several occurrence-hyperedges and rule occurrences are considered together. In that case the applicable sub-fabric or semantic region, rather than any one member, initially becomes never. Every constituent occurrence may remain locally satisfiable even though no legal semantic combination exists for the fabric as assembled.</t>
+        </section>
       </section>
     </section>
     <section anchor="specification-of-an-assembly">
@@ -296,12 +400,137 @@ Circle back and relate this more rigorous section to the specification examples.
 Use examples to illustrate the progression:
 - Same examples as recursive pruning and refactoring but focus on role and subtle specializations in role
 List other examples.</t>
+      <t>Section 8.2 showed that a single termination point type may be used several times within one system-level pattern, with each occurrence in the pattern carrying a distinct further narrowing of the type's capability — for example, one Ethernet termination point in a pattern supporting a MEP and another, of the identical underlying type, restricted so that it does not. This section further develops towards a formalisation of how a system specification records those per-occurrence narrowings without treating each restricted use as a new type.</t>
+      <section anchor="an-assembly-as-a-fabric-of-narrowed-occurrences">
+        <name>An assembly as a fabric of narrowed occurrences</name>
+        <t>A system spec, as introduced in Section 5, is a pattern assembly of subtly specialized occurrences at a particular level of specialization, arranged in a meaningful structure that yields a relevant behaviour. In the structural terms of Section 5, that assembly is a hyperedge fabric: each participating occurrence — here, each use of the Ethernet termination point type — is a hyperedge exposing ports, and the arrangement of the pattern is expressed through ports that join to their neighbours in the assembly.</t>
+        <t>Two occurrences in the same assembly may derive from the same underlying specification and yet carry different opportunity regions, because each occurrence's local definition merges the shared specification with a source contribution specific to its role in the pattern.</t>
+      </section>
+      <section anchor="role-and-subtle-specialization-within-an-assembly">
+        <name>Role and subtle specialization within an assembly</name>
+        <t>A narrowing within an assembly is frequently a matter of role rather than of physical capability: two tps may be supported by identical hardware, differing only in the role the pattern assigns to each occurrence. Section 4's Role dimension (desired, specified, committed, claimed, observed, realised) and Section 10a's role-qualified exactness apply directly here — an occurrence's narrowing may be a specified restriction (a design-time decision that this occurrence will not offer MEP support) well before it is a committed or realised one.</t>
+      </section>
+      <section anchor="cross-occurrence-constraints-within-the-assembly">
+        <name>Cross-occurrence constraints within the assembly</name>
+        <t>Some narrowings cannot be expressed occurrence-by-occurrence at all, because the constraint spans several members of the pattern. Section 8.4.1's where rules apply at the level of the assembly's fabric, not only within one occurrence's local definition.</t>
+      </section>
+      <section anchor="progression-from-designed-pattern-to-realised-network">
+        <name>Progression from designed pattern to realised network</name>
+        <t>Section 8.2 traced a pattern from design-time (no real instances in place) through further narrowing to real network instances, noting that instances are themselves occurrences rather than a terminal category. A fully precise, deployed occurrence of AssemblyPattern may acquire further definition within a subordinate control system etc.</t>
+      </section>
+      <section anchor="active-pruning-and-the-refinementpruningrefactoringmapping-distinction">
+        <name>Active Pruning and the Refinement/Pruning/Refactoring/Mapping Distinction</name>
+        <t>Section 8.2 noted informally that “pruning” has covered more than one operation in this document. This section separates those operations formally and relates each to the terminology already defined in Section 1.</t>
+        <section anchor="void-as-an-active-operation">
+          <name>void as an active operation</name>
+          <t>void (Section 7a.2) has an active transformational use as well as denoting neutral absence. Applying void at a definition stage removes a selected source contribution or resets an accumulated property occurrence, rule occurrence or semantic relationship occurrence to void.</t>
+        </section>
+        <section anchor="source-pruning-versus-result-pruning">
+          <name>Source pruning versus result pruning</name>
+          <t>The distinction anticipated in Section 8.2 is between removing a contribution before it is combined with others, and removing a property from the already-combined result:</t>
+        </section>
+        <section anchor="refinement-pruning-refactoring-and-mapping-as-distinct-operations">
+          <name>Refinement, pruning, refactoring and mapping as distinct operations</name>
+          <t>Refinement is the broad progression by which an occurrence definition is developed. It may involve conjunctive merge, additional constraints, explicit alternatives, pruning, mapping or structural transformation.</t>
+          <ul spacing="normal">
+            <li>
+              <t>Refinement: the umbrella progression by which an occurrence becomes differently or more fully defined.</t>
+            </li>
+            <li>
+              <t>Pruning: an explicitly scoped removal or reset of a property occurrence, semantic relationship occurrence, rule occurrence or source contribution.</t>
+            </li>
+            <li>
+              <t>Refactoring: a transformation from one semantic hyperedge fabric to another that preserves declared correspondence rather than silently changing meaning; it often compresses a detailed component-system fabric at one level into a more compact exposed fabric at another.</t>
+            </li>
+            <li>
+              <t>Mapping: a semantic hyperedge fabric, and hence a system, whose mapping occurrences record correspondence between source and target fabrics, including identity, derivation, value or structural transformation, direction, fidelity, reversibility and any information loss.</t>
+            </li>
+          </ul>
+        </section>
+      </section>
     </section>
     <section anchor="generalization-of-the-specification">
       <name>Generalization of the specification</name>
       <t>Build a specification structure from the examples and show the references and reuses.
 Explain how the specification relates to the things in the problem space.
 Lay out the specification structure.</t>
+      <t>The temperature-sensor and termination-point examples of Sections 7 and 8 illustrate individual specifications. This section generalises from those examples to the structure of a specification as such, and relates that structure back to the five conflated concerns identified in Section 3: generic definition, capability definition, policy definition, system combination, and operational instance.</t>
+      <section anchor="a-specification-as-a-bounded-reference-to-be-reused">
+        <name>A specification as a bounded reference to be reused</name>
+        <t>A specification, as defined in Section 1 and elaborated in Section 5, describes an occurrence's capabilities in terms of occurrences achieved via similar pruning: it is not a flat, self-contained description but a reference structure that other specifications, and other occurrences, can merge, refine or address by identifier. The unique identifier requirement already stated in Section 5 is what makes this reuse practical rather than merely conceptual.</t>
+        <t>The EthernetTP specification used in Section 9 is a direct illustration: it is defined once, referenced by qualified identity (Section 11a) from every occurrence that uses it, and each occurrence narrows it independently. This is the general pattern the temperature-sensor example anticipates informally in Section 7 (“the specification will be used in conjunction with the actual instance arrangement”) and which Section 9 formalises for assemblies.</t>
+      </section>
+      <section anchor="reference-and-reuse-relating-specifications-to-each-other">
+        <name>Reference and reuse: relating specifications to each other</name>
+        <t>A specification may refer to one or more other specifications, as already stated in Section 5. Two distinct forms of reference recur across the examples in this document:</t>
+        <ul spacing="normal">
+          <li>
+            <t>Compositional reference, where a specification's structure includes properties specified elsewhere.</t>
+          </li>
+          <li>
+            <t>Constraining reference, where a specification narrows another by merge rather than by including it structurally.</t>
+          </li>
+        </ul>
+        <t>Both forms use the same underlying merge algebra (Section 7a); they differ only in whether the referring specification's own properties are new (compositional) or a narrowing of the referenced specification's existing opportunity region (constraining).</t>
+      </section>
+      <section anchor="relating-the-specification-structure-to-the-five-conflated-concerns">
+        <name>Relating the specification structure to the five conflated concerns</name>
+        <t>Laid out this way, the specification structure maps directly onto the five concerns of Section 3:</t>
+        <ul spacing="normal">
+          <li>
+            <t>Generic definition: The most general, least-pruned specification in a reference chain — e.g., the universal component.</t>
+          </li>
+          <li>
+            <t>Capability definition: A named, identifiable specification (such as EthernetTP) capturing what a type of component or system can support, independent of any particular deployment.</t>
+          </li>
+          <li>
+            <t>Policy definition: A constraining reference (Section 10.2) applied at a particular occurrence to remove capabilities the operator does not want offered, expressed as a merge with a policy-sourced contribution rather than as a separate, informal restriction.</t>
+          </li>
+          <li>
+            <t>System combination: An assembly specification (Section 9) in which the same underlying specification is referenced by multiple occurrences, each independently narrowed for its role in the pattern.</t>
+          </li>
+          <li>
+            <t>Operational instance: A fully or highly precise occurrence (Section 10.4) reached by continued definition (Section 17b) from the specification structure above it, remaining subject to the same merge and where semantics rather than becoming a terminal, unrelated object.</t>
+          </li>
+        </ul>
+        <t>Read this way, the specification structure is not a sixth, separate artifact alongside the five concerns of Section 3 — it is the single structure within which all five are positioned as different points along one reference-and-refinement chain, addressed by qualified identity and combined by the same merge algebra throughout.</t>
+      </section>
+      <section anchor="completeness-exactness-and-role-qualified-identity">
+        <name>Completeness, Exactness and Role-Qualified Identity</name>
+        <t>Section 10 generalised the specification structure and related it to the five conflated concerns of Section 3, including operational instance as a fully or highly precise occurrence. This section makes precise what “fully or highly precise” means, and why exactness alone does not resolve the ambiguity between what a model element is and what it can support that Section 3 identifies as a core problem.</t>
+        <section anchor="complete-and-omission">
+          <name>complete and omission</name>
+          <t>By default, omission makes no local contribution: whatever survives from the sources remains defined. complete changes omission semantics at the stated structural boundary — properties not stated locally are actively pruned to void.</t>
+          <t>Complete is local, not terminal. It closes the visible property set at one boundary; it does not prohibit later composition, new relevant properties at another viewpoint, subordinate structure, or finer explanation — consistent with Section 17b's continued-definition principle below.</t>
+        </section>
+        <section anchor="exactness-completeness-and-concreteness-are-independent">
+          <name>Exactness, completeness and concreteness are independent</name>
+          <table>
+            <thead>
+              <tr>
+                <th align="left">Concept</th>
+                <th align="left">Meaning</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td align="left">Exact property</td>
+                <td align="left">Only one visible opportunity remains for that property. Exactness alone does not state its role or guarantee real-world satisfaction.</td>
+              </tr>
+              <tr>
+                <td align="left">Complete boundary</td>
+                <td align="left">Unstated inherited properties are pruned at this boundary.</td>
+              </tr>
+              <tr>
+                <td align="left">Concrete occurrence</td>
+                <td align="left">Sufficiently constrained for the current purpose or interaction.</td>
+              </tr>
+            </tbody>
+          </table>
+          <t>None implies either of the others. A provisioned connection may have exact endpoints and still leave route, equipment tuning and observed state open for later definition — the same pattern the network-instance discussion in Section 8.2 and the assembly-progression discussion in Section 9.4 both rely on without previously naming it.</t>
+          <t>This is the formal counterpart of Section 5's existing intent discussion where even the tightest constraint of a single value is essentially a statement of intent as it is impossible to guarantee that a property will be set, and of the Role dimension added to Section 4. Role-qualified exactness resolves the apparent tension between the two: an occurrence can be exact and still be only desired, or only specified, without contradiction, because exactness and role are independent axes.</t>
+        </section>
+      </section>
     </section>
     <section anchor="characteristics-of-a-language-of-specification">
       <name>Characteristics of a language of specification</name>
@@ -314,11 +543,32 @@ Extract key characteristics from above and from mobo
 - interrelationship and influence
 - uncertainty and preferences
 (Need to review mobo and TR-547 spec, component-system etc.)</t>
+      <t>The occurrence-semantics kernel introduced from Section 7 onward satisfies each of these six characteristics directly, rather than requiring a further after-the-fact addition.</t>
+      <section anchor="namespace-qualified-identity">
+        <name>Namespace-Qualified Identity</name>
+        <t>The reference-and-reuse discussion in Section 10.2 depends on being able to say when two contributions — arriving through different refinement or composition routes — are contributions to the same property, relationship or rule. This section makes that identity criterion explicit.</t>
+        <t>Automatic semantic combination occurs only when contributions resolve to the same qualified identity. Property occurrences, semantic relationship occurrences and rule occurrences should use a stable namespace plus local name; a prefix is only a local alias.</t>
+        <t>Contributions may arrive through different and arbitrarily deep occurrence routes and still combine when their qualified identity is the same — consistent with this document's existing position (Section 5, Appendix A.1) that there is no single canonical refinement path. There need not be one canonical derivation path or one privileged parent. Revision participates in source resolution and compatibility; whether it forms part of permanent identity remains a separate versioning decision.</t>
+      </section>
     </section>
     <section anchor="specification-language-options">
       <name>Specification language options</name>
       <t>Landscape of languages... does anything do this?
 Take YANG and enhance (as discussed in mobo)</t>
+      <t>The characteristics enumerated in Section 11 rule out a bare extension of YANG or JSON Schema on their own: neither has a native notion of void versus never (Section 7), neither separates hard constraints from ranked preferences (Section 8), and neither has an explicit merge algebra usable across independently sourced contributions (Section 7).</t>
+      <t>Positioned against existing language families:</t>
+      <ul spacing="normal">
+        <li>
+          <t>YANG / JSON Schema — close to this document's surface notation and directly reachable as a projection (Section 17), but without void/never, merge, where/prefer or qualified cross-source identity as native constructs.</t>
+        </li>
+        <li>
+          <t>UML (class and metamodel diagrams) — reachable as a projection of source merge and recursive constraining occurrences (Section 17), useful for presentation but not as an evaluation semantics.</t>
+        </li>
+        <li>
+          <t>Constraint/configuration languages in the general family of CUE, Nickel and Alloy — each already provides one part of this document's algebra (conjunctive unification, explicit priority/overlay, or relational bounded search respectively) but not the combination of merge, void/never, where/prefer and qualified identity as a single kernel.</t>
+        </li>
+      </ul>
+      <t>No existing language landscape covers this combination as a single kernel.</t>
     </section>
     <section anchor="building-a-specification-structure">
       <name>Building a specification structure</name>
@@ -326,14 +576,50 @@ Take YANG and enhance (as discussed in mobo)</t>
 Catalogue/library of specs
 Deep application... machine interpretable structure in all standards
 Use of AI to reverse engineer specs with guidance... peer review and testing cycle</t>
+      <t>Building and maintaining a catalogue of specifications under this framework requires processing to happen in a defined order, so that tooling built independently by different implementers produces the same result from the same sources. The following sequence is normative for that purpose:</t>
+      <ol spacing="normal" type="1"><li>
+          <t>Resolve module, namespace, revision and qualified-name identity (Section 11).</t>
+        </li>
+        <li>
+          <t>Evaluate each source occurrence and its exposed semantic hyperedge fabric recursively without discarding contribution provenance (Section 16).</t>
+        </li>
+        <li>
+          <t>Apply source-scoped transformations such as prune and active void (Section 9).</t>
+        </li>
+        <li>
+          <t>Reconcile the applicable port/point incidence, then merge surviving occurrence, property, semantic relationship and rule contributions conjunctively within the applicable semantic fabric (Section 7).</t>
+        </li>
+        <li>
+          <t>Apply the local body: constraints, explicit alternatives, exclusions and local void (Section 7).</t>
+        </li>
+        <li>
+          <t>If complete, prune inherited properties and associated contributions not stated at that structural boundary (Section 10).</t>
+        </li>
+        <li>
+          <t>Bind and evaluate surviving hard where rule occurrences over their selected semantic hyperedge fabrics and resulting opportunity regions (Section 8).</t>
+        </li>
+        <li>
+          <t>Normalise property and regional opportunity constraints; record property-level or regional never (Section 8).</t>
+        </li>
+        <li>
+          <t>Combine surviving prefer rules to rank legal opportunities using the selected preference profile (Section 8).</t>
+        </li>
+        <li>
+          <t>Retain explanation records for surviving, pruned, contradictory and preference contributions (Section 16).</t>
+        </li>
+      </ol>
+      <t>A rule that survives while referencing a void or unavailable property needs an explicit policy. The basic profile should require existence guards for optional paths; an unguarded required reference that cannot bind should normally make the applicable rule unsatisfied rather than disappear silently.</t>
     </section>
     <section anchor="a-specification-evolution-example">
       <name>A specification evolution example</name>
       <t>Discuss how a spec may change as understanding emerges and how it may be refactored.</t>
+      <t>Continuing the EthernetTP example from Section 9: suppose the Ethernet standard referenced by EthernetTP is revised to add a new MEP-adjacent capability, and separately, operational experience shows that the existing mepLevel range was too permissive for the service constraint. Both changes can be expressed as ordinary evolution of the specification's opportunity region, without discarding or silently overriding the occurrences already merged from it.</t>
+      <t>Where the evolution is better understood as a refactoring — for example, splitting EthernetTP into a base termination-point specification and a separate MEP-capability specification referenced from it this is refactoring rather than pruning, and the correspondence between the old, single specification and the new, split pair should be recorded as an explicit mapping rather than left to be inferred from the fact that both specifications happen to share a name.</t>
     </section>
     <section anchor="a-system-specification-example">
       <name>A system specification example</name>
       <t>Take the language considerations and set out system specs in a more formal way</t>
+      <t>This section will set out in a compact surface notation that is to be developed in a later draft.</t>
     </section>
     <section anchor="broader-application-of-the-language">
       <name>Broader Application of the Language</name>
@@ -341,6 +627,85 @@ Use of AI to reverse engineer specs with guidance... peer review and testing cyc
 Refinement of planning
 Development of standards
 Expression of uncertainty and pattern</t>
+      <t>The four applications named in the original outline map onto constructs already introduced in this document, rather than requiring separate treatment:</t>
+      <t>Negotiation: The process of formulating intent through negotiation and resultant gradual refinement has a similar feel to the degrees of pruning and refactoring of the specification. Formally, a negotiation position is an occurrence; a counter-position narrows or merges it; and where two positions' opportunity regions have empty intersection, the negotiation is at an explicit, detectable impasse (never) rather than an ambiguous stalemate. Prefer expresses a party's ranked preferences among positions that remain jointly legal.</t>
+      <t>Refinement of planning: The assembly-progression — design-time pattern through commitment to realised network instance — is itself a planning refinement expressed entirely through merge, role and continued definition, without a separate planning-specific mechanism.</t>
+      <t>Development of standards: Evolution, discussed earlier, is the process a standards body uses to revies a specification. Existing conformant occurrences remain valid by construction under refines. Refactoring/mapping distinction covers the harder case of a standard being restructured rather than merely narrowed.</t>
+      <t>Expression of uncertainty and pattern: Ranges, alternatives and exclusions express uncertainty in the value itself; role-qualified exactness expresses uncertainty in the status of an otherwise-exact value (desired versus committed versus observed, for instance); and prefer expresses uncertainty in which of several legal opportunities is wanted, as distinct from which is permitted.</t>
+      <section anchor="rules-as-occurrences-and-provenance">
+        <name>Rules as Occurrences and Provenance</name>
+        <t>This section will provide an expanded form and states the provenance requirement referenced earlier in the draft.</t>
+      </section>
+    </section>
+    <section anchor="compact-surface-form">
+      <name>Compact surface form</name>
+      <t>The examples in this document will be written in a compact form. This section will discuss that form and will project possible language equivalents.</t>
+      <section anchor="projection-equivalences">
+        <name>Projection Equivalences</name>
+        <table>
+          <thead>
+            <tr>
+              <th align="left">Projection</th>
+              <th align="left">Occurrence interpretation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td align="left">Concrete JSON</td>
+              <td align="left">A chosen complete view whose visible values are precise.</td>
+            </tr>
+            <tr>
+              <td align="left">JSON Schema / YANG</td>
+              <td align="left">A chosen complete view whose values are constraints and whose structure states permitted properties.</td>
+            </tr>
+            <tr>
+              <td align="left">UML inheritance</td>
+              <td align="left">A diagrammatic projection of source merge and cumulative refinement.</td>
+            </tr>
+            <tr>
+              <td align="left">UML metamodel</td>
+              <td align="left">Recursive constraining occurrences shown through conventional metalevel notation.</td>
+            </tr>
+            <tr>
+              <td align="left">CUE-like</td>
+              <td align="left">Conjunctive unification, explicit disjunction and contradiction.</td>
+            </tr>
+            <tr>
+              <td align="left">Nickel-like</td>
+              <td align="left">Programmable generation and explicit priority/overlay profiles.</td>
+            </tr>
+            <tr>
+              <td align="left">Alloy-like</td>
+              <td align="left">Relational constraints and bounded search over a chosen occurrence context.</td>
+            </tr>
+            <tr>
+              <td align="left">Component–system</td>
+              <td align="left">The basic structural/semantic view: component-role occurrence-hyperedges expose ports; compatible port pairs join to form points; with occurrence semantics exposed the resulting fabric is a system, which may itself participate as one component across its boundary.</td>
+            </tr>
+            <tr>
+              <td align="left">Structural refactoring</td>
+              <td align="left">A transformation from one semantic hyperedge fabric/system to another, often presenting a detailed lower-level fabric as a more compact target fabric through an explicit mapping fabric.</td>
+            </tr>
+            <tr>
+              <td align="left">Hyperedge fabric</td>
+              <td align="left">Structural view: occurrence-hyperedges joined through port-joining points, without a primitive node/vertex ontology.</td>
+            </tr>
+            <tr>
+              <td align="left">System</td>
+              <td align="left">Semantic view of that same fabric, with meaning exposed in each occurrence-hyperedge.</td>
+            </tr>
+            <tr>
+              <td align="left">Mapping system</td>
+              <td align="left">A semantic hyperedge fabric whose mapping occurrences connect source and target fabrics and carry correspondence, transformation and fidelity semantics.</td>
+            </tr>
+          </tbody>
+        </table>
+        <t>The target is loose semantic and structural equivalence. These projections do not import terminal instances, permanent metalevels or source-language evaluator identity into the kernel.</t>
+      </section>
+    </section>
+    <section anchor="continued-definition-below-a-precise-occurrence">
+      <name>Continued Definition Below a Precise Occurrence</name>
+      <t>A fully precise, deployed occurrence remains open to further definition rather than becoming a terminal instance. This section will state that principle formally.</t>
     </section>
     <section anchor="conclusion">
       <name>Conclusion</name>
@@ -348,10 +713,12 @@ Expression of uncertainty and pattern</t>
 Language challenges
 Use of AI
 Target is an ecosystem of specs driving agentic components...</t>
+      <t>The occurrence-semantics kernel discussed in this revision will give that ecosystem a common, composable substrate: every specification, component, relationship, rule and mapping in it is expressible as an occurrence with a well-defined opportunity region, combined by one merge algebra, and checkable by one normative processing sequence. This does not negate the mindset change already noted above — rigorous modelling still requires giving up ad hoc, source-order-dependent combination in favour of explicit, provenance-preserving definition — but it gives that change a formal target to converge on, consistent with the historical-lineage position that this kernel formalises, but does not retrospectively attribute to, the standards and drafts it builds on <xref target="ONF_TR-512">ITU-T_G.7711</xref> <xref target="mobo"/>.</t>
     </section>
     <section anchor="security-considerations">
       <name>Security Considerations</name>
       <t>TBD</t>
+      <t>An implementation that silently localises a regional never rather than propagating it can present a capability, policy or licensing structure as valid when it is not. This has security as well as correctness implications.</t>
     </section>
     <section anchor="iana-considerations">
       <name>IANA Considerations</name>
@@ -410,7 +777,7 @@ Target is an ecosystem of specs driving agentic components...</t>
             <author fullname="Phil Bedard" initials="P." surname="Bedard">
               <organization>Cisco</organization>
             </author>
-            <date day="5" month="February" year="2026"/>
+            <date day="27" month="May" year="2026"/>
             <abstract>
               <t>   This document defines a base YANG data model for reporting network
    inventory.  The scope of this base model is set to be application-
@@ -420,7 +787,7 @@ Target is an ecosystem of specs driving agentic components...</t>
               </t>
             </abstract>
           </front>
-          <seriesInfo name="Internet-Draft" value="draft-ietf-ivy-network-inventory-yang-14"/>
+          <seriesInfo name="Internet-Draft" value="draft-ietf-ivy-network-inventory-yang-18"/>
         </reference>
         <reference anchor="ITU-T_G.7711" target="https://www.itu.int/rec/T-REC-G.7711/recommendation.asp?lang=en&amp;parent=T-REC-G.7711-202202-I)">
           <front>
@@ -505,7 +872,7 @@ Target is an ecosystem of specs driving agentic components...</t>
         </reference>
       </references>
     </references>
-    <?line 380?>
+    <?line 647?>
 
 <section anchor="appendix-a-interpretive-notes-on-refinement-and-occurrence">
       <name>Appendix A: Interpretive Notes on Refinement and Occurrence</name>
@@ -529,6 +896,10 @@ Target is an ecosystem of specs driving agentic components...</t>
         <name>A.4 Classification Considered Harmful</name>
         <t>Rigid classification schemes tend to obscure natural emergence and lead to artificial separations. This model rejects top-down typing in favor of bottom-up capability surfacing, grounded in refinement logic. Semantic rigor replaces taxonomic rigidity.</t>
       </section>
+      <section anchor="a5-structure-and-semantics-are-separable">
+        <name>A.5. Structure and Semantics Are Separable</name>
+        <t>A.1 through A.4 above describe emergence and refinement without needing to separate structure from semantics explicitly. Section 5 makes that separation formal: the same occurrence fabric has a structural projection (occurrence-hyperedges joined at ports, with semantics suppressed) and a semantic projection (the system, with occurrence semantics exposed).</t>
+      </section>
     </section>
     <section anchor="acknowledgments">
       <name>Acknowledgments</name>
@@ -545,277 +916,504 @@ Target is an ecosystem of specs driving agentic components...</t>
     </section>
   </back>
   <!-- ##markdown-source:
-H4sIAPmppGkAA8V9644jV5Lefz5FugSMqwoka1qagcYFjFel6pZUi765u+TB
-QBC0SfKQTHUyk5sns0rUYgC9gmH/tP/6wfQkji8u55JktcbehXeh1ZTIzHOJ
-Eyfiiytns9mkr/raXRdnX7vGdWVd/exWxW25LxdVXfWH4m1XNctqXzt/NikX
-i849yLP0CH91Nlm1y6bc0RCrrlz3s1X5UPlZs2v3s00ccrYMQ872YcjZ759N
-lmXvNm13uC6qZt1OfF82qx/Kum1oxL4b3GTih8Wu8r5qm/6wp0/vXtx/VRSf
-FGXtW1pM1azc3tG/mv5sWpzd3XxJ/9N29Ne7+6/OJs2wW7juerKiea4ny7bx
-rvGD18FpN59Nys6VNNCbPa22p2l8QWsoXpVNuXE7DDt53ND3r1+9eXs2+fB4
-PSlmRdwP/mtXNtXa+R5/+71bVutqyUPhg87tO0ez9uGTdrkcus41S8dDtbs9
-bbfpZ/7ge7fDZ/tuaKpm87vOrctl3xLFNpMH1wy0haLYdO2wx4Jc/9h2H5KV
-FnEPZ/Sg0OsMf+7KqqY/cS5fVK5fz9tug8/Lbrmlz7d9v/fXV1d4DB9VD25u
-j13hg6tF1z56d4UBrvDipuq3w4Je3ZVd5dt6X9Y717VXwgV4V1nhN7kAo9V0
-Or5PFiLDz4k2V//qCa4WdbvA1pqr/wcelaXNd6uzyaQc+m1LzERHRIsuiGWJ
-kV7Pi3fz4jnG5A/lNryuNq4u3rXEfH3yJdHzuritXFPyfzo5l4ZX9MUSn2PP
-+QS3c7qR3arVd2T823JX1W32BY1NfPgznz8t4P4+neJsyS98samaedP388YR
-X2fTPJ8XL9u9+zmZ5HlFdzP5NJ/h3tVu3TbE6tlEK7w07+Y1XvuiDw9hY6Mp
-X82Lt3KsyaSv5Lyzb5hsd/GmpxMqfzC/frHBZ0JCXPa+qxZDL0c2OrPTB/Z/
-f1KTpu12RJEHx5O8++r202fP/tO1/PmnZ5//gT6eQLalTxVflt7dNXSle5Z9
-d7PnvP5Z9XCYNXKvZ5V9PzuUdP/x2t39t7P7H76ef/75s2fXvK74f5kkr5a/
-/vK/52ejR1gIFp/+/tNPZ7//0+yzZ+MRym7j6BbaJXx8fJxX/TCvmv6qc8ur
-+9m7F7czmR0ftDsSOivmhnnp9/9Q0zL/7Jrf7UmiNv2f08dnmPT3n87uLngf
-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
-z9Zl7d3Z3yb/B3RVXsrXiQAA
+H4sIAMT+lmoAA8W9bZMj15Ee+h2/ou4wYtndAaA1lGhKzVhbzeFQGse8eWZo
+eoOhkAtANbo0QBW2qtA9kLkR+gsO34++X+8P0y+5+eTbyVNAz1CyfO1Y7w7R
+QNV5yZMn88knM2ez2WSoh011VTz6XdVUXbmp/1ytiiflrlzUm3o4FK+7ulnW
+u03VP5qUi0VX3cl36Sv8p0eTVbtsyi09YtWVN8NsVd7V/azZtrvZOj1ytvRH
+znb+yNkvHk+W5VCt2+5wVdTNTTvph7JZ/bHctA09cej21WTS7xfbuu/rthkO
+O/r02dN33xXFZ0W56VsaTN2sql1F/6sZHk2LR8+uv6H/03b0rzfvvns0afbb
+RdVdTVb0nqvJsm36qun3vT6cZvPLSdlVJT3o1Y5GO9Br+oLGULwom3JdbfHY
+yf2a/v7yxavXjybv768mxaxI88F/bcumvqn6Af/ud9WyvqmX/Ch80FW7rqK3
+Dv5Ju1zuu65qlhU/qt3uaLrNMOsP/VBt8dmu2zd1s/6nrropl0NLK7ae3FXN
+nqZQFOuu3e8woGq4b7v3YaRFmsMj+qKs1yP8c1vWG/on9uW3dTXczNtujc/L
+bnlLn98Ow66/urzE1/BRfVfN7WuX+OBy0bX3fXWJB1zih+t6uN0v6Kfbsqv7
+drMrN9uqay9FCvBbFYVPSgGetqHd6YcwEHn8nNbm8n/5BZeLTbvA1JrLv0NG
+ZWjz7erRZFLuh9uWhIm2iAZdkMiSIL2cF2/mxbd4Jn8op+Flva42xZuWhG8I
+f6T1vCqe1FVT8n9Wsi8Nj+i3S3yOOecveDKnE9mtWv2NPP9Jua03bfYHejbJ
+4Z95/2kA797FVzxa8g9+u66beTMM86Yiuc5e8+28eN7uqj+Hl3xb09kMn+Zv
+eFdtqpu2IVHPXrTCj+bdfIOf/XbwL2Fio1e+mBevZVvDS1/Ifmd/4WV7lk56
+fKHKB8vrb9f4TJYQh33o6sV+kC0b7dnpDfvbd2rStN2WVuSu4pe8+e7JF48f
+/+ZK/vnrx1/9ij6eQLfFbxXflH31rKEjPbDuezb7lsc/q+8Os0bO9ay2v88O
+JZ1//OzZu+9n7/74u/lXXz1+fMXjSv8v0+T18q9/+X/nj0ZfYSVYfPGLL76Y
+/eLXs18+Hj+h7NYVnUI7hPf39/N62M/rZrjsquXlu9mbp09m8nZ80G5J6axY
+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
+Xz36t8n/BxMWj047DAEA
 
 -->
 
