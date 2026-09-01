@@ -19,8 +19,4 @@
   "bugs": {
     "url": "https://github.com/marisolpalmero/draft-ietf-davis-generalized-capability-principles/issues"
   },
-  "homepage": "https://github.com/marisolpalmero/draft-ietf-davis-generalized-capability-principles#readme",
-  "dependencies": {
-    "aasvg": "^0.4.3"
-  }
 }
