@@ -1172,7 +1172,23 @@ svg {
             <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-introduction" class="internal xref">Introduction</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
-            <p id="section-toc.1-1.3.1" class="keepWithNext"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-problem-statement" class="internal xref">Problem Statement</a></p>
+            <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-problem-statement" class="internal xref">Problem Statement</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1">
+                <p id="section-toc.1-1.3.2.1.1"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-availability-independent-of" class="internal xref">Availability Independent of Deployment</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.1">
+                    <p id="section-toc.1-1.3.2.1.2.1.1" class="keepWithNext"><a href="#section-3.1.1" class="auto internal xref">3.1.1</a>.  <a href="#name-the-lifecycle-requirement" class="internal xref">The Lifecycle Requirement</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.2">
+                    <p id="section-toc.1-1.3.2.1.2.2.1"><a href="#section-3.1.2" class="auto internal xref">3.1.2</a>.  <a href="#name-type-version-versus-instanc" class="internal xref">Type-Version versus Instance</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.3">
+                    <p id="section-toc.1-1.3.2.1.2.3.1"><a href="#section-3.1.3" class="auto internal xref">3.1.3</a>.  <a href="#name-relationship-to-the-rfc-919" class="internal xref">Relationship to the RFC 9196 Capability Advertisement Mechanism</a></p>
+</li>
+                </ul>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
             <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-specification-in-terms-of-t" class="internal xref">Specification in terms of the Model</a></p>
@@ -1239,27 +1255,13 @@ svg {
       <h2 id="name-terminology">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-terminology" class="section-name selfRef">Terminology</a>
       </h2>
-<p id="section-1-1">The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT"
-"SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in the
-document are to be interpreted as described in RFC2119}}.<a href="#section-1-1" class="pilcrow">¶</a></p>
-<p id="section-1-2">The following terms abbreviations are used in this document:<a href="#section-1-2" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-1-3.1">
-          <p id="section-1-3.1.1">equipment: A physical item necessary for a particular purpose.<a href="#section-1-3.1.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="section-1-3.2">
-          <p id="section-1-3.2.1">physical: Has spatial dimensions (i.e., can be measured with a "ruler") and in some cases has mass (i.e., can be weighed with scales)<a href="#section-1-3.2.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="section-1-3.3">
-          <p id="section-1-3.3.1">SFP: Small Form-factor Pluggable which is a category of Equipment<a href="#section-1-3.3.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="section-1-3.4">
-          <p id="section-1-3.4.1">equipment with applied data: A physical item with compatible software, firmware, configuration etc.<a href="#section-1-3.4.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="section-1-3.5">
-          <p id="section-1-3.5.1">equipment type-version: A reference to a definition of the capabilities of an equipment such that all instances of equipment of that type-version have the same capabilities.<a href="#section-1-3.5.1" class="pilcrow">¶</a></p>
-</li>
-      </ul>
+<p id="section-1-1">The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in the document are to be interpreted as described in RFC2119}}.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-2">The following terms abbreviations are used in this document:
+* equipment: A physical item necessary for a particular purpose.
+* physical: Has spatial dimensions (i.e., can be measured with a "ruler") and in some cases has mass (i.e., can be weighed with scales).
+* SFP: Small Form-factor Pluggable which is a category of Equipment.
+* equipment with applied data: A physical item with compatible software, firmware, configuration etc.
+* equipment type-version: A reference to a definition of the capabilities of an equipment such that all instances of equipment of that type-version have the same capabilities.<a href="#section-1-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="introduction">
@@ -1371,44 +1373,87 @@ document are to be interpreted as described in RFC2119}}.<a href="#section-1-1" 
 <a href="#section-3" class="section-number selfRef">3. </a><a href="#name-problem-statement" class="section-name selfRef">Problem Statement</a>
       </h2>
 <p id="section-3-1">A network is realized through an assembly of equipments (such as circuit packs, boards, racks, cables etc.), some passive (not directly powered), some active (directly powered) and some running complex software. Each assembly provides some capability that supports the provision of service. Understanding these capabilities in detail and precisely is vital throughout the life of the network.<a href="#section-3-1" class="pilcrow">¶</a></p>
-<p id="section-3-2">Whilst an active equipment with applied data may provide an interface that exposes what is available currently, it rarely indicates what is potentially available and when it does this is usually through an ad-hoc mechanism which only conveys a limited view of capability. Clearly, when the equipment is not powered, it is not possible to interrogate it even for this sparse and basic information. Passive equipments cannot be interrogated.<a href="#section-3-2" class="pilcrow">¶</a></p>
-<p id="section-3-3">Manufactures of equipment produce instances of types of equipment where each instance of a type is essentially identical with respect to capabilities within an acceptable and understood tolerance. Any instance of a type of equipment is interchangeable with another instance of the same type. There may also be other compatibilities where different types have the same or a superset capability and hence can be used as alternatives.<a href="#section-3-3" class="pilcrow">¶</a></p>
-<p id="section-3-4">In practice, managing equipment capabilities in isolation is insufficient.  Each capability must be tied to:<a href="#section-3-4" class="pilcrow">¶</a></p>
+<div id="availability-independent-of-deployment">
+<section id="section-3.1">
+        <h3 id="name-availability-independent-of">
+<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-availability-independent-of" class="section-name selfRef">Availability Independent of Deployment</a>
+        </h3>
+<p id="section-3.1-1">Whilst an active equipment with applied data may provide an interface that exposes what is available currently, it rarely indicates what is potentially available and when it does this is usually through an ad-hoc mechanism which only conveys a limited view of capability. Clearly, when the equipment is not powered, it is not possible to interrogate it even for this sparse and basic information. Passive equipments cannot be interrogated. The capability specifications defined by this framework are static and platform-specific; they are a property of the equipment type-version rather than of any running instance. As such, they are well-suited to distribution as YANG instance data <span>[<a href="#RFC9195" class="cite xref">RFC9195</a>]</span>, a file format that allows a vendor to publish capability descriptions independently of any deployed device. A planning or procurement tool can thereby access the full capability specification at design time, before any equipment is ordered or powered on.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.1-2">Manufactures of equipment produce instances of types of equipment where each instance of a type is essentially identical with respect to capabilities within an acceptable and understood tolerance. Any instance of a type of equipment is interchangeable with another instance of the same type. There may also be other compatibilities where different types have the same or a superset capability and hence can be used as alternatives.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
+<p id="section-3.1-3">In practice, managing equipment capabilities in isolation is insufficient.  Each capability must be tied to:<a href="#section-3.1-3" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-3-5.1">
-          <p id="section-3-5.1.1">an <em>entitlement</em> indicating whether it is licensed or permitted for use, and<a href="#section-3-5.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-3.1-4.1">
+            <p id="section-3.1-4.1.1">an <em>entitlement</em> indicating whether it is licensed or permitted for use, and<a href="#section-3.1-4.1.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-3-5.2">
-          <p id="section-3-5.2.1">an <em>inventory record</em> that anchors the capability to a deployed occurrence.<a href="#section-3-5.2.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-3.1-4.2">
+            <p id="section-3.1-4.2.1">an <em>inventory record</em> that anchors the capability to a deployed occurrence.<a href="#section-3.1-4.2.1" class="pilcrow">¶</a></p>
 </li>
-      </ul>
-<p id="section-3-6">This tri-layer relationship enables operators to reason about what equipment types exist, what functions they can theoretically perform, what data needs to be applied to cause these functions to be performed, what has been purchased or activated, and what is currently deployed or configured.<a href="#section-3-6" class="pilcrow">¶</a></p>
-<p id="section-3-7">Without such linkage, automation frameworks cannot determine whether a planned configuration is feasible, legally licensed, or available in the installed base.<a href="#section-3-7" class="pilcrow">¶</a></p>
-<p id="section-3-8">It is necessary to understand some aspects of capability of a type of equipment with applied data at all stages of the lifecycle:<a href="#section-3-8" class="pilcrow">¶</a></p>
+        </ul>
+<p id="section-3.1-5">This tri-layer relationship enables operators to reason about what equipment types exist, what functions they can theoretically perform, what data needs to be applied to cause these functions to be performed, what has been purchased or activated, and what is currently deployed or configured.<a href="#section-3.1-5" class="pilcrow">¶</a></p>
+<p id="section-3.1-6">Without such linkage, automation frameworks cannot determine whether a planned configuration is feasible, legally licensed, or available in the installed base.<a href="#section-3.1-6" class="pilcrow">¶</a></p>
+<div id="the-lifecycle-requirement">
+<section id="section-3.1.1">
+          <h4 id="name-the-lifecycle-requirement">
+<a href="#section-3.1.1" class="section-number selfRef">3.1.1. </a><a href="#name-the-lifecycle-requirement" class="section-name selfRef">The Lifecycle Requirement</a>
+          </h4>
+<p id="section-3.1.1-1">It is necessary to understand some aspects of capability of a type of equipment with applied data at all stages of the lifecycle:<a href="#section-3.1.1-1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-3-9.1">
-          <p id="section-3-9.1.1">whilst speculation about services to be provided prior to network design and researching potential network capabilities<a href="#section-3-9.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-3.1.1-2.1">
+              <p id="section-3.1.1-2.1.1">whilst speculation about services to be provided prior to network design and researching potential network capabilities<a href="#section-3.1.1-2.1.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-3-9.2">
-          <p id="section-3-9.2.1">when planning network structure<a href="#section-3-9.2.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="section-3.1.1-2.2">
+              <p id="section-3.1.1-2.2.1">when planning network structure<a href="#section-3.1.1-2.2.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-3-9.3">
-          <p id="section-3-9.3.1">prior to purchasing, when choosing particular equipment types, software etc. for a specific purpose where there are alternatives<a href="#section-3-9.3.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="section-3.1.1-2.3">
+              <p id="section-3.1.1-2.3.1">prior to purchasing, when choosing particular equipment types, software etc. for a specific purpose where there are alternatives<a href="#section-3.1.1-2.3.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-3-9.4">
-          <p id="section-3-9.4.1">when planning future deployment of equipments, software etc.<a href="#section-3-9.4.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="section-3.1.1-2.4">
+              <p id="section-3.1.1-2.4.1">when planning future deployment of equipments, software etc.<a href="#section-3.1.1-2.4.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-3-9.5">
-          <p id="section-3-9.5.1">when the equipment is installed and services are being designed<a href="#section-3-9.5.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="section-3.1.1-2.5">
+              <p id="section-3.1.1-2.5.1">when the equipment is installed and services are being designed<a href="#section-3.1.1-2.5.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-3-9.6">
-          <p id="section-3-9.6.1">even when the equipment is fully configured and operational with no errors etc., there may be heartbeat and status capabilities.<a href="#section-3-9.6.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="section-3.1.1-2.6">
+              <p id="section-3.1.1-2.6.1">even when the equipment is fully configured and operational with no errors etc., there may be heartbeat and status capabilities.<a href="#section-3.1.1-2.6.1" class="pilcrow">¶</a></p>
 </li>
-      </ul>
-<p id="section-3-10">Considering the above, it is necessary to have a complete description of capability that is available independent of the presence of equipment etc. This description needs to be rigorous and readily interpretable allowing for comparisons with other equipment types etc. On that basis the capabilities should be described in a normalized language where advantage is taken of recurring patterns etc.<a href="#section-3-10" class="pilcrow">¶</a></p>
-<p id="section-3-11">As automation progresses, machine interpretability of the capability information becomes increasingly important. Whilst AI, especially LLMs, can deal with the variety and ambiguity of human languages, a more coherent and compact language usage is preferable for efficiency and removal of potential ambiguity.<a href="#section-3-11" class="pilcrow">¶</a></p>
-<p id="section-3-12">This document sets out an approach for expression of capabilities of equipment in terms of physical structure, data structure (software etc.) and emergent functionality.<a href="#section-3-12" class="pilcrow">¶</a></p>
-<p id="section-3-13">Whilst knowing the YANG model for the equipment is beneficial, it is not sufficient. The YANG model essentially provides a space within which actual state and configuration can be expresses. The YANG model tends to not express equipment type based constraints. Whilst specifying the combinatorial effects of interacting equipments and software in YANG is potentially possible, the mechanisms available are not designed for this purpose and the results would probably be a large set of special models with extremely cumbersome/complex definitions that would be distinct from the interface model that is necessarily open and broad.<a href="#section-3-13" class="pilcrow">¶</a></p>
+          </ul>
+</section>
+</div>
+<div id="type-version-versus-instance">
+<section id="section-3.1.2">
+          <h4 id="name-type-version-versus-instanc">
+<a href="#section-3.1.2" class="section-number selfRef">3.1.2. </a><a href="#name-type-version-versus-instanc" class="section-name selfRef">Type-Version versus Instance</a>
+          </h4>
+<p id="section-3.1.2-1">Considering the above, it is necessary to have a complete description of capability that is available independent of the presence of equipment etc. This description needs to be rigorous and readily interpretable allowing for comparisons with other equipment types etc. On that basis the capabilities should be described in a normalized language where advantage is taken of recurring patterns etc.<a href="#section-3.1.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.1.2-2">As automation progresses, machine interpretability of the capability information becomes increasingly important. Whilst AI, especially LLMs, can deal with the variety and ambiguity of human languages, a more coherent and compact language usage is preferable for efficiency and removal of potential ambiguity.<a href="#section-3.1.2-2" class="pilcrow">¶</a></p>
+<p id="section-3.1.2-3">This document sets out an approach for expression of capabilities of equipment in terms of physical structure, data structure (software etc.) and emergent functionality.<a href="#section-3.1.2-3" class="pilcrow">¶</a></p>
+<p id="section-3.1.2-4">Whilst knowing the YANG model for the equipment is beneficial, it is not sufficient. The YANG model essentially provides a space within which actual state and configuration can be expresses. The YANG model tends to not express equipment type based constraints. Whilst specifying the combinatorial effects of interacting equipments and software in YANG is potentially possible, the mechanisms available are not designed for this purpose and the results would probably be a large set of special models with extremely cumbersome/complex definitions that would be distinct from the interface model that is necessarily open and broad.<a href="#section-3.1.2-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="relationship-to-the-rfc-9196-capability-advertisement-mechanism">
+<section id="section-3.1.3">
+          <h4 id="name-relationship-to-the-rfc-919">
+<a href="#section-3.1.3" class="section-number selfRef">3.1.3. </a><a href="#name-relationship-to-the-rfc-919" class="section-name selfRef">Relationship to the RFC 9196 Capability Advertisement Mechanism</a>
+          </h4>
+<p id="section-3.1.3-1"><span>[<a href="#RFC9196" class="cite xref">RFC9196</a>]</span> defines <code>ietf-system-capabilities</code>, a standard YANG container with an open <code>per-node-capabilities</code> augmentation point and a dual-mode delivery model: the same schema is used whether capability data is queried from a live device at runtime via NETCONF <span>[<a href="#RFC6241" class="cite xref">RFC6241</a>]</span> or RESTCONF <span>[<a href="#RFC8040" class="cite xref">RFC8040</a>]</span>, or consumed from a vendor-supplied file before deployment via YANG instance data <span>[<a href="#RFC9195" class="cite xref">RFC9195</a>]</span>.<a href="#section-3.1.3-1" class="pilcrow">¶</a></p>
+<p id="section-3.1.3-2"><span>[<a href="#RFC9196" class="cite xref">RFC9196</a>]</span> defines <strong>how</strong> to advertise capabilities: the container, the query path, and the delivery format.  It is domain-agnostic and carries no definition of what a capability is, how capabilities compose hierarchically, how entitlements constrain their use, or how functional dependencies relate them.<a href="#section-3.1.3-2" class="pilcrow">¶</a></p>
+<p id="section-3.1.3-3">This framework defines <strong>what</strong> flows through that mechanism: the semantic language, composition rules, entitlement model, and lifecycle scope of equipment capability specifications.  The two are complementary and non-overlapping:<a href="#section-3.1.3-3" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.1.3-4.1">
+              <p id="section-3.1.3-4.1.1">This framework is the semantic language and composition rules: the content.<a href="#section-3.1.3-4.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-3.1.3-4.2">
+              <p id="section-3.1.3-4.2.1"><span>[<a href="#RFC9196" class="cite xref">RFC9196</a>]</span> is the delivery container and query mechanism: the pipe.<a href="#section-3.1.3-4.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-3.1.3-4.3">
+              <p id="section-3.1.3-4.3.1"><span>[<a href="#RFC9195" class="cite xref">RFC9195</a>]</span> is the pre-deployment file delivery format: the envelop.<a href="#section-3.1.3-4.3.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+<p id="section-3.1.3-5">This framework is intentionally independent of the delivery mechanism.  The same capability specification can be queried from a live device or shipped as a vendor-supplied file without any change to its content or structure.<a href="#section-3.1.3-5" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
 </section>
 </div>
 <div id="specification-in-terms-of-the-model">
@@ -1602,7 +1647,7 @@ A specification for a system arrangement for a service and associated realizatio
 <a href="#section-13" class="section-number selfRef">13. </a><a href="#name-conclusion" class="section-name selfRef">Conclusion</a>
       </h2>
 <p id="section-13-1">This document applies the generalized capability principles to the specific case of equipment with applied data.  By linking equipment capability descriptions to entitlements and inventory items, it creates a complete semantic chain from potential -&gt; permitted -&gt; realized.<a href="#section-13-1" class="pilcrow">¶</a></p>
-<p id="section-13-2">This alignment ensures that planning, procurement, licensing, and operational systems can reason coherently about equipment functions and their lifecycle.  The approach enables automation, energy- and sustainability-aware network management, and AI-assisted reasoning grounded in formally defined capability structures.<a href="#section-13-2" class="pilcrow">¶</a></p>
+<p id="section-13-2">This alignment ensures that planning, procurement, licensing, and operational systems can reason coherently about equipment functions and their lifecycle.  The approach enables automation, energy-aware network management, and AI-assisted reasoning grounded in formally defined capability structures. The machine interpretability of the capability information is further enhanced when specifications are packaged as YANG instance data <span>[<a href="#RFC9195" class="cite xref">RFC9195</a>]</span>, allowing vendor-supplied capability descriptions to be consumed by planning, procurement, and automation frameworks without requiring a live device to be present or powered.<a href="#section-13-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="security-considerations">
@@ -1694,8 +1739,24 @@ A specification for a system arrangement for a service and associated realizatio
 <span class="refTitle">"TR-512.A.2 Appendix: Model Structure, Patterns and Architecture"</span>, <span>n.d.</span>, <span>&lt;<a href="https://opennetworking.org/wp-content/uploads/2021/11/TR-512_v1.5_OnfCoreIm-info.zip">https://opennetworking.org/wp-content/uploads/2021/11/TR-512_v1.5_OnfCoreIm-info.zip</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="plug">[plug]</dt>
-      <dd>
+        <dd>
 <span class="refTitle">"plug"</span>, <time datetime="2022-08-31" class="refDate">31 August 2022</time>, <span>&lt;<a href="https://%203.pdf">https:// 3.pdf</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC6241">[RFC6241]</dt>
+        <dd>
+<span class="refAuthor">Enns, R., Ed.</span>, <span class="refAuthor">Bjorklund, M., Ed.</span>, <span class="refAuthor">Schoenwaelder, J., Ed.</span>, and <span class="refAuthor">A. Bierman, Ed.</span>, <span class="refTitle">"Network Configuration Protocol (NETCONF)"</span>, <span class="seriesInfo">RFC 6241</span>, <span class="seriesInfo">DOI 10.17487/RFC6241</span>, <time datetime="2011-06" class="refDate">June 2011</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6241">https://www.rfc-editor.org/rfc/rfc6241</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8040">[RFC8040]</dt>
+        <dd>
+<span class="refAuthor">Bierman, A.</span>, <span class="refAuthor">Bjorklund, M.</span>, and <span class="refAuthor">K. Watsen</span>, <span class="refTitle">"RESTCONF Protocol"</span>, <span class="seriesInfo">RFC 8040</span>, <span class="seriesInfo">DOI 10.17487/RFC8040</span>, <time datetime="2017-01" class="refDate">January 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8040">https://www.rfc-editor.org/rfc/rfc8040</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9195">[RFC9195]</dt>
+        <dd>
+<span class="refAuthor">Lengyel, B.</span> and <span class="refAuthor">B. Claise</span>, <span class="refTitle">"A File Format for YANG Instance Data"</span>, <span class="seriesInfo">RFC 9195</span>, <span class="seriesInfo">DOI 10.17487/RFC9195</span>, <time datetime="2022-02" class="refDate">February 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9195">https://www.rfc-editor.org/rfc/rfc9195</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9196">[RFC9196]</dt>
+      <dd>
+<span class="refAuthor">Lengyel, B.</span>, <span class="refAuthor">Clemm, A.</span>, and <span class="refAuthor">B. Claise</span>, <span class="refTitle">"YANG Modules Describing Capabilities for Systems and Datastore Update Notifications"</span>, <span class="seriesInfo">RFC 9196</span>, <span class="seriesInfo">DOI 10.17487/RFC9196</span>, <time datetime="2022-02" class="refDate">February 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9196">https://www.rfc-editor.org/rfc/rfc9196</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>

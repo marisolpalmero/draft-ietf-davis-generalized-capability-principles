@@ -91,6 +91,11 @@ Table of Contents
    1.  Terminology
    2.  Introduction
    3.  Problem Statement
+     3.1.  Availability Independent of Deployment
+       3.1.1.  The Lifecycle Requirement
+       3.1.2.  Type-Version versus Instance
+       3.1.3.  Relationship to the RFC 9196 Capability Advertisement
+               Mechanism
    4.  Specification in terms of the Model
    5.  Some specification examples
    6.  Pruning and refactoring achieving recursive narrowing
@@ -112,26 +117,20 @@ Table of Contents
 
 1.  Terminology
 
-   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT"
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
    "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in the
    document are to be interpreted as described in RFC2119}}.
 
-   The following terms abbreviations are used in this document:
-
-   *  equipment: A physical item necessary for a particular purpose.
-
-   *  physical: Has spatial dimensions (i.e., can be measured with a
-      "ruler") and in some cases has mass (i.e., can be weighed with
-      scales)
-
-   *  SFP: Small Form-factor Pluggable which is a category of Equipment
-
-   *  equipment with applied data: A physical item with compatible
-      software, firmware, configuration etc.
-
-   *  equipment type-version: A reference to a definition of the
-      capabilities of an equipment such that all instances of equipment
-      of that type-version have the same capabilities.
+   The following terms abbreviations are used in this document: *
+   equipment: A physical item necessary for a particular purpose. *
+   physical: Has spatial dimensions (i.e., can be measured with a
+   "ruler") and in some cases has mass (i.e., can be weighed with
+   scales). * SFP: Small Form-factor Pluggable which is a category of
+   Equipment. * equipment with applied data: A physical item with
+   compatible software, firmware, configuration etc. * equipment type-
+   version: A reference to a definition of the capabilities of an
+   equipment such that all instances of equipment of that type-version
+   have the same capabilities.
 
 2.  Introduction
 
@@ -251,13 +250,23 @@ Table of Contents
    supports the provision of service.  Understanding these capabilities
    in detail and precisely is vital throughout the life of the network.
 
+3.1.  Availability Independent of Deployment
+
    Whilst an active equipment with applied data may provide an interface
    that exposes what is available currently, it rarely indicates what is
    potentially available and when it does this is usually through an ad-
    hoc mechanism which only conveys a limited view of capability.
    Clearly, when the equipment is not powered, it is not possible to
    interrogate it even for this sparse and basic information.  Passive
-   equipments cannot be interrogated.
+   equipments cannot be interrogated.  The capability specifications
+   defined by this framework are static and platform-specific; they are
+   a property of the equipment type-version rather than of any running
+   instance.  As such, they are well-suited to distribution as YANG
+   instance data [RFC9195], a file format that allows a vendor to
+   publish capability descriptions independently of any deployed device.
+   A planning or procurement tool can thereby access the full capability
+   specification at design time, before any equipment is ordered or
+   powered on.
 
    Manufactures of equipment produce instances of types of equipment
    where each instance of a type is essentially identical with respect
@@ -286,6 +295,8 @@ Table of Contents
    a planned configuration is feasible, legally licensed, or available
    in the installed base.
 
+3.1.1.  The Lifecycle Requirement
+
    It is necessary to understand some aspects of capability of a type of
    equipment with applied data at all stages of the lifecycle:
 
@@ -303,6 +314,8 @@ Table of Contents
 
    *  even when the equipment is fully configured and operational with
       no errors etc., there may be heartbeat and status capabilities.
+
+3.1.2.  Type-Version versus Instance
 
    Considering the above, it is necessary to have a complete description
    of capability that is available independent of the presence of
@@ -332,6 +345,38 @@ Table of Contents
    large set of special models with extremely cumbersome/complex
    definitions that would be distinct from the interface model that is
    necessarily open and broad.
+
+3.1.3.  Relationship to the RFC 9196 Capability Advertisement Mechanism
+
+   [RFC9196] defines ietf-system-capabilities, a standard YANG container
+   with an open per-node-capabilities augmentation point and a dual-mode
+   delivery model: the same schema is used whether capability data is
+   queried from a live device at runtime via NETCONF [RFC6241] or
+   RESTCONF [RFC8040], or consumed from a vendor-supplied file before
+   deployment via YANG instance data [RFC9195].
+
+   [RFC9196] defines *how* to advertise capabilities: the container, the
+   query path, and the delivery format.  It is domain-agnostic and
+   carries no definition of what a capability is, how capabilities
+   compose hierarchically, how entitlements constrain their use, or how
+   functional dependencies relate them.
+
+   This framework defines *what* flows through that mechanism: the
+   semantic language, composition rules, entitlement model, and
+   lifecycle scope of equipment capability specifications.  The two are
+   complementary and non-overlapping:
+
+   *  This framework is the semantic language and composition rules: the
+      content.
+
+   *  [RFC9196] is the delivery container and query mechanism: the pipe.
+
+   *  [RFC9195] is the pre-deployment file delivery format: the envelop.
+
+   This framework is intentionally independent of the delivery
+   mechanism.  The same capability specification can be queried from a
+   live device or shipped as a vendor-supplied file without any change
+   to its content or structure.
 
 4.  Specification in terms of the Model
 
@@ -592,9 +637,14 @@ Table of Contents
 
    This alignment ensures that planning, procurement, licensing, and
    operational systems can reason coherently about equipment functions
-   and their lifecycle.  The approach enables automation, energy- and
-   sustainability-aware network management, and AI-assisted reasoning
-   grounded in formally defined capability structures.
+   and their lifecycle.  The approach enables automation, energy-aware
+   network management, and AI-assisted reasoning grounded in formally
+   defined capability structures.  The machine interpretability of the
+   capability information is further enhanced when specifications are
+   packaged as YANG instance data [RFC9195], allowing vendor-supplied
+   capability descriptions to be consumed by planning, procurement, and
+   automation frameworks without requiring a live device to be present
+   or powered.
 
 14.  Security Considerations
 
@@ -672,6 +722,24 @@ Table of Contents
               content/uploads/2021/11/TR-512_v1.5_OnfCoreIm-info.zip>.
 
    [plug]     "plug", 31 August 2022, <https:// 3.pdf>.
+
+   [RFC6241]  Enns, R., Ed., Bjorklund, M., Ed., Schoenwaelder, J., Ed.,
+              and A. Bierman, Ed., "Network Configuration Protocol
+              (NETCONF)", RFC 6241, DOI 10.17487/RFC6241, June 2011,
+              <https://www.rfc-editor.org/rfc/rfc6241>.
+
+   [RFC8040]  Bierman, A., Bjorklund, M., and K. Watsen, "RESTCONF
+              Protocol", RFC 8040, DOI 10.17487/RFC8040, January 2017,
+              <https://www.rfc-editor.org/rfc/rfc8040>.
+
+   [RFC9195]  Lengyel, B. and B. Claise, "A File Format for YANG
+              Instance Data", RFC 9195, DOI 10.17487/RFC9195, February
+              2022, <https://www.rfc-editor.org/rfc/rfc9195>.
+
+   [RFC9196]  Lengyel, B., Clemm, A., and B. Claise, "YANG Modules
+              Describing Capabilities for Systems and Datastore Update
+              Notifications", RFC 9196, DOI 10.17487/RFC9196, February
+              2022, <https://www.rfc-editor.org/rfc/rfc9196>.
 
 Appendix A.  Acknowledgments
 
